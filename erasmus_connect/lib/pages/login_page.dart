@@ -13,9 +13,7 @@ class LoginPage extends StatelessWidget {
   final passwordController = TextEditingController();
 
   // sign user in method
-  void signUserIn() {
-
-  }
+  void signUserIn() {}
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +37,7 @@ class LoginPage extends StatelessWidget {
 
                 // welcome back, you've been missed!
                 Text(
-                  'Welcome back you\'ve been missed!',
+                  ' back you\'ve been missed!',
                   style: TextStyle(
                     color: Colors.grey[700],
                     fontSize: 16,
@@ -125,12 +123,12 @@ class LoginPage extends StatelessWidget {
                   children: [
                     // google button
                     GestureDetector(
-                        child: SquareTile(imagePath: 'lib/images/google.png'),
+                      child: SquareTile(imagePath: 'lib/images/google.png'),
                       onTap: () {
-                          FirebaseAuthServiceMethods(FirebaseAuth.instance).SignInWithGoogle(context);
+                        FirebaseAuthServiceMethods(FirebaseAuth.instance)
+                            .SignInWithGoogle(context);
                       },
                     ),
-                    
                   ],
                 ),
 

@@ -1,8 +1,12 @@
-import 'package:erasmus_connect/class/auth.dart';
+import 'package:erasmus_connect/screens/account_screen/account_screen.dart';
+import 'package:erasmus_connect/services/auth.dart';
 import 'package:erasmus_connect/firebase_options.dart';
+import 'package:erasmus_connect/widgets/bottom_navigator_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod/riverpod.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,74 +14,80 @@ void main() async {
   runApp(const MyApp());
 }
 
+final List<Widget> allPages = [
+  pageOneTesting(),
+  AccountScreen()
+];
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return ProviderScope(
+      child: MaterialApp(
+        title: 'Connect Plus',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text("Connect Plus", style: TextStyle(color: Colors.white),),
+            backgroundColor: Colors.deepPurpleAccent,
+          ),
+          body: Consumer(builder: (context, ref, child){
+          final pageIndex = ref.watch(pageIndexProvider);
+          return allPages[pageIndex];
+          },
+        ),
+          bottomNavigationBar: my_navigator_bar(),
+        ),
+
       ),
-      home: const MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class pageOneTesting extends StatelessWidget {
+  const pageOneTesting({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        child: Text("eklen oluştur"),
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => asdasd()));
+        },
+      ),
+    );
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  TextEditingController email = new TextEditingController();
-  TextEditingController password = new TextEditingController();
-
-  void SignUpUser() async {
-    FirebaseAuthServiceMethods(FirebaseAuth.instance).signUpWithEmail(
-        email: email.text, password: password.text, context: context);
-  }
-
-  void SignInUser() async {
-    FirebaseAuthServiceMethods(FirebaseAuth.instance).LoginWithEmail(
-        email: email.text, password: password.text, context: context);
-  }
+class asdasd extends StatelessWidget {
+  const asdasd({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Erasmus Connect Plus"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: Column(
-            children: [
-              TextField(
-                controller: email,
-              ),
-              TextField(
-                controller: password,
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    //AuthService().signIn(mail: mail.text, password: pass.text);
-                    print(email.text);
-                    print(password.text);
-                    SignInUser();
-                  },
-                  child: Text("GİRİŞ"))
-            ],
-          ),
-        ),
-      ),
+      appBar: AppBar(),
+      body: Center(child: Text("testing"),),
+    );
+  }
+}
+
+
+
+class pageTwoTesting extends StatelessWidget {
+  const pageTwoTesting({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text("selam bu sayfa 2"),
     );
   }
 }

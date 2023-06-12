@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:erasmus_connect/services/database.dart';
 import 'package:erasmus_connect/utils/showSnackBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,12 +7,30 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthServiceMethods {
   final FirebaseAuth _auth;
-
   FirebaseAuthServiceMethods(this._auth);
-  Future<void> signUpWithEmail({required String email, required String password, required BuildContext context}) async{
+
+  Future<bool> SignOut(BuildContext context) async{
     try {
-      await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      await _auth.signOut();
+      return true;
+    } on FirebaseException catch(e) {
+      showSnackBar(context, e.message!);
+      return false;
+    }
+  }
+
+  Future<void> signUpWithEmail({required String fullName, required String email, required String password, required BuildContext context}) async{
+    try {
+      var res = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       await sendEmailVerification(context);
+      showSnackBar(context, "We sended a verification mail!");
+      if(_auth.currentUser != null) {
+        FirebaseFireStoreMethods(FirebaseFirestore.instance).CreateUser(
+            uId: _auth.currentUser!.uid,
+            fullName: fullName,
+            mail: _auth.currentUser!.email
+        );
+      }
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
     }
@@ -26,12 +45,14 @@ class FirebaseAuthServiceMethods {
     }
   }
 
-  Future<void> LoginWithEmail({required String email, required String password, required BuildContext context}) async{
+  Future<void> SignInWithEmail({required String email, required String password, required BuildContext context}) async{
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       if (!_auth.currentUser!.emailVerified) {
-        await sendEmailVerification(context);
+        //await sendEmailVerification(context);
+
       }
+      print("giriş yapıldı");
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
     }
@@ -39,7 +60,7 @@ class FirebaseAuthServiceMethods {
 
   Future<void> SignInWithGoogle(BuildContext context) async{
     try {
-      final  GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
       final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 

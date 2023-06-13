@@ -28,14 +28,11 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
     password.dispose();
   }
 
-  Future<void> SignInUser() async {
-    await FirebaseAuthServiceMethods(FirebaseAuth.instance).SignInWithEmail(
-        email: mail.text, password: password.text, context: context);
+  Future<void> CreateProviderDatas() async {
     final currentUser = FirebaseAuth.instance.currentUser;
     final Map<String, dynamic>? userCollection = await FirebaseFireStoreMethods(FirebaseFirestore.instance).GetUser(currentUser!.uid);
     ref.read(userProvider.notifier).ChangeUser(ConnectPlusUserUser(uId: currentUser!.uid, fullName: userCollection!["fullName"], mail: currentUser.email, phone: currentUser.phoneNumber, isMailVerified: currentUser.emailVerified));
     Navigator.of(context).pop();
-
   }
 
   @override
@@ -59,10 +56,18 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
             ),
           ),
           ElevatedButton(onPressed: () async{
-            await SignInUser();
-
-
-          }, child: Text("Sign in"))
+            final bool x = await FirebaseAuthServiceMethods(FirebaseAuth.instance).SignInWithEmail(
+                email: mail.text, password: password.text, context: context);
+            if (x) {
+              CreateProviderDatas();
+            }
+          }, child: Text("Sign in")),
+          ElevatedButton(onPressed: () async{
+            final bool x = await FirebaseAuthServiceMethods(FirebaseAuth.instance).SignInWithGoogle(context, isCreatingAcc: false);
+            if (x) {
+              CreateProviderDatas();
+            }
+          }, child: Text("Sign in with google"))
         ],
       ),
     );

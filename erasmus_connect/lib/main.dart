@@ -1,12 +1,9 @@
 import 'package:erasmus_connect/screens/account_screen/account_screen.dart';
-import 'package:erasmus_connect/services/auth.dart';
 import 'package:erasmus_connect/firebase_options.dart';
 import 'package:erasmus_connect/widgets/bottom_navigator_bar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod/riverpod.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,12 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 class FirebaseFireStoreMethods {
   final FirebaseFirestore _firebaseStore;
   FirebaseFireStoreMethods(this._firebaseStore);
 
   Future<void> CreateUser({required String uId, required String fullName, required String? mail}) async{
-    try {
+    try { // create user's data inside of firestore
       await _firebaseStore.collection("users").doc(uId).set({
         "fullName": fullName,
         "mail": mail
@@ -16,12 +15,11 @@ class FirebaseFireStoreMethods {
     }
   }
 
-  Future<Map<String, dynamic>?> GetUser(String uId) async{
+  Future<Map<String, dynamic>?> GetUser(String uId) async{ // get user's data from firestore
     try {
       var collection = FirebaseFirestore.instance.collection('users');
       var docSnapshot = await collection.doc(uId).get();
       var x = docSnapshot.data();
-      print(x.runtimeType);
       if (docSnapshot.exists) {
         return x;
       }else {

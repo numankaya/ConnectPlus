@@ -22,8 +22,6 @@ class AccountScreen extends ConsumerWidget {
 class UserAccountExistScreen extends ConsumerWidget { // this will show up if user logged in
   const UserAccountExistScreen({Key? key}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Center(

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:erasmus_connect/screens/registeration_login/login_screen/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -35,7 +36,7 @@ class RegisterScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
         child: Scaffold(
-            backgroundColor: ColorConstant.deepPurple200Aa,
+            backgroundColor: Color.fromARGB(255, 206, 193, 234),
             resizeToAvoidBottomInset: false,
             body: Form(
                 key: _formKey,
@@ -81,18 +82,19 @@ class RegisterScreen extends ConsumerWidget {
                                                                               .left,
                                                                       style: AppStyle
                                                                           .txtUrbanistRomanBold30))),
-                                                          CustomImageView(
-                                                              svgPath: ImageConstant
-                                                                  .imgVector13Indigo5001,
-                                                              height:
-                                                                  getVerticalSize(
-                                                                      133),
-                                                              width:
-                                                                  getHorizontalSize(
-                                                                      293),
+                                                          Positioned.fill(
+                                                            child: Align(
                                                               alignment:
                                                                   Alignment
-                                                                      .topRight),
+                                                                      .topCenter,
+                                                              child:
+                                                                  Image.asset(
+                                                                'assets/images/line_image_3.png',
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
+                                                            ),
+                                                          ),
                                                           CustomIconButton(
                                                               height: 41,
                                                               width: 41,
@@ -162,11 +164,25 @@ class RegisterScreen extends ConsumerWidget {
                                                     .visiblePassword,
                                                 isObscureText: true),
                                             CustomButton(
-                                              onTap: () {
-                                                if(passwordController.text == confirmpasswordController.text && usernameController.text.isNotEmpty) {
-                                                  CreateAccountWithMail(mail: emailController.text, password: passwordController.text, fullName: usernameController.text, ref: ref, context: context);
-                                                }
-                                              },
+                                                onTap: () {
+                                                  if (passwordController.text ==
+                                                          confirmpasswordController
+                                                              .text &&
+                                                      usernameController
+                                                          .text.isNotEmpty) {
+                                                    CreateAccountWithMail(
+                                                        mail: emailController
+                                                            .text,
+                                                        password:
+                                                            passwordController
+                                                                .text,
+                                                        fullName:
+                                                            usernameController
+                                                                .text,
+                                                        ref: ref,
+                                                        context: context);
+                                                  }
+                                                },
                                                 height: getVerticalSize(56),
                                                 text: "Register",
                                                 margin: getMargin(
@@ -210,7 +226,8 @@ class RegisterScreen extends ConsumerWidget {
                                                                     GestureDetector(
                                                                         onTap:
                                                                             () {
-                                                                              Navigator.of(context).pop();
+                                                                          Navigator.of(context)
+                                                                              .push(MaterialPageRoute(builder: (context) => LoginScreen()));
                                                                         },
                                                                         child: Padding(
                                                                             padding: getPadding(top: 41),
@@ -279,7 +296,7 @@ class RegisterScreen extends ConsumerWidget {
                                                                               GestureDetector(
                                                                                 onTap: () {
                                                                                   if (usernameController.text.isNotEmpty) {
-                                                                                    CreateAccountWithGoogleAccount(fullName: usernameController.text,ref: ref, context: context);
+                                                                                    CreateAccountWithGoogleAccount(fullName: usernameController.text, ref: ref, context: context);
                                                                                   }
                                                                                 },
                                                                                 child: Card(
@@ -331,25 +348,47 @@ class RegisterScreen extends ConsumerWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the `Navigator` widget
   /// to push the named route for the loginScreen.
-  CreateAccountWithGoogleAccount({required String fullName, required WidgetRef ref, required BuildContext context }) async{
-    final bool isSuccess = await FirebaseAuthServiceMethods(FirebaseAuth.instance).SignInWithGoogle(context, fullName: fullName, isCreatingAcc: true);
+  CreateAccountWithGoogleAccount(
+      {required String fullName,
+      required WidgetRef ref,
+      required BuildContext context}) async {
+    final bool isSuccess =
+        await FirebaseAuthServiceMethods(FirebaseAuth.instance)
+            .SignInWithGoogle(context, fullName: fullName, isCreatingAcc: true);
     if (isSuccess) {
       CreateProviderDatas(ref: ref, context: context);
     }
   }
 
-  CreateAccountWithMail({required String mail, required String password, required String fullName, required WidgetRef ref, required BuildContext context}) async{
-    final bool isSuccess = await FirebaseAuthServiceMethods(FirebaseAuth.instance).signUpWithEmail(fullName: fullName, email: mail, password: password, context: context);
+  CreateAccountWithMail(
+      {required String mail,
+      required String password,
+      required String fullName,
+      required WidgetRef ref,
+      required BuildContext context}) async {
+    final bool isSuccess =
+        await FirebaseAuthServiceMethods(FirebaseAuth.instance).signUpWithEmail(
+            fullName: fullName,
+            email: mail,
+            password: password,
+            context: context);
     if (isSuccess) {
       CreateProviderDatas(ref: ref, context: context);
     }
   }
 
-  Future<void> CreateProviderDatas({required WidgetRef ref, required BuildContext context}) async {
+  Future<void> CreateProviderDatas(
+      {required WidgetRef ref, required BuildContext context}) async {
     final currentUser = FirebaseAuth.instance.currentUser;
-    final Map<String, dynamic>? userCollection = await FirebaseFireStoreMethods(FirebaseFirestore.instance).GetUser(currentUser!.uid);
-    ref.read(userProvider.notifier).ChangeUser(ConnectPlusUserUser(uId: currentUser!.uid, fullName: userCollection!["fullName"], mail: currentUser.email, phone: currentUser.phoneNumber, isMailVerified: currentUser.emailVerified));
+    final Map<String, dynamic>? userCollection =
+        await FirebaseFireStoreMethods(FirebaseFirestore.instance)
+            .GetUser(currentUser!.uid);
+    ref.read(userProvider.notifier).ChangeUser(ConnectPlusUserUser(
+        uId: currentUser!.uid,
+        fullName: userCollection!["fullName"],
+        mail: currentUser.email,
+        phone: currentUser.phoneNumber,
+        isMailVerified: currentUser.emailVerified));
     Navigator.of(context).pop(true);
   }
-
 }

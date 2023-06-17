@@ -63,11 +63,15 @@ class LoginScreen extends ConsumerWidget {
                                                       textAlign: TextAlign.left,
                                                       style: AppStyle
                                                           .txtUrbanistRomanBold30))),
-                                          CustomImageView(
-                                              svgPath: ImageConstant.imgVector13,
-                                              height: getVerticalSize(133),
-                                              width: getHorizontalSize(294),
-                                              alignment: Alignment.topRight),
+                                          Positioned.fill(
+                                            child: Align(
+                                              alignment: Alignment.topCenter,
+                                              child: Image.asset(
+                                                'assets/images/line_image_4.png',
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
                                           CustomIconButton(
                                               height: 41,
                                               width: 41,
@@ -77,8 +81,8 @@ class LoginScreen extends ConsumerWidget {
                                                 onTapBtnArrowleft(context);
                                               },
                                               child: CustomImageView(
-                                                  svgPath:
-                                                      ImageConstant.imgArrowleft))
+                                                  svgPath: ImageConstant
+                                                      .imgArrowleft))
                                         ]))),
                             CustomTextFormField(
                                 focusNode: FocusNode(),
@@ -100,10 +104,13 @@ class LoginScreen extends ConsumerWidget {
                                 textInputType: TextInputType.visiblePassword,
                                 suffix: Container(
                                     margin: getMargin(
-                                        left: 12, top: 17, right: 16, bottom: 17),
+                                        left: 12,
+                                        top: 17,
+                                        right: 16,
+                                        bottom: 17),
                                     child: CustomImageView(
-                                        svgPath:
-                                            ImageConstant.imgFluenteye20filled)),
+                                        svgPath: ImageConstant
+                                            .imgFluenteye20filled)),
                                 suffixConstraints: BoxConstraints(
                                     maxHeight: getVerticalSize(56)),
                                 isObscureText: true),
@@ -111,7 +118,10 @@ class LoginScreen extends ConsumerWidget {
                                 alignment: Alignment.centerRight,
                                 child: GestureDetector(
                                     onTap: () {
-                                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgotPasswordScreen()));
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ForgotPasswordScreen()));
                                     },
                                     child: Padding(
                                         padding: getPadding(top: 16, right: 22),
@@ -121,19 +131,26 @@ class LoginScreen extends ConsumerWidget {
                                             style: AppStyle
                                                 .txtUrbanistRomanSemiBold14)))),
                             CustomButton(
-                              onTap: (){
-                                LoginWithEmailAndPass(email: emailController.text, password: passwordController.text, ref: ref, context: context);
-                              },
+                                onTap: () {
+                                  LoginWithEmailAndPass(
+                                      email: emailController.text,
+                                      password: passwordController.text,
+                                      ref: ref,
+                                      context: context);
+                                },
                                 height: getVerticalSize(56),
                                 text: "Login",
-                                margin: getMargin(left: 22, top: 29, right: 22)),
+                                margin:
+                                    getMargin(left: 22, top: 29, right: 22)),
                             Padding(
-                                padding: getPadding(left: 22, top: 36, right: 22),
+                                padding:
+                                    getPadding(left: 22, top: 36, right: 22),
                                 child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Padding(
-                                          padding: getPadding(top: 8, bottom: 8),
+                                          padding:
+                                              getPadding(top: 8, bottom: 8),
                                           child: SizedBox(
                                               width: getHorizontalSize(112),
                                               child: Divider(
@@ -149,14 +166,16 @@ class LoginScreen extends ConsumerWidget {
                                               style: AppStyle
                                                   .txtUrbanistRomanSemiBold14)),
                                       Padding(
-                                          padding: getPadding(top: 8, bottom: 8),
+                                          padding:
+                                              getPadding(top: 8, bottom: 8),
                                           child: SizedBox(
                                               width: getHorizontalSize(123),
                                               child: Divider(
                                                   height: getVerticalSize(1),
                                                   thickness: getVerticalSize(1),
                                                   color: ColorConstant.indigo50,
-                                                  indent: getHorizontalSize(12))))
+                                                  indent:
+                                                      getHorizontalSize(12))))
                                     ])),
                             Padding(
                                 padding: getPadding(
@@ -200,7 +219,8 @@ class LoginScreen extends ConsumerWidget {
                                               ]))),
                                       GestureDetector(
                                         onTap: () {
-                                          LoginWithGoogleAccount(ref: ref, context: context);
+                                          LoginWithGoogleAccount(
+                                              ref: ref, context: context);
                                         },
                                         child: Card(
                                             clipBehavior: Clip.antiAlias,
@@ -209,8 +229,10 @@ class LoginScreen extends ConsumerWidget {
                                             color: ColorConstant.whiteA700,
                                             shape: RoundedRectangleBorder(
                                                 side: BorderSide(
-                                                    color: ColorConstant.indigo50,
-                                                    width: getHorizontalSize(1)),
+                                                    color:
+                                                        ColorConstant.indigo50,
+                                                    width:
+                                                        getHorizontalSize(1)),
                                                 borderRadius: BorderRadiusStyle
                                                     .roundedBorder8),
                                             child: Container(
@@ -229,8 +251,8 @@ class LoginScreen extends ConsumerWidget {
                                                                 .roundedBorder8),
                                                 child: Stack(children: [
                                                   CustomImageView(
-                                                      svgPath:
-                                                          ImageConstant.imgGoogleic,
+                                                      svgPath: ImageConstant
+                                                          .imgGoogleic,
                                                       height: getSize(26),
                                                       width: getSize(26),
                                                       alignment:
@@ -264,8 +286,8 @@ class LoginScreen extends ConsumerWidget {
                                                               .roundedBorder8),
                                               child: Stack(children: [
                                                 CustomImageView(
-                                                    svgPath:
-                                                        ImageConstant.imgCibapple,
+                                                    svgPath: ImageConstant
+                                                        .imgCibapple,
                                                     height: getSize(26),
                                                     width: getSize(26),
                                                     alignment:
@@ -285,8 +307,10 @@ class LoginScreen extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       GestureDetector(
-                          onTap: () async{
-                            bool isAccountOpened = await Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegisterScreen()));
+                          onTap: () async {
+                            bool isAccountOpened = await Navigator.of(context)
+                                .push(MaterialPageRoute(
+                                    builder: (context) => RegisterScreen()));
                             if (isAccountOpened) {
                               Navigator.of(context).pop();
                             }
@@ -311,7 +335,7 @@ class LoginScreen extends ConsumerWidget {
                                         fontWeight: FontWeight.w700,
                                         letterSpacing: getHorizontalSize(0.15)))
                               ]),
-                              textAlign: TextAlign.left))
+                              textAlign: TextAlign.left)),
                     ]))));
   }
 
@@ -329,32 +353,44 @@ class LoginScreen extends ConsumerWidget {
   /// When the action is triggered, this function uses the `Navigator` widget
   /// to push the named route for the forgotPasswordScreen.
 
-
   /// Navigates to the registerScreen when the action is triggered.
   ///
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the `Navigator` widget
   /// to push the named route for the registerScreen.
-  void LoginWithEmailAndPass({required String email, required String password, required BuildContext context, required WidgetRef ref}) async{
-    final bool x = await FirebaseAuthServiceMethods(FirebaseAuth.instance).SignInWithEmail(
-        email: email, password: password, context: context);
+  void LoginWithEmailAndPass(
+      {required String email,
+      required String password,
+      required BuildContext context,
+      required WidgetRef ref}) async {
+    final bool x = await FirebaseAuthServiceMethods(FirebaseAuth.instance)
+        .SignInWithEmail(email: email, password: password, context: context);
     if (x) {
       CreateProviderDatas(ref: ref, context: context);
     }
   }
 
-  void LoginWithGoogleAccount({required WidgetRef ref, required BuildContext context}) async{
-    final bool x = await FirebaseAuthServiceMethods(FirebaseAuth.instance).SignInWithGoogle(context, isCreatingAcc: false);
+  void LoginWithGoogleAccount(
+      {required WidgetRef ref, required BuildContext context}) async {
+    final bool x = await FirebaseAuthServiceMethods(FirebaseAuth.instance)
+        .SignInWithGoogle(context, isCreatingAcc: false);
     if (x) {
       CreateProviderDatas(ref: ref, context: context);
     }
   }
 
-  Future<void> CreateProviderDatas({required WidgetRef ref, required BuildContext context}) async {
+  Future<void> CreateProviderDatas(
+      {required WidgetRef ref, required BuildContext context}) async {
     final currentUser = FirebaseAuth.instance.currentUser;
-    final Map<String, dynamic>? userCollection = await FirebaseFireStoreMethods(FirebaseFirestore.instance).GetUser(currentUser!.uid);
-    ref.read(userProvider.notifier).ChangeUser(ConnectPlusUserUser(uId: currentUser!.uid, fullName: userCollection!["fullName"], mail: currentUser.email, phone: currentUser.phoneNumber, isMailVerified: currentUser.emailVerified));
+    final Map<String, dynamic>? userCollection =
+        await FirebaseFireStoreMethods(FirebaseFirestore.instance)
+            .GetUser(currentUser!.uid);
+    ref.read(userProvider.notifier).ChangeUser(ConnectPlusUserUser(
+        uId: currentUser!.uid,
+        fullName: userCollection!["fullName"],
+        mail: currentUser.email,
+        phone: currentUser.phoneNumber,
+        isMailVerified: currentUser.emailVerified));
     Navigator.of(context).pop();
   }
-
 }

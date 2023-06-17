@@ -16,11 +16,13 @@ class IntroductionAnimationScreen extends ConsumerStatefulWidget {
   const IntroductionAnimationScreen({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<IntroductionAnimationScreen> createState() => _IntroductionAnimationScreenState();
+  ConsumerState<IntroductionAnimationScreen> createState() =>
+      _IntroductionAnimationScreenState();
 }
 
 class _IntroductionAnimationScreenState
-    extends ConsumerState<IntroductionAnimationScreen> with TickerProviderStateMixin {
+    extends ConsumerState<IntroductionAnimationScreen>
+    with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Color _backgroundColor; // Added variable to store the background color
 
@@ -119,12 +121,7 @@ class _IntroductionAnimationScreenState
 
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => RegisterScreen()),
-    );
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => RegisterScreen()),
+      MaterialPageRoute(builder: (context) => MyApp()),
     );
   }
 }

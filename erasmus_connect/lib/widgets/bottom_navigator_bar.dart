@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod/riverpod.dart';
 
-
+// navigator  system is coded with flutter riverpod
 class my_navigator_bar extends ConsumerWidget {
   const my_navigator_bar({Key? key}) : super(key: key);
 

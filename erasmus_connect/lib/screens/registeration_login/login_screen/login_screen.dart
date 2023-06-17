@@ -72,17 +72,17 @@ class LoginScreen extends ConsumerWidget {
                                               ),
                                             ),
                                           ),
-                                          CustomIconButton(
-                                              height: 41,
-                                              width: 41,
-                                              margin: getMargin(top: 54),
-                                              alignment: Alignment.topLeft,
-                                              onTap: () {
-                                                onTapBtnArrowleft(context);
-                                              },
-                                              child: CustomImageView(
-                                                  svgPath: ImageConstant
-                                                      .imgArrowleft))
+                                          // CustomIconButton(
+                                          //     height: 41,
+                                          //     width: 41,
+                                          //     margin: getMargin(top: 54),
+                                          //     alignment: Alignment.topLeft,
+                                          //     onTap: () {
+                                          //       onTapBtnArrowleft(context);
+                                          //     },
+                                          //     child: CustomImageView(
+                                          //         svgPath: ImageConstant
+                                          //             .imgArrowleft))
                                         ]))),
                             CustomTextFormField(
                                 focusNode: FocusNode(),
@@ -335,7 +335,7 @@ class LoginScreen extends ConsumerWidget {
                                         fontWeight: FontWeight.w700,
                                         letterSpacing: getHorizontalSize(0.15)))
                               ]),
-                              textAlign: TextAlign.left)),
+                              textAlign: TextAlign.left))
                     ]))));
   }
 

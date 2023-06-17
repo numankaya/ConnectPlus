@@ -2,6 +2,7 @@ import 'package:erasmus_connect/screens/account_screen/account_screen.dart';
 import 'package:erasmus_connect/firebase_options.dart';
 import 'package:erasmus_connect/screens/account_screen/sign_in_screen.dart';
 import 'package:erasmus_connect/screens/onboarding_screen/animation_screens.dart';
+import 'package:erasmus_connect/screens/registeration_login/login_screen/login_screen.dart';
 import 'package:erasmus_connect/widgets/bottom_navigator_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -11,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
+  // await prefs.remove('isOnboardingShown');
   bool isOnboardingShown = prefs.getBool('isOnboardingShown') ?? false;
   //isOnboardingShown = false;
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: MyMainApp(),
+        home: LoginScreen(),
         // home: Scaffold(
         //   appBar: AppBar(
         //     title: Text(
@@ -57,6 +59,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//
+//
+//--------------Daha Sonra Eklenecek Sayfalar-----------------//
+//
+//
 class MyMainApp extends StatelessWidget {
   const MyMainApp({Key? key}) : super(key: key);
 

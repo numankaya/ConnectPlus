@@ -69,7 +69,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                                                                           .start,
                                                                   children: [
                                                                     Text(
-                                                                        "Forgot Password?",
+                                                                        "Şifreni mi unuttun?",
                                                                         overflow:
                                                                             TextOverflow
                                                                                 .ellipsis,
@@ -85,7 +85,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                                                                             top:
                                                                                 10),
                                                                         child: Text(
-                                                                            "Don't worry! It occurs. Please enter the email address linked with your account.",
+                                                                            "Sorun yok! Lütfen hesabınızla bağlantılı e-posta adresini girin.",
                                                                             maxLines:
                                                                                 null,
                                                                             textAlign:
@@ -126,7 +126,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                                                 focusNode: FocusNode(),
                                                 autofocus: true,
                                                 controller: emailController,
-                                                hintText: "Enter your email",
+                                                hintText: "Email adresini gir",
                                                 margin: getMargin(
                                                     left: 20,
                                                     top: 30,
@@ -139,7 +139,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                                                     TextInputType.emailAddress),
                                             CustomButton(
                                                 height: getVerticalSize(56),
-                                                text: "Send Mail",
+                                                text: "Kod gönder",
                                                 margin: getMargin(
                                                     left: 20,
                                                     top: 38,
@@ -181,7 +181,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                                                                       text: TextSpan(children: [
                                                                         TextSpan(
                                                                             text:
-                                                                                "Remember Password? ",
+                                                                                "Şifreni hatırladın mı? ",
                                                                             style: TextStyle(
                                                                                 color: ColorConstant.gray90001,
                                                                                 fontSize: getFontSize(15),
@@ -190,7 +190,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                                                                                 letterSpacing: getHorizontalSize(0.15))),
                                                                         TextSpan(
                                                                             text:
-                                                                                "Login",
+                                                                                "Giriş yap",
                                                                             style: TextStyle(
                                                                                 color: ColorConstant.cyan400,
                                                                                 fontSize: getFontSize(15),

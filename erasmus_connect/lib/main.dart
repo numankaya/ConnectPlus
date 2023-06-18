@@ -12,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  // await prefs.remove('isOnboardingShown');
+  await prefs.remove('isOnboardingShown');
   bool isOnboardingShown = prefs.getBool('isOnboardingShown') ?? false;
   //isOnboardingShown = false;
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);

@@ -74,7 +74,7 @@ class RegisterScreen extends ConsumerWidget {
                                                                       getHorizontalSize(
                                                                           272),
                                                                   child: Text(
-                                                                      "Hello! Register to get started",
+                                                                      "Merhaba! Başlamak için kaydolun",
                                                                       maxLines:
                                                                           null,
                                                                       textAlign:
@@ -116,7 +116,7 @@ class RegisterScreen extends ConsumerWidget {
                                                 focusNode: FocusNode(),
                                                 autofocus: true,
                                                 controller: usernameController,
-                                                hintText: "Username",
+                                                hintText: "Kullanıcı adı",
                                                 margin: getMargin(
                                                     left: 20,
                                                     top: 33,
@@ -140,7 +140,7 @@ class RegisterScreen extends ConsumerWidget {
                                                 focusNode: FocusNode(),
                                                 autofocus: true,
                                                 controller: passwordController,
-                                                hintText: "Password",
+                                                hintText: "Şifre",
                                                 margin: getMargin(
                                                     left: 20,
                                                     top: 12,
@@ -153,7 +153,7 @@ class RegisterScreen extends ConsumerWidget {
                                                 autofocus: true,
                                                 controller:
                                                     confirmpasswordController,
-                                                hintText: "Confirm password",
+                                                hintText: "Şifreni doğrula",
                                                 margin: getMargin(
                                                     left: 20,
                                                     top: 12,
@@ -184,7 +184,7 @@ class RegisterScreen extends ConsumerWidget {
                                                   }
                                                 },
                                                 height: getVerticalSize(56),
-                                                text: "Register",
+                                                text: "Kayıt ol",
                                                 margin: getMargin(
                                                     left: 20,
                                                     top: 30,
@@ -233,8 +233,8 @@ class RegisterScreen extends ConsumerWidget {
                                                                             padding: getPadding(top: 41),
                                                                             child: RichText(
                                                                                 text: TextSpan(children: [
-                                                                                  TextSpan(text: "Already have an account? ", style: TextStyle(color: ColorConstant.gray90001, fontSize: getFontSize(15), fontFamily: 'Urbanist', fontWeight: FontWeight.w500, letterSpacing: getHorizontalSize(0.15))),
-                                                                                  TextSpan(text: "Login Now", style: TextStyle(color: ColorConstant.cyan400, fontSize: getFontSize(15), fontFamily: 'Urbanist', fontWeight: FontWeight.w700, letterSpacing: getHorizontalSize(0.15)))
+                                                                                  TextSpan(text: "Zaten bir hesabın var mı ?", style: TextStyle(color: ColorConstant.gray90001, fontSize: getFontSize(15), fontFamily: 'Urbanist', fontWeight: FontWeight.w500, letterSpacing: getHorizontalSize(0.15))),
+                                                                                  TextSpan(text: " Şimdi giriş yap", style: TextStyle(color: ColorConstant.cyan400, fontSize: getFontSize(15), fontFamily: 'Urbanist', fontWeight: FontWeight.w700, letterSpacing: getHorizontalSize(0.15)))
                                                                                 ]),
                                                                                 textAlign: TextAlign.left)))
                                                                   ]))),
@@ -263,7 +263,7 @@ class RegisterScreen extends ConsumerWidget {
                                                                               padding: getPadding(top: 8, bottom: 8),
                                                                               child: SizedBox(width: getHorizontalSize(103), child: Divider(height: getVerticalSize(1), thickness: getVerticalSize(1), color: ColorConstant.indigo50))),
                                                                           Text(
-                                                                              "Or Register with",
+                                                                              "ya da şununla giriş yap",
                                                                               overflow: TextOverflow.ellipsis,
                                                                               textAlign: TextAlign.left,
                                                                               style: AppStyle.txtUrbanistRomanSemiBold14),

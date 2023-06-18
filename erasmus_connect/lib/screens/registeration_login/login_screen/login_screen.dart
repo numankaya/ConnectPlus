@@ -58,7 +58,7 @@ class LoginScreen extends ConsumerWidget {
                                                   width: getHorizontalSize(272),
                                                   margin: getMargin(left: 7),
                                                   child: Text(
-                                                      "Welcome back! Glad to see you, Again!",
+                                                      "Hoş geldin! Seni tekrardan gördüğümüze sevindik!",
                                                       maxLines: null,
                                                       textAlign: TextAlign.left,
                                                       style: AppStyle
@@ -88,7 +88,7 @@ class LoginScreen extends ConsumerWidget {
                                 focusNode: FocusNode(),
                                 autofocus: true,
                                 controller: emailController,
-                                hintText: "Enter your email",
+                                hintText: "Email adresini gir",
                                 margin: getMargin(left: 22, top: 24, right: 22),
                                 variant: TextFormFieldVariant.OutlineIndigo50,
                                 padding: TextFormFieldPadding.PaddingT19_2,
@@ -97,7 +97,7 @@ class LoginScreen extends ConsumerWidget {
                                 focusNode: FocusNode(),
                                 autofocus: true,
                                 controller: passwordController,
-                                hintText: "Enter your password",
+                                hintText: "Şifreni gir",
                                 margin: getMargin(left: 22, top: 15, right: 22),
                                 padding: TextFormFieldPadding.PaddingT19,
                                 textInputAction: TextInputAction.done,
@@ -125,7 +125,7 @@ class LoginScreen extends ConsumerWidget {
                                     },
                                     child: Padding(
                                         padding: getPadding(top: 16, right: 22),
-                                        child: Text("Forgot Password?",
+                                        child: Text("Şifreni mi unuttun?",
                                             overflow: TextOverflow.ellipsis,
                                             textAlign: TextAlign.left,
                                             style: AppStyle
@@ -139,7 +139,7 @@ class LoginScreen extends ConsumerWidget {
                                       context: context);
                                 },
                                 height: getVerticalSize(56),
-                                text: "Login",
+                                text: "Giriş",
                                 margin:
                                     getMargin(left: 22, top: 29, right: 22)),
                             Padding(
@@ -152,7 +152,7 @@ class LoginScreen extends ConsumerWidget {
                                           padding:
                                               getPadding(top: 8, bottom: 8),
                                           child: SizedBox(
-                                              width: getHorizontalSize(112),
+                                              width: getHorizontalSize(102),
                                               child: Divider(
                                                   height: getVerticalSize(1),
                                                   thickness: getVerticalSize(1),
@@ -160,7 +160,7 @@ class LoginScreen extends ConsumerWidget {
                                                       ColorConstant.indigo50))),
                                       Padding(
                                           padding: getPadding(left: 12),
-                                          child: Text("Or Login with",
+                                          child: Text("ya da şununla giriş yap",
                                               overflow: TextOverflow.ellipsis,
                                               textAlign: TextAlign.left,
                                               style: AppStyle
@@ -169,7 +169,7 @@ class LoginScreen extends ConsumerWidget {
                                           padding:
                                               getPadding(top: 8, bottom: 8),
                                           child: SizedBox(
-                                              width: getHorizontalSize(123),
+                                              width: getHorizontalSize(102),
                                               child: Divider(
                                                   height: getVerticalSize(1),
                                                   thickness: getVerticalSize(1),
@@ -318,7 +318,7 @@ class LoginScreen extends ConsumerWidget {
                           child: RichText(
                               text: TextSpan(children: [
                                 TextSpan(
-                                    text: "Don’t have an account? ",
+                                    text: "Hesabın yok mu ?",
                                     style: TextStyle(
                                         color: ColorConstant.gray90001,
                                         fontSize: getFontSize(15),
@@ -327,7 +327,7 @@ class LoginScreen extends ConsumerWidget {
                                         letterSpacing:
                                             getHorizontalSize(0.15))),
                                 TextSpan(
-                                    text: "Register Now",
+                                    text: " Şimdi kayıt ol",
                                     style: TextStyle(
                                         color: ColorConstant.deepPurple200,
                                         fontSize: getFontSize(15),

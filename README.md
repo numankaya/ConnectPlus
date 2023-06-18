@@ -56,3 +56,40 @@ Konaklama için öneriler kısmında sunucudan alınan bilgilerle hava durumu gi
 * Erasmus deneyimi yaşamış ve tecrübelerini paylaşmak isteyen öğrenciler
 * Mentor arayan ve mentor olmak isteyen öğrenci ve mezunlar
 * Yeni kültürler, etkinlikler ve festivaller hakkında bilgi almak ve katılım sağlamak isteyen herkes
+
+---
+
+# Sprint 1
+
+- **Sprint içinde tamamlanması tahmin edilen puan**: 100 Puan
+
+
+- **Puan tamamlama mantığı**: Toplamda proje boyunca tamamlanması gereken 380 puanlık backlog bulunmaktadır. 3 sprint'e bölündüğünde ilk sprint'in yarısı fikir üretme ve araştırmaya ayrıldığından ilk sprint puanı 100 olarak kararlaştırılmıştır.
+
+
+- **Daily Scrum**: Daily Scrum toplantı notları Trello üzerindeki ''Daily Scrum Meeting Notes'' bölümünden ulaşa bilirsiniz. Toplantılar Discord kanalı üzerinden gerçekleitirilmiştir.
+
+- **Sprint board update**: Sprint board screenshotları: 
+![image](https://github.com/numankaya/ErasmusConnectPlus/assets/123562983/b96d2a54-63a5-4be2-8f6c-4d015e4031bb)
+- **Ürün Durumu**: Ekran görüntüleri:
+
+![image](https://github.com/numankaya/ErasmusConnectPlus/assets/123562983/626c15b4-7070-4694-bc21-12a9d1365ecd)
+![image](https://github.com/numankaya/ErasmusConnectPlus/assets/123562983/7feadf9e-405a-4578-9caa-59e848d4ef4f)
+![image](https://github.com/numankaya/ErasmusConnectPlus/assets/123562983/0e5c79f7-edc2-46b2-a4c8-562944b872e5)
+![image](https://github.com/numankaya/ErasmusConnectPlus/assets/123562983/87a9f4b4-ff40-4a44-a2ed-e61bcfa5ffb2)
+![image](https://github.com/numankaya/ErasmusConnectPlus/assets/123562983/e6c6e0fd-5244-42d6-80ee-a2100a474756)
+![image](https://github.com/numankaya/ErasmusConnectPlus/assets/123562983/49a315d4-e5f3-4493-bb6a-ae651545676d)
+![image](https://github.com/numankaya/ErasmusConnectPlus/assets/123562983/ae86955b-0513-49cf-b8af-ee25af0a489c)
+
+
+https://github.com/numankaya/ErasmusConnectPlus/assets/123562983/87951d7c-d5c7-43bc-b02a-ee797ba641c0
+
+- **Sprint Review**: 
+Alınan kararlar: Önümüzdeki sprintte hangi özellikler ve safyaların yapılacağı belirlendi.
+Bu sprintte iş ve okul sebeplerinden görev alamayan arkadaşlarımıza ikinci sprintte görev tanımlamaları yapılması kararı alındı.
+Backend bölümü için daha fazla zaman ayırmaya karar verildi.
+
+
+
+
+

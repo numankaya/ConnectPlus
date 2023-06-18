@@ -52,17 +52,6 @@ class LoginScreen extends ConsumerWidget {
                                     child: Stack(
                                         alignment: Alignment.topRight,
                                         children: [
-                                          Align(
-                                              alignment: Alignment.bottomLeft,
-                                              child: Container(
-                                                  width: getHorizontalSize(272),
-                                                  margin: getMargin(left: 7),
-                                                  child: Text(
-                                                      "Hoş geldin! Seni tekrardan gördüğümüze sevindik!",
-                                                      maxLines: null,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtUrbanistRomanBold30))),
                                           Positioned.fill(
                                             child: Align(
                                               alignment: Alignment.topCenter,
@@ -72,6 +61,18 @@ class LoginScreen extends ConsumerWidget {
                                               ),
                                             ),
                                           ),
+                                          Align(
+                                              alignment: Alignment.bottomLeft,
+                                              child: Container(
+                                                  width: getHorizontalSize(312),
+                                                  margin: getMargin(left: 7),
+                                                  child: Text(
+                                                      "Hoş geldin! Seni tekrardan gördüğümüze sevindik!",
+                                                      maxLines: null,
+                                                      textAlign: TextAlign.left,
+                                                      style: AppStyle
+                                                          .txtUrbanistRomanBold30))),
+
                                           // CustomIconButton(
                                           //     height: 41,
                                           //     width: 41,
@@ -152,7 +153,7 @@ class LoginScreen extends ConsumerWidget {
                                           padding:
                                               getPadding(top: 8, bottom: 8),
                                           child: SizedBox(
-                                              width: getHorizontalSize(102),
+                                              width: getHorizontalSize(90),
                                               child: Divider(
                                                   height: getVerticalSize(1),
                                                   thickness: getVerticalSize(1),
@@ -169,7 +170,7 @@ class LoginScreen extends ConsumerWidget {
                                           padding:
                                               getPadding(top: 8, bottom: 8),
                                           child: SizedBox(
-                                              width: getHorizontalSize(102),
+                                              width: getHorizontalSize(90),
                                               child: Divider(
                                                   height: getVerticalSize(1),
                                                   thickness: getVerticalSize(1),

@@ -101,7 +101,7 @@ class GetstartedView extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 30.0,
                                 fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 0, 0, 0),
+                                color: Color.fromARGB(255, 255, 255, 255),
                               ),
                             ),
                           ],
@@ -111,7 +111,7 @@ class GetstartedView extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 30.0,
                             fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Color.fromARGB(255, 255, 255, 255),
                           ),
                         ),
                         Text(
@@ -119,7 +119,7 @@ class GetstartedView extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 30.0,
                             fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Color.fromARGB(255, 255, 255, 255),
                           ),
                         ),
                       ],

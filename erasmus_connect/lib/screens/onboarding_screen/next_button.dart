@@ -74,7 +74,7 @@ class CenterNextButton extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
                         8 + 32 * (1 - _signUpMoveAnimation.value)),
-                    color: Color(0xff132137),
+                    color: Color.fromARGB(255, 186, 167, 228),
                   ),
                   child: PageTransitionSwitcher(
                     duration: Duration(milliseconds: 480),
@@ -99,7 +99,7 @@ class CenterNextButton extends StatelessWidget {
                               padding: EdgeInsets.only(left: 16.0, right: 16.0),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
                                     'Haydi Başlayalım',
@@ -187,7 +187,7 @@ class CenterNextButton extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(32),
                   color: _selectedIndex == i
-                      ? Color(0xff132137)
+                      ? Color.fromARGB(255, 7, 7, 7)
                       : Color(0xffE3E4E4),
                 ),
                 width: 10,

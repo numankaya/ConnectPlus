@@ -66,6 +66,19 @@ class RegisterScreen extends ConsumerWidget {
                                                         alignment:
                                                             Alignment.topRight,
                                                         children: [
+                                                          Positioned.fill(
+                                                            child: Align(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .topCenter,
+                                                              child:
+                                                                  Image.asset(
+                                                                'assets/images/line_image_3.png',
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
+                                                            ),
+                                                          ),
                                                           Align(
                                                               alignment: Alignment
                                                                   .bottomLeft,
@@ -82,19 +95,6 @@ class RegisterScreen extends ConsumerWidget {
                                                                               .left,
                                                                       style: AppStyle
                                                                           .txtUrbanistRomanBold30))),
-                                                          Positioned.fill(
-                                                            child: Align(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .topCenter,
-                                                              child:
-                                                                  Image.asset(
-                                                                'assets/images/line_image_3.png',
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              ),
-                                                            ),
-                                                          ),
                                                           CustomIconButton(
                                                               height: 41,
                                                               width: 41,
@@ -261,7 +261,7 @@ class RegisterScreen extends ConsumerWidget {
                                                                         children: [
                                                                           Padding(
                                                                               padding: getPadding(top: 8, bottom: 8),
-                                                                              child: SizedBox(width: getHorizontalSize(103), child: Divider(height: getVerticalSize(1), thickness: getVerticalSize(1), color: ColorConstant.indigo50))),
+                                                                              child: SizedBox(width: getHorizontalSize(90), child: Divider(height: getVerticalSize(1), thickness: getVerticalSize(1), color: ColorConstant.indigo50))),
                                                                           Text(
                                                                               "ya da şununla giriş yap",
                                                                               overflow: TextOverflow.ellipsis,
@@ -269,7 +269,7 @@ class RegisterScreen extends ConsumerWidget {
                                                                               style: AppStyle.txtUrbanistRomanSemiBold14),
                                                                           Padding(
                                                                               padding: getPadding(top: 8, bottom: 8),
-                                                                              child: SizedBox(width: getHorizontalSize(103), child: Divider(height: getVerticalSize(1), thickness: getVerticalSize(1), color: ColorConstant.indigo50)))
+                                                                              child: SizedBox(width: getHorizontalSize(90), child: Divider(height: getVerticalSize(1), thickness: getVerticalSize(1), color: ColorConstant.indigo50)))
                                                                         ]),
                                                                     Padding(
                                                                         padding: getPadding(

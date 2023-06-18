@@ -1,3 +1,4 @@
+import 'package:erasmus_connect/screens/registeration_login/login_screen/login_screen.dart';
 import 'package:erasmus_connect/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -145,8 +146,12 @@ class ForgotPasswordScreen extends StatelessWidget {
                                                     top: 38,
                                                     right: 21),
                                                 onTap: () {
-                                                  if (emailController.text.isNotEmpty) {
-                                                    SendForgotPasswordMail(mail: emailController.text, context: context);
+                                                  if (emailController
+                                                      .text.isNotEmpty) {
+                                                    SendForgotPasswordMail(
+                                                        mail: emailController
+                                                            .text,
+                                                        context: context);
                                                   }
                                                 }),
                                             SizedBox(
@@ -171,6 +176,14 @@ class ForgotPasswordScreen extends StatelessWidget {
                                                         children: [
                                                           GestureDetector(
                                                               onTap: () {
+                                                                Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            LoginScreen(),
+                                                                  ),
+                                                                );
                                                               },
                                                               child: Padding(
                                                                   padding:
@@ -217,8 +230,10 @@ class ForgotPasswordScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the `Navigator` widget
   /// to push the named route for the otpVerificationScreen.
-  void SendForgotPasswordMail({required String mail, required BuildContext context}) {
-    FirebaseAuthServiceMethods(FirebaseAuth.instance).ForgotPassword(mail: mail, context: context);
+  void SendForgotPasswordMail(
+      {required String mail, required BuildContext context}) {
+    FirebaseAuthServiceMethods(FirebaseAuth.instance)
+        .ForgotPassword(mail: mail, context: context);
   }
 
   /// Navigates to the loginScreen when the action is triggered.
@@ -226,5 +241,4 @@ class ForgotPasswordScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the `Navigator` widget
   /// to push the named route for the loginScreen.
-
 }

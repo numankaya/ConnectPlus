@@ -96,7 +96,7 @@ class _IntroductionAnimationScreenState
           255, 209, 237, 203); // Example background color for the fourth page
     } else {
       return Color.fromARGB(
-          255, 247, 235, 225); // Example background color for the fifth page
+          255, 0, 0, 0); // Example background color for the fifth page
     }
   }
 

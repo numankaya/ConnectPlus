@@ -70,8 +70,11 @@ Konaklama için öneriler kısmında sunucudan alınan bilgilerle hava durumu gi
 - **Daily Scrum**: Daily Scrum toplantı notları Trello üzerindeki ''Daily Scrum Meeting Notes'' bölümünden ulaşa bilirsiniz. Toplantılar Discord kanalı üzerinden gerçekleitirilmiştir.
 
 - **Sprint board update**: Sprint board screenshotları: 
-![image](https://github.com/numankaya/ErasmusConnectPlus/assets/123562983/21d9cc9e-a79f-4894-a421-f013eb0cfa7b)
-![image](https://github.com/numankaya/ErasmusConnectPlus/assets/123562983/a6636b5b-67cd-442e-bfe3-f43bddc4332d)
+![image](https://github.com/numankaya/ErasmusConnectPlus/assets/123562983/037e9cc1-c7c8-4f78-974b-9eb52cd6fa15)
+
+
+![image](https://github.com/numankaya/ErasmusConnectPlus/assets/123562983/f5faa64d-d757-4d37-84a2-d4de839446c8)
+
 
 
 - **Ürün Durumu**: Ekran görüntüleri:

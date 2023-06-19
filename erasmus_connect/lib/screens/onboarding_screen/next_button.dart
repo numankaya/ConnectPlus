@@ -155,7 +155,7 @@ class CenterNextButton extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.07),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.04),
         ],
       ),
     );

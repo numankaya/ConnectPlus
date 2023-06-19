@@ -95,6 +95,11 @@ Alınan kararlar: Önümüzdeki sprintte hangi özellikler ve safyaların yapıl
 Bu sprintte iş ve okul sebeplerinden görev alamayan arkadaşlarımıza ikinci sprintte görev tanımlamaları yapılması kararı alındı.
 Backend bölümü için daha fazla zaman ayırmaya karar verildi.
 
+- **1.Sprint Notu**: 
+Genel olarak ilk haftayı ürün bulma ve araştırma olarak geçirdik tüm ekip arkadaşlarım toplantılara eksiksiz katıldı.
+Ürün fikrini de genel bir oylama yaparak ve sonrasında tartışarak kararlaştırdık.
+Planlanan ekranların tamamı tasarlandı, OTP sayfasında backend de sorun yaşadık önümüzdeki sprit çözmeye çalışacağız olmazsa e mail doğrulaması üzerinden devam edecek ve sayfalar kaldırılacak. 
+2 ve 3 sprint daha yoğun çalışma kararı aldık bunun sebebi ekip arkadaşlarımın okul sınavlarının yeni bitmiş olması.
 
 
 

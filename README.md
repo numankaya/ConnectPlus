@@ -96,7 +96,7 @@ Tüm ekip olarak tanımlanan gçrevleri tanımlanan süreler içerisinde gerçek
 Takımdaki herkesin ilk Bootcamp deneyemi olmasına rağmen süreci iyi yönettiğimizi düşünüyoruz.
 
 - **Sprint Retrospektif**:
-* Önümüzdeki sprintte hangi özellikler ve safyaların yapılacağı belirlendi.
+- Önümüzdeki sprintte hangi özellikler ve safyaların yapılacağı belirlendi.
 * Bu sprintte iş ve okul sebeplerinden görev alamayan arkadaşlarımıza ikinci sprintte görev tanımlamaları yapılması kararı alındı.
 * Backend bölümü için daha fazla zaman ayırmaya karar verildi.
 * OTP kısmı aktif edilmeye çalışılacak.

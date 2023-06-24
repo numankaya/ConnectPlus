@@ -1,7 +1,6 @@
 import 'package:erasmus_connect/screens/account_screen/account_screen.dart';
 import 'package:erasmus_connect/firebase_options.dart';
-import 'package:erasmus_connect/screens/account_screen/sign_in_screen.dart';
-import 'package:erasmus_connect/screens/onboarding_screen/animation_screens.dart';
+import 'package:erasmus_connect/screens/homepage/homepage.dart';
 import 'package:erasmus_connect/screens/registeration_login/login_screen/login_screen.dart';
 import 'package:erasmus_connect/widgets/bottom_navigator_bar.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +16,14 @@ void main() async {
   //isOnboardingShown = false;
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: isOnboardingShown ? MyApp() : IntroductionAnimationScreen(),
-  ));
+  runApp(MyApp());
+
+  //--------------------------ÖNEMLİ--------------------------//
+  // Bu kısım arayüz tarafını tamamladıktan sonra aktif edilecektir.
+  // runApp(MaterialApp(
+  //   debugShowCheckedModeBanner: false,
+  //   home: isOnboardingShown ? MyApp() : IntroductionAnimationScreen(),
+  // ));
 }
 
 final List<Widget> allPages = [PageOne(), AccountScreen()];
@@ -38,7 +41,10 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: LoginScreen(),
+        home: HomePage(),
+        //--------------------------ÖNEMLİ--------------------------//
+        // Bu kısım arayüz tarafını tamamladıktan sonra aktif edilecektir.
+        // home: LoginScreen(),
         // home: Scaffold(
         //   appBar: AppBar(
         //     title: Text(

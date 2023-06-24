@@ -10,16 +10,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../models/connect_plus_user.dart';
 import '../../../services/auth.dart';
 import '../../../services/database.dart';
-import '../forgot_password_screen/forgot_password_screen.dart';
-import '../registar_screen/register_screen.dart';
 
 // ignore_for_file: must_be_immutable
-class LoginScreen extends ConsumerWidget {
-  LoginScreen({Key? key}) : super(key: key);
+class RegistarScreen extends ConsumerWidget {
+  RegistarScreen({Key? key}) : super(key: key);
+
+  TextEditingController usernameController = TextEditingController();
 
   TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
+
+  TextEditingController confirmpasswordController = TextEditingController();
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -47,35 +49,48 @@ class LoginScreen extends ConsumerWidget {
                     key: _formKey,
                     child: Container(
                         width: double.maxFinite,
-                        padding: getPadding(left: 12, top: 63, right: 12),
+                        padding: getPadding(left: 22, right: 22),
                         child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              // Geri dönülecek bir sayfa yok
-                              // CustomIconButton(
-                              //     height: 41,
-                              //     width: 41,
-                              //     margin: getMargin(left: 24),
-                              //     alignment: Alignment.centerLeft,
-                              //     onTap: () {},
-                              //     child: CustomImageView(
-                              //         svgPath: ImageConstant.imgArrowleft)),
-                              Container(
-                                  width: getHorizontalSize(289),
+                              CustomIconButton(
+                                  height: 41,
+                                  width: 41,
+                                  margin: getMargin(left: 2),
+                                  alignment: Alignment.centerLeft,
+                                  onTap: () {
+                                    onTapBtnArrowleft(context);
+                                  },
+                                  child: CustomImageView(
+                                      svgPath: ImageConstant.imgArrowleft)),
+                              Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Container(
+                                      width: getHorizontalSize(265),
+                                      margin: getMargin(
+                                          left: 18, top: 14, right: 47),
+                                      child: Text(
+                                          "Merhaba! Başlamak için kaydolun",
+                                          maxLines: null,
+                                          textAlign: TextAlign.left,
+                                          style: AppStyle
+                                              .txtUrbanistRomanBold25))),
+                              CustomTextFormField(
+                                  focusNode: FocusNode(),
+                                  autofocus: true,
+                                  controller: usernameController,
+                                  hintText: "Kullanıcı adı",
                                   margin:
-                                      getMargin(left: 30, top: 23, right: 31),
-                                  child: Text(
-                                      "Hoş geldin! Seni tekrardan gördüğümüze sevindik!",
-                                      maxLines: null,
-                                      textAlign: TextAlign.left,
-                                      style: AppStyle.txtUrbanistRomanBold25)),
+                                      getMargin(left: 18, top: 39, right: 23),
+                                  variant:
+                                      TextFormFieldVariant.OutlineIndigo50_1),
                               CustomTextFormField(
                                   focusNode: FocusNode(),
                                   autofocus: true,
                                   controller: emailController,
-                                  hintText: "Email adresini gir",
+                                  hintText: "Email",
                                   margin:
-                                      getMargin(left: 28, top: 38, right: 30),
+                                      getMargin(left: 18, top: 12, right: 23),
                                   variant:
                                       TextFormFieldVariant.OutlineIndigo50_1,
                                   textInputType: TextInputType.emailAddress),
@@ -83,93 +98,71 @@ class LoginScreen extends ConsumerWidget {
                                   focusNode: FocusNode(),
                                   autofocus: true,
                                   controller: passwordController,
-                                  hintText: "Şifreni gir",
+                                  hintText: "Şifre",
                                   margin:
-                                      getMargin(left: 28, top: 15, right: 28),
-                                  padding: TextFormFieldPadding.PaddingT19_1,
-                                  textInputAction: TextInputAction.done,
-                                  suffix: Container(
-                                      margin: getMargin(
-                                          left: 30,
-                                          top: 17,
-                                          right: 14,
-                                          bottom: 17),
-                                      child: CustomImageView(
-                                          svgPath: ImageConstant
-                                              .imgFluenteye20filled)),
-                                  suffixConstraints: BoxConstraints(
-                                      maxHeight: getVerticalSize(56))),
-                              Align(
-                                  alignment: Alignment.centerRight,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ForgotPasswordScreen()));
-                                    },
-                                    child: Padding(
-                                        padding: getPadding(top: 15, right: 30),
-                                        child: Text("Şifreni mi unuttun?",
-                                            overflow: TextOverflow.ellipsis,
-                                            textAlign: TextAlign.left,
-                                            style: AppStyle
-                                                .txtUrbanistRomanSemiBold14)),
-                                  )),
+                                      getMargin(left: 18, top: 12, right: 23)),
+                              CustomTextFormField(
+                                  focusNode: FocusNode(),
+                                  autofocus: true,
+                                  controller: confirmpasswordController,
+                                  hintText: "Şifreni doğrula",
+                                  margin:
+                                      getMargin(left: 18, top: 12, right: 23),
+                                  textInputAction: TextInputAction.done),
                               CustomButton(
                                   onTap: () {
-                                    LoginWithEmailAndPass(
-                                        email: emailController.text,
-                                        password: passwordController.text,
-                                        ref: ref,
-                                        context: context);
+                                    if (passwordController.text ==
+                                            confirmpasswordController.text &&
+                                        usernameController.text.isNotEmpty) {
+                                      CreateAccountWithMail(
+                                          mail: emailController.text,
+                                          password: passwordController.text,
+                                          fullName: usernameController.text,
+                                          ref: ref,
+                                          context: context);
+                                    }
                                   },
                                   height: getVerticalSize(56),
-                                  text: "Giriş",
+                                  text: "Kayıt ol",
                                   margin:
-                                      getMargin(left: 33, top: 29, right: 28)),
+                                      getMargin(left: 18, top: 30, right: 23)),
                               Padding(
-                                  padding: getPadding(left: 8, top: 36),
+                                  padding: getPadding(top: 13),
                                   child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Padding(
                                             padding:
-                                                getPadding(top: 7, bottom: 8),
+                                                getPadding(top: 8, bottom: 8),
                                             child: SizedBox(
-                                                width: getHorizontalSize(90),
+                                                width: getHorizontalSize(87),
                                                 child: Divider(
                                                     height: getVerticalSize(1),
                                                     thickness:
                                                         getVerticalSize(1),
                                                     color: ColorConstant
                                                         .indigo50))),
-                                        Padding(
-                                            padding: getPadding(left: 6),
-                                            child: Text(
-                                                "ya da şununla giriş yap",
-                                                overflow: TextOverflow.ellipsis,
-                                                textAlign: TextAlign.left,
-                                                style: AppStyle
-                                                    .txtUrbanistRomanSemiBold14)),
+                                        Text("ya da şununla giriş yap",
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.left,
+                                            style: AppStyle
+                                                .txtUrbanistRomanSemiBold14),
                                         Padding(
                                             padding:
-                                                getPadding(top: 7, bottom: 8),
+                                                getPadding(top: 8, bottom: 8),
                                             child: SizedBox(
-                                                width: getHorizontalSize(102),
+                                                width: getHorizontalSize(88),
                                                 child: Divider(
                                                     height: getVerticalSize(1),
                                                     thickness:
                                                         getVerticalSize(1),
-                                                    color:
-                                                        ColorConstant.indigo50,
-                                                    indent:
-                                                        getHorizontalSize(11))))
+                                                    color: ColorConstant
+                                                        .indigo50)))
                                       ])),
                               Padding(
                                   padding:
-                                      getPadding(left: 17, top: 20, right: 19),
+                                      getPadding(left: 23, top: 13, right: 23),
                                   child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -188,13 +181,13 @@ class LoginScreen extends ConsumerWidget {
                                                 borderRadius: BorderRadiusStyle
                                                     .roundedBorder8),
                                             child: Container(
-                                                height: getVerticalSize(55),
-                                                width: getHorizontalSize(99),
+                                                height: getVerticalSize(56),
+                                                width: getHorizontalSize(90),
                                                 padding: getPadding(
-                                                    left: 35,
-                                                    top: 14,
-                                                    right: 35,
-                                                    bottom: 14),
+                                                    left: 31,
+                                                    top: 15,
+                                                    right: 31,
+                                                    bottom: 15),
                                                 decoration: AppDecoration
                                                     .outlineIndigo50
                                                     .copyWith(
@@ -206,21 +199,24 @@ class LoginScreen extends ConsumerWidget {
                                                       svgPath: ImageConstant
                                                           .imgFacebookic,
                                                       height:
-                                                          getVerticalSize(25),
+                                                          getVerticalSize(26),
                                                       width:
-                                                          getHorizontalSize(24),
+                                                          getHorizontalSize(22),
                                                       alignment:
                                                           Alignment.centerLeft)
                                                 ]))),
                                         GestureDetector(
                                           onTap: () {
-                                            LoginWithGoogleAccount(
-                                                ref: ref, context: context);
+                                            CreateAccountWithGoogleAccount(
+                                                fullName:
+                                                    usernameController.text,
+                                                ref: ref,
+                                                context: context);
                                           },
                                           child: Card(
                                               clipBehavior: Clip.antiAlias,
                                               elevation: 0,
-                                              margin: getMargin(left: 7),
+                                              margin: getMargin(left: 6),
                                               color: ColorConstant.whiteA700,
                                               shape: RoundedRectangleBorder(
                                                   side: BorderSide(
@@ -232,13 +228,13 @@ class LoginScreen extends ConsumerWidget {
                                                       BorderRadiusStyle
                                                           .roundedBorder8),
                                               child: Container(
-                                                  height: getVerticalSize(55),
-                                                  width: getHorizontalSize(99),
+                                                  height: getVerticalSize(56),
+                                                  width: getHorizontalSize(90),
                                                   padding: getPadding(
-                                                      left: 35,
-                                                      top: 14,
-                                                      right: 35,
-                                                      bottom: 14),
+                                                      left: 31,
+                                                      top: 15,
+                                                      right: 31,
+                                                      bottom: 15),
                                                   decoration: AppDecoration
                                                       .outlineIndigo50
                                                       .copyWith(
@@ -250,10 +246,10 @@ class LoginScreen extends ConsumerWidget {
                                                         svgPath: ImageConstant
                                                             .imgGoogleic,
                                                         height:
-                                                            getVerticalSize(25),
+                                                            getVerticalSize(26),
                                                         width:
                                                             getHorizontalSize(
-                                                                24),
+                                                                22),
                                                         alignment: Alignment
                                                             .centerLeft)
                                                   ]))),
@@ -261,7 +257,7 @@ class LoginScreen extends ConsumerWidget {
                                         Card(
                                             clipBehavior: Clip.antiAlias,
                                             elevation: 0,
-                                            margin: getMargin(left: 7),
+                                            margin: getMargin(left: 6),
                                             color: ColorConstant.whiteA700,
                                             shape: RoundedRectangleBorder(
                                                 side: BorderSide(
@@ -272,13 +268,13 @@ class LoginScreen extends ConsumerWidget {
                                                 borderRadius: BorderRadiusStyle
                                                     .roundedBorder8),
                                             child: Container(
-                                                height: getVerticalSize(55),
-                                                width: getHorizontalSize(99),
+                                                height: getVerticalSize(56),
+                                                width: getHorizontalSize(90),
                                                 padding: getPadding(
-                                                    left: 35,
-                                                    top: 14,
-                                                    right: 35,
-                                                    bottom: 14),
+                                                    left: 31,
+                                                    top: 15,
+                                                    right: 31,
+                                                    bottom: 15),
                                                 decoration: AppDecoration
                                                     .outlineIndigo50
                                                     .copyWith(
@@ -290,49 +286,46 @@ class LoginScreen extends ConsumerWidget {
                                                       svgPath: ImageConstant
                                                           .imgCibapple,
                                                       height:
-                                                          getVerticalSize(25),
+                                                          getVerticalSize(26),
                                                       width:
-                                                          getHorizontalSize(24),
+                                                          getHorizontalSize(22),
                                                       alignment:
                                                           Alignment.centerLeft)
                                                 ])))
                                       ])),
-                              Padding(
-                                  padding: getPadding(top: 86, bottom: 5),
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      bool isAccountOpened =
-                                          await Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      RegistarScreen()));
-                                      if (isAccountOpened) {
-                                        Navigator.of(context).pop();
-                                      }
-                                    },
-                                    child: RichText(
-                                        text: TextSpan(children: [
-                                          TextSpan(
-                                              text: "Hesabın yok mu ? ",
-                                              style: TextStyle(
-                                                  color: ColorConstant.gray900,
-                                                  fontSize: getFontSize(15),
-                                                  fontFamily: 'Urbanist',
-                                                  fontWeight: FontWeight.w500,
-                                                  letterSpacing:
-                                                      getHorizontalSize(0.15))),
-                                          TextSpan(
-                                              text: "Şimdi kayıt ol",
-                                              style: TextStyle(
-                                                  color: ColorConstant.green300,
-                                                  fontSize: getFontSize(15),
-                                                  fontFamily: 'Urbanist',
-                                                  fontWeight: FontWeight.w700,
-                                                  letterSpacing:
-                                                      getHorizontalSize(0.15)))
-                                        ]),
-                                        textAlign: TextAlign.left),
-                                  ))
+                              GestureDetector(
+                                  onTap: () async {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Padding(
+                                      padding: getPadding(top: 29, bottom: 5),
+                                      child: RichText(
+                                          text: TextSpan(children: [
+                                            TextSpan(
+                                                text:
+                                                    "Zaten bir hesabın var mı? ",
+                                                style: TextStyle(
+                                                    color:
+                                                        ColorConstant.gray900,
+                                                    fontSize: getFontSize(15),
+                                                    fontFamily: 'Urbanist',
+                                                    fontWeight: FontWeight.w500,
+                                                    letterSpacing:
+                                                        getHorizontalSize(
+                                                            0.15))),
+                                            TextSpan(
+                                                text: "Şimdi giriş yap",
+                                                style: TextStyle(
+                                                    color:
+                                                        ColorConstant.cyan400,
+                                                    fontSize: getFontSize(15),
+                                                    fontFamily: 'Urbanist',
+                                                    fontWeight: FontWeight.w700,
+                                                    letterSpacing:
+                                                        getHorizontalSize(
+                                                            0.15)))
+                                          ]),
+                                          textAlign: TextAlign.left)))
                             ]))))));
   }
 
@@ -340,23 +333,40 @@ class LoginScreen extends ConsumerWidget {
   ///
   /// This function takes a [BuildContext] object as a parameter, which is used
   /// to navigate back to the previous screen.
-  void LoginWithEmailAndPass(
-      {required String email,
-      required String password,
-      required BuildContext context,
-      required WidgetRef ref}) async {
-    final bool x = await FirebaseAuthServiceMethods(FirebaseAuth.instance)
-        .SignInWithEmail(email: email, password: password, context: context);
-    if (x) {
+  onTapBtnArrowleft(BuildContext context) {
+    Navigator.pop(context);
+  }
+
+  /// Navigates to the loginScreen when the action is triggered.
+  ///
+  /// The [BuildContext] parameter is used to build the navigation stack.
+  /// When the action is triggered, this function uses the `Navigator` widget
+  /// to push the named route for the loginScreen.
+  CreateAccountWithGoogleAccount(
+      {required String fullName,
+      required WidgetRef ref,
+      required BuildContext context}) async {
+    final bool isSuccess =
+        await FirebaseAuthServiceMethods(FirebaseAuth.instance)
+            .SignInWithGoogle(context, fullName: fullName, isCreatingAcc: true);
+    if (isSuccess) {
       CreateProviderDatas(ref: ref, context: context);
     }
   }
 
-  void LoginWithGoogleAccount(
-      {required WidgetRef ref, required BuildContext context}) async {
-    final bool x = await FirebaseAuthServiceMethods(FirebaseAuth.instance)
-        .SignInWithGoogle(context, isCreatingAcc: false);
-    if (x) {
+  CreateAccountWithMail(
+      {required String mail,
+      required String password,
+      required String fullName,
+      required WidgetRef ref,
+      required BuildContext context}) async {
+    final bool isSuccess =
+        await FirebaseAuthServiceMethods(FirebaseAuth.instance).signUpWithEmail(
+            fullName: fullName,
+            email: mail,
+            password: password,
+            context: context);
+    if (isSuccess) {
       CreateProviderDatas(ref: ref, context: context);
     }
   }
@@ -373,6 +383,6 @@ class LoginScreen extends ConsumerWidget {
         mail: currentUser.email,
         phone: currentUser.phoneNumber,
         isMailVerified: currentUser.emailVerified));
-    Navigator.of(context).pop();
+    Navigator.of(context).pop(true);
   }
 }

@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../main.dart';
 import '../../widgets/bottom_navigator_bar.dart';
-import '../registeration_login/register_screen/register_screen.dart';
 import 'adventure.dart';
 import 'connect.dart';
 import 'explore.dart';
@@ -84,19 +83,19 @@ class _IntroductionAnimationScreenState
     // Return different background colors based on the animation value
     if (animationValue >= 0.0 && animationValue < 0.2) {
       return Color.fromARGB(
-          255, 209, 237, 203); // Example background color for the first page
+          255, 247, 235, 225); // Example background color for the first page
     } else if (animationValue >= 0.2 && animationValue < 0.4) {
       return Color.fromARGB(
-          255, 209, 237, 203); // Example background color for the second page
+          255, 247, 235, 225); // Example background color for the second page
     } else if (animationValue >= 0.4 && animationValue < 0.6) {
       return Color.fromARGB(
-          255, 206, 193, 234); // Example background color for the third page
+          255, 247, 235, 225); // Example background color for the third page
     } else if (animationValue >= 0.6 && animationValue < 0.8) {
       return Color.fromARGB(
-          255, 209, 237, 203); // Example background color for the fourth page
+          255, 247, 235, 225); // Example background color for the fourth page
     } else {
       return Color.fromARGB(
-          255, 0, 0, 0); // Example background color for the fifth page
+          255, 247, 235, 225); // Example background color for the fifth page
     }
   }
 

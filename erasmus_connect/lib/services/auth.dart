@@ -62,8 +62,10 @@ class FirebaseAuthServiceMethods {
       if (!_auth.currentUser!.emailVerified) {
         //await sendEmailVerification(context);
       }*/
+      print(_auth.currentUser?.email);
       return true;
     } on FirebaseAuthException catch (e) {
+      print(e.message!);
       showSnackBar(context, e.message!);
       return false;
     }

@@ -139,7 +139,7 @@ class CustomTextFormField extends StatelessWidget {
 
   _setBorderStyle() {
     switch (variant) {
-      case TextFormFieldVariant.OutlineIndigo50:
+      case TextFormFieldVariant.OutlineIndigo50_1:
         return OutlineInputBorder(
           borderRadius: _setOutlineBorderRadius(),
           borderSide: BorderSide(
@@ -162,16 +162,16 @@ class CustomTextFormField extends StatelessWidget {
 
   _setFillColor() {
     switch (variant) {
-      case TextFormFieldVariant.OutlineIndigo50:
+      case TextFormFieldVariant.OutlineIndigo50_1:
         return ColorConstant.gray50;
       default:
-        return ColorConstant.gray10001;
+        return ColorConstant.gray100;
     }
   }
 
   _setFilled() {
     switch (variant) {
-      case TextFormFieldVariant.OutlineIndigo50:
+      case TextFormFieldVariant.OutlineIndigo50_1:
         return true;
       case TextFormFieldVariant.None:
         return false;
@@ -182,24 +182,17 @@ class CustomTextFormField extends StatelessWidget {
 
   _setPadding() {
     switch (padding) {
-      case TextFormFieldPadding.PaddingT19:
+      case TextFormFieldPadding.PaddingT19_1:
         return getPadding(
-          left: 18,
+          left: 16,
           top: 19,
-          bottom: 19,
-        );
-      case TextFormFieldPadding.PaddingT19_2:
-        return getPadding(
-          left: 12,
-          top: 19,
-          right: 12,
           bottom: 19,
         );
       default:
         return getPadding(
-          left: 18,
+          left: 16,
           top: 19,
-          right: 18,
+          right: 16,
           bottom: 19,
         );
     }
@@ -213,13 +206,12 @@ enum TextFormFieldShape {
 enum TextFormFieldPadding {
   PaddingT19,
   PaddingT19_1,
-  PaddingT19_2,
 }
 
 enum TextFormFieldVariant {
   None,
-  OutlineIndigo50_1,
   OutlineIndigo50,
+  OutlineIndigo50_1,
 }
 
 enum TextFormFieldFontStyle {

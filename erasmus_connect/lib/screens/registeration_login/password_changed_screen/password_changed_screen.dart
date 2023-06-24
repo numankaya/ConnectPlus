@@ -13,7 +13,7 @@ class PasswordChangedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            backgroundColor: ColorConstant.lightGreen100,
+            backgroundColor: ColorConstant.orange700,
             body: SizedBox(
                 width: double.maxFinite,
                 child: Column(
@@ -28,8 +28,7 @@ class PasswordChangedScreen extends StatelessWidget {
                                           MainAxisAlignment.start,
                                       children: [
                                         CustomImageView(
-                                            imagePath: ImageConstant
-                                                .imgVector12DeepPurple10001,
+                                            imagePath: ImageConstant.imgArrowleft,
                                             height: getVerticalSize(133),
                                             width: getHorizontalSize(294),
                                             alignment: Alignment.centerRight),
@@ -63,7 +62,7 @@ class PasswordChangedScreen extends StatelessWidget {
 
                                             }),
                                         CustomImageView(
-                                            svgPath: ImageConstant.imgGroup4,
+                                            svgPath: ImageConstant.imgGoogleic,
                                             height: getVerticalSize(111),
                                             width: getHorizontalSize(372),
                                             margin: getMargin(top: 137))

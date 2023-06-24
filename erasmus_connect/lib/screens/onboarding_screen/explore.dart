@@ -92,9 +92,9 @@ class ExploreView extends StatelessWidget {
                     Text(
                       "Connect+",
                       style: TextStyle(
-                        fontSize: 26.0,
+                        fontSize: 28.0,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 122, 153, 115),
+                        color: Color.fromARGB(255, 33, 152, 58),
                       ),
                     ),
                     Text(
@@ -112,13 +112,13 @@ class ExploreView extends StatelessWidget {
                 position: _textAnimation,
                 child: Padding(
                   padding:
-                      EdgeInsets.only(left: 64, right: 64, top: 16, bottom: 16),
+                      EdgeInsets.only(left: 64, right: 64, top: 16, bottom: 48),
                   child: Text(
                     "Connect+ ile dünyanın dört bir yanındaki öğrenciler ile bağlantı kurarak unutulmaz bir yurtdışı deneyimi yaşayabilirsin.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Color.fromARGB(255, 190, 120, 128),
+                      color: Color.fromARGB(255, 0, 0, 0),
                     ),
                   ),
                 ),

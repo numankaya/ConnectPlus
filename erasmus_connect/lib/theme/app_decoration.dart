@@ -2,6 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:erasmus_connect/core/app_export.dart';
 
 class AppDecoration {
+  static BoxDecoration get gradientYellow10000Orange700 => BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment(
+            0.5,
+            0,
+          ),
+          end: Alignment(
+            0.5,
+            1,
+          ),
+          colors: [
+            ColorConstant.yellow10000,
+            ColorConstant.orange700,
+          ],
+        ),
+      );
   static BoxDecoration get outlineIndigo50 => BoxDecoration(
         color: ColorConstant.whiteA700,
         border: Border.all(
@@ -11,23 +27,8 @@ class AppDecoration {
           ),
         ),
       );
-  static BoxDecoration get fillLightgreen100 => BoxDecoration(
-        color: ColorConstant.lightGreen100,
-      );
-  static BoxDecoration get fillGray900 => BoxDecoration(
-        color: ColorConstant.gray900,
-      );
-  static BoxDecoration get fillDeeppurple200aa => BoxDecoration(
-        color: ColorConstant.deepPurple200Aa,
-      );
-  static BoxDecoration get fillGray300 => BoxDecoration(
-        color: ColorConstant.gray300,
-      );
   static BoxDecoration get fillWhiteA700 => BoxDecoration(
         color: ColorConstant.whiteA700,
-      );
-  static BoxDecoration get fillDeeppurple100 => BoxDecoration(
-        color: ColorConstant.deepPurple100,
       );
 }
 
@@ -35,12 +36,6 @@ class BorderRadiusStyle {
   static BorderRadius roundedBorder8 = BorderRadius.circular(
     getHorizontalSize(
       8,
-    ),
-  );
-
-  static BorderRadius roundedBorder20 = BorderRadius.circular(
-    getHorizontalSize(
-      20,
     ),
   );
 }

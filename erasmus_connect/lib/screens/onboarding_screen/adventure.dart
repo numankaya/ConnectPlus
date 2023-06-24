@@ -97,7 +97,7 @@ class AdventureView extends StatelessWidget {
               ),
               Text(
                 "Maceraya Atıl !",
-                style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
               ),
               SlideTransition(
                 position: _moodFirstHalfAnimation,
@@ -105,13 +105,13 @@ class AdventureView extends StatelessWidget {
                   position: _moodSecondHalfAnimation,
                   child: Padding(
                     padding: EdgeInsets.only(
-                        left: 64, right: 64, top: 16, bottom: 16),
+                        left: 64, right: 64, top: 16, bottom: 48),
                     child: Text(
                       "Profilini oluştur, mentorluk ilişkileri kur ve hayallerindeki maceraya adımını at!",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16.0,
-                        color: Color.fromARGB(255, 190, 120, 128),
+                        color: Color.fromARGB(255, 0, 0, 0),
                       ),
                     ),
                   ),

@@ -54,24 +54,6 @@ class GetstartedView extends StatelessWidget {
 
     return Stack(
       children: [
-        Positioned.fill(
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: Image.asset(
-              'assets/images/line_image_1.png',
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Positioned.fill(
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: Image.asset(
-              'assets/images/line_image_2.png',
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
         SlideTransition(
           position: _firstHalfAnimation,
           child: SlideTransition(
@@ -93,7 +75,7 @@ class GetstartedView extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 30.0,
                                 fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 122, 153, 115),
+                                color: Color.fromARGB(255, 33, 152, 58),
                               ),
                             ),
                             Text(
@@ -101,7 +83,7 @@ class GetstartedView extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 30.0,
                                 fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 255, 255, 255),
+                                color: Color.fromARGB(255, 0, 0, 0),
                               ),
                             ),
                           ],
@@ -111,7 +93,7 @@ class GetstartedView extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 30.0,
                             fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 255, 255, 255),
+                            color: Color.fromARGB(255, 0, 0, 0),
                           ),
                         ),
                         Text(
@@ -119,14 +101,14 @@ class GetstartedView extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 30.0,
                             fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 255, 255, 255),
+                            color: Color.fromARGB(255, 0, 0, 0),
                           ),
                         ),
                       ],
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.1,
+                    height: MediaQuery.of(context).size.height * 0.08,
                   ),
                   SlideTransition(
                     position: _welcomeImageAnimation,
@@ -140,7 +122,7 @@ class GetstartedView extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.1,
+                    height: MediaQuery.of(context).size.height * 0.08,
                   ),
                 ],
               ),

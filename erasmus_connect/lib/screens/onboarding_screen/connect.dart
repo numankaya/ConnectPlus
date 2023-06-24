@@ -102,19 +102,19 @@ class ConnectView extends StatelessWidget {
                   child: Text(
                     "Bağlantılarını Oluştur !",
                     style:
-                        TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
               Padding(
                 padding:
-                    EdgeInsets.only(left: 64, right: 64, bottom: 16, top: 16),
+                    EdgeInsets.only(left: 64, right: 64, bottom: 48, top: 16),
                 child: Text(
-                  "Erasmus yolculuğuna başlamadan önce sana bazı sihirli anahtarlar sunuyoruz.   Kapıları açmak için hazır mısın?",
+                  "Erasmus yolculuğuna başlamadan önce sana bazı sihirli anahtarlar sunuyoruz. Kapıları açmak için hazır mısın?",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: Color.fromARGB(255, 190, 120, 128),
+                    color: Color.fromARGB(255, 0, 0, 0),
                   ),
                 ),
               ),

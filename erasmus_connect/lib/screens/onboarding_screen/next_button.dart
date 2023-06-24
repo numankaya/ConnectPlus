@@ -74,7 +74,11 @@ class CenterNextButton extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
                         8 + 32 * (1 - _signUpMoveAnimation.value)),
-                    color: Color.fromARGB(255, 186, 167, 228),
+                    color: _signUpMoveAnimation.value > 0.7
+                        ? Color.fromARGB(
+                            255, 82, 51, 24) // Change color on the fourth page
+                        : Color.fromARGB(
+                            255, 251, 141, 39), // Default color for other pages
                   ),
                   child: PageTransitionSwitcher(
                     duration: Duration(milliseconds: 480),
@@ -105,12 +109,14 @@ class CenterNextButton extends StatelessWidget {
                                     'Haydi Başlayalım',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 18,
+                                      fontSize: 20,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
-                                  Icon(Icons.arrow_forward_rounded,
-                                      color: Colors.white),
+                                  Icon(
+                                    Icons.arrow_forward_rounded,
+                                    color: Colors.white,
+                                  ),
                                 ],
                               ),
                             ),
@@ -120,7 +126,7 @@ class CenterNextButton extends StatelessWidget {
                             child: Padding(
                               padding: EdgeInsets.all(16.0),
                               child: Icon(Icons.arrow_forward_ios_rounded,
-                                  color: Colors.white),
+                                  color: Colors.black, size: 18),
                             ),
                           ),
                   ),
@@ -129,33 +135,33 @@ class CenterNextButton extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 8),
+            padding: const EdgeInsets.only(top: 32),
             child: SlideTransition(
               position: _loginTextMoveAnimation,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Kayıt olmadan devam et !',
+                    'Kayıt olmadan ',
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: Color.fromARGB(255, 0, 0, 0),
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  // Text(
-                  //   'Giriş Yap',
-                  //   style: TextStyle(
-                  //     color: Color(0xff132137),
-                  //     fontSize: 16,
-                  //     fontWeight: FontWeight.bold,
-                  //   ),
-                  // ),
+                  Text(
+                    'Devam et!',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 53, 194, 193),
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.03),
         ],
       ),
     );
@@ -179,19 +185,19 @@ class CenterNextButton extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          for (var i = 0; i < 4; i++)
+          for (var i = 0; i < 3; i++)
             Padding(
-              padding: const EdgeInsets.all(4),
+              padding: const EdgeInsets.all(20),
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 480),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(32),
                   color: _selectedIndex == i
                       ? Color.fromARGB(255, 7, 7, 7)
-                      : Color(0xffE3E4E4),
+                      : Color.fromARGB(255, 212, 208, 208),
                 ),
-                width: 10,
-                height: 10,
+                width: _selectedIndex == i ? 12 : 6,
+                height: _selectedIndex == i ? 12 : 6,
               ),
             )
         ],

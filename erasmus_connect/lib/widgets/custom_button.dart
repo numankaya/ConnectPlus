@@ -109,21 +109,13 @@ class CustomButton extends StatelessWidget {
 
   _setColor() {
     switch (variant) {
-      case ButtonVariant.FillDeeppurple200:
-        return ColorConstant.deepPurple200;
       default:
-        return ColorConstant.gray90001;
+        return ColorConstant.gray800;
     }
   }
 
   _setBorderRadius() {
     switch (shape) {
-      case ButtonShape.RoundedBorder15:
-        return BorderRadius.circular(
-          getHorizontalSize(
-            15.00,
-          ),
-        );
       case ButtonShape.Square:
         return BorderRadius.circular(0);
       default:
@@ -137,15 +129,6 @@ class CustomButton extends StatelessWidget {
 
   _setFontStyle() {
     switch (fontStyle) {
-      case ButtonFontStyle.UrbanistRomanBold20:
-        return TextStyle(
-          color: ColorConstant.black900,
-          fontSize: getFontSize(
-            20,
-          ),
-          fontFamily: 'Urbanist',
-          fontWeight: FontWeight.w700,
-        );
       default:
         return TextStyle(
           color: ColorConstant.whiteA700,
@@ -162,7 +145,6 @@ class CustomButton extends StatelessWidget {
 enum ButtonShape {
   Square,
   RoundedBorder8,
-  RoundedBorder15,
 }
 
 enum ButtonPadding {
@@ -170,11 +152,9 @@ enum ButtonPadding {
 }
 
 enum ButtonVariant {
-  FillGray90001,
-  FillDeeppurple200,
+  FillGray800,
 }
 
 enum ButtonFontStyle {
   UrbanistRomanSemiBold15,
-  UrbanistRomanBold20,
 }

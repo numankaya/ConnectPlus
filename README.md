@@ -91,10 +91,26 @@ Konaklama için öneriler kısmında sunucudan alınan bilgilerle hava durumu gi
 https://github.com/numankaya/ErasmusConnectPlus/assets/123562983/87951d7c-d5c7-43bc-b02a-ee797ba641c0
 
 - **Sprint Review**: 
-Alınan kararlar: Önümüzdeki sprintte hangi özellikler ve safyaların yapılacağı belirlendi.
-Bu sprintte iş ve okul sebeplerinden görev alamayan arkadaşlarımıza ikinci sprintte görev tanımlamaları yapılması kararı alındı.
-Backend bölümü için daha fazla zaman ayırmaya karar verildi.
+Tüm ekip toplantılara aktif bir şekilde katıldı.
+Tüm ekip olarak tanımlanan gçrevleri tanımlanan süreler içerisinde gerçekleitirdik.
+Takımdaki herkesin ilk Bootcamp deneyemi olmasına rağmen süreci iyi yönettiğimizi düşünüyoruz.
 
+- **Sprint Retrospektif**:
+- Önümüzdeki sprintte hangi özellikler ve safyaların yapılacağı belirlendi.
+* Bu sprintte iş ve okul sebeplerinden görev alamayan arkadaşlarımıza ikinci sprintte görev tanımlamaları yapılması kararı alındı.
+* Backend bölümü için daha fazla zaman ayırmaya karar verildi.
+* OTP kısmı aktif edilmeye çalışılacak.
+* Tasarımlar backend tarafında oluşturulmazsa tekrar tasarlanacak.
+* Önümüzdeki sprintin ortalama puanı 140 olarak belirlendi, sprint hızına göre bu puan arttırılabilir.
+* UX UI tarafının daha hizli olması teşvik edilecek.
+* Eksik ve yavaş kaldığımız taraflarımız tarşıldı önümüzdeki sporint için önlemnler ve iyileştirmeler yapma kararı aldık.
+* En güçlü yanlarımızdan biri olan ekip içi iletişim için tüm takım tebrik edildi.
+
+- **1.Sprint Notu**: 
+Genel olarak ilk haftayı ürün bulma ve araştırma olarak geçirdik tüm ekip arkadaşlarım toplantılara eksiksiz katıldı.
+Ürün fikrini de genel bir oylama yaparak ve sonrasında tartışarak kararlaştırdık.
+Planlanan ekranların tamamı tasarlandı, OTP sayfasında backend de sorun yaşadık önümüzdeki sprit çözmeye çalışacağız olmazsa e mail doğrulaması üzerinden devam edecek ve sayfalar kaldırılacak. 
+2 ve 3 sprint daha yoğun çalışma kararı aldık bunun sebebi ekip arkadaşlarımın okul sınavlarının yeni bitmiş olması.
 
 
 

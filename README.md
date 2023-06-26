@@ -64,7 +64,7 @@ Konaklama için öneriler kısmında sunucudan alınan bilgilerle hava durumu gi
 - **Sprint içinde tamamlanması tahmin edilen puan**: 100 Puan
 
 
-- **Puan tamamlama mantığı**: Toplamda proje boyunca tamamlanması gereken 380 puanlık backlog bulunmaktadır. 3 sprint'e bölündüğünde ilk sprint'in yarısı fikir üretme ve araştırmaya ayrıldığından ilk sprint puanı 100 olarak kararlaştırılmıştır.
+- **Puan tamamlama mantığı**: Toplamda proje boyunca tamamlanması gereken 400 puanlık backlog bulunmaktadır. 3 sprint'e bölündüğünde ilk sprint'in yarısı fikir üretme ve araştırmaya ayrıldığından ilk sprint puanı 100 olarak kararlaştırılmıştır.
 
 
 - **Daily Scrum**: Daily Scrum toplantı notları Trello üzerindeki ''Daily Scrum Meeting Notes'' bölümünden ulaşa bilirsiniz. Toplantılar Discord kanalı üzerinden gerçekleitirilmiştir.

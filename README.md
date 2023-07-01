@@ -64,7 +64,7 @@ Konaklama için öneriler kısmında sunucudan alınan bilgilerle hava durumu gi
 - **Sprint içinde tamamlanması tahmin edilen puan**: 100 Puan
 
 
-- **Puan tamamlama mantığı**: Toplamda proje boyunca tamamlanması gereken 380 puanlık backlog bulunmaktadır. 3 sprint'e bölündüğünde ilk sprint'in yarısı fikir üretme ve araştırmaya ayrıldığından ilk sprint puanı 100 olarak kararlaştırılmıştır.
+- **Puan tamamlama mantığı**: Toplamda proje boyunca tamamlanması gereken 420 puanlık backlog bulunmaktadır. 3 sprint'e bölündüğünde ilk sprint'in yarısı fikir üretme ve araştırmaya ayrıldığından ilk sprint puanı 100 olarak kararlaştırılmıştır.
 
 
 - **Daily Scrum**: Daily Scrum toplantı notları Trello üzerindeki ''Daily Scrum Meeting Notes'' bölümünden ulaşa bilirsiniz. Toplantılar Discord kanalı üzerinden gerçekleitirilmiştir.
@@ -92,9 +92,9 @@ https://github.com/numankaya/ErasmusConnectPlus/assets/123562983/87951d7c-d5c7-4
 
 - **Sprint Review**: 
 Tüm ekip toplantılara aktif bir şekilde katıldı.
-Tüm ekip olarak tanımlanan gçrevleri tanımlanan süreler içerisinde gerçekleitirdik.
+Tüm ekip olarak tanımlanan görevleri tanımlanan süreler içerisinde gerçekleştirdik.
 Takımdaki herkesin ilk Bootcamp deneyemi olmasına rağmen süreci iyi yönettiğimizi düşünüyoruz.
-
+Önümüzdeki sprintin pşanşanması yapıldı.
 - **Sprint Retrospektif**:
 - Önümüzdeki sprintte hangi özellikler ve safyaların yapılacağı belirlendi.
 * Bu sprintte iş ve okul sebeplerinden görev alamayan arkadaşlarımıza ikinci sprintte görev tanımlamaları yapılması kararı alındı.
@@ -111,7 +111,74 @@ Genel olarak ilk haftayı ürün bulma ve araştırma olarak geçirdik tüm ekip
 Ürün fikrini de genel bir oylama yaparak ve sonrasında tartışarak kararlaştırdık.
 Planlanan ekranların tamamı tasarlandı, OTP sayfasında backend de sorun yaşadık önümüzdeki sprit çözmeye çalışacağız olmazsa e mail doğrulaması üzerinden devam edecek ve sayfalar kaldırılacak. 
 2 ve 3 sprint daha yoğun çalışma kararı aldık bunun sebebi ekip arkadaşlarımın okul sınavlarının yeni bitmiş olması.
+----------------------------------------------------------------------------------------------
+# Sprint 2
+
+- **Sprint içinde tamamlanması tahmin edilen puan**: 155 puan
+
+- **Puan tamamlama mantığı**: Product Backlog oluşturuldu ve User Stories puanlamarı yapıldı. 
+İlk sprintteki hızımız ve bu sprintteki aktiflik durumumuzla beraber bu sprint için 155 puan, 3. sprint için 165 puan tamamlama hesaplaması yapıldı.
+Toplam tammalanması gereken puan 420 olarak hesaplandı.
+
+
+- **Daily Scrum**: Daily Scrum toplantı notları Trello üzerindeki ''Daily Scrum Meeting Notes'' bölümünden ulaşa bilirsiniz. Toplantılar Discord kanalı üzerinden gerçekleitirilmiştir.
+
+
+- **Sprint board update**: Sprint board screenshotları:
+ * 1.Sprint Revize: ![1 Sprint revize](https://github.com/numankaya/ConnectPlus/assets/123562983/15e96916-c8e5-41da-8d47-e9dd48f3372c)
+
+
+
+- **Ürün Durumu**: Ekran görüntüleri:
+
+
+![Slider1](https://github.com/numankaya/ConnectPlus/assets/123562983/ece14b83-06d9-4ac2-8586-4cc599025d57)
+![Slider2](https://github.com/numankaya/ConnectPlus/assets/123562983/736f0253-8c69-4768-91d5-332fc2299490)
+![Slider3](https://github.com/numankaya/ConnectPlus/assets/123562983/24a39951-55bd-4802-b5e8-3da15b352b30)
+![Slider4](https://github.com/numankaya/ConnectPlus/assets/123562983/de6ba043-db89-40fe-9d4c-0ecebb146a6e)
+![Login_page](https://github.com/numankaya/ConnectPlus/assets/123562983/ad618cf6-222b-4a3b-b99c-d383a48a3ca2)
+![Şifre](https://github.com/numankaya/ConnectPlus/assets/123562983/e23a80e6-50c4-45c8-9a62-17a05e499190)
+![Otp](https://github.com/numankaya/ConnectPlus/assets/123562983/08640ea0-b2d3-4a0a-b0c6-db66b95f20c5)
+![Şifreoluştur](https://github.com/numankaya/ConnectPlus/assets/123562983/0872c3dc-c1f5-442f-aacc-61399c6fc6c2)
+![Şifredeğişti](https://github.com/numankaya/ConnectPlus/assets/123562983/814644f5-4f4a-4922-97ea-68f3ae693f5e)
+![Register](https://github.com/numankaya/ConnectPlus/assets/123562983/d11e7471-35de-47ac-9ee9-9e323fcf0ef9)
+          ![Homepage](https://github.com/numankaya/ConnectPlus/assets/123562983/4cb022a8-3e4b-4725-a8d5-c02e996943b1)
+
+- **Vize Süreçleri**:
+
+  
+![Vize_süreçleri](https://github.com/numankaya/ConnectPlus/assets/123562983/19748a96-7e7e-46bd-84e5-60331670401e)
+
+
+- **Oturum İzni**:
+
+  
+![Oturum_izni](https://github.com/numankaya/ConnectPlus/assets/123562983/8310df6b-e625-4a02-bf85-38b78de2a658)
+
+
+![Konaklama](https://github.com/numankaya/ConnectPlus/assets/123562983/570642b9-c8f0-49ba-abef-5e7af784b66c)
+![Konaklama1](https://github.com/numankaya/ConnectPlus/assets/123562983/fff56282-c9b6-437c-9145-c04f9b846070)
+![Rotalar](https://github.com/numankaya/ConnectPlus/assets/123562983/fea3ae83-33a1-4375-9705-1c61ce8ce443)
+![Rotalar1](https://github.com/numankaya/ConnectPlus/assets/123562983/2387354a-b445-4013-902a-5e8818c91aca)
+
+
+- **Okullar**:
+
+  
+![Okullar](https://github.com/numankaya/ConnectPlus/assets/123562983/fa71ae2f-2f54-4ce7-bbc7-d658b75f095f)
+![Okullar1](https://github.com/numankaya/ConnectPlus/assets/123562983/9104036c-1fa2-4daa-83d8-31155b2499bc)
+![Okullar2](https://github.com/numankaya/ConnectPlus/assets/123562983/a4bda8fc-0a1a-4635-b4fe-9db59821f57d)
 
 
 
 
+
+
+
+- **Sprint Review**: 
+
+
+- **Sprint Retrospektif**:
+
+
+- **2.Sprint Notu**: 

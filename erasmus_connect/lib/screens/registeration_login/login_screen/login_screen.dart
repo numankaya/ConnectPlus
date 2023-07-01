@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:erasmus_connect/core/app_export.dart';
+import 'package:erasmus_connect/screens/homepage/bottom_navigation_bar.dart';
+import 'package:erasmus_connect/screens/homepage/homepage.dart';
 import 'package:erasmus_connect/widgets/custom_button.dart';
 import 'package:erasmus_connect/widgets/custom_icon_button.dart';
 import 'package:erasmus_connect/widgets/custom_text_form_field.dart';
@@ -118,11 +120,17 @@ class LoginScreen extends ConsumerWidget {
                                   )),
                               CustomButton(
                                   onTap: () {
-                                    LoginWithEmailAndPass(
-                                        email: emailController.text,
-                                        password: passwordController.text,
-                                        ref: ref,
-                                        context: context);
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            BottomNavigation(),
+                                      ),
+                                    );
+                                    // LoginWithEmailAndPass(
+                                    //     email: emailController.text,
+                                    //     password: passwordController.text,
+                                    //     ref: ref,
+                                    //     context: context);
                                   },
                                   height: getVerticalSize(56),
                                   text: "Giriş",

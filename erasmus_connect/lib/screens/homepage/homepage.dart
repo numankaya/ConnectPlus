@@ -1,136 +1,465 @@
-import 'package:erasmus_connect/screens/homepage/chatbot_page.dart';
-import 'package:erasmus_connect/screens/homepage/main.dart';
-import 'package:erasmus_connect/screens/homepage/profile_page.dart';
-import 'package:erasmus_connect/screens/homepage/search_page.dart';
-import 'package:erasmus_connect/screens/homepage/settings_page.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/accommodation_page.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/schools_page.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/travel_page.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  HomePageState createState() => HomePageState();
-}
-
-class HomePageState extends State<HomePage> {
-  int selectedIndex = 0;
-  late PageController pageController;
-  List<IconData> data = [
-    Icons.question_answer_outlined,
-    Icons.search,
-    Icons.home_filled,
-    Icons.settings,
-    Icons.person_2_rounded
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    pageController = PageController(initialPage: selectedIndex);
-  }
-
-  @override
-  void dispose() {
-    pageController.dispose();
-    super.dispose();
-  }
-
-  void onPageChanged(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
-  }
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromARGB(255, 247, 235, 225),
-      body: PageView(
-        controller: pageController,
-        onPageChanged: onPageChanged,
-        children: [
-          ChatbotPage(),
-          SearchPage(),
-          HomePageWidget(),
-          SettingsPage(),
-          ProfilePage(),
-        ],
-      ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(45),
-            topRight: Radius.circular(45),
-          ),
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 255, 231, 160),
-              Color.fromARGB(255, 251, 141, 39),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.center,
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Material(
-            elevation: 10,
-            borderRadius: BorderRadius.circular(45),
-            color: Colors.transparent,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(45),
-                color: Color.fromARGB(255, 255, 144, 34),
-              ),
-              height: 70,
-              width: double.infinity,
-              child: ListView.builder(
-                itemCount: data.length,
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                itemBuilder: (ctx, i) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: GestureDetector(
-                    onTap: () {
-                      pageController.animateToPage(
-                        i,
-                        duration: Duration(milliseconds: 250),
-                        curve: Curves.easeInOut,
-                      );
-                    },
-                    child: AnimatedContainer(
-                      duration: Duration(milliseconds: 250),
-                      width: 35,
-                      decoration: BoxDecoration(
-                        border: i == selectedIndex
-                            ? Border(
-                                top: BorderSide(
-                                  width: 3.0,
-                                  color: Color.fromARGB(250, 250, 228, 206),
-                                ),
-                              )
-                            : null,
-                        gradient: i == selectedIndex
-                            ? LinearGradient(
-                                colors: [
-                                  Color.fromARGB(255, 255, 216, 178),
-                                  Color.fromARGB(100, 255, 130, 40),
-                                ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.center,
-                              )
-                            : null,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Color.fromARGB(255, 247, 235, 225),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 16),
+                          backgroundColor: Color.fromARGB(255, 238, 217, 198),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        onPressed: () {
+                          // Handle button 1 press
+                        },
+                        child: Text(
+                          'Erasmus',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Color.fromARGB(255, 64, 58, 122),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                      child: Icon(
-                        data[i],
-                        size: 35,
-                        color: i == selectedIndex
-                            ? Colors.black
-                            : Color.fromARGB(255, 145, 85, 61),
+                      SizedBox(width: 12),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 16),
+                          backgroundColor: Color.fromARGB(255, 238, 217, 198),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        onPressed: () {
+                          // Handle button 2 press
+                        },
+                        child: Text(
+                          'Work & Travel',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Color.fromARGB(255, 64, 58, 122),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 20),
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(
+                              0, 3), // controls the position of the shadow
+                        ),
+                      ],
+                    ),
+                    child: CircleAvatar(
+                      foregroundImage:
+                          AssetImage('assets/images/notifications_img.png'),
+                      backgroundColor: Color.fromARGB(255, 253, 227, 205),
+                      child: IconButton(
+                        color: Color.fromARGB(255, 253, 227, 205),
+                        onPressed: () {},
+                        icon: Icon(Icons.notification_add_outlined),
                       ),
                     ),
                   ),
-                ),
-                scrollDirection: Axis.horizontal,
+                ],
               ),
-            ),
+              SizedBox(height: 4),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 15),
+                          filled: true,
+                          fillColor: Color.fromARGB(255, 250, 229, 210),
+                          hintText: 'Ara...',
+                          hintStyle: TextStyle(
+                            color: Color.fromARGB(255, 237, 164, 126),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: Color.fromARGB(255, 237, 164, 126),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        onChanged: (value) {
+                          // Handle search bar input
+                        },
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Container(
+                      width: 48,
+                      height: 48,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Color.fromARGB(255, 250, 229,
+                            210), // Background color of the button
+                      ),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(15),
+                        onTap: () {
+                          // Add your onTap logic here
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(6),
+                          child: Image.asset(
+                            'assets/images/filter_img.png',
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 30,
+                  top: 10,
+                  bottom: 4,
+                ),
+                child: Text(
+                  "Başvuru Rehberi",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: SizedBox(
+                  height: 100, // Set the desired height for the images
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            // Handle grid card 3 press
+                          },
+                          child: Stack(
+                            children: [
+                              Image.asset('assets/images/homepage_img_4.png'),
+                              Positioned(
+                                top: 0,
+                                right: 0,
+                                left: 0,
+                                bottom: 0,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Vize Süreçleri',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 0, 0, 0),
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 4),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            // Handle grid card 1 press
+                          },
+                          child: Stack(
+                            children: [
+                              Image.asset('assets/images/homepage_img_1.png'),
+                              Positioned(
+                                top: 0,
+                                right: 0,
+                                left: 0,
+                                bottom: 0,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Sağlık\nSigortaları',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 0, 0, 0),
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 4),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            // Handle grid card 2 press
+                          },
+                          child: Stack(
+                            children: [
+                              Image.asset('assets/images/homepage_img_2.png'),
+                              Positioned(
+                                top: 0,
+                                right: 0,
+                                left: 0,
+                                bottom: 0,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Oturum İzni',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 0, 0, 0),
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 4),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            // Handle grid card 3 press
+                          },
+                          child: Stack(
+                            children: [
+                              Image.asset('assets/images/homepage_img_3.png'),
+                              Positioned(
+                                top: 0,
+                                right: 0,
+                                left: 0,
+                                bottom: 0,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Kaliteli Eğitim\nTopluluğu',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 0, 0, 0),
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 30,
+                ),
+                child: Text(
+                  "Önerilenler",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                  ),
+                ),
+              ),
+              GridView.count(
+                shrinkWrap: true,
+                crossAxisCount: 2,
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AccommodationPage(),
+                          ),
+                        );
+                      },
+                      child: Stack(
+                        children: [
+                          Image.asset('assets/images/homepage_img_8.png'),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            left: 0,
+                            bottom: 0,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Konaklama\nTavsiyeleri',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SchoolsPage(),
+                          ),
+                        );
+                      },
+                      child: Stack(
+                        children: [
+                          Image.asset('assets/images/homepage_img_5.png'),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            left: 0,
+                            bottom: 0,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Okullar',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TravelPage(),
+                          ),
+                        );
+                      },
+                      child: Stack(
+                        children: [
+                          Image.asset('assets/images/homepage_img_6.png'),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            left: 0,
+                            bottom: 0,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Gezilecek\nRotalar',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        // Handle grid card 1 press
+                      },
+                      child: Stack(
+                        children: [
+                          Image.asset('assets/images/homepage_img_7.png'),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            left: 0,
+                            bottom: 0,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Mentorluk',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
           ),
         ),
       ),

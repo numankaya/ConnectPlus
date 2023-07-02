@@ -114,7 +114,7 @@ Planlanan ekranların tamamı tasarlandı, OTP sayfasında backend de sorun yaş
 ----------------------------------------------------------------------------------------------
 # Sprint 2
 
-- **Sprint içinde tamamlanması tahmin edilen puan**: 155 puan
+- **Sprint içinde tamamlanması tahmin edilen puan**: 155 puan / 143 puan tamamlandı
 
 - **Puan tamamlama mantığı**: Product Backlog oluşturuldu ve User Stories puanlamarı yapıldı. 
 İlk sprintteki hızımız ve bu sprintteki aktiflik durumumuzla beraber bu sprint için 155 puan, 3. sprint için 165 puan tamamlama hesaplaması yapıldı.
@@ -126,6 +126,10 @@ Toplam tammalanması gereken puan 420 olarak hesaplandı.
 
 - **Sprint board update**: Sprint board screenshotları:
  * 1.Sprint Revize: ![1 Sprint revize](https://github.com/numankaya/ConnectPlus/assets/123562983/15e96916-c8e5-41da-8d47-e9dd48f3372c)
+- Trello Ekranı:![Trello ekranı](https://github.com/numankaya/ConnectPlus/assets/123562983/45600c34-4a1b-4e2c-8f16-ca573304727b)
+
+
+- Figma Ekranı:![Figma ekranı](https://github.com/numankaya/ConnectPlus/assets/123562983/3d7a3f65-6114-4ded-872f-a55efd5a036d)
 
 
 
@@ -177,8 +181,23 @@ Toplam tammalanması gereken puan 420 olarak hesaplandı.
 
 - **Sprint Review**: 
 
-
+* Bu sprintte hedefimiz uygulamayı genel hatlarıyla görselleştirip önemli sayfaların backendini tamamlamaktı.
+* Genel hatlarıyla uygulamada neler yapacağız ve neler yapamayacağız konuşulup tartışıldı.
+* Son bir görev teknik sebeplerden ve bayram tatilinden dolayı teslim edilemedi.
+* İlk sprintin UX&UI revizesi yapıldı ve tasarım tüm uygulamaya entegre edildi.
+* Bu sprint 14 ekran tasarlandı ve 13 ekran tamamlandı.
+  
 - **Sprint Retrospektif**:
-
+  * Teknik aksaklıklardan dolayı tamamlanmayan görev üzerinde konulşuldu, bu gibi durumlarda ekibin tümüne hızlı bir şekilde bilgi verilmesi ve yardımlaşma talebinde bulunulması için ekip üyeleri anlaştı.
+  * 1.Sprintin revizesi hızlı bir şekilde gerçekleştirildi bunun için ekip üyeleri tebrik edildi.
+  * Genel hatlarıyla planladığımız tüm işler tamamlandı.
+  * 3.Sprint için daha fazla etkileşim içerisinde olmaya ekip üyeleri teşvik edildi.
+  * Tüm toplantılara eksiksiz katılım sağlanması için uyarılar yapıldı ve daha iyi nasıl iletişimde kalırız üzerine konuşuldu.
+  * Eksik kalan sayfanın 3.Sprintin ilk çeyreğine yetiştirilmesi kararlaştırıldı.
 
 - **2.Sprint Notu**: 
+* Bu sprint 143 puan tamamlaya bildik.
+* Sprintin başındaki revizeyle birlikte yoğun bir süreç geçirdik.
+* Önümüzdeki sprint en yoğun olanı olacak bununla ilgili önlemler alınması kararı verildi.
+* OTP sayfası hala tamamlanamadı üzerinde çalışmaya devam ediyoruz.
+* 3. Sprint için start verildi.

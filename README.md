@@ -124,11 +124,12 @@ Toplam tammalanması gereken puan 420 olarak hesaplandı.
 - **Daily Scrum**: Daily Scrum toplantı notları Trello üzerindeki ''Daily Scrum Meeting Notes'' bölümünden ulaşa bilirsiniz. Toplantılar Discord kanalı üzerinden gerçekleitirilmiştir.
 
 
-- **Sprint board update**: Sprint board screenshotları:
+- **Sprint board update**: Product Backlog URL https://miro.com/app/board/uXjVM-Ye30g=/
+  - Sprint board screenshotları: 
+
  * 1.Sprint Revize: ![1 Sprint revize](https://github.com/numankaya/ConnectPlus/assets/123562983/15e96916-c8e5-41da-8d47-e9dd48f3372c)
 - Trello Ekranı:![Trello ekranı](https://github.com/numankaya/ConnectPlus/assets/123562983/45600c34-4a1b-4e2c-8f16-ca573304727b)
-
-
+- Miro Ekranı:![Miro -ekranı](https://github.com/numankaya/ConnectPlus/assets/123562983/e0f4c25b-d842-413c-b0db-bb10f1dc5366)
 - Figma Ekranı:![Figma ekranı](https://github.com/numankaya/ConnectPlus/assets/123562983/3d7a3f65-6114-4ded-872f-a55efd5a036d)
 
 

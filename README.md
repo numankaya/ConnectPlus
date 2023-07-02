@@ -176,8 +176,7 @@ Toplam tammalanması gereken puan 420 olarak hesaplandı.
 
 
 
-[![Video](https://github.com/numankaya/ConnectPlus/blob/main/ProjectManagement/Sprint1Documents/Sprint_2_Video/Sprint_2_video.mp4
-
+https://github.com/numankaya/ConnectPlus/assets/25429713/1ef930fd-09d9-40a7-920a-abc16171f59c
 
 
 

@@ -1,4 +1,8 @@
 import 'package:erasmus_connect/screens/homepage/bottom_navigation_bar.dart';
+import 'package:erasmus_connect/screens/homepage/chatbot/chatbot_page.dart';
+import 'package:erasmus_connect/screens/homepage/profile_page.dart';
+import 'package:erasmus_connect/screens/homepage/search_page.dart';
+import 'package:erasmus_connect/screens/homepage/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -78,14 +82,12 @@ class _TravelPageState extends State<TravelPage> {
   @override
   void dispose() {
     _scrollController.dispose();
-    pageController.dispose();
-
     super.dispose();
   }
 
   void _scrollToSelectedFlag() {
     if (_selectedFlagIndex < imageUrls.length) {
-      final double itemExtent = MediaQuery.of(context).size.width * 0.80 + 4;
+      final double itemExtent = MediaQuery.of(context).size.width * 0.84 + 6;
       final double scrollToOffset = _selectedFlagIndex * itemExtent;
       _scrollController.animateTo(
         scrollToOffset,
@@ -103,184 +105,10 @@ class _TravelPageState extends State<TravelPage> {
     }
   }
 
-  //-------------------------------------------------------------------------------------
-  //----Bottom Navigation Bar için geçici olarak konuldu. Sadece anasayfaya atıyor.------
-  int selectedIndex = 2;
-  late PageController pageController;
-  List<IconData> data = [
-    Icons.chat_bubble_rounded,
-    Icons.search,
-    Icons.home_filled,
-    Icons.settings,
-    Icons.person_2_rounded
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    pageController = PageController(initialPage: selectedIndex);
-  }
-
-  void onPageChanged(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
-  }
-
-  //-------------------------------------------------------------------------------------
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        //-------------------------------------------------------------------------------------
-        //----Bottom Navigation Bar için geçici olarak konuldu. Sadece anasayfaya atıyor.------
-        bottomNavigationBar: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(45),
-              topRight: Radius.circular(45),
-            ),
-            gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 255, 231, 160),
-                Color.fromARGB(255, 251, 141, 39),
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.center,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Material(
-              elevation: 10,
-              borderRadius: BorderRadius.circular(45),
-              color: Colors.transparent,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(45),
-                  color: Color.fromARGB(255, 255, 144, 34),
-                ),
-                height: 70,
-                width: double.infinity,
-                child: ListView.builder(
-                  itemCount: data.length,
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  itemBuilder: (ctx, i) {
-                    if (i == 0) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: GestureDetector(
-                          onTap: () {
-                            pageController.animateToPage(
-                              i,
-                              duration: Duration(milliseconds: 250),
-                              curve: Curves.easeInOut,
-                            );
-                          },
-                          child: AnimatedContainer(
-                            duration: Duration(milliseconds: 250),
-                            width: 35,
-                            decoration: BoxDecoration(
-                              border: i == selectedIndex
-                                  ? Border(
-                                      top: BorderSide(
-                                        width: 3.0,
-                                        color:
-                                            Color.fromARGB(250, 250, 228, 206),
-                                      ),
-                                    )
-                                  : null,
-                              gradient: i == selectedIndex
-                                  ? LinearGradient(
-                                      colors: [
-                                        Color.fromARGB(255, 255, 216, 178),
-                                        Color.fromARGB(100, 255, 130, 40),
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.center,
-                                    )
-                                  : null,
-                            ),
-                            child: Container(
-                              width: 16,
-                              height: 16,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                    i == selectedIndex
-                                        ? 'assets/images/homepage_img_9.png'
-                                        : 'assets/images/homepage_img_10.png',
-                                  ),
-                                  fit: BoxFit.scaleDown,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    } else {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => BottomNavigation(),
-                              ),
-                            );
-                            pageController.animateToPage(
-                              i,
-                              duration: Duration(milliseconds: 250),
-                              curve: Curves.easeInOut,
-                            );
-                          },
-                          child: AnimatedContainer(
-                            duration: Duration(milliseconds: 250),
-                            width: 35,
-                            decoration: BoxDecoration(
-                              border: i == selectedIndex
-                                  ? Border(
-                                      top: BorderSide(
-                                        width: 3.0,
-                                        color:
-                                            Color.fromARGB(250, 250, 228, 206),
-                                      ),
-                                    )
-                                  : null,
-                              gradient: i == selectedIndex
-                                  ? LinearGradient(
-                                      colors: [
-                                        Color.fromARGB(255, 255, 216, 178),
-                                        Color.fromARGB(100, 255, 130, 40),
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.center,
-                                    )
-                                  : null,
-                            ),
-                            child: Icon(
-                              data[i],
-                              size: 35,
-                              color: i == selectedIndex
-                                  ? Colors.black
-                                  : Color.fromARGB(255, 145, 85, 61),
-                            ),
-                          ),
-                        ),
-                      );
-                    }
-                  },
-                  scrollDirection: Axis.horizontal,
-                ),
-              ),
-            ),
-          ),
-        ),
-        //-------------------------------------------------------------------------------------
-        //----Bottom Navigation Bar için geçici olarak konuldu. Sadece anasayfaya atıyor.------
         backgroundColor: Color.fromARGB(255, 247, 235, 225),
         body: SingleChildScrollView(
           child: Column(
@@ -338,7 +166,7 @@ class _TravelPageState extends State<TravelPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: SizedBox(
                   height: 100, // Set the desired height for the images
                   child: ListView.builder(
@@ -367,7 +195,7 @@ class _TravelPageState extends State<TravelPage> {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                 child: Row(
                   children: [
                     Expanded(
@@ -422,16 +250,16 @@ class _TravelPageState extends State<TravelPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(35),
                     color: Color.fromARGB(
                         255, 247, 235, 225), // Background color of the button
                   ),
-                  width: MediaQuery.of(context).size.width * 0.9,
+                  width: MediaQuery.of(context).size.width * 0.94,
                   height: MediaQuery.of(context).size.height *
-                      0.42, // Set the desired height for the images
+                      0.46, // Set the desired height for the images
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     controller: _scrollController,
@@ -522,11 +350,11 @@ class _TravelPageState extends State<TravelPage> {
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                horizontal: 2,
+                                horizontal: 4,
                               ),
                               child: Image.asset(
                                 imageUrls[index],
-                                width: MediaQuery.of(context).size.width * 0.80,
+                                width: MediaQuery.of(context).size.width * 0.84,
                                 fit: BoxFit.scaleDown,
                               ),
                             ),
@@ -574,69 +402,70 @@ class _TravelPageState extends State<TravelPage> {
                               left: 0,
                               bottom: 0,
                               child: Align(
-                                  alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(24.0),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          travelTitles[index],
-                                          style: TextStyle(
-                                            shadows: [
-                                              Shadow(
-                                                blurRadius: 5.0,
-                                                color: Colors.black,
-                                                offset: Offset(2.0, 2.0),
-                                              ),
-                                            ],
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20,
-                                            color: Color.fromARGB(
-                                                255, 255, 255, 255),
-                                          ),
-                                        ),
-                                        Text(
-                                          travelTexts[index],
-                                          style: TextStyle(
-                                            shadows: [
-                                              Shadow(
-                                                blurRadius: 5.0,
-                                                color: Colors.black,
-                                                offset: Offset(2.0, 2.0),
-                                              ),
-                                            ],
-                                            fontSize: 16,
-                                            color: Color.fromARGB(
-                                                255, 255, 255, 255),
-                                          ),
-                                        ),
-                                        SizedBox(height: 16),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            CircleAvatar(
-                                              radius: 12,
-                                              backgroundImage: NetworkImage(
-                                                  'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
-                                            ),
-                                            SizedBox(width: 8),
-                                            Text(
-                                              "F - 47",
-                                              style: TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 255, 255, 255),
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.bold),
+                                alignment: Alignment.center,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(24.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        travelTitles[index],
+                                        style: TextStyle(
+                                          shadows: [
+                                            Shadow(
+                                              blurRadius: 5.0,
+                                              color: Colors.black,
+                                              offset: Offset(2.0, 2.0),
                                             ),
                                           ],
-                                        )
-                                      ],
-                                    ),
-                                  )),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255),
+                                        ),
+                                      ),
+                                      Text(
+                                        travelTexts[index],
+                                        style: TextStyle(
+                                          shadows: [
+                                            Shadow(
+                                              blurRadius: 5.0,
+                                              color: Colors.black,
+                                              offset: Offset(2.0, 2.0),
+                                            ),
+                                          ],
+                                          fontSize: 16,
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255),
+                                        ),
+                                      ),
+                                      SizedBox(height: 16),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          CircleAvatar(
+                                            radius: 12,
+                                            backgroundImage: NetworkImage(
+                                                'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
+                                          ),
+                                          SizedBox(width: 8),
+                                          Text(
+                                            "F - 47",
+                                            style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 255, 255, 255),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -645,19 +474,6 @@ class _TravelPageState extends State<TravelPage> {
                   ),
                 ),
               ),
-              //---------------Anasayfaya dönüş butonu-----------------
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(builder: (context) => BottomNavigation()),
-              //     );
-              //   },
-              //   child: Icon(
-              //     Icons.arrow_back_ios_rounded,
-              //     color: Colors.black,
-              //   ),
-              // ),
             ],
           ),
         ),

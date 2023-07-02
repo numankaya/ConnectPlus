@@ -4,6 +4,8 @@ import 'package:erasmus_connect/screens/homepage/main_screen/travel_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
+  final Function(int) goToPage;
+  HomePage({required this.goToPage});
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -172,7 +174,7 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.all(4.0),
                         child: GestureDetector(
                           onTap: () {
-                            // Handle grid card 3 press
+                            goToPage(8);
                           },
                           child: Stack(
                             children: [
@@ -186,6 +188,38 @@ class HomePage extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: Text(
                                     'Vize Süreçleri',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 0, 0, 0),
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 4),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            goToPage(9);
+                          },
+                          child: Stack(
+                            children: [
+                              Image.asset('assets/images/homepage_img_2.png'),
+                              Positioned(
+                                top: 0,
+                                right: 0,
+                                left: 0,
+                                bottom: 0,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Oturum İzni',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color.fromARGB(255, 0, 0, 0),
@@ -218,38 +252,6 @@ class HomePage extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: Text(
                                     'Sağlık\nSigortaları',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 0, 0, 0),
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 4),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            // Handle grid card 2 press
-                          },
-                          child: Stack(
-                            children: [
-                              Image.asset('assets/images/homepage_img_2.png'),
-                              Positioned(
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    'Oturum İzni',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color.fromARGB(255, 0, 0, 0),
@@ -322,12 +324,7 @@ class HomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(10.0),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AccommodationPage(),
-                          ),
-                        );
+                        goToPage(6);
                       },
                       child: Stack(
                         children: [
@@ -358,12 +355,7 @@ class HomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(10.0),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SchoolsPage(),
-                          ),
-                        );
+                        goToPage(7);
                       },
                       child: Stack(
                         children: [
@@ -394,12 +386,7 @@ class HomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(10.0),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => TravelPage(),
-                          ),
-                        );
+                        goToPage(5);
                       },
                       child: Stack(
                         children: [

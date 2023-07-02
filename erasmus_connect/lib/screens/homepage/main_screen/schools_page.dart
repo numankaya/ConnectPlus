@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SchoolsPage extends StatefulWidget {
+  final Function(int) goToPage;
+  const SchoolsPage({required this.goToPage, Key? key}) : super(key: key);
+
   @override
   _SchoolsPageState createState() => _SchoolsPageState();
 }
@@ -171,14 +174,7 @@ class _SchoolsPageState extends State<SchoolsPage> {
                     size: 20,
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return BottomNavigation();
-                        },
-                      ),
-                    );
+                    widget.goToPage(2);
                   },
                 ),
               ),
@@ -395,8 +391,4 @@ class _SchoolsPageState extends State<SchoolsPage> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(home: SchoolsPage()));
 }

@@ -1,7 +1,11 @@
 import 'package:erasmus_connect/screens/homepage/chatbot/chatbot_page.dart';
 import 'package:erasmus_connect/screens/homepage/homepage.dart';
-import 'package:erasmus_connect/screens/homepage/profile_page.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/accommodation_page.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/residency_page.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/schools_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/travel_page.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/visa_page.dart';
+import 'package:erasmus_connect/screens/homepage/profile_page.dart';
 import 'package:erasmus_connect/screens/homepage/search_page.dart';
 import 'package:erasmus_connect/screens/homepage/settings_page.dart';
 import 'package:flutter/material.dart';
@@ -47,12 +51,26 @@ class BottomNavigationState extends State<BottomNavigation> {
       body: PageView(
         controller: pageController,
         onPageChanged: onPageChanged,
+        physics: NeverScrollableScrollPhysics(), //Sürüklenememesi için
         children: [
           ChatbotPage(),
           SearchPage(),
-          HomePage(),
+          HomePage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
           SettingsPage(),
           ProfilePage(),
+          TravelPage(),
+          AccommodationPage(),
+          SchoolsPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          VisaPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          ResidencyPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
         ],
       ),
       bottomNavigationBar: Container(
@@ -92,11 +110,7 @@ class BottomNavigationState extends State<BottomNavigation> {
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: GestureDetector(
                         onTap: () {
-                          pageController.animateToPage(
-                            i,
-                            duration: Duration(milliseconds: 250),
-                            curve: Curves.easeInOut,
-                          );
+                          pageController.jumpToPage(i);
                         },
                         child: AnimatedContainer(
                           duration: Duration(milliseconds: 250),
@@ -144,11 +158,7 @@ class BottomNavigationState extends State<BottomNavigation> {
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: GestureDetector(
                         onTap: () {
-                          pageController.animateToPage(
-                            i,
-                            duration: Duration(milliseconds: 250),
-                            curve: Curves.easeInOut,
-                          );
+                          pageController.jumpToPage(i);
                         },
                         child: AnimatedContainer(
                           duration: Duration(milliseconds: 250),

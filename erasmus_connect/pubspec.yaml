@@ -32,6 +32,9 @@ dependencies:
   chat_gpt_sdk: 2.0.2
   scroll_snap_list: ^0.9.1
   url_launcher: ^6.1.11
+  intl_phone_field: ^3.2.0
+  searchfield: ^0.8.3
+  image_picker: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -61,3 +64,11 @@ flutter:
       fonts:
         - asset: assets/fonts/PoppinsSemiBold.ttf
           weight: 600
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+          weight: 300
+    - family: Intern
+      fonts:
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700

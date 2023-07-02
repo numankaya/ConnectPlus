@@ -1,3 +1,4 @@
+import 'package:erasmus_connect/models/connect_plus_user.dart';
 import 'package:erasmus_connect/screens/homepage/chatbot/chatbot_page.dart';
 import 'package:erasmus_connect/screens/homepage/homepage.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/accommodation_page.dart';
@@ -8,14 +9,16 @@ import 'package:erasmus_connect/screens/homepage/main_screen/visa_page.dart';
 import 'package:erasmus_connect/screens/homepage/profile_page.dart';
 import 'package:erasmus_connect/screens/homepage/search_page.dart';
 import 'package:erasmus_connect/screens/homepage/settings_page.dart';
+import 'package:erasmus_connect/screens/registeration_login/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class BottomNavigation extends StatefulWidget {
+class BottomNavigation extends ConsumerStatefulWidget {
   @override
   BottomNavigationState createState() => BottomNavigationState();
 }
 
-class BottomNavigationState extends State<BottomNavigation> {
+class BottomNavigationState extends ConsumerState<BottomNavigation> {
   int selectedIndex = 2;
   late PageController pageController;
   List<IconData> data = [
@@ -41,6 +44,16 @@ class BottomNavigationState extends State<BottomNavigation> {
   void onPageChanged(int index) {
     setState(() {
       selectedIndex = index;
+
+      if (index == 4 && ref.read(userProvider).fullName == "") {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (builder) => LoginScreen()));
+        Future.delayed(const Duration(milliseconds: 2500), () {
+          setState(() {
+            selectedIndex = 2;
+          });
+        });
+      }
     });
   }
 

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:erasmus_connect/core/app_export.dart';
+import 'package:erasmus_connect/screens/homepage/bottom_navigation_bar.dart';
 import 'package:erasmus_connect/widgets/custom_button.dart';
 import 'package:erasmus_connect/widgets/custom_icon_button.dart';
 import 'package:erasmus_connect/widgets/custom_text_form_field.dart';
@@ -12,8 +13,8 @@ import '../../../services/auth.dart';
 import '../../../services/database.dart';
 
 // ignore_for_file: must_be_immutable
-class RegistarScreen extends ConsumerWidget {
-  RegistarScreen({Key? key}) : super(key: key);
+class RegisterScreen extends ConsumerWidget {
+  RegisterScreen({Key? key}) : super(key: key);
 
   TextEditingController usernameController = TextEditingController();
 
@@ -377,12 +378,22 @@ class RegistarScreen extends ConsumerWidget {
     final Map<String, dynamic>? userCollection =
         await FirebaseFireStoreMethods(FirebaseFirestore.instance)
             .GetUser(currentUser!.uid);
-    ref.read(userProvider.notifier).ChangeUser(ConnectPlusUserUser(
+    ref.read(userProvider.notifier).ChangeUser(ConnectPlusUser(
         uId: currentUser!.uid,
         fullName: userCollection!["fullName"],
         mail: currentUser.email,
-        phone: currentUser.phoneNumber,
-        isMailVerified: currentUser.emailVerified));
-    Navigator.of(context).pop(true);
+        phone: "",
+        isMailVerified: currentUser.emailVerified,
+        nickName: '',
+        gender: '',
+        address: '',
+        type: "Öğrenci",
+        school: "",
+        erasmusSchool: ""));
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => BottomNavigation(),
+      ),
+    );
   }
 }

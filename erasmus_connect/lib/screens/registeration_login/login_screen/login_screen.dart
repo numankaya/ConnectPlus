@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:erasmus_connect/core/app_export.dart';
 import 'package:erasmus_connect/screens/homepage/bottom_navigation_bar.dart';
-import 'package:erasmus_connect/screens/homepage/homepage.dart';
 import 'package:erasmus_connect/widgets/custom_button.dart';
 import 'package:erasmus_connect/widgets/custom_icon_button.dart';
 import 'package:erasmus_connect/widgets/custom_text_form_field.dart';
@@ -13,7 +12,7 @@ import '../../../models/connect_plus_user.dart';
 import '../../../services/auth.dart';
 import '../../../services/database.dart';
 import '../forgot_password_screen/forgot_password_screen.dart';
-import '../registar_screen/register_screen.dart';
+import '../register_screen/register_screen.dart';
 
 // ignore_for_file: must_be_immutable
 class LoginScreen extends ConsumerWidget {
@@ -53,15 +52,21 @@ class LoginScreen extends ConsumerWidget {
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              // Geri dönülecek bir sayfa yok
-                              // CustomIconButton(
-                              //     height: 41,
-                              //     width: 41,
-                              //     margin: getMargin(left: 24),
-                              //     alignment: Alignment.centerLeft,
-                              //     onTap: () {},
-                              //     child: CustomImageView(
-                              //         svgPath: ImageConstant.imgArrowleft)),
+                              CustomIconButton(
+                                  height: 41,
+                                  width: 41,
+                                  margin: getMargin(left: 24),
+                                  alignment: Alignment.centerLeft,
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            BottomNavigation(),
+                                      ),
+                                    );
+                                  },
+                                  child: CustomImageView(
+                                      svgPath: ImageConstant.imgArrowleft)),
                               Container(
                                   width: getHorizontalSize(289),
                                   margin:
@@ -120,17 +125,17 @@ class LoginScreen extends ConsumerWidget {
                                   )),
                               CustomButton(
                                   onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            BottomNavigation(),
-                                      ),
-                                    );
-                                    // LoginWithEmailAndPass(
-                                    //     email: emailController.text,
-                                    //     password: passwordController.text,
-                                    //     ref: ref,
-                                    //     context: context);
+                                    // Navigator.of(context).push(
+                                    //   MaterialPageRoute(
+                                    //     builder: (context) =>
+                                    //         BottomNavigation(),
+                                    //   ),
+                                    // );
+                                    LoginWithEmailAndPass(
+                                        email: emailController.text,
+                                        password: passwordController.text,
+                                        ref: ref,
+                                        context: context);
                                   },
                                   height: getVerticalSize(56),
                                   text: "Giriş",
@@ -313,7 +318,7 @@ class LoginScreen extends ConsumerWidget {
                                           await Navigator.of(context).push(
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      RegistarScreen()));
+                                                      RegisterScreen()));
                                       if (isAccountOpened) {
                                         Navigator.of(context).pop();
                                       }
@@ -375,12 +380,22 @@ class LoginScreen extends ConsumerWidget {
     final Map<String, dynamic>? userCollection =
         await FirebaseFireStoreMethods(FirebaseFirestore.instance)
             .GetUser(currentUser!.uid);
-    ref.read(userProvider.notifier).ChangeUser(ConnectPlusUserUser(
+    ref.read(userProvider.notifier).ChangeUser(ConnectPlusUser(
         uId: currentUser!.uid,
         fullName: userCollection!["fullName"],
         mail: currentUser.email,
-        phone: currentUser.phoneNumber,
-        isMailVerified: currentUser.emailVerified));
-    Navigator.of(context).pop();
+        phone: userCollection!["phone"],
+        isMailVerified: currentUser.emailVerified,
+        nickName: userCollection["nickName"],
+        gender: userCollection["gender"],
+        address: userCollection["address"],
+        type: userCollection["type"],
+        school: userCollection["school"],
+        erasmusSchool: userCollection["erasmusSchool"]));
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => BottomNavigation(),
+      ),
+    );
   }
 }

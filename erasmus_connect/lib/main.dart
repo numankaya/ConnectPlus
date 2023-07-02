@@ -1,4 +1,3 @@
-import 'package:erasmus_connect/screens/account_screen/account_screen.dart';
 import 'package:erasmus_connect/firebase_options.dart';
 import 'package:erasmus_connect/screens/homepage/bottom_navigation_bar.dart';
 import 'package:erasmus_connect/screens/onboarding_screen/animation_screens.dart';
@@ -27,7 +26,7 @@ void main() async {
   ));
 }
 
-final List<Widget> allPages = [PageOne(), AccountScreen()];
+final List<Widget> allPages = [PageOne()];
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

@@ -10,12 +10,49 @@ class FirebaseFireStoreMethods {
       required String? mail}) async {
     try {
       // create user's data inside of firestore
-      await _firebaseStore
-          .collection("users")
-          .doc(uId)
-          .set({"fullName": fullName, "mail": mail});
+      await _firebaseStore.collection("users").doc(uId).set({
+        "fullName": fullName,
+        "nickName": "",
+        "mail": mail,
+        "gender": "",
+        "country": "",
+        "phone": "",
+        "address": "",
+        "type": "Öğrenci",
+        "school": "",
+        "erasmusSchool": "",
+      });
     } on FirebaseException catch (e) {
       print(e.message);
+    }
+  }
+
+  Future<bool> UpdateUser(
+      {required String uId,
+      required String fullName,
+      required String nickName,
+      required String gender,
+      required String phone,
+      required String address,
+      required String type,
+      required String school,
+      required String erasmusSchool}) async {
+    try {
+      // create user's data inside of firestore
+      await _firebaseStore.collection("users").doc(uId).update({
+        "fullName": fullName,
+        "nickName": nickName,
+        "gender": gender,
+        "phone": phone,
+        "address": address,
+        "type": type,
+        "school": school,
+        "erasmusSchool": erasmusSchool
+      });
+      return true;
+    } on FirebaseException catch (e) {
+      print(e.message);
+      return false;
     }
   }
 

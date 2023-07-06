@@ -6,6 +6,7 @@ import 'package:erasmus_connect/screens/homepage/main_screen/residency_page.dart
 import 'package:erasmus_connect/screens/homepage/main_screen/schools_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/travel_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/visa_page.dart';
+import 'package:erasmus_connect/screens/homepage/mentor/mentorShowcasePage.dart';
 import 'package:erasmus_connect/screens/homepage/mentor/mentors.dart';
 import 'package:erasmus_connect/screens/homepage/profile_page.dart';
 import 'package:erasmus_connect/screens/homepage/search_page.dart';
@@ -85,7 +86,7 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
           ResidencyPage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
-          MentorsScreen(goToPage: (index) {
+          MentorsPage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
         ],

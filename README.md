@@ -176,7 +176,7 @@ Toplam tammalanması gereken puan 420 olarak hesaplandı.
 
 
 
-
+https://github.com/numankaya/ConnectPlus/assets/25429713/1ef930fd-09d9-40a7-920a-abc16171f59c
 
 
 

@@ -8,6 +8,8 @@ import 'package:erasmus_connect/screens/homepage/main_screen/residency_page.dart
 import 'package:erasmus_connect/screens/homepage/main_screen/schools_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/travel_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/visa_page.dart';
+import 'package:erasmus_connect/screens/homepage/mentor/mentorShowcasePage.dart';
+import 'package:erasmus_connect/screens/homepage/mentor/mentors.dart';
 import 'package:erasmus_connect/screens/homepage/profile_page.dart';
 import 'package:erasmus_connect/screens/homepage/search_page.dart';
 import 'package:erasmus_connect/screens/homepage/settings_page.dart';
@@ -84,6 +86,9 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
             pageController.jumpToPage(index);
           }),
           ResidencyPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          MentorsPage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
           HealthInsurancePage(goToPage: (index) {

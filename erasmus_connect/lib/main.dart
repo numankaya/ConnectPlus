@@ -13,7 +13,7 @@ void main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.remove('isOnboardingShown');
   bool isOnboardingShown = prefs.getBool('isOnboardingShown') ?? false;
-  //isOnboardingShown = false;
+  isOnboardingShown = true;
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   //runApp(MyApp());

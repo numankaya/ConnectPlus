@@ -17,6 +17,7 @@ class ProfilePage extends ConsumerWidget {
     _image = img;
   }
 
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ConnectPlusUser user = ref.watch(userProvider);
@@ -70,11 +71,24 @@ class ProfilePage extends ConsumerWidget {
                   ),
                   Text(user.fullName!),
                   SizedBox(
-                    height: 40,
+                    height: 10,
                   ),
-                  Text("Nick : " + user.nickName!),
-                  Text("Mail : " + user.mail!),
-                  Text("Telefon Numarası : " + user.phone!),
+                  TextContainer(
+                      page: EditProfilePage(),
+                      widget:
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Nick : ${user.nickName!}"),
+                          Text("Mail : ${user.mail!}"),
+                          Text("Telefon Numarası : ${user.phone!}"),
+                          Text("Okul : ${user.school!}"),
+                          Text("Erasmus Okulu : ${user.erasmusSchool!}"),
+                        ],
+                      ),
+                    )),
                   SizedBox(
                     height: 80,
                   ),
@@ -96,5 +110,44 @@ class ProfilePage extends ConsumerWidget {
             ),
           ),
         ));
+  }
+}
+
+class TextContainer extends StatelessWidget {
+  const TextContainer({super.key, required this.widget, required this.page});
+
+  final Widget widget, page;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 300,
+      height: 170,
+      decoration: BoxDecoration(
+          color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+            color: Colors.grey.withOpacity(0.4),
+            spreadRadius: 3,
+            blurRadius: 5,
+            offset: Offset(0, 4), // changes position of shadow
+          ),
+      ],
+    ),
+      child: Stack(
+        children: [
+          Positioned(
+            right: 0,
+            child: IconButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (builder) => page));
+            },
+                icon: Icon(Icons.edit)
+            ),
+          ),
+          widget,
+        ],
+      ),
+    );
   }
 }

@@ -78,7 +78,7 @@ class LoginScreen extends ConsumerWidget {
                                       style: AppStyle.txtUrbanistRomanBold25)),
                               CustomTextFormField(
                                   focusNode: FocusNode(),
-                                  autofocus: true,
+                                  autofocus: false,
                                   controller: emailController,
                                   hintText: "Email adresini gir",
                                   margin:
@@ -88,7 +88,7 @@ class LoginScreen extends ConsumerWidget {
                                   textInputType: TextInputType.emailAddress),
                               CustomTextFormField(
                                   focusNode: FocusNode(),
-                                  autofocus: true,
+                                  autofocus: false,
                                   controller: passwordController,
                                   hintText: "Şifreni gir",
                                   margin:

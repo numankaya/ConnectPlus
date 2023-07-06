@@ -11,8 +11,7 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color.fromARGB(255, 247, 235, 225),
-        body:
-        SingleChildScrollView(
+        body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -239,7 +238,7 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.all(4.0),
                         child: GestureDetector(
                           onTap: () {
-                            goToPage(10);
+                            goToPage(11);
                           },
                           child: Stack(
                             children: [
@@ -271,7 +270,7 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.all(4.0),
                         child: GestureDetector(
                           onTap: () {
-                            goToPage(11);
+                            goToPage(12);
                           },
                           child: Stack(
                             children: [

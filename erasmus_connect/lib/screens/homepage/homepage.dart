@@ -238,7 +238,7 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.all(4.0),
                         child: GestureDetector(
                           onTap: () {
-                            // Handle grid card 1 press
+                            goToPage(10);
                           },
                           child: Stack(
                             children: [
@@ -270,7 +270,7 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.all(4.0),
                         child: GestureDetector(
                           onTap: () {
-                            // Handle grid card 3 press
+                            goToPage(11);
                           },
                           child: Stack(
                             children: [

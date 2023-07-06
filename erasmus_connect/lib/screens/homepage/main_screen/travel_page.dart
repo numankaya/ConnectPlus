@@ -17,7 +17,7 @@ class _TravelPageState extends State<TravelPage> {
     'assets/images/sweden_travel.png',
     'assets/images/italy_travel.png',
     'assets/images/germany_travel.png',
-    'assets/images/uk_travel.png',
+    'assets/images/netherlands_travel.png',
     // Add more image URLs here
   ];
 
@@ -26,7 +26,7 @@ class _TravelPageState extends State<TravelPage> {
     "İsveç'te Gezilecek Rotalar",
     "İtalya'da Gezilecek Rotalar",
     "Kanada'da Gezilecek Rotalar",
-    "İngiltere'de Gezilecek Rotalar",
+    "Hollanda'da Gezilecek Rotalar",
     // Add more trip titles here
   ];
 
@@ -35,7 +35,7 @@ class _TravelPageState extends State<TravelPage> {
     "İsveç'te gezmek istediğiniz yerleri keşfedin!",
     "İtalya'da gezmek istediğiniz yerleri keşfedin!",
     "Kanada'da gezmek istediğiniz yerleri keşfedin!",
-    "İngiltere'de gezmek istediğiniz yerleri keşfedin!",
+    "Hollanda'da gezmek istediğiniz yerleri keşfedin!",
     // Add more trip titles here
   ];
 

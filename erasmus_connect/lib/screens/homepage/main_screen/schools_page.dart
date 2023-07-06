@@ -21,7 +21,7 @@ class _SchoolsPageState extends State<SchoolsPage> {
     'İsveç',
     'İtalya',
     'Almanya',
-    'İngiltere'
+    'Hollanda'
   ];
 
   List<List<List<String>>> universityContent = [
@@ -119,25 +119,25 @@ class _SchoolsPageState extends State<SchoolsPage> {
     ],
     [
       [
-        "Oxford Üniversitesi Erasmus Programı Oxford Üniversitesi, uluslararası öğrencilere yüksek kalitede eğitim imkanı sunan ve dünyaca ünlü bir üniversitedir. Erasmus Programı aracılığıyla Oxford Üniversitesi'nde eğitim alma fırsatı elde edebilirsiniz. Oxford Üniversitesi'nin resmi Erasmus web sayfası, başvuru süreci, danışmanlık hizmetleri, Erasmus hibe ve bursları hakkında ayrıntılı bilgileri içermektedir. İlgili link için ",
-        "buraya tıklayabilirsiniz.",
-        "www.ox.ac.uk",
-        "",
-        "/admissions/undergraduate/applying-to-oxford/for-international-students",
+        "Delft Üniversitesi, Hollanda'nın Delft şehrinde yer alan dünyaca ünlü bir üniversitedir. Yüksek kaliteli eğitim ve araştırma imkanları sunan Delft Üniversitesi, uluslararası öğrencilere de çeşitli olanaklar sağlamaktadır. Delft Üniversitesi'nin resmi ",
+        "Erasmus web sayfası",
+        "www.tudelft.nl",
+        " başvuru süreci, kabul kriterleri ve önemli tarihler gibi ayrıntılı bilgilere erişebileceğiniz bir kaynaktır. Bu sayfada, uluslararası öğrencilerin nasıl başvuruda bulunabilecekleri, başvuru sürecinin adımları, başvuru takvimi gibi konular hakkında bilgiler bulunmaktadır.",
+        "/onderwijs/opleidingen/exchange",
       ],
       [
-        "Cambridge Üniversitesi, dünya genelinde prestijli bir üniversite olarak tanınır ve uluslararası öğrencilere eşsiz bir eğitim deneyimi sunar. Erasmus Programı sayesinde Cambridge Üniversitesi'nde öğrenim görebilirsiniz. Cambridge Üniversitesi'nin resmi Erasmus web sayfası, başvuru süreci, destek ve danışmanlık hizmetleri, Erasmus hibe ve burs olanakları hakkında kapsamlı bilgiler içermektedir. İlgili link için ",
-        "buraya tıklayabilirsiniz.",
-        "www.internationalstudents.cam.ac.uk",
-        "",
-        ""
+        "Inholland Üniversitesi, Hollanda genelinde farklı şehirlerde bulunan bir uygulamalı bilimler üniversitesidir. Yüksek kaliteli eğitim ve pratik odaklı programlarıyla bilinir. Inholland Üniversitesi, uluslararası öğrencilere Erasmus Programı aracılığıyla eğitim alma fırsatı sunmaktadır.Inholland Üniversitesi'nin resmi ",
+        "Erasmus web sayfası",
+        "www.inholland.nl",
+        "başvuru süreci, akademik programlar, kabul koşulları ve diğer önemli bilgiler hakkında ayrıntılı bilgiler içermektedir.",
+        "/inhollandcom/frequently-asked-questions/incoming-exchange-student/"
       ],
       [
-        "London Imperial College, mükemmeliyetçilik ve yenilikçilik anlayışıyla öne çıkan, dünya çapında saygın bir üniversitedir. Erasmus Programı ile London Imperial College'ın sunduğu eğitim imkanlarından yararlanabilirsiniz. London Imperial College'ın resmi Erasmus web sayfası, başvuru süreci, destek ve danışmanlık hizmetleri, Erasmus hibe ve burs olanakları hakkında ayrıntılı bilgilere erişebilirsiniz. İlgili link için ",
-        "buraya tıklayabilirsiniz.",
-        "www.imperial.ac.uk",
-        "",
-        "/study/international-students/",
+        "The Hague Üniversitesi Hague'da yer alan bir üniversitedir. Uluslararası öğrencilere geniş bir yelpazede programlar sunmaktadır. The Hague Üniversitesi de Erasmus Programı aracılığıyla uluslararası öğrencilere eğitim alma imkanı sunan kurumlardan biridir. The Hague Üniversitesi'nin resmi ",
+        "Erasmus web sayfası",
+        "www.thuas.com",
+        " başvuru süreci, program seçenekleri, akademik takvim ve diğer önemli bilgilerle ilgili detaylı bilgiler içermektedir. Bu sayfada, başvuru koşulları, belgeler, başvuru takvimi gibi konular hakkında ayrıntılı bilgiler bulunmaktadır.",
+        "/programmes/exchange-programmes-other-courses/exchange-programmes",
       ],
     ],
   ];
@@ -210,8 +210,8 @@ class _SchoolsPageState extends State<SchoolsPage> {
           buildDivider(),
           SizedBox(height: 20),
           buildDivider(),
-          buildDropdownMenu(4, 'Oxford Üniversitesi', 'Cambridge Üniversitesi',
-              'London Imperial Üniversitesi'),
+          buildDropdownMenu(4, 'Delft Üniversitesi', 'Inholland Üniversitesi',
+              'Hague Üniversitesi'),
           buildDivider(),
         ],
       ),

@@ -1,4 +1,3 @@
-import 'package:erasmus_connect/screens/homepage/bottom_navigation_bar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -54,7 +53,7 @@ class ContainerList extends StatelessWidget {
     'İsveç',
     'İtalya',
     'Almanya',
-    'İngiltere'
+    'Hollanda'
   ];
 
   final List<List<String>> visaContent = [
@@ -87,11 +86,11 @@ class ContainerList extends StatelessWidget {
       " üzerinden başvuru yapabilirsiniz.",
     ],
     [
-      "İngiltere'ye giriş yapacak Erasmus öğrencileri, İngiltere İçişleri Bakanlığı (Home Office) tarafından verilen öğrenci vizesi başvurusunda bulunmalıdır. Başvuru için gerekli belgeler arasında pasaport, kabul mektubu, seyahat sağlık sigortası ve mali durumu gösteren belgeler yer almaktadır. Vize süreci ve başvuru  için detaylı bilgilere ",
-      "İngiltere İçişleri Bakanlığı",
-      "www.gov.uk",
-      "/browse/visas-immigration",
-      " internet sitesinden ulaşabilirsiniz.",
+      "Hollanda'ya giriş yapacak Erasmus öğrencileri, Hollanda Göçmenlik ve Vatandaşlık Departmanı (IND) tarafından verilen öğrenci vizesi başvurusunda bulunmalıdır. Başvuru için gereken belgeler arasında pasaport, kabul mektubu, seyahat sağlık sigortası ve mali durumu gösteren belgeler yer almaktadır. (",
+      "https://ind.nl/",
+      "ind.nl",
+      "/",
+      " ) Bu site üzerinden Erasmus öğrencileri için vize başvurusuyla ilgili detaylı bilgilere, gerekli belgelere ve başvuru prosedürüne erişebilirsiniz.",
     ],
   ];
 
@@ -109,12 +108,10 @@ class ContainerList extends StatelessWidget {
     return ListView.builder(
       itemCount: 5,
       itemBuilder: (context, index) {
-        return Container(
-          height: MediaQuery.of(context).size.height * 0.5,
+        return Card(
           margin: EdgeInsets.all(16.0),
-          decoration: BoxDecoration(
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24.0),
-            color: Colors.white,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,56 +148,44 @@ class ContainerList extends StatelessWidget {
                   color: Color.fromARGB(255, 255, 144, 34),
                 ),
               ),
-              SingleChildScrollView(
+              Padding(
                 padding: EdgeInsets.all(18.0),
-                child: Container(
-                  width: double.maxFinite,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text.rich(
-                              TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: visaContent[index][0].toString(),
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: visaContent[index][1].toString(),
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 66, 139, 193),
-                                      decoration: TextDecoration.underline,
-                                      decorationColor:
-                                          Color.fromARGB(255, 66, 139, 193),
-                                    ),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () async {
-                                        await _launchUrl(visaContent[index][2],
-                                            visaContent[index][3]);
-                                      },
-                                  ),
-                                  TextSpan(
-                                    text: visaContent[index][4].toString(),
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                child: Wrap(
+                  alignment: WrapAlignment.start,
+                  children: [
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: visaContent[index][0].toString(),
+                            style: TextStyle(
+                              color: Colors.black,
                             ),
-                          ],
-                        ),
+                          ),
+                          TextSpan(
+                            text: visaContent[index][1].toString(),
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 66, 139, 193),
+                              decoration: TextDecoration.underline,
+                              decorationColor:
+                                  Color.fromARGB(255, 66, 139, 193),
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () async {
+                                await _launchUrl(visaContent[index][2],
+                                    visaContent[index][3]);
+                              },
+                          ),
+                          TextSpan(
+                            text: visaContent[index][4].toString(),
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],

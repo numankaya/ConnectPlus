@@ -1,4 +1,3 @@
-import 'package:erasmus_connect/screens/homepage/bottom_navigation_bar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -54,7 +53,7 @@ class ContainerList extends StatelessWidget {
     'İsveç',
     'İtalya',
     'Almanya',
-    'İngiltere'
+    'Hollanda'
   ];
 
   final List<List<String>> visaContent = [
@@ -87,15 +86,16 @@ class ContainerList extends StatelessWidget {
       " üzerinden başvuru detaylarına ulaşabilirsiniz.",
     ],
     [
-      "İngiltere'de Erasmus programıyla uzun süreli kalacak öğrenciler, İngiltere İçişleri Bakanlığı tarafından verilen öğrenci ikamet izni başvurusu yapmalıdır. Başvuru için gerekli belgeler arasında pasaport, öğrenci belgesi, sağlık sigortası ve ikamet yerini belgeleyen evraklar bulunmaktadır. İngiltere'ye gidecek Erasmus öğrencileri için vize ve oturma izni süreci İngiltere İçişleri Bakanlığı (Home Office) tarafından yürütülmektedir. Detaylı bilgilere ",
-      "İngiltere İçişleri Bakanlığı",
-      "www.gov.uk",
-      "/browse/visas-immigration",
-      " internet sitesinden ulaşabilirsiniz.",
+      "Hollanda'da Erasmus programıyla uzun süreli kalacak öğrenciler, Hollanda Göçmenlik ve Vatandaşlık Departmanı (IND) tarafından verilen öğrenci ikamet izni başvurusu yapmalıdır. Başvuru için gerekli belgeler arasında pasaport, öğrenci belgesi, sağlık sigortası ve ikamet yerini belgeleyen evraklar bulunmaktadır.Hollanda'ya gidecek Erasmus öğrencileri için ikamet izni süreci Hollanda Göçmenlik ve Vatandaşlık Departmanı tarafından yürütülmektedir. Detaylı bilgilere Hollanda Göçmenlik ve Vatandaşlık Departmanı'nın ",
+      "internet sitesinden",
+      "ind.nl",
+      "/",
+      " ulaşabilirsiniz. Orada ikamet izni başvurusu süreci, gerekli belgeler ve prosedür hakkında ayrıntılı bilgiler bulunmaktadır.",
     ],
   ];
 
   // Her hangi bir url'i açmak için kullanılabilir.
+
   Future<void> _launchUrl(String url, String path) async {
     final Uri uri = Uri(scheme: "https", host: url, path: path);
 
@@ -109,12 +109,10 @@ class ContainerList extends StatelessWidget {
     return ListView.builder(
       itemCount: 5,
       itemBuilder: (context, index) {
-        return Container(
-          height: MediaQuery.of(context).size.height * 0.5,
+        return Card(
           margin: EdgeInsets.all(16.0),
-          decoration: BoxDecoration(
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24.0),
-            color: Colors.white,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,56 +149,46 @@ class ContainerList extends StatelessWidget {
                   color: Color.fromARGB(255, 255, 144, 34),
                 ),
               ),
-              SingleChildScrollView(
-                padding: EdgeInsets.all(18.0),
-                child: Container(
-                  width: double.maxFinite,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text.rich(
-                              TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: visaContent[index][0].toString(),
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: visaContent[index][1].toString(),
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 66, 139, 193),
-                                      decoration: TextDecoration.underline,
-                                      decorationColor:
-                                          Color.fromARGB(255, 66, 139, 193),
-                                    ),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () async {
-                                        await _launchUrl(visaContent[index][2],
-                                            visaContent[index][3]);
-                                      },
-                                  ),
-                                  TextSpan(
-                                    text: visaContent[index][4].toString(),
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Wrap(
+                  alignment: WrapAlignment.start,
+                  children: [
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: visaContent[index][0].toString(),
+                            style: TextStyle(
+                              color: Colors.black,
                             ),
-                          ],
-                        ),
+                          ),
+                          TextSpan(
+                            text: visaContent[index][1].toString(),
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 66, 139, 193),
+                              decoration: TextDecoration.underline,
+                              decorationColor:
+                                  Color.fromARGB(255, 66, 139, 193),
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () async {
+                                await _launchUrl(
+                                  visaContent[index][2],
+                                  visaContent[index][3],
+                                );
+                              },
+                          ),
+                          TextSpan(
+                            text: visaContent[index][4].toString(),
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],

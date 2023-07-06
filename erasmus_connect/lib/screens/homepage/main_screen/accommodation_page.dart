@@ -14,7 +14,7 @@ class _AccommodationPageState extends State<AccommodationPage> {
     'assets/images/sweden_accommodation.png',
     'assets/images/italy_accommodation.png',
     'assets/images/germany_accommodation.png',
-    'assets/images/uk_accommodation.png',
+    'assets/images/netherlands_accommodation.png',
     // Add more image URLs here
   ];
 
@@ -23,7 +23,7 @@ class _AccommodationPageState extends State<AccommodationPage> {
     "İsveç'te Konaklama",
     "İtalya'da Konaklama",
     "Almanya'da Konaklama",
-    "İngiltere'de Konaklama",
+    "Hollanda'da Konaklama",
     // Add more trip titles here
   ];
 
@@ -32,7 +32,7 @@ class _AccommodationPageState extends State<AccommodationPage> {
     "İsveç'te konaklamak istediğiniz yerleri keşfedin!",
     "İtalya'da konaklamak istediğiniz yerleri keşfedin!",
     "Almanya'da konaklamak istediğiniz yerleri keşfedin!",
-    "İngiltere'de konaklamak istediğiniz yerleri keşfedin!",
+    "Hollanda'da konaklamak istediğiniz yerleri keşfedin!",
     // Add more trip titles here
   ];
 
@@ -41,7 +41,7 @@ class _AccommodationPageState extends State<AccommodationPage> {
     "• Öğrenci konutları: İsveç'te üniversitelere bağlı olarak öğrenci konutları bulunmaktadır. Bu konutlarda genellikle uygun fiyatlarla kalma imkanı sağlanır. Üniversitenizin konaklama birimiyle iletişime geçerek başvuruda bulunabilirsiniz.",
     "• Öğrenci yurtları: İtalya'da birçok üniversitenin kampüsünde veya çevresinde öğrenci yurtları bulunmaktadır. Yurtlarda genellikle uygun fiyatlarla konaklama imkanı sunulur. Üniversitenizin konaklama birimiyle iletişime geçerek yurt başvurusu yapabilirsiniz.",
     "• Studentenwerk: Almanya'da birçok üniversitenin öğrenci konutları Studentenwerk tarafından işletilmektedir. Bu konutlar genellikle uygun fiyatlarla konaklama imkanı sunar. Üniversitenizin konaklama birimiyle iletişime geçerek başvuruda bulunabilirsiniz.",
-    "• Üniversite konutları: İngiltere'deki üniversiteler genellikle öğrencilere kampüs içinde veya çevresinde konaklama imkanı sunar. Üniversitenizin konaklama birimiyle iletişime geçerek üniversite konutları hakkında bilgi alabilirsiniz.",
+    "• Facebook grupları: Hollanda'daki üniversitelerde öğrenci toplulukları ve konut grupları bulunmaktadır. Bu gruplara katılarak konut ilanlarını takip edebilir ve ev arkadaşı arayışında bulunabilirsiniz. Üniversitenizin Facebook sayfasını veya öğrenci birliği sayfasını kontrol edebilirsiniz.",
   ];
 
   final List<String> accommodationContent2 = [
@@ -49,7 +49,7 @@ class _AccommodationPageState extends State<AccommodationPage> {
     "\n• SSSB: Stockholm'de öğrenciler için özel bir konut şirketi olan SSSB, uygun fiyatlarla öğrenci konutları sunmaktadır. SSSB'nin resmi web sitesi üzerinden başvuru yapabilirsiniz. Örneğin; SSSB",
     "\n• Ev paylaşımı: İtalya'da ev paylaşımı yapmak, hem bütçenizi rahatlatır hem de yerel yaşamı daha yakından deneyimlemenizi sağlar. Öğrenci platformları veya ilan siteleri üzerinden ev arkadaşı arayışında bulunabilirsiniz. Örneğin;  Idealista",
     "\n• WG-Gesucht",
-    "\n• Öğrenci yurtları: İngiltere'de birçok öğrenci yurdu bulunmaktadır. Bu yurtlarda uygun fiyatlarla konaklama sağlanır ve genellikle sosyal olanaklar sunulur. Öğrenci yurdu arayışında öğrenci platformlarını veya öğrenci birliği web sitelerini kullanabilirsiniz. Örneğim;  Unite Students",
+    "\n• Kamernet: Öğrenci odası veya daire paylaşımı ilanlarının bulunduğu bir platformdur. Hollanda'nın çeşitli şehirlerindeki konut ilanlarını araştırabilirsiniz. Website:",
   ];
 
   final List<String> accommodationContent3 = [
@@ -57,21 +57,21 @@ class _AccommodationPageState extends State<AccommodationPage> {
     "Stockholm'de öğrenci konutları sunan bir kuruluştur.",
     "İtalya genelinde ev paylaşımı ilanlarını bulabileceğiniz bir platformdur.",
     ": Almanya'da popüler olan bir ev paylaşımı platformudur. Burada 'WG-Zimmer' (ortak ev odası) veya 'Wohnung' (daire) ilanlarını arayabilirsiniz. Hem öğrencilerle hem de yerel halkla birlikte yaşama fırsatı bulabilirsiniz.",
-    "İngiltere genelinde öğrenci yurtları sunan bir platformdur.",
+    "",
   ];
   final List<String> accommodationContent4 = [
     "• Kiralık daireler: Türkiye'de birçok şehirde kiralık daire seçenekleri bulunmaktadır. Emlak siteleri veya yerel emlak ofisleri üzerinden bütçenize uygun daireleri araştırabilirsiniz. Örneğin; Zingat",
     "• Ev paylaşımı: İsveç'te ev paylaşımı yapmak, hem maliyetleri düşürür hem de sosyal etkileşimi artırır. Hem İsveçli hem de uluslararası öğrencilerle ev arkadaşı arayışında bulunabilirsiniz. Örneğin; Blocket",
     "• Kiralık daireler: İtalya'da birçok şehirde kiralık daire seçenekleri bulunmaktadır. Emlak siteleri veya yerel emlak ofisleri üzerinden bütçenize uygun daireleri araştırabilirsiniz. Örneğin; Immobiliare",
     "• ImmobilienScout24",
-    "• Ev paylaşımı: İngiltere'de ev paylaşımı yapmak, hem maliyetleri düşürür hem de yerel yaşamı deneyimlemenizi sağlar. Öğrenci platformları veya ilan siteleri üzerinden ev arkadaşı arayışında bulunabilirsiniz. Örneğin; SpareRoom",
+    "• HousingAnywhere: Öğrencilere yönelik konut arama platformudur. Hollanda genelindeki kiralık konutları görebilir ve kiracılarla iletişime geçebilirsiniz. Website:",
   ];
   final List<String> accommodationContent5 = [
     "Kiralık daire ilanlarını bulabileceğiniz bir emlak platformudur.",
     "İsveç genelinde ev paylaşımı ilanlarını bulabileceğiniz bir platformdur ek olarak  Hemnet (https://www.hemnet.se/) İsveç genelinde kiralık daireleri listeleyen bir emlak platformudur.",
     "İtalya genelinde kiralık daireleri listeleyen bir emlak platformudur.",
     ": Almanya genelinde kiralık daire seçenekleri sunan bir emlak platformudur. Burada bütçenize uygun daireleri araştırabilir ve başvuruda bulunabilirsiniz.",
-    "İngiltere genelinde ev paylaşımı ilanlarının bulunduğu bir platformdur.",
+    "",
   ];
 
   final List<String> accommodationLinksTex1 = [
@@ -79,7 +79,7 @@ class _AccommodationPageState extends State<AccommodationPage> {
     " (https://www.sssb.se/) ",
     " (https://www.idealista.it/) ",
     " (https://www.wg-gesucht.de/): ",
-    " (https://www.unitestudents.com/) ",
+    " (https://kamernet.nl/) ",
   ];
 
   final List<String> accommodationLinksTex2 = [
@@ -87,7 +87,7 @@ class _AccommodationPageState extends State<AccommodationPage> {
     " (https://www.blocket.se/) ",
     " (https://www.immobiliare.it/) ",
     " (https://www.immobilienscout24.de/): ",
-    " (https://www.spareroom.co.uk/) ",
+    " (https://housinganywhere.com/) ",
   ];
 
   final List<String> accommodationLink1 = [
@@ -95,7 +95,7 @@ class _AccommodationPageState extends State<AccommodationPage> {
     "www.sssb.se",
     "www.idealista.it",
     "www.wg-gesucht.de",
-    "www.unitestudents.com",
+    "kamernet.nl",
   ];
 
   final List<String> accommodationLink2 = [
@@ -103,7 +103,7 @@ class _AccommodationPageState extends State<AccommodationPage> {
     "www.blocket.se",
     "www.immobiliare.it",
     "www.immobilienscout24.de",
-    "www.spareroom.co.uk",
+    "housinganywhere.com",
   ];
 
   final ScrollController _scrollController = ScrollController();

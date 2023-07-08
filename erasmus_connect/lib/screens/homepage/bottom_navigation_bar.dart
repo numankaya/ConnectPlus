@@ -98,7 +98,11 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
           EducationCommunityPage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
+<<<<<<< HEAD
           EventCreatorPage(goToPage: (index) {
+=======
+          MentorShowcasePage(goToPage: (index) {
+>>>>>>> 7c0514f716f2863873190843b2246f09db0765e7
             pageController.jumpToPage(index);
           }),
         ],
@@ -234,3 +238,4 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
     );
   }
 }
+

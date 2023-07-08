@@ -17,8 +17,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class EducationCommunityPage extends StatefulWidget {
   final Function(int) goToPage;
 
-  const EducationCommunityPage(
-      {required this.goToPage, Key? key})
+  const EducationCommunityPage({required this.goToPage, Key? key})
       : super(key: key);
 
   @override
@@ -230,7 +229,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
                 child: IconButton(
                   color: Colors.white,
                   icon: Icon(Icons.add),
-                  onPressed: () => widget.goToPage(13),
+                  onPressed: () => widget.goToPage(14),
                 ),
               ),
             ),

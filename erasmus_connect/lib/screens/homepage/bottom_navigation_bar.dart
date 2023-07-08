@@ -97,6 +97,9 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
           EducationCommunityPage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
+          MentorShowcasePage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
         ],
       ),
       bottomNavigationBar: Container(
@@ -230,3 +233,4 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
     );
   }
 }
+

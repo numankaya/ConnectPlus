@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:erasmus_connect/screens/homepage/mentor/mentorShowcasePage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
 class MentorsPage extends StatelessWidget {
@@ -133,16 +135,23 @@ class MentorsPage extends StatelessWidget {
         Expanded(
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            child: Column(
-              children: [
-                MentorHolder(),
-                SizedBox(height: 15,),
-                MentorHolder(),
-                SizedBox(height: 15,),
-                MentorHolder(),
-                SizedBox(height: 15,),
-
-              ],
+            child: StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance.collection("users").where("type", isEqualTo:"Mentor").snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                }else {
+                  List<Widget> mywidgets = [];
+                  var datas = snapshot.data!.docs;
+                  for(int i = 0; i < datas.length; i++) {
+                        mywidgets.add(SizedBox(height: 10,));
+                        mywidgets.add(MentorHolder(goToPage: goToPage, uId: datas[i].id, fullName: datas[i]["fullName"], nickName: datas[i]["nickName"], school: datas[i]["school"], erasmusSchool: datas[i]["erasmusSchool"]));
+                  }
+                  return Column(
+                    children: mywidgets,
+                  );
+                }
+              },
             ),
           ),
         )
@@ -152,11 +161,19 @@ class MentorsPage extends StatelessWidget {
   }
 }
 
-class MentorHolder extends StatelessWidget {
-  const MentorHolder({Key? key}) : super(key: key);
+class MentorHolder extends ConsumerWidget {
+  const MentorHolder({Key? key, required this.goToPage, required this.uId, required this.fullName, required this.nickName, required this.school, required this.erasmusSchool}) : super(key: key);
+
+  final Function(int) goToPage;
+  final String uId, fullName, nickName, school, erasmusSchool;
+
+  void OpenMentorShowCase(WidgetRef ref) {
+    ref.read(targetuId.notifier).state = uId;
+    goToPage(13);
+  }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Stack(
       children: [Container(
         padding: EdgeInsets.all(10),
@@ -169,8 +186,8 @@ class MentorHolder extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              width: 130,
-              height: 130,
+              width: 100,
+              height: 100,
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child:  Image(
@@ -184,16 +201,16 @@ class MentorHolder extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Berk Çiçekler", style: TextStyle(fontWeight: FontWeight.bold),),
+                  Text(fullName, style: TextStyle(fontWeight: FontWeight.bold),),
                   SizedBox(height: 4,),
                   SizedBox(width:180, child: Row(children: [
-                    Text("@berkcicekler34", style: TextStyle(fontSize: 12),),
+                    Text(nickName, style: TextStyle(fontSize: 12),),
                     Spacer(),
                     Text("İstanbul")
                   ],)),
                   SizedBox(height: 2,),
-                  Text("Okul : asasdasd"),
-                  Text("erasmus okul : asdadsadssd"),
+                  Text("Okul : ${school}", maxLines: 2,),
+                  Text("erasmus okul : ${erasmusSchool}"),
                   SizedBox(height: 5,),
                   Row(
                     children: [
@@ -215,12 +232,17 @@ class MentorHolder extends StatelessWidget {
           ],
         ),
       ),
-      Positioned(child: IconButton(onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (builder) => MentorShowcasePage()));
-      }, icon: Icon(Icons.arrow_forward_outlined)),
-      right: 1, bottom: 1,)
+        Positioned(child:
+        IconButton(onPressed: () {
+          ref.read(targetuId.notifier).state = uId;
+          print(uId);
+          OpenMentorShowCase(ref);
+        }, icon: Icon(Icons.arrow_forward_outlined)),
+        bottom: 0, right: 0,)
       ]
     );
   }
 }
+
+final targetuId = StateProvider<String>((ref) => "");
 

@@ -92,19 +92,6 @@ class ProfilePage extends ConsumerWidget {
                   SizedBox(
                     height: 80,
                   ),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: ColorConstant.orange700,
-                          side: BorderSide.none,
-                          shape: StadiumBorder()),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (builder) => EditProfilePage()));
-                      },
-                      child: Text(
-                        "Profili düzenle",
-                        style: TextStyle(color: Colors.black),
-                      ))
                 ],
               ),
             ),

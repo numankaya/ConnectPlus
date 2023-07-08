@@ -39,6 +39,16 @@ dependencies:
   carousel_slider: ^4.2.1
   firebase_database: ^10.2.3
   video_thumbnail: ^0.5.3
+  path_provider: ^2.0.15
+  image: ^4.0.17
+  firebase_storage: ^11.2.4
+  firebase_crashlytics: ^3.3.3
+  file_picker: ^5.3.2
+  geolocator: ^9.0.2
+  card_swiper: ^2.0.4
+  image_card: ^0.0.4
+  geocoding: ^2.1.0
+  http: ^0.13.6
 
 dev_dependencies:
   flutter_test:

@@ -1,171 +1,678 @@
-//İSTANBUL TEKNİK ÜNİVERSİTESİ, ORTA DOĞU TEKNİK ÜNİVERSİTESİ, BOĞAZİÇİ ÜNİVERSİTESİ, BORAS ÜNİVERSİTESİ, UPPSALA ÜNİVERSİTESİ, STOCKHOLM ÜNİVERSİTESİ, BOLOGNA ÜNİVERSİTESİ, MİLANO ÜNİVERSİTESİ, ROME LA SAPİENZA ÜNİVERSİTESİ, MÜNİH TEKNİK ÜNİVERSİTESİ, BERLİN TEKNİK ÜNİVERSİTESİ, STUTTGART ÜNİVERSİTESİ, DELFT ÜNİVERSİTESİ, INHOLLAND ÜNİVERSİTESİ, HAGUE ÜNİVERSİTESİ,
+// import 'package:flutter/material.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 
+// class EducationCommunityPage extends StatefulWidget {
+//   final Function(int) goToPage;
 
-// class ContainerList extends StatelessWidget {
-//   final List<String> countryNames = [
-//     'Türkiye',
-//     'İsveç',
-//     'İtalya',
-//     'Almanya',
-//     'Hollanda'
-//   ];
+//   const EducationCommunityPage({required this.goToPage, Key? key})
+//       : super(key: key);
 
-//   final List<List<String>> visaContent = [
-//     [
-//       "Türkiye'ye giriş yapacak Erasmus öğrencileri, Türk Konsolosluğu veya Büyükelçiliği tarafından verilen öğrenci vizesi başvurusunda bulunmalıdır. Başvuru için gerekli belgeler arasında pasaport, kabul mektubu, seyahat sağlık sigortası ve mali durumu gösteren belgeler yer almaktadır.Detaylı bilgilere ",
-//       "Türk Konsolosluğu/Büyükelçiliği",
-//       "www.konsolosluk.gov.tr",
-//       "/",
-//       " internet sitesinden ulaşabilirsiniz.",
-//     ],
-//     [
-//       "İsveç'e giriş yapacak Erasmus öğrencileri, İsveç Göçmenlik Kurumu (Migrationsverket) tarafından verilen öğrenci vizesi başvurusunda bulunmalıdır. Başvuru için gerekli belgeler arasında pasaport, kabul mektubu, seyahat sağlık sigortası ve mali durumu gösteren belgeler yer almaktadır. Detaylı bilgilere ",
-//       "İsveç Göçmenlik Kurumu",
-//       "www.migrationsverket.se",
-//       "/",
-//       " internet sitesinden ulaşabilirsiniz.",
-//     ],
-//     [
-//       "İtalya'ya giriş yapacak Erasmus öğrencileri, İtalyan Konsolosluğu veya Büyükelçiliği tarafından verilen öğrenci vizesi başvurusunda bulunmalıdır. Başvuru için gerekli belgeler arasında pasaport, kabul mektubu, seyahat sağlık sigortası ve mali durumu gösteren belgeler yer almaktadır. Vize süreci ve başvuru detayları için ",
-//       "İtalyan Konsolosluğu/Büyükelçiliği",
-//       "vistoperitalia.esteri.it",
-//       "/home/en",
-//       " internet sitesini ziyaret edebilirsiniz.",
-//     ],
-//     [
-//       "Almanya'ya giriş yapacak Erasmus öğrencileri, Alman Konsolosluğu veya Büyükelçiliği'ne başvurmalı. Gerekli belgeler arasında pasaport, kabul mektubu, seyahat sağlık sigortası ve mali durumu gösteren belgeler bulunmaktadır. Türkiye’de İtalya ve Almanya vize başvuruları için görevlendirilmiş tek kurum olan ",
-//       "İDATA",
-//       "www.idata.com.tr",
-//       "/",
-//       " üzerinden başvuru yapabilirsiniz.",
-//     ],
-//     [
-//       "Hollanda'ya giriş yapacak Erasmus öğrencileri, Hollanda Göçmenlik ve Vatandaşlık Departmanı (IND) tarafından verilen öğrenci vizesi başvurusunda bulunmalıdır. Başvuru için gereken belgeler arasında pasaport, kabul mektubu, seyahat sağlık sigortası ve mali durumu gösteren belgeler yer almaktadır. (",
-//       "https://ind.nl/",
-//       "ind.nl",
-//       "/",
-//       " ) Bu site üzerinden Erasmus öğrencileri için vize başvurusuyla ilgili detaylı bilgilere, gerekli belgelere ve başvuru prosedürüne erişebilirsiniz.",
-//     ],
-//   ];
+//   @override
+//   _EducationCommunityPageState createState() => _EducationCommunityPageState();
+// }
 
-//   // Her hangi bir url'i açmak için kullanılabilir.
-//   Future<void> _launchUrl(String url, String path) async {
-//     final Uri uri = Uri(scheme: "https", host: url, path: path);
+// class _EducationCommunityPageState extends State<EducationCommunityPage> {
+//   final _fireStore = FirebaseFirestore.instance;
+//   final _auth = FirebaseAuth.instance;
+//   late User loggedInUser;
 
-//     if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
-//       throw Exception('Could not launch $uri');
+//   late PageController _pageController;
+//   int _currentPage = 0;
+
+//   List<Map<String, dynamic>> likedItems = [];
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     getCurrentUser();
+//     _pageController = PageController(initialPage: _currentPage);
+//   }
+
+//   void getCurrentUser() async {
+//     try {
+//       final user = _auth.currentUser;
+//       if (user != null) {
+//         loggedInUser = user;
+//         print(loggedInUser.email);
+//       }
+//     } catch (e) {
+//       print(e);
 //     }
 //   }
 
 //   @override
+//   void dispose() {
+//     _pageController.dispose();
+//     super.dispose();
+//   }
+
+//   void toggleLike(Map<String, dynamic> itemData) {
+//     setState(() {
+//       if (likedItems.contains(itemData)) {
+//         likedItems.remove(itemData);
+//       } else {
+//         likedItems.add(itemData);
+//       }
+//     });
+//   }
+
+//   @override
 //   Widget build(BuildContext context) {
-//     return ListView.builder(
-//       itemCount: 5,
-//       itemBuilder: (context, index) {
-//         return LayoutBuilder(
-//           builder: (BuildContext context, BoxConstraints constraints) {
-//             return Container(
-//               constraints: BoxConstraints(
-//                 minHeight: constraints.maxHeight,
+//     return SafeArea(
+//       child: Scaffold(
+//         backgroundColor: Color.fromARGB(255, 247, 235, 225),
+//         body: PageView.builder(
+//           controller: _pageController,
+//           onPageChanged: (int page) {
+//             setState(() {
+//               _currentPage = page;
+//             });
+//           },
+//           itemCount: 2,
+//           itemBuilder: (context, index) {
+//             if (index == 0) {
+//               return buildMainPage();
+//             } else if (index == 1) {
+//               return buildLikedItemsPage();
+//             }
+//             return Container();
+//           },
+//         ),
+//       ),
+//     );
+//   }
+
+//   Widget buildMainPage() {
+//     return Column(
+//       children: [
+//         Container(
+//           decoration: BoxDecoration(
+//             borderRadius: BorderRadius.only(
+//               bottomLeft: Radius.circular(35.0),
+//               bottomRight: Radius.circular(35.0),
+//             ),
+//             gradient: LinearGradient(
+//               colors: [
+//                 Color.fromARGB(255, 255, 231, 160),
+//                 Color.fromARGB(255, 251, 141, 39),
+//               ],
+//               begin: Alignment.topCenter,
+//               end: Alignment.center,
+//             ),
+//           ),
+//           width: double.infinity,
+//           height: MediaQuery.of(context).size.height * 0.12,
+//           padding: EdgeInsets.symmetric(horizontal: 20),
+//           child: Row(
+//             children: [
+//               CircleAvatar(
+//                 radius: 30.0,
+//                 backgroundImage: AssetImage('assets/images/flags_0.png'),
 //               ),
-//               margin: EdgeInsets.all(16.0),
-//               decoration: BoxDecoration(
-//                 borderRadius: BorderRadius.circular(24.0),
-//                 color: Colors.white,
-//               ),
-//               child: Column(
+//               SizedBox(width: 10.0),
+//               Column(
 //                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 mainAxisAlignment: MainAxisAlignment.center,
 //                 children: [
-//                   Container(
-//                     child: Padding(
-//                   padding: const EdgeInsets.only(bottom: 12),
-//                   child: ListTile(
-//                     leading: CircleAvatar(
-//                       radius: 24,
-//                       backgroundImage: AssetImage(
-//                         'assets/images/flags_$index.png',
-//                       ),
-//                     ),
-//                     title: Align(
-//                       alignment: Alignment.centerLeft,
-//                       child: Text(
-//                         countryNames[index],
-//                         style: TextStyle(
-//                           fontSize: 18,
-//                           fontWeight: FontWeight.w900,
-//                         ),
-//                       ),
-//                     ),
+//                   Text(
+//                     "Senin lokasyonun",
+//                     style: TextStyle(fontSize: 12.0),
 //                   ),
-//                 ),
-//                 width: double.infinity,
-//                 height: MediaQuery.of(context).size.height * 0.1,
-//                 decoration: BoxDecoration(
-//                   borderRadius: BorderRadius.only(
-//                     topLeft: Radius.circular(24.0),
-//                     topRight: Radius.circular(24.0),
-//                   ),
-//                   color: Color.fromARGB(255, 255, 144, 34),
-//                 ),
-//                   ),
-//                   SingleChildScrollView(
-//                     padding: EdgeInsets.all(18.0),
-//                     child: Container(
-//                      width: double.maxFinite,
-//                   child: Column(
-//                     mainAxisSize: MainAxisSize.min,
-//                     crossAxisAlignment: CrossAxisAlignment.center,
-//                     children: [
-//                       Padding(
-//                         padding: const EdgeInsets.all(12.0),
-//                         child: Column(
-//                           crossAxisAlignment: CrossAxisAlignment.start,
-//                           children: [
-//                             Text.rich(
-//                               TextSpan(
-//                                 children: [
-//                                   TextSpan(
-//                                     text: visaContent[index][0].toString(),
-//                                     style: TextStyle(
-//                                       color: Colors.black,
-//                                     ),
-//                                   ),
-//                                   TextSpan(
-//                                     text: visaContent[index][1].toString(),
-//                                     style: TextStyle(
-//                                       color: Color.fromARGB(255, 66, 139, 193),
-//                                       decoration: TextDecoration.underline,
-//                                       decorationColor:
-//                                           Color.fromARGB(255, 66, 139, 193),
-//                                     ),
-//                                     recognizer: TapGestureRecognizer()
-//                                       ..onTap = () async {
-//                                         await _launchUrl(visaContent[index][2],
-//                                             visaContent[index][3]);
-//                                       },
-//                                   ),
-//                                   TextSpan(
-//                                     text: visaContent[index][4].toString(),
-//                                     style: TextStyle(
-//                                       color: Colors.black,
-//                                     ),
-//                                   ),
-//                                 ],
-//                               ),
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                     ],
-//                   ),
+//                   Text(
+//                     "İstanbul, Türkiye",
+//                     style: TextStyle(
+//                       fontWeight: FontWeight.bold,
+//                       color: Colors.black,
 //                     ),
 //                   ),
 //                 ],
 //               ),
-//             );
-//           },
+//               IconButton(
+//                 onPressed: () {},
+//                 icon: Icon(
+//                   Icons.location_pin,
+//                   color: Color.fromARGB(255, 0, 186, 186),
+//                 ),
+//               ),
+//               Spacer(),
+//               Align(
+//                 alignment: Alignment.centerRight,
+//                 child: IconButton(
+//                   onPressed: () => widget.goToPage(13),
+//                   icon: Icon(
+//                     size: 30.0,
+//                     Icons.edit_document,
+//                     color: Color.fromARGB(255, 101, 116, 116),
+//                   ),
+//                 ),
+//               )
+//             ],
+//           ),
+//         ),
+//         Expanded(
+//           child: StreamBuilder<QuerySnapshot>(
+//             stream: _fireStore
+//                 .collection('events')
+//                 .orderBy('created', descending: true)
+//                 .snapshots(),
+//             builder: (context, snapshot) {
+//               if (!snapshot.hasData) {
+//                 return Center(
+//                   child: CircularProgressIndicator(
+//                     backgroundColor: Colors.lightBlueAccent,
+//                   ),
+//                 );
+//               }
+//               final educationCommunityPages = snapshot.data!.docs;
+
+//               return ListView.builder(
+//                 itemCount: educationCommunityPages.length,
+//                 itemBuilder: (context, index) {
+//                   final data = educationCommunityPages[index].data()
+//                       as Map<String, dynamic>;
+//                   final date = data['date'] ?? '';
+//                   final place = data['place'] ?? '';
+//                   final event = data['event'] ?? '';
+//                   final time = data['time'] ?? '';
+//                   final loggedIn = data['sender'] ?? '';
+//                   final currentUser = loggedInUser.email ?? '';
+//                   final isLiked = likedItems.contains(data);
+
+//                   return MessageBubble(
+//                     date: date,
+//                     place: place,
+//                     event: event,
+//                     time: time,
+//                     isLoggedIn: currentUser == loggedIn,
+//                     isLiked: isLiked,
+//                     onLikePressed: () => toggleLike(data),
+//                   );
+//                 },
+//               );
+//             },
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+
+//   Widget buildLikedItemsPage() {
+//     return ListView.builder(
+//       itemCount: likedItems.length,
+//       itemBuilder: (context, index) {
+//         final data = likedItems[index];
+//         final date = data['date'] ?? '';
+//         final place = data['place'] ?? '';
+//         final event = data['event'] ?? '';
+//         final time = data['time'] ?? '';
+//         final loggedIn = data['sender'] ?? '';
+//         final currentUser = loggedInUser.email ?? '';
+
+//         return MessageBubble(
+//           date: date,
+//           place: place,
+//           event: event,
+//           time: time,
+//           isLoggedIn: currentUser == loggedIn,
+//           isLiked: true,
+//           onLikePressed: () => toggleLike(data),
 //         );
 //       },
 //     );
 //   }
 // }
+
+// class MessageBubble extends StatelessWidget {
+//   MessageBubble({
+//     required this.isLoggedIn,
+//     required this.isLiked,
+//     required this.date,
+//     required this.event,
+//     required this.time,
+//     required this.place,
+//     required this.onLikePressed,
+//   });
+
+//   final bool isLoggedIn;
+//   final bool isLiked;
+//   final String date;
+//   final String event;
+//   final String time;
+//   final String place;
+//   final VoidCallback onLikePressed;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//         // ...existing code for MessageBubble
+//         );
+//   }
+// }
+
+// Container(
+//           decoration: BoxDecoration(
+//             borderRadius: BorderRadius.only(
+//               bottomLeft: Radius.circular(35.0),
+//               bottomRight: Radius.circular(35.0),
+//             ),
+//             gradient: LinearGradient(
+//               colors: [
+//                 Color.fromARGB(255, 255, 231, 160),
+//                 Color.fromARGB(255, 251, 141, 39),
+//               ],
+//               begin: Alignment.topCenter,
+//               end: Alignment.center,
+//             ),
+//           ),
+//           width: double.infinity,
+//           height: MediaQuery.of(context).size.height * 0.12,
+//           padding: EdgeInsets.symmetric(horizontal: 20),
+//           child: Row(
+//             children: [
+//               CircleAvatar(
+//                 radius: 30.0,
+//                 backgroundImage: AssetImage('assets/images/flags_0.png'),
+//               ),
+//               SizedBox(width: 10.0),
+//               Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [
+//                   Text(
+//                     "Senin lokasyonun",
+//                     style: TextStyle(fontSize: 12.0),
+//                   ),
+//                   Text(
+//                     "İstanbul, Türkiye",
+//                     style: TextStyle(
+//                       fontWeight: FontWeight.bold,
+//                       color: Colors.black,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//               IconButton(
+//                 onPressed: () {},
+//                 icon: Icon(
+//                   Icons.location_pin,
+//                   color: Color.fromARGB(255, 0, 186, 186),
+//                 ),
+//               ),
+//               Spacer(),
+//               Align(
+//                 alignment: Alignment.centerRight,
+//                 child: IconButton(
+//                   onPressed: () => widget.goToPage(13),
+//                   icon: Icon(
+//                     size: 30.0,
+//                     Icons.edit_document,
+//                     color: Color.fromARGB(255, 101, 116, 116),
+//                   ),
+//                 ),
+//               )
+//             ],
+//           ),
+//         ),
+
+// return Padding(
+//       padding: const EdgeInsets.all(16.0),
+//       child: Stack(
+//         alignment: Alignment.center,
+//         children: [
+//           Image.asset(
+//             'assets/images/turkey_accommodation.png',
+//             fit: BoxFit.fill,
+//             width: MediaQuery.of(context).size.width * 0.9,
+//             height: MediaQuery.of(context).size.height * 0.3,
+//           ),
+//           Positioned(
+//             top: MediaQuery.of(context).size.height * 0.01,
+//             right: MediaQuery.of(context).size.width * 0.06,
+//             child: IconButton(
+//               onPressed: onLikePressed,
+//               icon: Icon(
+//                 isLiked ? Icons.favorite : Icons.favorite_border,
+//                 color: isLiked ? Colors.red : Colors.black,
+//               ),
+//             ),
+//           ),
+//           Positioned(
+//             bottom: MediaQuery.of(context).size.height * 0.02,
+//             left: MediaQuery.of(context).size.width * 0.06,
+//             right: 0,
+//             child: Container(
+//               decoration: BoxDecoration(
+//                 borderRadius: BorderRadius.circular(20.0),
+//                 color: Color.fromARGB(0, 0, 0, 0),
+//               ),
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Text(
+//                     event,
+//                     style: TextStyle(
+//                       shadows: [
+//                         Shadow(
+//                           blurRadius: 5.0,
+//                           color: Colors.black,
+//                           offset: Offset(2.0, 2.0),
+//                         ),
+//                       ],
+//                       color: Colors.white,
+//                       fontSize: 20,
+//                       fontWeight: FontWeight.bold,
+//                     ),
+//                   ),
+//                   SizedBox(height: 8),
+//                   Row(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       Icon(
+//                         Icons.location_on,
+//                         color: Color.fromARGB(255, 0, 186, 186),
+//                       ),
+//                       SizedBox(width: 5),
+//                       Expanded(
+//                         child: Text(
+//                           place,
+//                           style: TextStyle(
+//                             shadows: [
+//                               Shadow(
+//                                 blurRadius: 5.0,
+//                                 color: Colors.black,
+//                                 offset: Offset(2.0, 2.0),
+//                               ),
+//                             ],
+//                             color: Colors.white,
+//                             fontSize: 16,
+//                             fontWeight: FontWeight.bold,
+//                           ),
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                   SizedBox(height: 8),
+//                   Text(
+//                     '$time $date',
+//                     style: TextStyle(
+//                       shadows: [
+//                         Shadow(
+//                           blurRadius: 5.0,
+//                           color: Colors.black,
+//                           offset: Offset(2.0, 2.0),
+//                         ),
+//                       ],
+//                       color: Colors.white,
+//                       fontSize: 16,
+//                       fontWeight: FontWeight.bold,
+//                     ),
+//                   ),
+//                   SizedBox(height: 8),
+//                   Row(
+//                     children: [
+//                       CircleAvatar(
+//                         backgroundImage:
+//                             AssetImage('assets/images/flags_1.png'),
+//                         radius: 10,
+//                       ),
+//                       SizedBox(width: 8),
+//                       CircleAvatar(
+//                         backgroundImage:
+//                             AssetImage('assets/images/flags_2.png'),
+//                         radius: 10,
+//                       ),
+//                       SizedBox(width: 8),
+//                       CircleAvatar(
+//                         backgroundImage:
+//                             AssetImage('assets/images/flags_3.png'),
+//                         radius: 10,
+//                       ),
+//                       SizedBox(width: 8),
+//                       Text(
+//                         '+5',
+//                         style: TextStyle(
+//                           shadows: [
+//                             Shadow(
+//                               blurRadius: 5.0,
+//                               color: Colors.black,
+//                               offset: Offset(2.0, 2.0),
+//                             ),
+//                           ],
+//                           color: Colors.white,
+//                           fontSize: 10,
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+
+// Padding(
+//       padding: const EdgeInsets.all(16.0),
+//       child: Stack(
+//         alignment: Alignment.center,
+//         children: [
+//           Image.asset(
+//             'assets/images/turkey_accommodation.png',
+//             fit: BoxFit.fill,
+//             width: MediaQuery.of(context).size.width * 0.9,
+//             height: MediaQuery.of(context).size.height * 0.3,
+//           ),
+//           Positioned(
+//             top: MediaQuery.of(context).size.height * 0.01,
+//             right: MediaQuery.of(context).size.width * 0.06,
+//             child: IconButton(
+//               onPressed: onLikePressed,
+//               icon: Icon(
+//                 isLiked ? Icons.favorite : Icons.favorite_border,
+//                 color: isLiked ? Colors.red : Colors.black,
+//               ),
+//             ),
+//           ),
+//           Positioned(
+//             bottom: MediaQuery.of(context).size.height * 0.02,
+//             left: MediaQuery.of(context).size.width * 0.06,
+//             right: 0,
+//             child: Container(
+//               decoration: BoxDecoration(
+//                 borderRadius: BorderRadius.circular(20.0),
+//                 color: Color.fromARGB(0, 0, 0, 0),
+//               ),
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Text(
+//                     event,
+//                     style: TextStyle(
+//                       shadows: [
+//                         Shadow(
+//                           blurRadius: 5.0,
+//                           color: Colors.black,
+//                           offset: Offset(2.0, 2.0),
+//                         ),
+//                       ],
+//                       color: Colors.white,
+//                       fontSize: 20,
+//                       fontWeight: FontWeight.bold,
+//                     ),
+//                   ),
+//                   SizedBox(height: 8),
+//                   Row(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       Icon(
+//                         Icons.location_on,
+//                         color: Color.fromARGB(255, 0, 186, 186),
+//                       ),
+//                       SizedBox(width: 5),
+//                       Expanded(
+//                         child: Text(
+//                           place,
+//                           style: TextStyle(
+//                             shadows: [
+//                               Shadow(
+//                                 blurRadius: 5.0,
+//                                 color: Colors.black,
+//                                 offset: Offset(2.0, 2.0),
+//                               ),
+//                             ],
+//                             color: Colors.white,
+//                             fontSize: 16,
+//                             fontWeight: FontWeight.bold,
+//                           ),
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                   SizedBox(height: 8),
+//                   Text(
+//                     '$time $date',
+//                     style: TextStyle(
+//                       shadows: [
+//                         Shadow(
+//                           blurRadius: 5.0,
+//                           color: Colors.black,
+//                           offset: Offset(2.0, 2.0),
+//                         ),
+//                       ],
+//                       color: Colors.white,
+//                       fontSize: 16,
+//                       fontWeight: FontWeight.bold,
+//                     ),
+//                   ),
+//                   SizedBox(height: 8),
+//                   Row(
+//                     children: [
+//                       CircleAvatar(
+//                         backgroundImage:
+//                             AssetImage('assets/images/flags_1.png'),
+//                         radius: 10,
+//                       ),
+//                       SizedBox(width: 8),
+//                       CircleAvatar(
+//                         backgroundImage:
+//                             AssetImage('assets/images/flags_2.png'),
+//                         radius: 10,
+//                       ),
+//                       SizedBox(width: 8),
+//                       CircleAvatar(
+//                         backgroundImage:
+//                             AssetImage('assets/images/flags_3.png'),
+//                         radius: 10,
+//                       ),
+//                       SizedBox(width: 8),
+//                       Text(
+//                         '+5',
+//                         style: TextStyle(
+//                           shadows: [
+//                             Shadow(
+//                               blurRadius: 5.0,
+//                               color: Colors.black,
+//                               offset: Offset(2.0, 2.0),
+//                             ),
+//                           ],
+//                           color: Colors.white,
+//                           fontSize: 10,
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+class EventListPage extends StatefulWidget {
+  @override
+  _EventListPageState createState() => _EventListPageState();
+}
+
+class _EventListPageState extends State<EventListPage> {
+  List<Event> events = [];
+
+  Future<void> fetchEvents() async {
+    final apiKey = 'M4IXPOJODGO4AAUVZIN3';
+    final url =
+        'https://www.eventbriteapi.com/v3/users/me/?token=M4IXPOJODGO4AAUVZIN3';
+    try {
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {'Authorization': 'Bearer $apiKey'},
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = json.decode(response.body);
+        if (responseData.containsKey('events')) {
+          setState(() {
+            events = Event.fromJsonList(responseData['events']);
+          });
+        } else {
+          print('Error: Events not found in API response.');
+        }
+      } else {
+        print('Error: ${response.statusCode}');
+      }
+    } catch (error) {
+      print('Error: $error');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchEvents();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Event List'),
+      ),
+      body: ListView.builder(
+        itemCount: events.length,
+        itemBuilder: (context, index) {
+          final event = events[index];
+          return ListTile(
+            title: Text(event.name),
+            subtitle: Text(event.startDate),
+            onTap: () {
+              // Add any action you want when an event is tapped
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+class Event {
+  final String name;
+  final String startDate;
+
+  Event({required this.name, required this.startDate});
+
+  factory Event.fromJson(Map<String, dynamic> json) {
+    return Event(
+      name: json['name']['text'],
+      startDate: json['start']['local'],
+    );
+  }
+
+  static List<Event> fromJsonList(List<dynamic> jsonList) {
+    return jsonList.map((json) => Event.fromJson(json)).toList();
+  }
+}

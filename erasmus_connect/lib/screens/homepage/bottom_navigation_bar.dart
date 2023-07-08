@@ -3,6 +3,7 @@ import 'package:erasmus_connect/screens/homepage/chatbot/chatbot_page.dart';
 import 'package:erasmus_connect/screens/homepage/homepage.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/accommodation_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/education_community_page/education_community_page.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/education_community_page/event_creator_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/health_insurance_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/residency_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/schools_page.dart';
@@ -90,11 +91,14 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
           }),
           MentorsPage(goToPage: (index) {
             pageController.jumpToPage(index);
-          }),
+          }), // 10. index
           HealthInsurancePage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
           EducationCommunityPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          EventCreatorPage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
         ],
@@ -107,7 +111,7 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
           ),
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 255, 231, 160),
+              Color.fromARGB(255, 217, 124, 20),
               Color.fromARGB(255, 251, 141, 39),
             ],
             begin: Alignment.topCenter,

@@ -11,7 +11,7 @@ import 'package:erasmus_connect/screens/homepage/main_screen/visa_page.dart';
 import 'package:erasmus_connect/screens/homepage/mentor/mentorShowcasePage.dart';
 import 'package:erasmus_connect/screens/homepage/mentor/mentors.dart';
 import 'package:erasmus_connect/screens/homepage/profile_page.dart';
-import 'package:erasmus_connect/screens/homepage/search_page.dart';
+import 'package:erasmus_connect/screens/homepage/chats_page.dart';
 import 'package:erasmus_connect/screens/homepage/settings_page.dart';
 import 'package:erasmus_connect/screens/registeration_login/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
   late PageController pageController;
   List<IconData> data = [
     Icons.chat_bubble_rounded,
-    Icons.search,
+    Icons.message,
     Icons.home_filled,
     Icons.settings,
     Icons.person_2_rounded
@@ -71,7 +71,7 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
         physics: NeverScrollableScrollPhysics(), //Sürüklenememesi için
         children: [
           ChatbotPage(),
-          SearchPage(),
+          ChatPage(),
           HomePage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),

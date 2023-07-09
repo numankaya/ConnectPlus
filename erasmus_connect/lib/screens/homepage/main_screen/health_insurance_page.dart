@@ -141,13 +141,38 @@ class _HealthInsurancePageState extends State<HealthInsurancePage> {
                 ),
               ],
               borderRadius: BorderRadius.circular(20),
-              color: Color.fromARGB(255, 255, 144, 34),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color.fromARGB(255, 255, 175, 131),
+                  Color.fromARGB(255, 118, 61, 31),
+                ],
+              ),
             ),
             width: MediaQuery.of(context).size.width * 0.8,
             child: Padding(
               padding: const EdgeInsets.all(4.0),
-              child: Card(
-                color: Color.fromARGB(255, 255, 144, 34),
+              child: Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.4),
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: Offset(0, 0),
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color.fromARGB(255, 255, 156, 102),
+                      Color.fromARGB(255, 118, 61, 31),
+                    ],
+                  ),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 48.0, top: 12.0),
                   child: Column(
@@ -173,7 +198,7 @@ class _HealthInsurancePageState extends State<HealthInsurancePage> {
                           style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Colors.white,
                             shadows: [
                               Shadow(
                                 color: Colors.black.withOpacity(0.3),

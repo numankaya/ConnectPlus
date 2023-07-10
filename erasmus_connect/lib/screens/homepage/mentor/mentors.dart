@@ -8,9 +8,7 @@ class MentorsPage extends StatelessWidget {
     Key? key,
     required this.goToPage,
   }) : super(key: key);
-
   final Function(int) goToPage;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +77,6 @@ class MentorsPage extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-<<<<<<< HEAD
             padding: EdgeInsets.all(10),
             child: Row(
               children: [
@@ -133,103 +130,39 @@ class MentorsPage extends StatelessWidget {
                   ),
                 )
               ],
-=======
-          padding: EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 15),
-                    filled: true,
-                    fillColor: Color.fromARGB(255, 250, 229, 210),
-                    hintText: 'Ara...',
-                    hintStyle: TextStyle(
-                      color: Color.fromARGB(255, 237, 164, 126),
-                    ),
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: Color.fromARGB(255, 237, 164, 126),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                  onChanged: (value) {
-                    // Handle search bar input
-                  },
-                  autofocus: false,
-                ),
-              ),
-              SizedBox(width: 10),
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Color.fromARGB(255, 250, 229,
-                      210), // Background color of the button
-                ),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(15),
-                  onTap: () {
-                    // Add your onTap logic here
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.all(6),
-                    child: Image.asset(
-                      'assets/images/filter_img.png',
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-        Expanded(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance.collection("users").where("type", isEqualTo:"Mentor").snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
-                }else {
-                  List<Widget> mywidgets = [];
-                  var datas = snapshot.data!.docs;
-                  for(int i = 0; i < datas.length; i++) {
-                        mywidgets.add(SizedBox(height: 10,));
-                        mywidgets.add(MentorHolder(goToPage: goToPage, uId: datas[i].id, fullName: datas[i]["fullName"], nickName: datas[i]["nickName"], school: datas[i]["school"], erasmusSchool: datas[i]["erasmusSchool"]));
-                  }
-                  return Column(
-                    children: mywidgets,
-                  );
-                }
-              },
->>>>>>> 7c0514f716f2863873190843b2246f09db0765e7
             ),
           ),
           Expanded(
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  MentorHolder(),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  MentorHolder(),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  MentorHolder(),
-                  SizedBox(
-                    height: 15,
-                  ),
-                ],
+              child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection("users")
+                    .where("type", isEqualTo: "Mentor")
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                  } else {
+                    List<Widget> mywidgets = [];
+                    var datas = snapshot.data!.docs;
+                    for (int i = 0; i < datas.length; i++) {
+                      mywidgets.add(SizedBox(
+                        height: 10,
+                      ));
+                      mywidgets.add(MentorHolder(
+                          goToPage: goToPage,
+                          uId: datas[i].id,
+                          fullName: datas[i]["fullName"],
+                          nickName: datas[i]["nickName"],
+                          school: datas[i]["school"],
+                          erasmusSchool: datas[i]["erasmusSchool"]));
+                    }
+                    return Column(
+                      children: mywidgets,
+                    );
+                  }
+                },
               ),
             ),
           )
@@ -240,7 +173,15 @@ class MentorsPage extends StatelessWidget {
 }
 
 class MentorHolder extends ConsumerWidget {
-  const MentorHolder({Key? key, required this.goToPage, required this.uId, required this.fullName, required this.nickName, required this.school, required this.erasmusSchool}) : super(key: key);
+  const MentorHolder(
+      {Key? key,
+      required this.goToPage,
+      required this.uId,
+      required this.fullName,
+      required this.nickName,
+      required this.school,
+      required this.erasmusSchool})
+      : super(key: key);
 
   final Function(int) goToPage;
   final String uId, fullName, nickName, school, erasmusSchool;
@@ -251,15 +192,9 @@ class MentorHolder extends ConsumerWidget {
   }
 
   @override
-<<<<<<< HEAD
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Stack(children: [
       Container(
-=======
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Stack(
-      children: [Container(
->>>>>>> 7c0514f716f2863873190843b2246f09db0765e7
         padding: EdgeInsets.all(10),
         width: 370,
         height: 150,
@@ -285,9 +220,8 @@ class MentorHolder extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-<<<<<<< HEAD
                   Text(
-                    "Berk Çiçekler",
+                    fullName,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
@@ -298,7 +232,7 @@ class MentorHolder extends ConsumerWidget {
                       child: Row(
                         children: [
                           Text(
-                            "@berkcicekler34",
+                            nickName,
                             style: TextStyle(fontSize: 12),
                           ),
                           Spacer(),
@@ -308,24 +242,14 @@ class MentorHolder extends ConsumerWidget {
                   SizedBox(
                     height: 2,
                   ),
-                  Text("Okul : asasdasd"),
-                  Text("erasmus okul : asdadsadssd"),
+                  Text(
+                    "Okul : ${school}",
+                    maxLines: 2,
+                  ),
+                  Text("erasmus okul : ${erasmusSchool}"),
                   SizedBox(
                     height: 5,
                   ),
-=======
-                  Text(fullName, style: TextStyle(fontWeight: FontWeight.bold),),
-                  SizedBox(height: 4,),
-                  SizedBox(width:180, child: Row(children: [
-                    Text(nickName, style: TextStyle(fontSize: 12),),
-                    Spacer(),
-                    Text("İstanbul")
-                  ],)),
-                  SizedBox(height: 2,),
-                  Text("Okul : ${school}", maxLines: 2,),
-                  Text("erasmus okul : ${erasmusSchool}"),
-                  SizedBox(height: 5,),
->>>>>>> 7c0514f716f2863873190843b2246f09db0765e7
                   Row(
                     children: [
                       Container(
@@ -347,35 +271,19 @@ class MentorHolder extends ConsumerWidget {
           ],
         ),
       ),
-<<<<<<< HEAD
       Positioned(
         child: IconButton(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (builder) => MentorShowcasePage()));
+              ref.read(targetuId.notifier).state = uId;
+              print(uId);
+              OpenMentorShowCase(ref);
             },
             icon: Icon(Icons.arrow_forward_outlined)),
-        right: 1,
-        bottom: 1,
+        bottom: 0,
+        right: 0,
       )
     ]);
   }
 }
-=======
-        Positioned(child:
-        IconButton(onPressed: () {
-          ref.read(targetuId.notifier).state = uId;
-          print(uId);
-          OpenMentorShowCase(ref);
-        }, icon: Icon(Icons.arrow_forward_outlined)),
-        bottom: 0, right: 0,)
-      ]
-    );
-  }
-}
 
 final targetuId = StateProvider<String>((ref) => "");
-
->>>>>>> 7c0514f716f2863873190843b2246f09db0765e7

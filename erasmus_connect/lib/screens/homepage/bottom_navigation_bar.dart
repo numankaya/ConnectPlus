@@ -2,9 +2,11 @@ import 'package:erasmus_connect/models/connect_plus_user.dart';
 import 'package:erasmus_connect/screens/homepage/chatbot/chatbot_page.dart';
 import 'package:erasmus_connect/screens/homepage/homepage.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/accommodation_page.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/communities/communities_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/education_community_page/education_community_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/education_community_page/event_creator_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/health_insurance_page.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/notifications_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/residency_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/schools_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/travel_page.dart';
@@ -98,11 +100,16 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
           EducationCommunityPage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
-<<<<<<< HEAD
-          EventCreatorPage(goToPage: (index) {
-=======
           MentorShowcasePage(goToPage: (index) {
->>>>>>> 7c0514f716f2863873190843b2246f09db0765e7
+            pageController.jumpToPage(index);
+          }),
+          EventCreatorPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          NotificationsPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          CommunitiesPage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
         ],
@@ -238,4 +245,3 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
     );
   }
 }
-

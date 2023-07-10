@@ -3,6 +3,7 @@ import 'package:erasmus_connect/core/app_export.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/education_community_page/event_brite_api.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/education_community_page/image_upload.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -10,6 +11,8 @@ import 'package:erasmus_connect/screens/homepage/main_screen/education_community
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:intl/intl.dart';
+import 'package:like_button/like_button.dart';
 import 'dart:io';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -271,6 +274,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
                   final loggedIn = data['sender'] ?? '';
                   final currentUser = loggedInUser.email ?? '';
                   final isLiked = likedItems.contains(data);
+                  final imageUrls = data['imageUrls'] ?? '';
 
                   return MessageBubble(
                     date: date,
@@ -280,6 +284,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
                     isLoggedIn: currentUser == loggedIn,
                     isLiked: isLiked,
                     onLikePressed: () => toggleLike(data),
+                    imageUrls: imageUrls,
                   );
                 },
               );
@@ -305,6 +310,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
               final time = data['time'] ?? '';
               final loggedIn = data['sender'] ?? '';
               final currentUser = loggedInUser.email ?? '';
+              final imageUrls = data['imageUrls'] ?? '';
 
               return MessageBubble(
                 date: date,
@@ -314,6 +320,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
                 isLoggedIn: currentUser == loggedIn,
                 isLiked: true,
                 onLikePressed: () => toggleLike(data),
+                imageUrls: imageUrls,
               );
             },
           ),
@@ -332,6 +339,7 @@ class MessageBubble extends StatelessWidget {
     required this.time,
     required this.place,
     required this.onLikePressed,
+    required this.imageUrls,
   });
 
   final bool isLoggedIn;
@@ -341,6 +349,7 @@ class MessageBubble extends StatelessWidget {
   final String time;
   final String place;
   final VoidCallback onLikePressed;
+  final String imageUrls;
 
   @override
   Widget build(BuildContext context) {
@@ -372,8 +381,7 @@ class MessageBubble extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
-                      image:
-                          AssetImage("assets/images/turkey_accommodation.png"),
+                      image: Image.network("${imageUrls}").image,
                       fit: BoxFit.cover,
                     ),
                     //tileMode: TileMode.,
@@ -536,7 +544,6 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
   final picker = ImagePicker();
   PickedFile? _imageFile;
   String? downloadUrl;
-  List<String> imageUrls = [];
 
   Future chooseImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -560,29 +567,8 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
 
       downloadUrl = await ref.getDownloadURL();
       print('Image uploaded. Download URL: $downloadUrl');
-      final prefs = await SharedPreferences.getInstance();
-      prefs.setStringList('imageUrls', imageUrls);
-      // TODO: Store the download URL in a database or use it as needed
-      imageUrls.add(downloadUrl!);
+
       setState(() {});
-    }
-  }
-
-///////////////////////////////////////////////////////////////////////////////////////
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // Retrieve image URLs from shared preferences
-  //   retrieveImageUrls();
-  // }
-
-  Future<void> retrieveImageUrls() async {
-    final prefs = await SharedPreferences.getInstance();
-    final storedImageUrls = prefs.getStringList('imageUrls');
-    if (storedImageUrls != null) {
-      setState(() {
-        imageUrls = storedImageUrls;
-      });
     }
   }
 
@@ -590,7 +576,7 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
   void initState() {
     super.initState();
     getCurrentUser();
-    retrieveImageUrls();
+    //retrieveImageUrls();
     dateTextController = TextEditingController();
     placeTextController = TextEditingController();
     eventTextController = TextEditingController();
@@ -642,8 +628,8 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
                   top: 0,
                   left: 0,
                   child: Container(
-                    height: 40,
-                    width: 40,
+                    height: 38,
+                    width: 38,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10.0),
@@ -653,10 +639,9 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
                       onPressed: () {
                         widget.goToPage(12);
                       },
-                      icon: Icon(Icons.arrow_back_ios),
+                      icon: Icon(CupertinoIcons.chevron_back),
                       color: Colors.black,
                       iconSize: 24.0,
-                      padding: EdgeInsets.only(left: 8.0),
                       splashRadius: 24.0,
                       alignment: Alignment.center,
                     ),
@@ -723,37 +708,18 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
                                 ),
                           SizedBox(height: 20),
                           ElevatedButton(
-                            onPressed: chooseImage,
+                            onPressed: () {
+                              chooseImage();
+                            },
                             child: Text('Select Image'),
                           ),
-                          // SizedBox(height: 20),
-                          // ElevatedButton(
-                          //   onPressed: uploadImage,
-                          //   child: Text('Upload Image'),
-                          // ),
-                          // Container(
-                          //   child: downloadUrl != null
-                          //       ? Image.network(downloadUrl!)
-                          //       : Text('Image will be displayed here'),
-                          // ),
-                          ////////////////////////////////////////////////////////////////////////
-                          // ElevatedButton(
-                          //   onPressed: () {
-                          //     Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //           builder: (context) =>
-                          //               ImageListPage(imageUrls: imageUrls)),
-                          //     );
-                          //   },
-                          //   child: Text('Image List'),
-                          // ),
                         ],
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.0),
                         child: ElevatedButton(
                           onPressed: () async {
+                            await uploadImage();
                             _fireStore.collection('events').add({
                               'date': date,
                               'event': event,
@@ -761,8 +727,9 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
                               'time': time,
                               'sender': loggedInUser.email,
                               'created': Timestamp.now(),
+                              'imageUrls': downloadUrl,
                             });
-                            uploadImage();
+
                             dateTextController.clear();
                             placeTextController.clear();
                             eventTextController.clear();
@@ -834,6 +801,22 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
   }) {
     return TextField(
       controller: controller,
+      onTap: () async {
+        if (hintText == 'Tarih') {
+          // Get the date using date picker
+          DateTime? selectedDate = await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime.now(),
+            lastDate: DateTime(DateTime.now().year + 5),
+          );
+          if (selectedDate != null) {
+            String formattedDate =
+                DateFormat('dd-MM-yyyy').format(selectedDate);
+            controller.text = formattedDate;
+          }
+        }
+      },
       onChanged: (value) {
         if (hintText == 'Başlık') {
           event = value;

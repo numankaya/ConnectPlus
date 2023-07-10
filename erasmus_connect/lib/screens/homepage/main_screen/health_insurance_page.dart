@@ -1,4 +1,5 @@
 import 'package:flip_card/flip_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HealthInsurancePage extends StatefulWidget {
@@ -288,7 +289,7 @@ class _HealthInsurancePageState extends State<HealthInsurancePage> {
                 ),
                 child: IconButton(
                   icon: Icon(
-                    Icons.arrow_back_ios_rounded,
+                    CupertinoIcons.chevron_back,
                     size: 20,
                   ),
                   onPressed: () {

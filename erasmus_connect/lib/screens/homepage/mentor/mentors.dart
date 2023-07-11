@@ -84,7 +84,7 @@ class MentorsPage extends StatelessWidget {
                   child: TextField(
                     decoration: InputDecoration(
                       contentPadding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                       filled: true,
                       fillColor: Color.fromARGB(255, 250, 229, 210),
                       hintText: 'Ara...',
@@ -175,12 +175,12 @@ class MentorsPage extends StatelessWidget {
 class MentorHolder extends ConsumerWidget {
   const MentorHolder(
       {Key? key,
-      required this.goToPage,
-      required this.uId,
-      required this.fullName,
-      required this.nickName,
-      required this.school,
-      required this.erasmusSchool})
+        required this.goToPage,
+        required this.uId,
+        required this.fullName,
+        required this.nickName,
+        required this.school,
+        required this.erasmusSchool})
       : super(key: key);
 
   final Function(int) goToPage;

@@ -58,7 +58,7 @@ class LoginScreen extends ConsumerWidget {
                                   margin: getMargin(left: 24),
                                   alignment: Alignment.centerLeft,
                                   onTap: () {
-                                    Navigator.of(context).push(
+                                    Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             BottomNavigation(),
@@ -388,10 +388,15 @@ class LoginScreen extends ConsumerWidget {
         isMailVerified: currentUser.emailVerified,
         nickName: userCollection["nickName"],
         gender: userCollection["gender"],
-        address: userCollection["address"],
+        country: userCollection["country"],
+        city: userCollection["city"],
         type: userCollection["type"],
         school: userCollection["school"],
-        erasmusSchool: userCollection["erasmusSchool"]));
+        erasmusSchool: userCollection["erasmusSchool"],
+        aboutMe: userCollection["aboutMe"],
+        lessons: userCollection["lessons"],
+        skills: userCollection["skills"],
+    ));
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (context) => BottomNavigation(),

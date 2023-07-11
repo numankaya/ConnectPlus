@@ -13,7 +13,7 @@ void main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.remove('isOnboardingShown');
   bool isOnboardingShown = prefs.getBool('isOnboardingShown') ?? false;
-  //isOnboardingShown = false;
+  isOnboardingShown = true;
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   //runApp(MyApp());
@@ -22,15 +22,14 @@ void main() async {
   // Bu kısım arayüz tarafını tamamladıktan sonra aktif edilecektir.
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: isOnboardingShown ? MyApp() : IntroductionAnimationScreen(),
+    home:  MyApp(isIntroduction : isOnboardingShown) ,
   ));
 }
 
-final List<Widget> allPages = [PageOne()];
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  const MyApp({super.key, required this.isIntroduction});
+  final bool isIntroduction;
   @override
   Widget build(BuildContext context) {
     return ProviderScope(
@@ -44,7 +43,7 @@ class MyApp extends StatelessWidget {
         //home: BottomNavigation(),
         //--------------------------ÖNEMLİ--------------------------//
         // Bu kısım arayüz tarafını tamamladıktan sonra aktif edilecektir.
-        home: LoginScreen(),
+        home: isIntroduction == true ? IntroductionAnimationScreen() : LoginScreen(),
         // home: Scaffold(
         //   appBar: AppBar(
         //     title: Text(
@@ -66,59 +65,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//
-//
-//--------------Daha Sonra Eklenecek Sayfalar-----------------//
-//
-//
-class MyMainApp extends StatelessWidget {
-  const MyMainApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Connect Plus",
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Colors.deepPurpleAccent,
-      ),
-      body: Consumer(
-        builder: (context, ref, child) {
-          final pageIndex = ref.watch(pageIndexProvider);
-          return allPages[pageIndex];
-        },
-      ),
-      bottomNavigationBar: my_navigator_bar(),
-    );
-  }
-}
-
-class PageOne extends StatelessWidget {
-  const PageOne({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton(
-        child: Text("eklen oluştur"),
-        onPressed: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => PageTwo()));
-        },
-      ),
-    );
-  }
-}
-
-class PageTwo extends StatelessWidget {
-  const PageTwo({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text("selam bu sayfa 2"),
-    );
-  }
-}

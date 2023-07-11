@@ -119,7 +119,7 @@ class _IntroductionAnimationScreenState
 
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => MyApp()),
+      MaterialPageRoute(builder: (context) => MyApp(isIntroduction: false,)),
     );
   }
 }

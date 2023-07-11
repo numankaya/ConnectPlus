@@ -386,10 +386,15 @@ class RegisterScreen extends ConsumerWidget {
         isMailVerified: currentUser.emailVerified,
         nickName: '',
         gender: '',
-        address: '',
+        country: "",
+        city: "",
         type: "Öğrenci",
         school: "",
-        erasmusSchool: ""));
+        erasmusSchool: "",
+        aboutMe: '',
+        skills: '',
+        lessons: ''
+    ));
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (context) => BottomNavigation(),

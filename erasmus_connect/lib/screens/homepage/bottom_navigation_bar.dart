@@ -14,6 +14,8 @@ import 'package:erasmus_connect/screens/homepage/mentor/mentors.dart';
 import 'package:erasmus_connect/screens/homepage/profile_page.dart';
 import 'package:erasmus_connect/screens/homepage/chats_page.dart';
 import 'package:erasmus_connect/screens/homepage/settings_page.dart';
+import 'package:erasmus_connect/screens/registeration_login/edit_about_page/edit_about_page.dart';
+import 'package:erasmus_connect/screens/registeration_login/edit_profile_screen/edit_profile_screen.dart';
 import 'package:erasmus_connect/screens/registeration_login/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -77,7 +79,9 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
             pageController.jumpToPage(index);
           }),
           SettingsPage(),
-          ProfilePage(),
+          ProfilePage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
           TravelPage(),
           AccommodationPage(),
           SchoolsPage(goToPage: (index) {
@@ -98,11 +102,16 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
           EducationCommunityPage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
-<<<<<<< HEAD
           EventCreatorPage(goToPage: (index) {
-=======
+            pageController.jumpToPage(index);
+          }),
           MentorShowcasePage(goToPage: (index) {
->>>>>>> 7c0514f716f2863873190843b2246f09db0765e7
+            pageController.jumpToPage(index);
+          }),
+          EditProfilePage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          EditAboutPage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
         ],

@@ -31,6 +31,9 @@ class _EditAboutPageState extends ConsumerState<EditAboutPage> {
     aboutMe = TextEditingController();
     skills = TextEditingController();
     lessons = TextEditingController();
+    aboutMe.text = user.aboutMe!;
+    skills.text = user.skills!;
+    lessons.text = user.lessons!;
   }
 
   @override
@@ -54,8 +57,6 @@ class _EditAboutPageState extends ConsumerState<EditAboutPage> {
 )
         .then((value) {
       ref.read(userProvider.notifier).updateAboutStatus(aboutMe: aboutMe.text, skills: skills.text, lessons: lessons.text);
-      print(value);
-      print("1");
     });
   }
 

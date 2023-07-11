@@ -58,7 +58,7 @@ class LoginScreen extends ConsumerWidget {
                                   margin: getMargin(left: 24),
                                   alignment: Alignment.centerLeft,
                                   onTap: () {
-                                    Navigator.of(context).push(
+                                    Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             BottomNavigation(),

@@ -85,7 +85,7 @@ class HomePage extends StatelessWidget {
                       backgroundColor: Color.fromARGB(255, 253, 227, 205),
                       child: IconButton(
                         color: Color.fromARGB(255, 253, 227, 205),
-                        onPressed: () {},
+                        onPressed: () => goToPage(15),
                         icon: Icon(Icons.notification_add_outlined),
                       ),
                     ),
@@ -316,9 +316,10 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               GridView.count(
+                physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 crossAxisCount: 2,
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 22),
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(10.0),
@@ -445,7 +446,19 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ],
-              )
+              ),
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    goToPage(16);
+                  },
+                  child: Stack(
+                    children: [
+                      Image.asset('assets/images/homepage_img_11.png'),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),

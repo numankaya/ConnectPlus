@@ -1,6 +1,7 @@
 import 'package:erasmus_connect/screens/homepage/chatbot/chat_item.dart';
 import 'package:erasmus_connect/screens/homepage/chatbot/providers/chat_providers.dart';
 import 'package:erasmus_connect/screens/homepage/chatbot/text_field.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,15 +22,14 @@ class ChatbotPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    height: 40,
-                    width: 40,
+                    height: 38,
+                    width: 38,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 255, 255, 255),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: IconButton(
-                      padding: EdgeInsets.only(left: 10),
-                      icon: Icon(Icons.arrow_back_ios),
+                      icon: Icon(CupertinoIcons.chevron_back),
                       onPressed: () {
                         // Handle button press
                       },

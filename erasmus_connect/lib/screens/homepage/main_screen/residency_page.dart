@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -16,24 +17,21 @@ class ResidencyPage extends StatelessWidget {
         backgroundColor: Color.fromARGB(255, 247, 235, 225),
         title: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 4),
-              child: Container(
-                height: 38,
-                width: 38,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
+            Container(
+              height: 38,
+              width: 38,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+              child: IconButton(
+                icon: Icon(
+                  CupertinoIcons.chevron_back,
+                  size: 20,
                 ),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back_ios_rounded,
-                    size: 20,
-                  ),
-                  onPressed: () {
-                    goToPage(2);
-                  },
-                ),
+                onPressed: () {
+                  goToPage(2);
+                },
               ),
             ),
           ],

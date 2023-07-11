@@ -14,9 +14,12 @@ import 'package:erasmus_connect/screens/homepage/mentor/mentors.dart';
 import 'package:erasmus_connect/screens/homepage/profile_page.dart';
 import 'package:erasmus_connect/screens/homepage/chats_page.dart';
 import 'package:erasmus_connect/screens/homepage/settings_page.dart';
+import 'package:erasmus_connect/screens/registeration_login/edit_profile_screen/edit_profile_screen.dart';
 import 'package:erasmus_connect/screens/registeration_login/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../registeration_login/edit_about_page/edit_about_page.dart';
 
 class BottomNavigation extends ConsumerStatefulWidget {
   @override
@@ -49,6 +52,8 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
   void onPageChanged(int index) {
     setState(() {
       selectedIndex = index;
+      print("sayfadeğişti");
+      print(ref.read(userProvider).fullName);
 
       if (index == 4 && ref.read(userProvider).fullName == "") {
         Navigator.of(context)
@@ -66,46 +71,55 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 247, 235, 225),
-      body: PageView(
-        controller: pageController,
-        onPageChanged: onPageChanged,
-        physics: NeverScrollableScrollPhysics(), //Sürüklenememesi için
-        children: [
-          ChatbotPage(),
-          ChatPage(),
-          HomePage(goToPage: (index) {
-            pageController.jumpToPage(index);
-          }),
-          SettingsPage(),
-          ProfilePage(),
-          TravelPage(),
-          AccommodationPage(),
-          SchoolsPage(goToPage: (index) {
-            pageController.jumpToPage(index);
-          }),
-          VisaPage(goToPage: (index) {
-            pageController.jumpToPage(index);
-          }),
-          ResidencyPage(goToPage: (index) {
-            pageController.jumpToPage(index);
-          }),
-          MentorsPage(goToPage: (index) {
-            pageController.jumpToPage(index);
-          }), // 10. index
-          HealthInsurancePage(goToPage: (index) {
-            pageController.jumpToPage(index);
-          }),
-          EducationCommunityPage(goToPage: (index) {
-            pageController.jumpToPage(index);
-          }),
-<<<<<<< HEAD
-          EventCreatorPage(goToPage: (index) {
-=======
-          MentorShowcasePage(goToPage: (index) {
->>>>>>> 7c0514f716f2863873190843b2246f09db0765e7
-            pageController.jumpToPage(index);
-          }),
-        ],
+      body: ProviderScope(
+        child: PageView(
+          controller: pageController,
+          onPageChanged: onPageChanged,
+          physics: NeverScrollableScrollPhysics(), //Sürüklenememesi için
+          children: [
+            ChatbotPage(),
+            ChatPage(),
+            HomePage(goToPage: (index) {
+              pageController.jumpToPage(index);
+            }),
+            SettingsPage(),
+            ProfilePage(goToPage: (index) {
+              pageController.jumpToPage(index);
+            }),
+            TravelPage(),
+            AccommodationPage(),
+            SchoolsPage(goToPage: (index) {
+              pageController.jumpToPage(index);
+            }),
+            VisaPage(goToPage: (index) {
+              pageController.jumpToPage(index);
+            }),
+            ResidencyPage(goToPage: (index) {
+              pageController.jumpToPage(index);
+            }),
+            MentorsPage(goToPage: (index) {
+              pageController.jumpToPage(index);
+            }), // 10. index
+            HealthInsurancePage(goToPage: (index) {
+              pageController.jumpToPage(index);
+            }),
+            EducationCommunityPage(goToPage: (index) {
+              pageController.jumpToPage(index);
+            }),
+            EventCreatorPage(goToPage: (index) {
+              pageController.jumpToPage(index);
+            }),
+            MentorShowcasePage(goToPage: (index) {
+              pageController.jumpToPage(index);
+            }),
+            EditProfilePage(goToPage: (index) {
+              pageController.jumpToPage(index);
+            }),
+            EditAboutPage(goToPage: (index) {
+              pageController.jumpToPage(index);
+            }),
+          ],
+        ),
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(

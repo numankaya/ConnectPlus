@@ -388,10 +388,15 @@ class LoginScreen extends ConsumerWidget {
         isMailVerified: currentUser.emailVerified,
         nickName: userCollection["nickName"],
         gender: userCollection["gender"],
-        address: userCollection["address"],
+        country: userCollection["country"],
+        city: userCollection["city"],
         type: userCollection["type"],
         school: userCollection["school"],
-        erasmusSchool: userCollection["erasmusSchool"]));
+        erasmusSchool: userCollection["erasmusSchool"],
+        aboutMe: userCollection["aboutMe"],
+        lessons: userCollection["lessons"],
+        skills: userCollection["skills"],
+    ));
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (context) => BottomNavigation(),

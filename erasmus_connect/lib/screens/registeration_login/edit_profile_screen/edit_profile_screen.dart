@@ -11,19 +11,15 @@ import '../../../widgets/custom_icon_button.dart';
 import '../../../widgets/custom_image_view.dart';
 
 class EditProfilePage extends ConsumerStatefulWidget {
-  const EditProfilePage({Key? key}) : super(key: key);
+  const EditProfilePage({Key? key, required this.goToPage}) : super(key: key);
 
+  final Function(int) goToPage;
   @override
   ConsumerState<EditProfilePage> createState() => _EditProfilePageState();
 }
 
 class _EditProfilePageState extends ConsumerState<EditProfilePage> {
-  late TextEditingController fullName;
-  late TextEditingController nickName;
-  late TextEditingController phone;
-  late TextEditingController address;
-  late TextEditingController school;
-  late TextEditingController erasmusSchool;
+  late TextEditingController fullName, nickName, phone, country, city, school, erasmusSchool;
 
   late ConnectPlusUser user;
 
@@ -57,7 +53,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
     fullName = TextEditingController();
     nickName = TextEditingController();
     phone = TextEditingController();
-    address = TextEditingController();
+    country = TextEditingController();
+    city = TextEditingController();
     school = TextEditingController();
     erasmusSchool = TextEditingController();
     fullName.text = user.fullName!;
@@ -75,7 +72,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
     fullName.dispose();
     nickName.dispose();
     phone.dispose();
-    address.dispose();
+    country.dispose();
+    city.dispose();
     school.dispose();
     erasmusSchool.dispose();
   }
@@ -91,11 +89,13 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
             nickName: nickName.text,
             phone: phone.text,
             gender: gender,
-            address: address.text,
             type: type,
+            country: country.text,
+            city: city.text,
             school: school.text,
             erasmusSchool: erasmusSchool.text)
         .then((value) {
+          ConnectPlusUser oldUser = ref.read(userProvider);
       ref.read(userProvider.notifier).ChangeUser(ConnectPlusUser(
           uId: user.uId,
           fullName: fullName.text,
@@ -103,11 +103,16 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
           mail: user.mail,
           phone: user.phone,
           gender: gender,
-          address: address.text,
+          country: country.text,
+          city: city.text,
           isMailVerified: user.isMailVerified,
           school: school.text,
           erasmusSchool: erasmusSchool.text,
-          type: type));
+          type: type,
+        aboutMe: oldUser.aboutMe,
+        lessons: oldUser.lessons,
+        skills: oldUser.skills
+      ));
       print(value);
       print("1");
     });
@@ -134,7 +139,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                         margin: EdgeInsets.all(2),
                         alignment: Alignment.centerLeft,
                         onTap: () {
-                          Navigator.of(context).pop();
+                          widget.goToPage(4);
                         },
                         child: CustomImageView(
                             svgPath: ImageConstant.imgArrowleft)),
@@ -224,9 +229,29 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                 ),
               ),
               SizedBox(height: 10),
-              BerkTextField(
-                label: "address ",
-                controller: address,
+              SizedBox(
+                width: 350,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 170,
+                      child: BerkTextField(
+                        label: "Ülke",
+                        controller: country,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    SizedBox(
+                      width: 170,
+                      child: BerkTextField(
+                        label: "Şehir",
+                        controller: city,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 10),
               BerkSearchField(
@@ -245,7 +270,9 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                 },
                 child: Text("Kaydet"),
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.deepOrange, onPrimary: Colors.black),
+                    primary: Colors.deepOrange,
+                    onPrimary: Colors.black
+                ),
               )
             ],
           ),

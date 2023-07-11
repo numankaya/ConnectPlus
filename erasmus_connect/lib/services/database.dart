@@ -17,10 +17,14 @@ class FirebaseFireStoreMethods {
         "gender": "",
         "country": "",
         "phone": "",
-        "address": "",
+        "country": "",
+        "city": "",
         "type": "Öğrenci",
         "school": "",
         "erasmusSchool": "",
+        "aboutMe": "",
+        "lessons": "",
+        "skills": ""
       });
     } on FirebaseException catch (e) {
       print(e.message);
@@ -33,7 +37,8 @@ class FirebaseFireStoreMethods {
       required String nickName,
       required String gender,
       required String phone,
-      required String address,
+      required String country,
+        required String city,
       required String type,
       required String school,
       required String erasmusSchool}) async {
@@ -44,10 +49,30 @@ class FirebaseFireStoreMethods {
         "nickName": nickName,
         "gender": gender,
         "phone": phone,
-        "address": address,
+        "country": country,
+        "city": city,
         "type": type,
         "school": school,
         "erasmusSchool": erasmusSchool
+      });
+      return true;
+    } on FirebaseException catch (e) {
+      print(e.message);
+      return false;
+    }
+  }
+
+  Future<bool> UpdateUserAbout({required String uId,
+    required String aboutMe,
+    required String skills,
+    required String lessons
+  }) async {
+    try {
+      // create user's data inside of firestore
+      await _firebaseStore.collection("users").doc(uId).update({
+        "aboutMe": aboutMe,
+        "skills": skills,
+        "lessons": lessons,
       });
       return true;
     } on FirebaseException catch (e) {

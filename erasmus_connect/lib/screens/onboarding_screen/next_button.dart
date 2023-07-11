@@ -1,5 +1,9 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../models/connect_plus_user.dart';
+import '../homepage/bottom_navigation_bar.dart';
 
 class CenterNextButton extends StatelessWidget {
   final AnimationController animationController;
@@ -149,12 +153,22 @@ class CenterNextButton extends StatelessWidget {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  Text(
-                    'Devam et!',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 53, 194, 193),
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              BottomNavigation(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Devam et!',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 53, 194, 193),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
@@ -204,4 +218,15 @@ class CenterNextButton extends StatelessWidget {
       ),
     );
   }
+
+  Future<void> CreateProviderDatas(
+      {required WidgetRef ref, required BuildContext context}) async {
+    ref.read(userProvider.notifier).LogOut();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => BottomNavigation(),
+      ),
+    );
+  }
+
 }

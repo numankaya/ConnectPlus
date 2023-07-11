@@ -269,7 +269,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
                       as Map<String, dynamic>;
                   final date = data['date'] ?? '';
                   final place = data['place'] ?? '';
-                  final event = data['event'] ?? '';
+                  final title = data['title'] ?? '';
                   final time = data['time'] ?? '';
                   final loggedIn = data['sender'] ?? '';
                   final currentUser = loggedInUser.email ?? '';
@@ -279,7 +279,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
                   return MessageBubble(
                     date: date,
                     place: place,
-                    event: event,
+                    title: title,
                     time: time,
                     isLoggedIn: currentUser == loggedIn,
                     isLiked: isLiked,
@@ -306,7 +306,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
               final data = likedItems[index];
               final date = data['date'] ?? '';
               final place = data['place'] ?? '';
-              final event = data['event'] ?? '';
+              final title = data['title'] ?? '';
               final time = data['time'] ?? '';
               final loggedIn = data['sender'] ?? '';
               final currentUser = loggedInUser.email ?? '';
@@ -315,7 +315,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
               return MessageBubble(
                 date: date,
                 place: place,
-                event: event,
+                title: title,
                 time: time,
                 isLoggedIn: currentUser == loggedIn,
                 isLiked: true,
@@ -335,7 +335,7 @@ class MessageBubble extends StatelessWidget {
     required this.isLoggedIn,
     required this.isLiked,
     required this.date,
-    required this.event,
+    required this.title,
     required this.time,
     required this.place,
     required this.onLikePressed,
@@ -345,7 +345,7 @@ class MessageBubble extends StatelessWidget {
   final bool isLoggedIn;
   final bool isLiked;
   final String date;
-  final String event;
+  final String title;
   final String time;
   final String place;
   final VoidCallback onLikePressed;
@@ -414,7 +414,7 @@ class MessageBubble extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    event,
+                    title,
                     style: TextStyle(
                       shadows: [
                         Shadow(
@@ -533,12 +533,12 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
   late User loggedInUser;
 
   late String date;
-  late String event;
+  late String title;
   late String time;
   late String place;
   late TextEditingController dateTextController;
   late TextEditingController placeTextController;
-  late TextEditingController eventTextController;
+  late TextEditingController titleTextController;
   late TextEditingController timeTextController;
 
   final picker = ImagePicker();
@@ -579,7 +579,7 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
     //retrieveImageUrls();
     dateTextController = TextEditingController();
     placeTextController = TextEditingController();
-    eventTextController = TextEditingController();
+    titleTextController = TextEditingController();
     timeTextController = TextEditingController();
   }
 
@@ -599,7 +599,7 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
   void dispose() {
     dateTextController.dispose();
     placeTextController.dispose();
-    eventTextController.dispose();
+    titleTextController.dispose();
     timeTextController.dispose();
     super.dispose();
   }
@@ -610,186 +610,197 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/event_background_image.png"),
-              fit: BoxFit.cover,
-              opacity: 0.7,
-            ),
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/event_background_image.png"),
+            fit: BoxFit.cover,
+            opacity: 0.4,
           ),
-          child: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Container(
-                    height: 38,
-                    width: 38,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    margin: EdgeInsets.only(top: 16.0, right: 16.0),
-                    child: IconButton(
-                      onPressed: () {
-                        widget.goToPage(12);
-                      },
-                      icon: Icon(CupertinoIcons.chevron_back),
-                      color: Colors.black,
-                      iconSize: 24.0,
-                      splashRadius: 24.0,
-                      alignment: Alignment.center,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  child: Padding(
-                    padding: const EdgeInsets.all(24.0),
-                    child: Align(
-                      alignment: Alignment.topCenter,
-                      child: Text(
-                        'Etkinlik Oluştur',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(24.0, 140.0, 24.0, 24.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      buildTextField(
-                        controller: eventTextController,
-                        hintText: 'Başlık',
-                      ),
-                      SizedBox(height: 24.0),
-                      buildTextField(
-                        controller: dateTextController,
-                        hintText: 'Tarih',
-                      ),
-                      SizedBox(height: 24.0),
-                      buildTextField(
-                        controller: placeTextController,
-                        hintText: 'Konum',
-                      ),
-                      SizedBox(height: 24.0),
-                      buildTextField(
-                        controller: timeTextController,
-                        hintText: 'Saat',
-                      ),
-                      SizedBox(height: 30.0),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          _imageFile == null
-                              ? Text('No image selected')
-                              : Image.file(
-                                  File(_imageFile!.path),
-                                  height: 200,
-                                ),
-                          SizedBox(height: 20),
-                          ElevatedButton(
+        ),
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(24.0, 34, 24.0, 24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          height: 38,
+                          width: 38,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.white,
+                          ),
+                          child: IconButton(
                             onPressed: () {
-                              chooseImage();
+                              widget.goToPage(12);
                             },
-                            child: Text('Select Image'),
+                            icon: Icon(
+                              size: 24,
+                              CupertinoIcons.chevron_back,
+                              color: Colors.black,
+                            ),
                           ),
-                        ],
+                        ),
+                        Text(
+                          'Gönderi Oluştur',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            shadows: [
+                              Shadow(
+                                blurRadius: 5.0,
+                                color: Color.fromARGB(81, 0, 0, 0),
+                                offset: Offset(2.0, 2.0),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Icon(
+                          CupertinoIcons.chevron_back,
+                          color: Colors.transparent,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 30.0),
+                    buildTextField(
+                      controller: titleTextController,
+                      hintText: 'Başlık',
+                    ),
+                    SizedBox(height: 24.0),
+                    buildTextField(
+                      controller: dateTextController,
+                      hintText: 'Tarih',
+                    ),
+                    SizedBox(height: 24.0),
+                    buildTextField(
+                      controller: placeTextController,
+                      hintText: 'Konum',
+                    ),
+                    SizedBox(height: 24.0),
+                    buildTextField(
+                      controller: timeTextController,
+                      hintText: 'Saat',
+                    ),
+                    SizedBox(height: 24.0),
+                    GestureDetector(
+                      onTap: () {
+                        chooseImage();
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Color.fromARGB(180, 183, 111, 40),
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color.fromARGB(180, 224, 137, 50),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            _imageFile == null
+                                ? Text('Görsel', style: TextStyle(fontSize: 16))
+                                : Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10.0),
+                                    child: Image.file(
+                                      File(_imageFile!.path),
+                                      height: 120,
+                                    ),
+                                  ),
+                            SizedBox(height: 20),
+                            ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Color.fromARGB(180, 224, 137, 50)),
+                                shadowColor: MaterialStateProperty.all<Color>(
+                                    Color.fromARGB(180, 224, 137, 50)),
+                              ),
+                              onPressed: () {},
+                              child: Icon(
+                                Icons.add_a_photo,
+                                color: Color.fromARGB(255, 135, 69, 2),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8.0),
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            await uploadImage();
-                            _fireStore.collection('events').add({
-                              'date': date,
-                              'event': event,
-                              'place': place,
-                              'time': time,
-                              'sender': loggedInUser.email,
-                              'created': Timestamp.now(),
-                              'imageUrls': downloadUrl,
-                            });
+                    ),
+                    SizedBox(height: 24.0),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 4.0, horizontal: 32),
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          await uploadImage();
+                          _fireStore.collection('events').add({
+                            'date': date,
+                            'title': title,
+                            'place': place,
+                            'time': time,
+                            'sender': loggedInUser.email,
+                            'created': Timestamp.now(),
+                            'imageUrls': downloadUrl,
+                          });
 
-                            dateTextController.clear();
-                            placeTextController.clear();
-                            eventTextController.clear();
-                            timeTextController.clear();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            fixedSize: Size(200, 50),
-                            backgroundColor: Color.fromARGB(255, 135, 69, 2),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                          ),
-                          child: Text(
-                            'Oluştur',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8.0),
-                        child: ElevatedButton(
-                          onPressed: () => widget.goToPage(12),
-                          style: ElevatedButton.styleFrom(
-                            fixedSize: Size(200, 50),
-                            backgroundColor: Color.fromARGB(255, 135, 69, 2),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                          ),
-                          child: Text(
-                            'Etkinlikleri Görüntüle',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16.0,
-                            ),
-                          ),
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ImageUploadPage()));
+                          dateTextController.clear();
+                          placeTextController.clear();
+                          titleTextController.clear();
+                          timeTextController.clear();
                         },
-                        child: Text('Resim Yükle'),
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size(200, 50),
+                          backgroundColor: Color.fromARGB(255, 135, 69, 2),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                        ),
+                        child: Text(
+                          'Oluştur',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.1),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 4.0),
+                      child: ElevatedButton(
+                        onPressed: () => widget.goToPage(12),
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size(200, 50),
+                          backgroundColor: Color.fromARGB(255, 135, 69, 2),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                        ),
+                        child: Text(
+                          'Etkinlikleri Görüntüle',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 100.0),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -801,25 +812,9 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
   }) {
     return TextField(
       controller: controller,
-      onTap: () async {
-        if (hintText == 'Tarih') {
-          // Get the date using date picker
-          DateTime? selectedDate = await showDatePicker(
-            context: context,
-            initialDate: DateTime.now(),
-            firstDate: DateTime.now(),
-            lastDate: DateTime(DateTime.now().year + 5),
-          );
-          if (selectedDate != null) {
-            String formattedDate =
-                DateFormat('dd-MM-yyyy').format(selectedDate);
-            controller.text = formattedDate;
-          }
-        }
-      },
       onChanged: (value) {
         if (hintText == 'Başlık') {
-          event = value;
+          title = value;
         } else if (hintText == 'Tarih') {
           date = value;
         } else if (hintText == 'Konum') {
@@ -832,18 +827,20 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
         contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
         hintText: hintText,
         filled: true,
-        fillColor: Colors.orange.withOpacity(0.7),
+        fillColor: Color.fromARGB(180, 224, 137, 50),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
-          borderSide: BorderSide(color: Colors.brown),
+          borderSide:
+              BorderSide(color: const Color.fromARGB(255, 159, 105, 85)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
-          borderSide: BorderSide(color: Colors.brown),
+          borderSide:
+              BorderSide(color: const Color.fromARGB(255, 192, 130, 107)),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
-          borderSide: BorderSide(color: Colors.brown),
+          borderSide: BorderSide(color: Color.fromARGB(255, 179, 107, 81)),
         ),
       ),
     );

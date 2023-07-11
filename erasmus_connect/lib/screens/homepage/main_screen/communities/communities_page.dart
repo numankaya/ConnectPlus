@@ -7,6 +7,7 @@ class CommunitiesPage extends StatefulWidget {
   @override
   State<CommunitiesPage> createState() => _CommunitiesPageState();
 }
+//----------------------------------------------------------------------------------------------------
 
 class _CommunitiesPageState extends State<CommunitiesPage> {
   final List<School> schools = [
@@ -41,6 +42,7 @@ class _CommunitiesPageState extends State<CommunitiesPage> {
       ],
     ),
   ];
+//----------------------------------------------------------------------------------------------------
 
   @override
   Widget build(BuildContext context) {
@@ -63,16 +65,21 @@ class _CommunitiesPageState extends State<CommunitiesPage> {
                   borderRadius: BorderRadius.circular(8),
                   color: Colors.white,
                 ),
-                child: Icon(
-                  Icons.chevron_left,
-                  size: 24,
-                  color: Colors.black,
+                child: IconButton(
+                  onPressed: () {
+                    widget.goToPage(2);
+                  },
+                  icon: Icon(
+                    Icons.chevron_left,
+                    size: 24,
+                    color: Colors.black,
+                  ),
                 ),
               ),
               Text(
                 'Topluluklar',
                 style: TextStyle(
-                  color: Color.fromARGB(255, 64, 58, 122),
+                  color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -122,6 +129,7 @@ class School {
     required this.avatarUrls,
   });
 }
+//----------------------------------------------------------------------------------------------------
 
 class ContainerCard extends StatelessWidget {
   final School school;
@@ -220,6 +228,7 @@ class ContainerCard extends StatelessWidget {
   }
 }
 
+//----------------------------------------------------------------------------------------------------
 class CommunityDetailsPage extends StatelessWidget {
   final School school;
 
@@ -278,7 +287,9 @@ class CommunityDetailsPage extends StatelessWidget {
                   ),
                   SizedBox(height: 10.0),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     child: Text('Leave Community'),
                   ),
                 ],

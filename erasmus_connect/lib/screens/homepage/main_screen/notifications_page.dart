@@ -1,11 +1,13 @@
-import 'package:erasmus_connect/core/app_export.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NotificationsPage extends StatelessWidget {
   final Function(int) goToPage;
 
-  const NotificationsPage({required this.goToPage, super.key});
+  const NotificationsPage({required this.goToPage, Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,8 +27,8 @@ class NotificationsPage extends StatelessWidget {
                   color: Colors.white,
                 ),
                 child: Icon(
-                  size: 24,
                   CupertinoIcons.chevron_back,
+                  size: 24,
                   color: Colors.black,
                 ),
               ),
@@ -52,80 +54,104 @@ class NotificationsPage extends StatelessWidget {
             ],
           ),
         ),
-        body: ListView.separated(
-          itemCount: notificationList.length,
-          separatorBuilder: (context, index) => Divider(
-            indent: 20,
-            endIndent: 25,
-            color: Color.fromARGB(255, 255, 255, 255),
-          ),
-          itemBuilder: (context, index) {
-            final notification = notificationList[index];
-            return ListTile(
-              leading: Icon(notification.icon),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    notification.title,
+        body: FutureBuilder<List<QuerySnapshot>>(
+          future: getCollectionData(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            if (snapshot.hasError) {
+              return Center(
+                child: Text('Error: ${snapshot.error}'),
+              );
+            }
+
+            final events = snapshot.data?[0].docs;
+            final chat = snapshot.data?[1].docs;
+            final community = snapshot.data?[2].docs;
+
+            final allDocs = [...events!, ...chat!, ...community!];
+
+            allDocs.sort((a, b) => (b['created'] as Timestamp)
+                .compareTo(a['created'] as Timestamp));
+
+            return ListView.separated(
+              itemCount: allDocs.length,
+              separatorBuilder: (context, index) => Divider(
+                indent: 20,
+                endIndent: 25,
+                color: Color.fromARGB(255, 255, 255, 255),
+              ),
+              itemBuilder: (context, index) {
+                final doc = allDocs[index];
+                final collectionPath = doc.reference.parent?.path;
+                final collectionName = collectionPath?.split('/').first ?? '';
+
+                final place = doc['place'] as String? ?? '';
+                final time = doc['time'] as String? ?? '';
+                final eventTitle = doc['title'] as String? ?? '';
+                final date = doc['date'] as String? ?? '';
+
+                return ListTile(
+                  leading: getIconForCollection(collectionName),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        eventTitle,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        time,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  subtitle: Text(
+                    'Place: $place\nDate: $date',
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(255, 118, 118, 118),
                     ),
                   ),
-                  Text(
-                    notification.time,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
-              subtitle: Text(
-                notification.content,
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 118, 118, 118),
-                ),
-              ),
+                );
+              },
             );
           },
         ),
       ),
     );
   }
+
+  Future<List<QuerySnapshot>> getCollectionData() async {
+    final eventsSnapshot = FirebaseFirestore.instance
+        .collection('events')
+        .orderBy('created', descending: true)
+        .get();
+
+    final chatSnapshot = FirebaseFirestore.instance.collection('chat').get();
+
+    final communitySnapshot =
+        FirebaseFirestore.instance.collection('community').get();
+
+    return await Future.wait([eventsSnapshot, chatSnapshot, communitySnapshot]);
+  }
+
+  Icon getIconForCollection(String collectionName) {
+    if (collectionName == 'events') {
+      return Icon(Icons.favorite, color: Colors.red);
+    } else if (collectionName == 'chat') {
+      return Icon(Icons.chat);
+    } else if (collectionName == 'community') {
+      return Icon(Icons.group);
+    } else {
+      return Icon(Icons.error);
+    }
+  }
 }
-
-class NotificationItem {
-  final String title;
-  final String content;
-  final String time;
-  final IconData icon;
-
-  NotificationItem({
-    required this.title,
-    required this.content,
-    required this.time,
-    required this.icon,
-  });
-}
-
-List<NotificationItem> notificationList = [
-  NotificationItem(
-    title: 'Trendler',
-    content: 'This is the content of Trendler notification.',
-    time: '9:00 AM',
-    icon: Icons.favorite,
-  ),
-  NotificationItem(
-    title: 'Yorumlar',
-    content: 'This is the content of Yorumlar notification.',
-    time: '10:30 AM',
-    icon: Icons.comment,
-  ),
-  NotificationItem(
-    title: 'Upvote',
-    content: 'This is the content of Upvote notification.',
-    time: '11:47 AM',
-    icon: CupertinoIcons.chevron_up,
-  ),
-  // Add more notifications as needed
-];

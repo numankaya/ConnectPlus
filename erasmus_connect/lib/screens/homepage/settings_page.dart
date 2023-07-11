@@ -114,9 +114,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              trailing: Icon(
-                Icons.arrow_forward,
-                color: Colors.black,
+              trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.arrow_forward,
+                  color: Colors.black,
+                ),
               ),
             ),
             ListTile(
@@ -174,9 +177,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              trailing: Icon(
-                Icons.arrow_forward,
-                color: Colors.black,
+              trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.arrow_forward,
+                  color: Colors.black,
+                ),
               ),
             ),
             ListTile(
@@ -234,9 +240,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              trailing: Icon(
-                Icons.arrow_forward,
-                color: Colors.black,
+              trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.arrow_forward,
+                  color: Colors.black,
+                ),
               ),
             ),
             ListTile(
@@ -248,9 +257,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              trailing: Icon(
-                Icons.arrow_forward,
-                color: Colors.black,
+              trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.arrow_forward,
+                  color: Colors.black,
+                ),
               ),
             ),
             ListTile(
@@ -262,9 +274,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              trailing: Icon(
-                Icons.arrow_forward,
-                color: Colors.black,
+              trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.arrow_forward,
+                  color: Colors.black,
+                ),
               ),
             ),
             SizedBox(height: 20),

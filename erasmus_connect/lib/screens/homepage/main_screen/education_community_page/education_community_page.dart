@@ -232,7 +232,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
                 child: IconButton(
                   color: Colors.white,
                   icon: Icon(Icons.add),
-                  onPressed: () => widget.goToPage(14),
+                  onPressed: () => widget.goToPage(13),
                 ),
               ),
             ),

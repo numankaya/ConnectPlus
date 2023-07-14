@@ -105,6 +105,7 @@ Takımdaki herkesin ilk Bootcamp deneyemi olmasına rağmen süreci iyi yönetti
 * Eksik ve yavaş kaldığımız taraflarımız tarşıldı önümüzdeki sporint için önlemnler ve iyileştirmeler yapma kararı aldık.
 * En güçlü yanlarımızdan biri olan ekip içi iletişim için tüm takım tebrik edildi.
 
+
 - **1.Sprint Notu**: 
 Genel olarak ilk haftayı ürün bulma ve araştırma olarak geçirdik tüm ekip arkadaşlarım toplantılara eksiksiz katıldı.
 Ürün fikrini de genel bir oylama yaparak ve sonrasında tartışarak kararlaştırdık.
@@ -182,7 +183,6 @@ https://github.com/numankaya/ConnectPlus/assets/25429713/1ef930fd-09d9-40a7-920a
 
 
 - **Sprint Review**: 
-
 * Bu sprintte hedefimiz uygulamayı genel hatlarıyla görselleştirip önemli sayfaların backendini tamamlamaktı.
 * Genel hatlarıyla uygulamada neler yapacağız ve neler yapamayacağız konuşulup tartışıldı.
 * Son bir görev teknik sebeplerden ve bayram tatilinden dolayı teslim edilemedi.
@@ -196,6 +196,7 @@ https://github.com/numankaya/ConnectPlus/assets/25429713/1ef930fd-09d9-40a7-920a
   * 3.Sprint için daha fazla etkileşim içerisinde olmaya ekip üyeleri teşvik edildi.
   * Tüm toplantılara eksiksiz katılım sağlanması için uyarılar yapıldı ve daha iyi nasıl iletişimde kalırız üzerine konuşuldu.
   * Eksik kalan sayfanın 3.Sprintin ilk çeyreğine yetiştirilmesi kararlaştırıldı.
+  * Zaman kısıtlamasından dolayı şimdilik sadece Erasmus üzerine yoğunlaşacağız.
 
 - **2.Sprint Notu**: 
 * Bu sprint 143 puan tamamlaya bildik.
@@ -205,19 +206,41 @@ https://github.com/numankaya/ConnectPlus/assets/25429713/1ef930fd-09d9-40a7-920a
 * 3. Sprint için start verildi.
     * 1.Sprintin revizesi yapıldı.
     * Ana sayfa / Vize ve Oturum süreçleri / Konaklama tavsiyeleri ve gezilecek rotalar / Okullar / Chatbot / Profil ve Profil düzenleme ekranları  tamamlandı.
-    * Ayarlar sayfası 3. sprinte bırakıldı.
+    * Ayarlar sayfası 3.sprinte bırakıldı.
 
  ---------------------------------------------------------------------------------------------------------
  # Sprint 3
  - **Sprint içinde tamamlanması tahmin edilen puan**:
-- **Puan tamamlama mantığı**:
-- **Daily Scrum**:
+
+- **Puan tamamlama mantığı**:Product Backlog oluşturuldu ve User Stories puanlamarı yapıldı. 
+İlk sprintteki hızımız ve bu sprintteki aktiflik durumumuzla beraber bu sprint için 155 puan, 3. sprint için 165 puan tamamlama hesaplaması yapıldı.
+Toplam tammalanması gereken puan 420 olarak hesaplandı.
+
+- **Daily Scrum**: Daily Scrum toplantı notları Trello üzerindeki ''Daily Scrum Meeting Notes'' bölümünden ulaşa bilirsiniz. Toplantılar Discord kanalı üzerinden gerçekleitirilmiştir.
 - **Sprint board update**: Product Backlog URL https://miro.com/app/board/uXjVM-Ye30g=/
   - Sprint board screenshotları: 
 - Trello Ekranı:
 - Miro Ekranı:
 - Figma Ekranı:
 - **Ürün Durumu**: Ekran görüntüleri:
-- **Sprint Review**: 
+
+
+- **Sprint Review**:
+* Tüm ekip üyeleri aktif bir şekilde çalıştı.
+* Bu sprintte hedefimiz uygulamayı genel hatlarıyla görselleştirip önemli sayfaların backendini tamamlamaktı.
+* Uygulamanın gelişimine göre 1. ve 2. Sprint ekranlarına ufak revizeler yapıldı.
+* Bu sprint 13 ekran tasarlandı ve 13 ekran tamamlandı, bu sayının içinde benzer ekranlar bulunmamakta.
+  
 - **Sprint Retrospektif**:
-- **2.Sprint Notu**: 
+* Hepimizin ilk kod ve uygulama deneyimi olduğu için çok verimli, heyecanlı ve öğretici oldu.
+* Tüm ekibe uğraşları ve çalışmaları için teşekkür edildi.
+* Ekip tüm sprintler boyunca aktif ve kesintisiz bir şekilde çalıştı.
+* Eksik olduğumuz konuları görmemizi ve kendimizi eğitmemizi sağladı.
+* Dosyalama tamamlandı.
+  
+- **3.Sprint Notu**: 
+*Bu sprint  puan tamamlaya bildik.
+* Zaman kısıtlamasından dolayı Dil özelliği ve Tema özelliği kaldırıldı.
+* Ufak revizeler yapıldı.
+* OTP sayfası yerine maile gelen iletiyle şifre değişimi sağlanmakta.
+* Uygulamaya bağış özelliği getirildi, bu özellik sayesinde kişiler sosyal sorumluluk projelerine katıla bilecek ve bunu cvlerine ekleye bilecek.

@@ -6,7 +6,6 @@
 * Amine Parlak Scrum Master / Developer
 * Numan Kaya Developer
 * Berk Çiçekler Developer
-* Çağla Erkalkan Developer
 ## Ürünün İsmi
  - ConnectPlus App
 ## Product Backlog URL
@@ -111,6 +110,8 @@ Genel olarak ilk haftayı ürün bulma ve araştırma olarak geçirdik tüm ekip
 Ürün fikrini de genel bir oylama yaparak ve sonrasında tartışarak kararlaştırdık.
 Planlanan ekranların tamamı tasarlandı, OTP sayfasında backend de sorun yaşadık önümüzdeki sprit çözmeye çalışacağız olmazsa e mail doğrulaması üzerinden devam edecek ve sayfalar kaldırılacak. 
 2 ve 3 sprint daha yoğun çalışma kararı aldık bunun sebebi ekip arkadaşlarımın okul sınavlarının yeni bitmiş olması.
+* Firebase bağlantısı kuruldu
+* Karşılama sliderı ekranı / Kayıt ve Giriş ekranları oluşturuldu.
 ----------------------------------------------------------------------------------------------
 # Sprint 2
 
@@ -202,3 +203,21 @@ https://github.com/numankaya/ConnectPlus/assets/25429713/1ef930fd-09d9-40a7-920a
 * Önümüzdeki sprint en yoğun olanı olacak bununla ilgili önlemler alınması kararı verildi.
 * OTP sayfası hala tamamlanamadı üzerinde çalışmaya devam ediyoruz.
 * 3. Sprint için start verildi.
+    * 1.Sprintin revizesi yapıldı.
+    * Ana sayfa / Vize ve Oturum süreçleri / Konaklama tavsiyeleri ve gezilecek rotalar / Okullar / Chatbot / Profil ve Profil düzenleme ekranları  tamamlandı.
+    * Ayarlar sayfası 3. sprinte bırakıldı.
+
+ ---------------------------------------------------------------------------------------------------------
+ # Sprint 3
+ - **Sprint içinde tamamlanması tahmin edilen puan**:
+- **Puan tamamlama mantığı**:
+- **Daily Scrum**:
+- **Sprint board update**: Product Backlog URL https://miro.com/app/board/uXjVM-Ye30g=/
+  - Sprint board screenshotları: 
+- Trello Ekranı:
+- Miro Ekranı:
+- Figma Ekranı:
+- **Ürün Durumu**: Ekran görüntüleri:
+- **Sprint Review**: 
+- **Sprint Retrospektif**:
+- **2.Sprint Notu**: 

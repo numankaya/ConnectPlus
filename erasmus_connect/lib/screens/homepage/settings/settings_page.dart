@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../l10n/l10n.dart';
+
 class SettingsPage extends ConsumerStatefulWidget {
   final Function(int) goToPage;
 
@@ -129,6 +131,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                       setState(() {
                         dropdownValue1 = newValue!;
                       });
+                      ref.read(selectedLocaleProvider.notifier).state = Locale((newValue! == "Türkçe" ? "tr":"en"));
                     },
                     items: <String>['Türkçe', 'English']
                         .map<DropdownMenuItem<String>>((String value) {
@@ -270,8 +273,14 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-                  FirebaseAuth.instance.signOut();
-                  ref.read(userProvider.notifier).LogOut();
+
+
+                  if (ref.read(userProvider).uId == "") {
+                    Navigator.push(context, MaterialPageRoute(builder: (builder) => LoginScreen()));
+                  }else {
+                    FirebaseAuth.instance.signOut();
+                    ref.read(userProvider.notifier).LogOut();
+                  }
                 },
                 child: Container(
                   height: MediaQuery.of(context).size.height * 0.05,
@@ -293,9 +302,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'Çıkış Yap',
+                        (ref.read(userProvider).uId == "" ? "Giriş Yap" : "Çıkış Yap"),
                         style: TextStyle(
-                          color: Color.fromARGB(255, 190, 35, 53),
+                          color:  ref.read(userProvider).uId == "" ? Color.fromRGBO(0, 255, 0, 1) : Color.fromARGB(255, 190, 35, 53),
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),

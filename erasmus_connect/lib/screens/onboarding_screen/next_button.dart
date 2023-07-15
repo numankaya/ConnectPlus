@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/connect_plus_user.dart';
 import '../homepage/bottom_navigation_bar.dart';
@@ -154,7 +155,9 @@ class CenterNextButton extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      await prefs.setBool('isOnboardingShown', false);
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) =>
                               BottomNavigation(),

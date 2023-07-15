@@ -13,9 +13,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.remove('isOnboardingShown');
-  bool isOnboardingShown = prefs.getBool('isOnboardingShown') ?? false;
-  isOnboardingShown = true;
+  bool isOnboardingShown = prefs.getBool('isOnboardingShown') ?? true;
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   AwesomeNotifications().initialize(
@@ -65,44 +63,59 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ProviderScope(
-      child: MaterialApp(
-        title: 'Connect Plus',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        supportedLocales: L10n.all,
-        locale: Locale('tr'),
-        localizationsDelegates: [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate
-        ],
-        //home: BottomNavigation(),
-        //--------------------------ÖNEMLİ--------------------------//
-        // Bu kısım arayüz tarafını tamamladıktan sonra aktif edilecektir.
-        home: widget.isIntroduction == true
-            ? IntroductionAnimationScreen()
-            : LoginScreen(),
-        // home: Scaffold(
-        //   appBar: AppBar(
-        //     title: Text(
-        //       "Connect Plus",
-        //       style: TextStyle(color: Colors.white),
-        //     ),
-        //     backgroundColor: Colors.deepPurpleAccent,
-        //   ),
-        //   body: Consumer(
-        //     builder: (context, ref, child) {
-        //       final pageIndex = ref.watch(pageIndexProvider);
-        //       return allPages[pageIndex];
-        //     },
-        //   ),
-        //   bottomNavigationBar: my_navigator_bar(),
-        // ),
+      child: MainMaterialApp(widget: widget),
+    );
+  }
+}
+
+class MainMaterialApp extends ConsumerWidget {
+  const MainMaterialApp({
+    super.key,
+    required this.widget,
+  });
+
+  final MyApp widget;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    var locale = ref.watch(selectedLocaleProvider);
+    return MaterialApp(
+      title: 'Connect Plus',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
       ),
+      supportedLocales: L10n.all,
+      locale: locale,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
+      ],
+      //home: BottomNavigation(),
+      //--------------------------ÖNEMLİ--------------------------//
+      // Bu kısım arayüz tarafını tamamladıktan sonra aktif edilecektir.
+      home: widget.isIntroduction == true
+          ? IntroductionAnimationScreen()
+          : LoginScreen(),
+      // home: Scaffold(
+      //   appBar: AppBar(
+      //     title: Text(
+      //       "Connect Plus",
+      //       style: TextStyle(color: Colors.white),
+      //     ),
+      //     backgroundColor: Colors.deepPurpleAccent,
+      //   ),
+      //   body: Consumer(
+      //     builder: (context, ref, child) {
+      //       final pageIndex = ref.watch(pageIndexProvider);
+      //       return allPages[pageIndex];
+      //     },
+      //   ),
+      //   bottomNavigationBar: my_navigator_bar(),
+      // ),
     );
   }
 }

@@ -6,7 +6,7 @@ final localeProvider = Provider<Locale>((ref) {
 });
 
 final selectedLocaleProvider = StateProvider<Locale>((ref) {
-  return Locale('en'); // Set the default locale
+  return Locale('tr'); // Set the default locale
 });
 
 class L10n {

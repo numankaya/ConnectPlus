@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../l10n/l10n.dart';
+
 class SettingsPage extends ConsumerStatefulWidget {
   final Function(int) goToPage;
 
@@ -153,14 +155,17 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                       color: Colors.transparent,
                     ),
                     onChanged: (String? newValue) {
+                      print("test");
                       setState(() {
                         dropdownValue1 = newValue!;
                       });
+                      ref.read(selectedLocaleProvider.notifier).state = Locale(newValue!);
+                      print(newValue!);
                     },
                     items: <String>['Türkçe', 'English']
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
-                        value: value,
+                        value: value == "Türkçe" ? "tr" : "en",
                         child: Text(
                           value,
                           style: TextStyle(
@@ -168,6 +173,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                             fontSize: 14,
                           ),
                         ),
+
                       );
                     }).toList(),
                   ),

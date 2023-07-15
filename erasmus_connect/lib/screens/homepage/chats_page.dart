@@ -241,7 +241,7 @@ class DMUserMessageContainer extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         ref.read(receieverIdProvider.notifier).state = id;
-        goToPage(19);
+        goToPage(24);
       },
       child: Container(
         width: width * 0.99,

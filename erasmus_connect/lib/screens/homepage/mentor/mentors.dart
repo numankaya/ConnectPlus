@@ -184,7 +184,7 @@ class MentorHolder extends ConsumerWidget {
 
   void OpenMentorShowCase(WidgetRef ref) {
     ref.read(targetuId.notifier).state = uId;
-    goToPage(17);
+    goToPage(14);
   }
 
   @override

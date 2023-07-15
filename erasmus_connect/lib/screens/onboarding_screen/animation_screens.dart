@@ -115,7 +115,7 @@ class _IntroductionAnimationScreenState
 
   Future<void> _signUpClick() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isOnboardingShown', true);
+    await prefs.setBool('isOnboardingShown', false);
 
     Navigator.pushReplacement(
       context,

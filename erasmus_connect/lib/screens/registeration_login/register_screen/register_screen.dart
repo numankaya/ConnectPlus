@@ -393,7 +393,8 @@ class RegisterScreen extends ConsumerWidget {
         erasmusSchool: "",
         aboutMe: '',
         skills: '',
-        lessons: ''
+        lessons: '',
+      chatUsers: null,
     ));
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(

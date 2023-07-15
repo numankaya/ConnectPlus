@@ -14,7 +14,10 @@ import '../../../services/database.dart';
 import '../forgot_password_screen/forgot_password_screen.dart';
 import '../register_screen/register_screen.dart';
 
-// ignore_for_file: must_be_immutable
+
+final isObscureProvider = StateProvider<bool>((ref) => true);
+
+
 class LoginScreen extends ConsumerWidget {
   LoginScreen({Key? key}) : super(key: key);
 
@@ -86,26 +89,37 @@ class LoginScreen extends ConsumerWidget {
                                   variant:
                                       TextFormFieldVariant.OutlineIndigo50_1,
                                   textInputType: TextInputType.emailAddress),
-                              CustomTextFormField(
-                                  focusNode: FocusNode(),
-                                  autofocus: false,
-                                  controller: passwordController,
-                                  hintText: "Şifreni gir",
-                                  margin:
+                              Consumer(
+                                builder: (BuildContext context, WidgetRef ref, Widget? child) {
+                                  bool isObscure = ref.watch(isObscureProvider);
+                                  return CustomTextFormField(
+                                      focusNode: FocusNode(),
+                                      autofocus: false,
+                                      controller: passwordController,
+                                      hintText: "Şifreni gir",
+                                      isObscureText: isObscure,
+                                      margin:
                                       getMargin(left: 28, top: 15, right: 28),
-                                  padding: TextFormFieldPadding.PaddingT19_1,
-                                  textInputAction: TextInputAction.done,
-                                  suffix: Container(
-                                      margin: getMargin(
-                                          left: 30,
-                                          top: 17,
-                                          right: 14,
-                                          bottom: 17),
-                                      child: CustomImageView(
-                                          svgPath: ImageConstant
-                                              .imgFluenteye20filled)),
-                                  suffixConstraints: BoxConstraints(
-                                      maxHeight: getVerticalSize(56))),
+                                      padding: TextFormFieldPadding.PaddingT19_1,
+                                      textInputAction: TextInputAction.done,
+                                      suffix: GestureDetector(
+                                        onTap: () {
+                                          ref.watch(isObscureProvider.notifier).state = !isObscure;
+                                        },
+                                        child: Container(
+                                            margin: getMargin(
+                                                left: 30,
+                                                top: 17,
+                                                right: 14,
+                                                bottom: 17),
+                                            child: CustomImageView(
+                                                svgPath: ImageConstant
+                                                    .imgFluenteye20filled)),
+                                      ),
+                                      suffixConstraints: BoxConstraints(
+                                          maxHeight: getVerticalSize(56)));
+                                },
+                              ),
                               Align(
                                   alignment: Alignment.centerRight,
                                   child: GestureDetector(
@@ -396,6 +410,7 @@ class LoginScreen extends ConsumerWidget {
         aboutMe: userCollection["aboutMe"],
         lessons: userCollection["lessons"],
         skills: userCollection["skills"],
+        chatUsers: userCollection["chatUsers"]
     ));
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(

@@ -22,54 +22,129 @@ class MentorShowcasePage extends ConsumerWidget {
     final x = ref.watch(targetuId);
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 247, 235, 225),
-      body: Column(
+      body: Stack(
         children: [
-          Stack(
-            children: [
-              FutureBuilder(
-              future: getData(x),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Center(child: const CircularProgressIndicator()),
-                    ],
-                  );
-                }else if(snapshot.hasError) {
-                  return const Text("hata");
-                }else {
-                  snapshot.data!["fullName"];
-                  return MentorShowCaseTop(width: width);
-                }
-              },
-            ),
-              Positioned(
-                top: 30,
-                left: 20,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 4),
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
+          FutureBuilder(
+          future: getData(x),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(child: const CircularProgressIndicator()),
+                ],
+              );
+            }else if(snapshot.hasError) {
+              return const Text("hata");
+            }else {
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    MentorShowCaseTop(width: width,
+                    fullName: snapshot.data!["fullName"],
+                      nickname: snapshot.data!["nickName"],
+                      country: snapshot.data!["country"],
+                      school: snapshot.data!["school"],
+                      erasmusSchool: snapshot.data!["erasmusSchool"],
+                      aboutMe: snapshot.data!["aboutMe"],
+                      skills: snapshot.data!["skills"],
+                      lessons: snapshot.data!["lessons"],
                     ),
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.arrow_back_ios_rounded,
-                        size: 20,
+                    SizedBox(height: 10),
+                    TextContainer(widget:
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Hakkımda", style: H2TextStyle()),
+                          Text("${snapshot.data!["aboutMe"]}", style: TextStyle(fontSize: 15, color: Color.fromRGBO(108, 108, 108, 1)),),
+                          Divider(),
+                          Text("Yetkinlikler", style: H2TextStyle()),
+                          Text("${snapshot.data!["skills"]}"),
+                          Divider(),
+                          Text("Alınan Dersler", style: H2TextStyle()),
+                          Text("${snapshot.data!["lessons"]}"),
+                          Divider(),
+                          Text("Bağış Yapılacak Kurum", style: H2TextStyle()),
+                          Row(
+                            children: [
+                              Container(
+                                  width: width * 0.20,
+                                  height: 90,
+                                  padding: EdgeInsets.only(left: 10, right: 10),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Color.fromRGBO(117, 117, 117, 1), width: 2),
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Color.fromRGBO(243, 248, 255, 1),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.4),
+                                        spreadRadius: 1,
+                                        blurRadius: 5,
+                                        offset: Offset(0, 4), // changes position of shadow
+                                      ),
+                                    ],),
+                                  child: Center(
+                                    child: Image(
+                                      image: AssetImage(
+                                          "assets/images/unicef.png"),
+                                    ),
+                                  )
+                              ),
+                              SizedBox(width: 10,),
+                              SizedBox(
+                                width: width * 0.45,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                  Text("Benimle konuşarak Unicef bağışçısı ol!"),
+                                  Text("Bağış yap \$1.00"),
+                                ],),
+                              )
+                            ],
+                          ),
+                          SizedBox(height: 10,),
+                          SizedBox(
+                            width: 290,
+                            height: 45,
+                            child: ElevatedButton(onPressed: () {}, child: Text("Bağış yap ve konuşmayı başlat", style: TextStyle(color: Colors.white),),
+                            style: ElevatedButton.styleFrom(backgroundColor: Colors.deepOrange, ),
+                            ),
+                          )
+                        ],
                       ),
-                      onPressed: () {
-                        goToPage(10);
-                      },
-                    ),
+                    )),
+                  ],
+                ),
+              );
+            }
+          },
+        ),
+          Positioned(
+            top: 30,
+            left: 20,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 4),
+              child: Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                ),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back_ios_rounded,
+                    size: 20,
                   ),
+                  onPressed: () {
+                    goToPage(10);
+                  },
                 ),
               ),
-            ],
+            ),
           ),
         ],
       )
@@ -80,10 +155,10 @@ class MentorShowcasePage extends ConsumerWidget {
 class MentorShowCaseTop extends StatelessWidget {
   const MentorShowCaseTop({
     super.key,
-    required this.width,
+    required this.width, required this.fullName, required this.nickname, required this.country, required this.school, required this.erasmusSchool, required this.aboutMe, required this.skills, required this.lessons,
   });
-
   final double width;
+  final String fullName, nickname, country, school, erasmusSchool, aboutMe, skills, lessons;
 
   @override
   Widget build(BuildContext context) {
@@ -116,35 +191,38 @@ class MentorShowCaseTop extends StatelessWidget {
         SizedBox(width: 15,),
         Padding(
           padding: const EdgeInsets.only(top: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Berk Çiçekler", style: TextStyle(fontWeight: FontWeight.bold),),
-              SizedBox(height: 4,),
-              SizedBox(width:180, child: Row(children: [
-                Text("@berkcicekler34", style: TextStyle(fontSize: 12),),
-                Spacer(),
-                Text("İstanbul")
-              ],)),
-              SizedBox(height: 2,),
-              Text("Okul : asasdasd"),
-              Text("erasmus okul : asdadsadssd"),
-              SizedBox(height: 5,),
-              Row(
-                children: [
-                  Container(
-                    width: 15,
-                    height: 15,
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(0, 255, 0, 1),
-                        borderRadius: BorderRadius.circular(10)
+          child: SizedBox(
+            width: width * 0.57,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("${fullName}", style: TextStyle(fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),),
+                SizedBox(height: 4,),
+                SizedBox(width:180, child: Row(children: [
+                  Text("@${nickname}", style: TextStyle(fontSize: 12, overflow: TextOverflow.ellipsis),),
+                  Spacer(),
+                  Text("${country}", style: TextStyle(overflow: TextOverflow.ellipsis),)
+                ],)),
+                SizedBox(height: 2,),
+                Text("Okul : ${school}", style: TextStyle(overflow: TextOverflow.ellipsis),),
+                Text("erasmus okul : ${erasmusSchool}", style: TextStyle(overflow: TextOverflow.ellipsis),),
+                SizedBox(height: 5,),
+                Row(
+                  children: [
+                    Container(
+                      width: 15,
+                      height: 15,
+                      decoration: BoxDecoration(
+                          color: Color.fromRGBO(0, 255, 0, 1),
+                          borderRadius: BorderRadius.circular(10)
+                      ),
                     ),
-                  ),
-                  SizedBox(width: 2,),
-                  Text("Çevrimiçi"),
-                ],
-              ),
-            ],
+                    SizedBox(width: 2,),
+                    Text("Çevrimiçi"),
+                  ],
+                ),
+              ],
+            ),
           ),
         )
       ],
@@ -152,23 +230,32 @@ class MentorShowCaseTop extends StatelessWidget {
   }
 }
 
+class TextContainer extends StatelessWidget {
+  const TextContainer({super.key, required this.widget});
 
+  final Widget widget;
 
-/*FutureBuilder(
-        future: getData(x),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(child: const CircularProgressIndicator()),
-              ],
-            );
-          }else if(snapshot.hasError) {
-            return const Text("hata");
-          }else {
-            return Text(snapshot.data!["fullName"]);
-          }
-        },
-      ),*/
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 300,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.4),
+            spreadRadius: 3,
+            blurRadius: 5,
+            offset: Offset(0, 4), // changes position of shadow
+          ),
+        ],
+      ),
+      child: widget
+    );
+  }
+}
+
+TextStyle H2TextStyle() {
+  return TextStyle(fontSize: 18, color: Color.fromRGBO(52, 77, 87, 1), fontWeight: FontWeight.bold);
+}

@@ -7,6 +7,7 @@ import 'package:erasmus_connect/screens/homepage/main_screen/education_community
 import 'package:erasmus_connect/screens/homepage/main_screen/education_community_page/event_creator_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/health_insurance_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/notifications/notifications_page.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/messaging_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/residency_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/schools_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/search_list_page.dart';
@@ -59,7 +60,7 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
     setState(() {
       selectedIndex = index;
 
-      if (index == 4 && ref.read(userProvider).fullName == "") {
+      if ((index == 4 || index == 1) && ref.read(userProvider).type == "") {
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (builder) => LoginScreen()));
         Future.delayed(const Duration(milliseconds: 2500), () {
@@ -81,7 +82,9 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
         physics: NeverScrollableScrollPhysics(), //Sürüklenememesi için
         children: [
           ChatbotPage(),
-          ChatPage(),
+          ChatPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
           HomePage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
@@ -142,6 +145,12 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
             pageController.jumpToPage(index);
           }),
           SearchResultsPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          MentorShowcasePage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          MessagingPage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
         ],

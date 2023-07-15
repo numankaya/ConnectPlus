@@ -111,7 +111,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
           type: type,
         aboutMe: oldUser.aboutMe,
         lessons: oldUser.lessons,
-        skills: oldUser.skills
+        skills: oldUser.skills,
+        chatUsers: oldUser.chatUsers
       ));
       print(value);
       print("1");

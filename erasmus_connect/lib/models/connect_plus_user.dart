@@ -160,7 +160,8 @@ class ConnectPlusUser {
   final String? skills;
   final String? lessons;
   final bool isMailVerified;
-  ConnectPlusUser({
+  final Map<String, dynamic>? chatUsers;
+  ConnectPlusUser( {
     required this.uId,
     required this.fullName,
     required this.nickName,
@@ -176,6 +177,7 @@ class ConnectPlusUser {
     required this.skills,
     required this.lessons,
     required this.isMailVerified,
+    required this.chatUsers
   });
 
   ConnectPlusUser copyWith({
@@ -194,6 +196,7 @@ class ConnectPlusUser {
     String? skills,
     String? lessons,
     bool? isMailVerified,
+    Map<String, Map<String, dynamic>>? chatUsers,
   }) {
     return ConnectPlusUser(
       uId: uId ?? this.uId,
@@ -211,6 +214,7 @@ class ConnectPlusUser {
       skills: skills ?? this.skills,
       lessons: lessons ?? this.lessons,
       isMailVerified: isMailVerified ?? this.isMailVerified,
+      chatUsers:  chatUsers ?? this.chatUsers,
     );
   }
 
@@ -258,6 +262,10 @@ class ConnectPlusUser {
       result.addAll({'lessons': lessons});
     }
     result.addAll({'isMailVerified': isMailVerified});
+
+    if(chatUsers != null){
+      result.addAll({"chatUsers": chatUsers});
+    }
   
     return result;
   }
@@ -279,6 +287,7 @@ class ConnectPlusUser {
       skills: map['skills'],
       lessons: map['lessons'],
       isMailVerified: map['isMailVerified'] ?? false,
+      chatUsers: map['chatUsers'],
     );
   }
 
@@ -311,7 +320,8 @@ class ConnectPlusUser {
       other.aboutMe == aboutMe &&
       other.skills == skills &&
       other.lessons == lessons &&
-      other.isMailVerified == isMailVerified;
+      other.isMailVerified == isMailVerified &&
+      other.chatUsers == chatUsers;
   }
 
   @override
@@ -330,7 +340,8 @@ class ConnectPlusUser {
       aboutMe.hashCode ^
       skills.hashCode ^
       lessons.hashCode ^
-      isMailVerified.hashCode;
+      isMailVerified.hashCode ^
+      chatUsers.hashCode;
   }
 }
 
@@ -354,7 +365,7 @@ class UserNotifier extends StateNotifier<ConnectPlusUser> {
       aboutMe: '',
       skills: '',
       lessons: '',
-
+      chatUsers: null,
     );
   }
 
@@ -383,7 +394,8 @@ final userProvider = StateNotifierProvider<UserNotifier, ConnectPlusUser>(
         erasmusSchool: '',
         aboutMe: '',
         skills: '',
-        lessons: ''
+        lessons: '',
+      chatUsers: null,
     )
     )
 );

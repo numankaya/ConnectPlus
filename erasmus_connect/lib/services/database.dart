@@ -24,7 +24,8 @@ class FirebaseFireStoreMethods {
         "erasmusSchool": "",
         "aboutMe": "",
         "lessons": "",
-        "skills": ""
+        "skills": "",
+        "chatUsers": {}
       });
     } on FirebaseException catch (e) {
       print(e.message);
@@ -97,4 +98,25 @@ class FirebaseFireStoreMethods {
       return null;
     }
   }
+
+  Future<void> UpdateLastMessage(String Id1, String Id2, Timestamp time ,String message) async {
+    // get user's data from firestore
+    try {
+      var collection = FirebaseFirestore.instance.collection('users');
+      Map<String, dynamic>? user1 = await GetUser(Id1);
+      Map<String, dynamic>? user2 = await GetUser(Id2);
+      user1!["chatUsers"][Id2]["lastMessage"] = message;
+      user2!["chatUsers"][Id1]["lastMessage"] = message;
+      collection.doc(Id1).update({
+        "chatUsers": user1!["chatUsers"]
+      });
+      collection.doc(Id2).update({
+        "chatUsers": user2!["chatUsers"]
+      });
+    } on FirebaseException catch (e) {
+      print(e.message);
+      return null;
+    }
+  }
+
 }

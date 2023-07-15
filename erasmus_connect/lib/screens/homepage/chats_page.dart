@@ -1,49 +1,26 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/messaging_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ChatPage extends StatelessWidget {
+import '../../models/connect_plus_user.dart';
+
+class ChatPage extends ConsumerWidget {
+  const ChatPage({super.key, required this.goToPage});
+
+  final Function(int) goToPage;
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color.fromARGB(255, 247, 235, 225),
         appBar: AppBar(
           shadowColor: Color.fromARGB(255, 247, 235, 225),
-          backgroundColor: Color.fromARGB(255, 255, 144, 34),
-          title: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 4),
-                child: Container(
-                  height: 38,
-                  width: 38,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                  ),
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back_ios_rounded,
-                      size: 20,
-                    ),
-                    onPressed: () {
-                      
-                    },
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 70),
-                width: 150,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(child: Text("Mentorlar")),
-              ),
-            ],
-          ),
+          backgroundColor: Color.fromRGBO(255, 144, 34, 0.51),
+          title: Center(child: Text("Mesajlar")),
           automaticallyImplyLeading: false,
           centerTitle: true,
           elevation: 0,
@@ -106,50 +83,82 @@ class ChatPage extends StatelessWidget {
                 ],
               ),
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 70,
-                            width: 70,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              color: Colors.lightBlue,
-                            ),
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                          ),
-                          FastDMUserContainer(),
-                          FastDMUserContainer(),
-                          FastDMUserContainer(),
-                          FastDMUserContainer(),
-                          FastDMUserContainer(),
-                          FastDMUserContainer(),
-                          FastDMUserContainer(),
-                          FastDMUserContainer(),
+            StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection("users").snapshots(),
+              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else {
+                  if(ref.read(userProvider).uId != "") {
+                    Map<String, dynamic>? chatUsers = ref.read(userProvider).chatUsers;
+                    List<String>? keysList = chatUsers?.keys.toList();
+                    print(keysList?[0]);
+                    List<Widget> chats = [];
 
-                        ],
-                      ),
-                    ),
-                  ),
-                )
-              ],
+                    for(int i = 0; i < snapshot.data!.docs.length; i++) {
+                      if (keysList!.contains(snapshot.data!.docs[i].id) ) {
+                        chats.add(DMUserMessageContainer(id: snapshot.data!.docs[i].id, email: snapshot.data!.docs[i].get("mail"),name: snapshot.data!.docs[i].get("fullName"), lastMessage: chatUsers?[snapshot.data!.docs[i].id]["lastMessage"], ref: ref, goToPage: goToPage,));
+                        print(chatUsers.toString());
+                        print(snapshot.data!.docs[i].id);
+                        print((chatUsers?[snapshot.data!.docs[i].id]["timeOut"] as Timestamp).toDate());
+                      }
+                    }
+                    return SingleChildScrollView(child: Column( children: chats,));
+                  }
+                  return Text("account needed");
+
+                }
+              },
             ),
-            DMUserMessageContainer(),
           ],
         ),
       ),
+    );
+  }
+}
+
+class ChatsTopBar extends StatelessWidget {
+  const ChatsTopBar({
+    super.key, required this.fastDMUsers
+  });
+
+  final List<Widget> fastDMUsers;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Padding(
+              padding: EdgeInsets.only(left: 10, right: 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 70,
+                    width: 70,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.lightBlue,
+                    ),
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                  ),
+                  ...fastDMUsers
+
+                ],
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 }
@@ -186,32 +195,57 @@ class FastDMUserContainer extends StatelessWidget {
 }
 
 class DMUserMessageContainer extends StatelessWidget {
-  const DMUserMessageContainer({Key? key}) : super(key: key);
+  const DMUserMessageContainer({Key? key, required this.name, required this.lastMessage, required this.id, required this.email, required this.ref, required this.goToPage}) : super(key: key);
+
+  final name, lastMessage, id ,email;
+
+  final WidgetRef ref;
+
+  final Function(int) goToPage;
+
+
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery. of(context). size. width ;
-    return Container(
-      width: width * 0.99,
-      height: 80,
-      color: Colors.deepOrange,
-      padding: EdgeInsets.all(8),
-      child: Row(
-        children: [
-          Container(
-            height: 60,
-            width: 60,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                image: DecorationImage(
-                    image: AssetImage("assets/images/Default_pp.png"),
-                    fit: BoxFit.cover
-                ),
-                border: Border.all(color: Colors.black, width: 1)
+    return GestureDetector(
+      onTap: () {
+        ref.read(receieverIdProvider.notifier).state = id;
+        goToPage(19);
+
+      },
+      child: Container(
+        width: width * 0.99,
+        height: 80,
+        padding: EdgeInsets.all(8),
+        child: Row(
+          children: [
+            Container(
+              height: 60,
+              width: 60,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/Default_pp.png"),
+                      fit: BoxFit.cover
+                  ),
+                  border: Border.all(color: Colors.black, width: 1)
+              ),
             ),
-          ),
-        ],
+            SizedBox(width: 15,),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("${name}", style: TextStyle(fontWeight: FontWeight.bold),),
+                Text("${lastMessage}", style: TextStyle(color: Color.fromRGBO(0, 0, 0, 0.5), fontFamily: "Roboto"),)
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
 }
+
+final receieverIdProvider = StateProvider<String>((ref) => "");

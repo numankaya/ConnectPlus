@@ -10,7 +10,10 @@ import 'package:image_picker/image_picker.dart';
 import '../registeration_login/edit_profile_screen/edit_profile_screen.dart';
 
 class ProfilePage extends ConsumerWidget {
-  ProfilePage({super.key,required this.goToPage,});
+  ProfilePage({
+    super.key,
+    required this.goToPage,
+  });
   final Function(int) goToPage;
   Uint8List? _image;
 
@@ -19,17 +22,14 @@ class ProfilePage extends ConsumerWidget {
     _image = img;
   }
 
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ConnectPlusUser user = ref.watch(userProvider);
     return Scaffold(
-        appBar: AppBar(
-          title: Center(child: Text('Profil')),
-        ),
+        backgroundColor: Color.fromARGB(255, 255, 248, 242),
         body: ProviderScope(
           child: Align(
-            alignment: Alignment.topCenter,
+            alignment: Alignment.center,
             child: SingleChildScrollView(
               child: Container(
                 padding: EdgeInsets.all(8.0),
@@ -72,37 +72,50 @@ class ProfilePage extends ConsumerWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    Text(user.fullName!),
+                    Text(
+                      user.fullName!,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     SizedBox(
                       height: 10,
                     ),
-                    TextContainer(goToPage: goToPage, pageNumber: 15,
-                        widget:
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Nick : ${user.nickName!}"),
-                            Text("Mail : ${user.mail!}"),
-                            Text("Telefon Numarası : ${user.phone!}"),
-                            Text("Okul : ${user.school!}"),
-                            Text("Erasmus Okulu : ${user.erasmusSchool!}"),
-                          ],
-                        ),
-                      )),
+                    TextContainer(
+                        goToPage: goToPage,
+                        pageNumber: 15,
+                        widget: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Nick : ${user.nickName!}"),
+                              Text("Mail : ${user.mail!}"),
+                              Text("Telefon Numarası : ${user.phone!}"),
+                              Text("Okul : ${user.school!}"),
+                              Text("Erasmus Okulu : ${user.erasmusSchool!}"),
+                            ],
+                          ),
+                        )),
                     SizedBox(
                       height: 10,
                     ),
-                    TextContainer(goToPage: goToPage, pageNumber: 16,
-                        widget:
-                        Padding(
+                    TextContainer(
+                        goToPage: goToPage,
+                        pageNumber: 16,
+                        widget: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Hakkımda", style: H2TextStyle()),
-                              Text("${user.aboutMe}", style: TextStyle(fontSize: 15, color: Color.fromRGBO(108, 108, 108, 1)),),
+                              Text(
+                                "${user.aboutMe}",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Color.fromRGBO(108, 108, 108, 1)),
+                              ),
                               Divider(),
                               Text("Yetkinlikler", style: H2TextStyle()),
                               Text("${user.skills}"),
@@ -110,13 +123,16 @@ class ProfilePage extends ConsumerWidget {
                               Text("Alınan Dersler", style: H2TextStyle()),
                               Text("${user.lessons}"),
                               Divider(),
-                              Text("Bağış Yapılacak Kurum", style: H2TextStyle()),
+                              Text("Bağış Yapılacak Kurum",
+                                  style: H2TextStyle()),
                               Container(
                                   width: 90,
                                   height: 90,
                                   padding: EdgeInsets.only(left: 10, right: 10),
                                   decoration: BoxDecoration(
-                                    border: Border.all(color: Color.fromRGBO(117, 117, 117, 1), width: 2),
+                                    border: Border.all(
+                                        color: Color.fromRGBO(117, 117, 117, 1),
+                                        width: 2),
                                     borderRadius: BorderRadius.circular(10),
                                     color: Color.fromRGBO(243, 248, 255, 1),
                                     boxShadow: [
@@ -124,16 +140,17 @@ class ProfilePage extends ConsumerWidget {
                                         color: Colors.grey.withOpacity(0.4),
                                         spreadRadius: 1,
                                         blurRadius: 5,
-                                        offset: Offset(0, 4), // changes position of shadow
+                                        offset: Offset(
+                                            0, 4), // changes position of shadow
                                       ),
-                                    ],),
+                                    ],
+                                  ),
                                   child: Center(
                                     child: Image(
                                       image: AssetImage(
                                           "assets/images/unicef.png"),
                                     ),
-                                  )
-                              ),
+                                  )),
                             ],
                           ),
                         )),
@@ -147,7 +164,11 @@ class ProfilePage extends ConsumerWidget {
 }
 
 class TextContainer extends StatelessWidget {
-  const TextContainer({super.key, required this.widget, required this.goToPage, required this.pageNumber});
+  const TextContainer(
+      {super.key,
+      required this.widget,
+      required this.goToPage,
+      required this.pageNumber});
 
   final Widget widget;
   final Function(int) goToPage;
@@ -158,26 +179,26 @@ class TextContainer extends StatelessWidget {
     return Container(
       width: 300,
       decoration: BoxDecoration(
-          color: Colors.white,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
+        boxShadow: [
+          BoxShadow(
             color: Colors.grey.withOpacity(0.4),
             spreadRadius: 3,
             blurRadius: 5,
             offset: Offset(0, 4), // changes position of shadow
           ),
-      ],
-    ),
+        ],
+      ),
       child: Stack(
         children: [
           Positioned(
             right: 0,
-            child: IconButton(onPressed: () {
-              goToPage(pageNumber);
-            },
-                icon: Icon(Icons.edit)
-            ),
+            child: IconButton(
+                onPressed: () {
+                  goToPage(pageNumber);
+                },
+                icon: Icon(Icons.edit)),
           ),
           widget,
         ],
@@ -187,5 +208,8 @@ class TextContainer extends StatelessWidget {
 }
 
 TextStyle H2TextStyle() {
-  return TextStyle(fontSize: 18, color: Color.fromRGBO(52, 77, 87, 1), fontWeight: FontWeight.bold);
+  return TextStyle(
+      fontSize: 18,
+      color: Color.fromRGBO(52, 77, 87, 1),
+      fontWeight: FontWeight.bold);
 }

@@ -1,65 +1,35 @@
+import 'package:erasmus_connect/models/connect_plus_user.dart';
 import 'package:erasmus_connect/screens/registeration_login/login_screen/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SettingsPage extends StatefulWidget {
+class SettingsPage extends ConsumerStatefulWidget {
   final Function(int) goToPage;
 
   const SettingsPage({required this.goToPage, Key? key}) : super(key: key);
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  ConsumerState<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _SettingsPageState extends ConsumerState<SettingsPage> {
   String dropdownValue1 = "Türkçe";
   String dropdownValue2 = "Aç";
 
   @override
   Widget build(BuildContext context) {
+    ConnectPlusUser user = ref.watch(userProvider);
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Color.fromARGB(255, 255, 248, 242),
-        foregroundColor: Color.fromARGB(255, 255, 248, 242),
-        surfaceTintColor: Color.fromARGB(255, 255, 248, 242),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              height: 40,
-              width: 40,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Color.fromARGB(255, 210, 210, 210),
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.white,
-              ),
-              child: IconButton(
-                onPressed: () {
-                  widget.goToPage(2);
-                },
-                icon: Icon(
-                  size: 24,
-                  CupertinoIcons.chevron_back,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
       backgroundColor: Color.fromARGB(255, 255, 248, 242),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 10),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 20),
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              SizedBox(height: 40),
               Container(
                 decoration: BoxDecoration(
                   boxShadow: [
@@ -92,7 +62,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Hande',
+                          '${user.fullName}',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 14,
@@ -100,7 +70,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           ),
                         ),
                         Text(
-                          '@Hande12',
+                          '@${user.nickName}',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 14,
@@ -297,49 +267,46 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
               SizedBox(height: 20),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.05,
-                width: MediaQuery.of(context).size.width * 0.35,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.8),
-                      spreadRadius: 1,
-                      blurRadius: 5,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(15),
-                  color: Color.fromARGB(255, 250, 176, 43),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Çıkış Yap',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 190, 35, 53),
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+              GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  FirebaseAuth.instance.signOut();
+                  ref.read(userProvider.notifier).LogOut();
+                },
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.05,
+                  width: MediaQuery.of(context).size.width * 0.35,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.8),
+                        spreadRadius: 1,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        FirebaseAuth.instance.signOut();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
-                          ),
-                        );
-                      },
-                      icon: Icon(
+                    ],
+                    borderRadius: BorderRadius.circular(15),
+                    color: Color.fromARGB(255, 250, 176, 43),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Çıkış Yap',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 190, 35, 53),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Icon(
                         Icons.arrow_circle_right_outlined,
                         color: Colors.black,
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

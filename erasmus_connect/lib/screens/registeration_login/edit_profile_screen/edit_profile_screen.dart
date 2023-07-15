@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:erasmus_connect/models/connect_plus_user.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -19,7 +20,13 @@ class EditProfilePage extends ConsumerStatefulWidget {
 }
 
 class _EditProfilePageState extends ConsumerState<EditProfilePage> {
-  late TextEditingController fullName, nickName, phone, country, city, school, erasmusSchool;
+  late TextEditingController fullName,
+      nickName,
+      phone,
+      country,
+      city,
+      school,
+      erasmusSchool;
 
   late ConnectPlusUser user;
 
@@ -95,7 +102,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
             school: school.text,
             erasmusSchool: erasmusSchool.text)
         .then((value) {
-          ConnectPlusUser oldUser = ref.read(userProvider);
+      ConnectPlusUser oldUser = ref.read(userProvider);
       ref.read(userProvider.notifier).ChangeUser(ConnectPlusUser(
           uId: user.uId,
           fullName: fullName.text,
@@ -109,11 +116,10 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
           school: school.text,
           erasmusSchool: erasmusSchool.text,
           type: type,
-        aboutMe: oldUser.aboutMe,
-        lessons: oldUser.lessons,
-        skills: oldUser.skills,
-        chatUsers: oldUser.chatUsers
-      ));
+          aboutMe: oldUser.aboutMe,
+          lessons: oldUser.lessons,
+          skills: oldUser.skills,
+          chatUsers: oldUser.chatUsers));
       print(value);
       print("1");
     });
@@ -122,40 +128,66 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Color.fromARGB(255, 255, 248, 242),
+        foregroundColor: Color.fromARGB(255, 255, 248, 242),
+        surfaceTintColor: Color.fromARGB(255, 255, 248, 242),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Color.fromARGB(255, 210, 210, 210),
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.white,
+              ),
+              child: IconButton(
+                onPressed: () {
+                  widget.goToPage(4);
+                },
+                icon: Icon(
+                  size: 24,
+                  CupertinoIcons.chevron_back,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Text(
+              'Profilini Düzenle',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                shadows: [
+                  Shadow(
+                    blurRadius: 5.0,
+                    color: Color.fromARGB(81, 0, 0, 0),
+                    offset: Offset(2.0, 2.0),
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              CupertinoIcons.chevron_back,
+              color: Colors.transparent,
+            ),
+          ],
+        ),
+      ),
+      backgroundColor: Color.fromARGB(255, 255, 248, 242),
       body: Align(
         alignment: Alignment.topCenter,
         child: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(
-                height: 40,
-              ),
-              SizedBox(
-                width: 350,
-                child: Row(
-                  children: [
-                    CustomIconButton(
-                        height: 60,
-                        width: 60,
-                        margin: EdgeInsets.all(2),
-                        alignment: Alignment.centerLeft,
-                        onTap: () {
-                          widget.goToPage(4);
-                        },
-                        child: CustomImageView(
-                            svgPath: ImageConstant.imgArrowleft)),
-                    SizedBox(
-                      width: 65,
-                    ),
-                    Text(
-                      "Edit Profile",
-                      style: TextStyle(fontFamily: "Intern", fontSize: 24),
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
+                height: 30,
               ),
               BerkTextField(
                 label: "Full Name",
@@ -169,7 +201,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                 controller: nickName,
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               SizedBox(
                 width: 350,
@@ -265,16 +297,50 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                   controller: erasmusSchool,
                   suggestions: schools),
               SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () {
                   UpdateProfile();
                 },
-                child: Text("Kaydet"),
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.deepOrange,
-                    onPrimary: Colors.black
+                child: Container(
+                  alignment: Alignment.center,
+                  height: MediaQuery.of(context).size.height * 0.05,
+                  width: MediaQuery.of(context).size.width * 0.35,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.8),
+                        spreadRadius: 1,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(15),
+                    color: Color.fromARGB(255, 197, 126, 62),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Kaydet',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Icon(
+                        Icons.arrow_circle_right_outlined,
+                        color: Colors.black,
+                      ),
+                    ],
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -16,11 +16,18 @@ class ChatPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 247, 235, 225),
+        backgroundColor: Color.fromARGB(255, 255, 248, 242),
         appBar: AppBar(
           shadowColor: Color.fromARGB(255, 247, 235, 225),
           backgroundColor: Color.fromRGBO(255, 144, 34, 0.51),
-          title: Center(child: Text("Mesajlar")),
+          title: Center(
+            child: Text(
+              "Mesajlar",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
           automaticallyImplyLeading: false,
           centerTitle: true,
           elevation: 0,
@@ -34,8 +41,8 @@ class ChatPage extends ConsumerWidget {
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 15),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                         filled: true,
                         fillColor: Color.fromARGB(255, 250, 229, 210),
                         hintText: 'Ara...',
@@ -63,8 +70,8 @@ class ChatPage extends ConsumerWidget {
                     height: 48,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Color.fromARGB(255, 250, 229,
-                          210), // Background color of the button
+                      color: Color.fromARGB(
+                          255, 250, 229, 210), // Background color of the button
                     ),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(15),
@@ -84,30 +91,44 @@ class ChatPage extends ConsumerWidget {
               ),
             ),
             StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection("users").snapshots(),
-              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              stream:
+                  FirebaseFirestore.instance.collection("users").snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return CircularProgressIndicator();
                 } else {
-                  if(ref.read(userProvider).uId != "") {
-                    Map<String, dynamic>? chatUsers = ref.read(userProvider).chatUsers;
+                  if (ref.read(userProvider).uId != "") {
+                    Map<String, dynamic>? chatUsers =
+                        ref.read(userProvider).chatUsers;
                     List<String>? keysList = chatUsers?.keys.toList();
                     print(keysList?[0]);
                     List<Widget> chats = [];
 
-                    for(int i = 0; i < snapshot.data!.docs.length; i++) {
-                      if (keysList!.contains(snapshot.data!.docs[i].id) ) {
-                        chats.add(DMUserMessageContainer(id: snapshot.data!.docs[i].id, email: snapshot.data!.docs[i].get("mail"),name: snapshot.data!.docs[i].get("fullName"), lastMessage: chatUsers?[snapshot.data!.docs[i].id]["lastMessage"], ref: ref, goToPage: goToPage,));
+                    for (int i = 0; i < snapshot.data!.docs.length; i++) {
+                      if (keysList!.contains(snapshot.data!.docs[i].id)) {
+                        chats.add(DMUserMessageContainer(
+                          id: snapshot.data!.docs[i].id,
+                          email: snapshot.data!.docs[i].get("mail"),
+                          name: snapshot.data!.docs[i].get("fullName"),
+                          lastMessage: chatUsers?[snapshot.data!.docs[i].id]
+                              ["lastMessage"],
+                          ref: ref,
+                          goToPage: goToPage,
+                        ));
                         print(chatUsers.toString());
                         print(snapshot.data!.docs[i].id);
-                        print((chatUsers?[snapshot.data!.docs[i].id]["timeOut"] as Timestamp).toDate());
+                        print((chatUsers?[snapshot.data!.docs[i].id]["timeOut"]
+                                as Timestamp)
+                            .toDate());
                       }
                     }
-                    return SingleChildScrollView(child: Column( children: chats,));
+                    return SingleChildScrollView(
+                        child: Column(
+                      children: chats,
+                    ));
                   }
                   return Text("account needed");
-
                 }
               },
             ),
@@ -119,9 +140,7 @@ class ChatPage extends ConsumerWidget {
 }
 
 class ChatsTopBar extends StatelessWidget {
-  const ChatsTopBar({
-    super.key, required this.fastDMUsers
-  });
+  const ChatsTopBar({super.key, required this.fastDMUsers});
 
   final List<Widget> fastDMUsers;
 
@@ -152,7 +171,6 @@ class ChatsTopBar extends StatelessWidget {
                     ),
                   ),
                   ...fastDMUsers
-
                 ],
               ),
             ),
@@ -179,15 +197,21 @@ class FastDMUserContainer extends StatelessWidget {
             height: 70,
             width: 70,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              image: DecorationImage(
-                image: AssetImage("assets/images/Default_pp.png"),
-                fit: BoxFit.cover
-              ),
-              border: Border.all(color: Colors.black, width: 1)
-            ),
+                borderRadius: BorderRadius.circular(100),
+                image: DecorationImage(
+                    image: AssetImage("assets/images/Default_pp.png"),
+                    fit: BoxFit.cover),
+                border: Border.all(color: Colors.black, width: 1)),
           ),
-          Text("Berk Çiçekler", style: TextStyle(overflow: TextOverflow.ellipsis, fontSize: 12,fontWeight: FontWeight.bold, color: Color.fromRGBO(64, 58, 122, 1)), maxLines: 1,)
+          Text(
+            "Berk Çiçekler",
+            style: TextStyle(
+                overflow: TextOverflow.ellipsis,
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Color.fromRGBO(64, 58, 122, 1)),
+            maxLines: 1,
+          )
         ],
       ),
     );
@@ -195,24 +219,29 @@ class FastDMUserContainer extends StatelessWidget {
 }
 
 class DMUserMessageContainer extends StatelessWidget {
-  const DMUserMessageContainer({Key? key, required this.name, required this.lastMessage, required this.id, required this.email, required this.ref, required this.goToPage}) : super(key: key);
+  const DMUserMessageContainer(
+      {Key? key,
+      required this.name,
+      required this.lastMessage,
+      required this.id,
+      required this.email,
+      required this.ref,
+      required this.goToPage})
+      : super(key: key);
 
-  final name, lastMessage, id ,email;
+  final name, lastMessage, id, email;
 
   final WidgetRef ref;
 
   final Function(int) goToPage;
 
-
-
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery. of(context). size. width ;
+    double width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
         ref.read(receieverIdProvider.notifier).state = id;
         goToPage(19);
-
       },
       child: Container(
         width: width * 0.99,
@@ -227,18 +256,26 @@ class DMUserMessageContainer extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100),
                   image: DecorationImage(
                       image: AssetImage("assets/images/Default_pp.png"),
-                      fit: BoxFit.cover
-                  ),
-                  border: Border.all(color: Colors.black, width: 1)
-              ),
+                      fit: BoxFit.cover),
+                  border: Border.all(color: Colors.black, width: 1)),
             ),
-            SizedBox(width: 15,),
+            SizedBox(
+              width: 15,
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("${name}", style: TextStyle(fontWeight: FontWeight.bold),),
-                Text("${lastMessage}", style: TextStyle(color: Color.fromRGBO(0, 0, 0, 0.5), fontFamily: "Roboto"),)
+                Text(
+                  "${name}",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "${lastMessage}",
+                  style: TextStyle(
+                      color: Color.fromRGBO(0, 0, 0, 0.5),
+                      fontFamily: "Roboto"),
+                )
               ],
             )
           ],

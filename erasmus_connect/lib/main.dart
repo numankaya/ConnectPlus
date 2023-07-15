@@ -53,7 +53,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale currentLocale = Locale('tr');
+  Locale currentLocale = Locale('en');
 
   void changeLocale() {
     setState(() {

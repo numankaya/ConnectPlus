@@ -147,9 +147,6 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
           SearchResultsPage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
-          MentorShowcasePage(goToPage: (index) {
-            pageController.jumpToPage(index);
-          }),
           MessagingPage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),

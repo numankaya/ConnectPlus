@@ -1,16 +1,167 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/accommodation_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/schools_page.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/search_list_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/travel_page.dart';
+import 'package:erasmus_connect/screens/homepage/video_conference.dart';
+import 'package:erasmus_connect/screens/registeration_login/login_screen/login_screen.dart';
+import 'package:erasmus_connect/screens/registeration_login/register_screen/register_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   final Function(int) goToPage;
   HomePage({required this.goToPage});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  // List<bool> dropdownOpenState = [false, false, false, false, false];
+
+  final List<String> images = [];
+
+  // final List<String> countryNames = [
+  //   'Türkiye',
+  //   'İsveç',
+  //   'İtalya',
+  //   'Almanya',
+  //   'Hollanda'
+  // ];
+
+  final _fireStore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
+
+  String searchText = '';
+
+  void navigateToSearchResultsPage() {
+    widget.goToPage(23);
+  }
+
+  final List<String> options = ['Option 1', 'Option 2', 'Option 3'];
+  List<String> filteredOptions = [];
+
+  @override
+  void initState() {
+    super.initState();
+    filteredOptions = options;
+  }
+
+  void filterOptions(String value) {
+    setState(() {
+      searchText = value;
+      filteredOptions = options
+          .where((option) => option.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    });
+  }
+
+  // late User loggedInUser;
+  void _showAlertDialogForAccess(BuildContext context, message) {
+    showDialog(
+      context: context,
+      builder: (
+        BuildContext context,
+      ) {
+        return AlertDialog(
+          backgroundColor: Color.fromARGB(255, 189, 104, 28),
+          // title: Text('Alert'),
+          content: Text(
+            message,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          // actions: [
+          //   TextButton(
+          //     onPressed: () {
+          //       Navigator.of(context).pop();
+          //     },
+          //     child: Text('OK'),
+          //   ),
+          // ],
+        );
+      },
+    );
+  }
+
+  void _showAlertDialogLogOut(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (
+        BuildContext context,
+      ) {
+        return AlertDialog(
+          actionsPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          alignment: Alignment.center,
+          backgroundColor: Color.fromARGB(255, 189, 104, 28),
+          actions: [
+            Align(
+              alignment: Alignment.center,
+              child: GestureDetector(
+                onTap: () {
+                  SystemNavigator.pop();
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Color.fromARGB(255, 238, 217, 198),
+                  ),
+                  child: Text(
+                    "Çıkış Yap",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            Divider(
+              color: Colors.black,
+              thickness: 2,
+              height: 10,
+            ),
+            SizedBox(height: 10),
+            Align(
+              alignment: Alignment.center,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Color.fromARGB(255, 238, 217, 198),
+                  ),
+                  child: Text(
+                    "Vazgeç",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 247, 235, 225),
+        backgroundColor: Color.fromARGB(255, 255, 248, 242),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +236,34 @@ class HomePage extends StatelessWidget {
                       backgroundColor: Color.fromARGB(255, 253, 227, 205),
                       child: IconButton(
                         color: Color.fromARGB(255, 253, 227, 205),
-                        onPressed: () => goToPage(15),
+                        onPressed: () => widget.goToPage(18),
+                        icon: Icon(Icons.notification_add_outlined),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(
+                              0, 3), // controls the position of the shadow
+                        ),
+                      ],
+                    ),
+                    child: CircleAvatar(
+                      foregroundImage: AssetImage(
+                        'assets/images/out.png',
+                      ),
+                      backgroundColor: Color.fromARGB(255, 253, 227, 205),
+                      child: IconButton(
+                        color: Color.fromARGB(255, 253, 227, 205),
+                        onPressed: () {
+                          _showAlertDialogLogOut(context);
+                        },
                         icon: Icon(Icons.notification_add_outlined),
                       ),
                     ),
@@ -118,7 +296,12 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         onChanged: (value) {
-                          // Handle search bar input
+                          setState(() {
+                            searchText = value;
+                          });
+                        },
+                        onTap: () {
+                          navigateToSearchResultsPage();
                         },
                       ),
                     ),
@@ -134,7 +317,7 @@ class HomePage extends StatelessWidget {
                       child: InkWell(
                         borderRadius: BorderRadius.circular(15),
                         onTap: () {
-                          // Add your onTap logic here
+                          widget.goToPage(22);
                         },
                         child: Padding(
                           padding: EdgeInsets.all(6),
@@ -174,7 +357,7 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.all(4.0),
                         child: GestureDetector(
                           onTap: () {
-                            goToPage(8);
+                            widget.goToPage(8);
                           },
                           child: Stack(
                             children: [
@@ -206,7 +389,7 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.all(4.0),
                         child: GestureDetector(
                           onTap: () {
-                            goToPage(9);
+                            widget.goToPage(9);
                           },
                           child: Stack(
                             children: [
@@ -238,7 +421,7 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.all(4.0),
                         child: GestureDetector(
                           onTap: () {
-                            goToPage(11);
+                            widget.goToPage(11);
                           },
                           child: Stack(
                             children: [
@@ -270,7 +453,7 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.all(4.0),
                         child: GestureDetector(
                           onTap: () {
-                            goToPage(12);
+                            widget.goToPage(12);
                           },
                           child: Stack(
                             children: [
@@ -325,7 +508,7 @@ class HomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(10.0),
                     child: GestureDetector(
                       onTap: () {
-                        goToPage(6);
+                        widget.goToPage(6);
                       },
                       child: Stack(
                         children: [
@@ -356,7 +539,7 @@ class HomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(10.0),
                     child: GestureDetector(
                       onTap: () {
-                        goToPage(7);
+                        widget.goToPage(7);
                       },
                       child: Stack(
                         children: [
@@ -369,7 +552,7 @@ class HomePage extends StatelessWidget {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                'Okullar',
+                                AppLocalizations.of(context).okullar,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -387,7 +570,7 @@ class HomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(10.0),
                     child: GestureDetector(
                       onTap: () {
-                        goToPage(5);
+                        widget.goToPage(5);
                       },
                       child: Stack(
                         children: [
@@ -418,7 +601,12 @@ class HomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(10.0),
                     child: GestureDetector(
                       onTap: () {
-                        goToPage(10);
+                        if (_auth.currentUser?.email != null) {
+                          widget.goToPage(10);
+                        } else {
+                          _showAlertDialogForAccess(context,
+                              "Mentorluk sayfasına erişmek ve mentorlar ile iletişime geçmek için profil oluşturmanız gerekmektedir. Uygulamaya kayıt olun.");
+                        }
                       },
                       child: Stack(
                         children: [
@@ -450,7 +638,12 @@ class HomePage extends StatelessWidget {
               Center(
                 child: GestureDetector(
                   onTap: () {
-                    goToPage(16);
+                    if (_auth.currentUser?.email != null) {
+                      widget.goToPage(17);
+                    } else {
+                      _showAlertDialogForAccess(context,
+                          "Kaliteli erişim topluluğuna katılmak ve aynı okuldan insanlarla komitede buluşmak için profil oluşturmanız gerekmektedir. Uygulamaya kayıt olun.");
+                    }
                   },
                   child: Stack(
                     children: [

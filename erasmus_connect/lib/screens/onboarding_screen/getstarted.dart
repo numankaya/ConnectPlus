@@ -59,10 +59,24 @@ class GetstartedView extends StatelessWidget {
           child: SlideTransition(
             position: _secondHalfAnimation,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 100),
+              padding: const EdgeInsets.only(bottom: 120),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SlideTransition(
+                    position: _welcomeImageAnimation,
+                    child: Container(
+                      constraints:
+                          BoxConstraints(maxWidth: 300, maxHeight: 300),
+                      child: Image.asset(
+                        'assets/images/connect_plus_logo_text.png',
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40.0,
+                  ),
                   SlideTransition(
                     position: _welcomeFirstHalfAnimation,
                     child: Column(
@@ -71,15 +85,7 @@ class GetstartedView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "CONNECT+",
-                              style: TextStyle(
-                                fontSize: 30.0,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 33, 152, 58),
-                              ),
-                            ),
-                            Text(
-                              " İLE               ",
+                              "İLE",
                               style: TextStyle(
                                 fontSize: 30.0,
                                 fontWeight: FontWeight.bold,
@@ -97,7 +103,7 @@ class GetstartedView extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "               HAZIR MISIN ?",
+                          "HAZIR MISIN ?",
                           style: TextStyle(
                             fontSize: 30.0,
                             fontWeight: FontWeight.bold,
@@ -106,23 +112,6 @@ class GetstartedView extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.08,
-                  ),
-                  SlideTransition(
-                    position: _welcomeImageAnimation,
-                    child: Container(
-                      constraints:
-                          BoxConstraints(maxWidth: 250, maxHeight: 250),
-                      child: Image.asset(
-                        'assets/images/airplane_gif.gif',
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.08,
                   ),
                 ],
               ),

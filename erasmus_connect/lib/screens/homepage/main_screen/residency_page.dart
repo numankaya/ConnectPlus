@@ -13,32 +13,37 @@ class ResidencyPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 247, 235, 225),
       appBar: AppBar(
-        shadowColor: Color.fromARGB(255, 247, 235, 225),
-        backgroundColor: Color.fromARGB(255, 247, 235, 225),
+        automaticallyImplyLeading: false,
+        backgroundColor: Color.fromARGB(255, 255, 248, 242),
+        foregroundColor: Color.fromARGB(255, 255, 248, 242),
+        surfaceTintColor: Color.fromARGB(255, 255, 248, 242),
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              height: 38,
-              width: 38,
+              height: 40,
+              width: 40,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: Color.fromARGB(255, 210, 210, 210),
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(12),
                 color: Colors.white,
               ),
               child: IconButton(
-                icon: Icon(
-                  CupertinoIcons.chevron_back,
-                  size: 20,
-                ),
                 onPressed: () {
                   goToPage(2);
                 },
+                icon: Icon(
+                  size: 24,
+                  CupertinoIcons.chevron_back,
+                  color: Colors.black,
+                ),
               ),
             ),
           ],
         ),
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        elevation: 0,
       ),
       body: ContainerList(),
     );

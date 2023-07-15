@@ -1,21 +1,14 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:erasmus_connect/core/app_export.dart';
-import 'package:erasmus_connect/screens/homepage/main_screen/education_community_page/event_brite_api.dart';
-import 'package:erasmus_connect/screens/homepage/main_screen/education_community_page/image_upload.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:erasmus_connect/screens/homepage/main_screen/education_community_page/image_list.dart';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:intl/intl.dart';
-import 'package:like_button/like_button.dart';
 import 'dart:io';
-
-import 'package:shared_preferences/shared_preferences.dart';
 
 class EducationCommunityPage extends StatefulWidget {
   final Function(int) goToPage;
@@ -72,23 +65,24 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
     });
   }
 
-  // Future<void> getLocation() async {
-  //   try {
-  //     Position position = await Geolocator.getCurrentPosition(
-  //       desiredAccuracy: LocationAccuracy.high,
-  //     );
-  //     print('Latitude: ${position.latitude}');
-  //     print('Longitude: ${position.longitude}');
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
+  Future<void> getLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+      print('Latitude: ${position.latitude}');
+      print('Longitude: ${position.longitude}');
+    } catch (e) {
+      print(e);
+    }
+  }
 
   Position? _currentLocation;
   late bool servicePermission = false;
   late LocationPermission permission;
 
   String _currentAddress = "";
+  String _currentAddress2 = "";
 
   Future<Position> _getCurrentLocation() async {
     servicePermission = await Geolocator.isLocationServiceEnabled();
@@ -104,13 +98,13 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
 
   _getAddressFromCoordinates() async {
     try {
-      List<Placemark> placemarks =
-          await placemarkFromCoordinates(41.025503, 28.974145);
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+          _currentLocation!.latitude, _currentLocation!.longitude);
       Placemark place = placemarks[0];
 
       setState(() {
-        _currentAddress =
-            "${place.name}, ${place.country} ${place.locality}, ${place.street}";
+        _currentAddress = "${place.country}, ${place.subAdministrativeArea}";
+        _currentAddress2 = "${place.locality}, ${place.street}";
       });
       print(_currentAddress.toString());
     } catch (e) {
@@ -125,18 +119,6 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           toolbarHeight: MediaQuery.of(context).size.height * 0.12,
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => EventListPage(),
-                  ),
-                );
-              },
-              icon: Icon(Icons.search),
-            ),
-          ],
           title: Row(
             children: [
               CircleAvatar(
@@ -162,18 +144,20 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
                       fontSize: 12.0,
                     ),
                   ),
+                  Text(
+                    "${_currentAddress2}",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 12.0,
+                    ),
+                  ),
                 ],
               ),
               Align(
                 alignment: Alignment.centerLeft,
                 child: IconButton(
                   onPressed: () async {
-                    // _currentLocation = await _getCurrentLocation();
-                    // setState(() {
-                    //   _currentAddress = "${_currentLocation!.latitude}, "
-                    //       "${_currentLocation!.longitude}";
-                    // });
-                    // print(_currentAddress.toString());
                     _currentLocation = await _getCurrentLocation();
                     await _getAddressFromCoordinates();
                     print("${_currentLocation}");
@@ -190,11 +174,11 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
           backgroundColor: Color.fromARGB(255, 228, 115, 54),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(20), // Set the desired border radius here
+              bottom: Radius.circular(20),
             ),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 247, 235, 225),
+        backgroundColor: Color.fromARGB(255, 255, 248, 242),
         body: Stack(
           children: [
             PageView.builder(
@@ -214,29 +198,17 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
                 return Container();
               },
             ),
-            Positioned(
-              bottom: 16.0, // Adjust the bottom margin as per your requirement
-              right: 16.0, // Adjust the right margin as per your requirement
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 0, 188, 212),
-                  borderRadius: BorderRadius.circular(100.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromARGB(255, 29, 29, 29).withOpacity(0.5),
-                      spreadRadius: 2.0,
-                      blurRadius: 5.0,
-                    ),
-                  ],
-                ),
-                child: IconButton(
-                  color: Colors.white,
-                  icon: Icon(Icons.add),
-                  onPressed: () => widget.goToPage(13),
-                ),
-              ),
-            ),
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => widget.goToPage(13),
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+          backgroundColor: Color.fromARGB(255, 0, 188, 212),
+          shape: CircleBorder(),
+          elevation: 10,
         ),
       ),
     );
@@ -268,11 +240,11 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
                   final data = educationCommunityPages[index].data()
                       as Map<String, dynamic>;
                   final date = data['date'] ?? '';
-                  final place = data['place'] ?? '';
+                  final place = data['content'] ?? '';
                   final title = data['title'] ?? '';
                   final time = data['time'] ?? '';
-                  final loggedIn = data['sender'] ?? '';
-                  final currentUser = loggedInUser.email ?? '';
+                  // final loggedIn = data['sender'] ?? '';
+                  // final currentUser = loggedInUser.email ?? '';
                   final isLiked = likedItems.contains(data);
                   final imageUrls = data['imageUrls'] ?? '';
 
@@ -281,7 +253,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
                     place: place,
                     title: title,
                     time: time,
-                    isLoggedIn: currentUser == loggedIn,
+                    // isLoggedIn: currentUser == loggedIn,
                     isLiked: isLiked,
                     onLikePressed: () => toggleLike(data),
                     imageUrls: imageUrls,
@@ -305,11 +277,11 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
             itemBuilder: (context, index) {
               final data = likedItems[index];
               final date = data['date'] ?? '';
-              final place = data['place'] ?? '';
+              final place = data['content'] ?? '';
               final title = data['title'] ?? '';
               final time = data['time'] ?? '';
-              final loggedIn = data['sender'] ?? '';
-              final currentUser = loggedInUser.email ?? '';
+              // final loggedIn = data['sender'] ?? '';
+              // final currentUser = loggedInUser.email ?? '';
               final imageUrls = data['imageUrls'] ?? '';
 
               return MessageBubble(
@@ -317,7 +289,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
                 place: place,
                 title: title,
                 time: time,
-                isLoggedIn: currentUser == loggedIn,
+                // isLoggedIn: currentUser == loggedIn,
                 isLiked: true,
                 onLikePressed: () => toggleLike(data),
                 imageUrls: imageUrls,
@@ -332,7 +304,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
 
 class MessageBubble extends StatelessWidget {
   MessageBubble({
-    required this.isLoggedIn,
+    // required this.isLoggedIn,
     required this.isLiked,
     required this.date,
     required this.title,
@@ -342,7 +314,7 @@ class MessageBubble extends StatelessWidget {
     required this.imageUrls,
   });
 
-  final bool isLoggedIn;
+  // final bool isLoggedIn;
   final bool isLiked;
   final String date;
   final String title;
@@ -604,6 +576,19 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
     super.dispose();
   }
 
+  triggerNotification(String title, String body) {
+    AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: 10,
+        channelKey: 'basic_channel',
+        title: title,
+        body: body,
+        notificationLayout: NotificationLayout.BigPicture,
+        bigPicture: 'asset://assets/images/erasmus_logo.png',
+      ),
+    );
+  }
+
   void logout() {
     // _auth.signOut();
   }
@@ -612,6 +597,7 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        height: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/event_background_image.png"),
@@ -725,7 +711,9 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
                                 shadowColor: MaterialStateProperty.all<Color>(
                                     Color.fromARGB(180, 224, 137, 50)),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                chooseImage();
+                              },
                               child: Icon(
                                 Icons.add_a_photo,
                                 color: Color.fromARGB(255, 135, 69, 2),
@@ -745,9 +733,9 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
                           _fireStore.collection('events').add({
                             'date': date,
                             'title': title,
-                            'place': place,
+                            'content': place,
                             'time': time,
-                            'sender': loggedInUser.email,
+                            // 'sender': loggedInUser.email,
                             'created': Timestamp.now(),
                             'imageUrls': downloadUrl,
                           });
@@ -756,6 +744,8 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
                           placeTextController.clear();
                           titleTextController.clear();
                           timeTextController.clear();
+                          triggerNotification(
+                              '${title}', '$place, $date, $time');
                         },
                         style: ElevatedButton.styleFrom(
                           fixedSize: Size(200, 50),
@@ -795,7 +785,6 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 100.0),
                   ],
                 ),
               ),

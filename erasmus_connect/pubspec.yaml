@@ -28,7 +28,7 @@ dependencies:
   flutter_svg: ^1.1.6
   flutter_svg_provider: ^1.0.3
   pin_code_fields: ^7.3.0
-  intl: ^0.18.0
+  intl: ^0.18.0 
   chat_gpt_sdk: 2.0.2
   scroll_snap_list: ^0.9.1
   url_launcher: ^6.1.11
@@ -53,6 +53,15 @@ dependencies:
   flutter_hooks: ^0.18.6
   google_maps_flutter: ^2.3.1
   flutter_local_notifications: ^15.1.0+1
+  dropdown_search: ^5.0.6
+  firebase_messaging: ^14.6.4
+  awesome_notifications: ^0.6.19
+  flutter_launcher_icons: ^0.13.1
+  permission_handler: ^10.4.3
+  jitsi_meet_wrapper: ^0.2.0+1
+  flutter_localizations:
+    sdk: flutter
+
 
 dev_dependencies:
   flutter_test:
@@ -60,8 +69,16 @@ dev_dependencies:
 
   flutter_lints: ^2.0.0
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/connect_plus_logo.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/connect_plus_logo.png"
+
 flutter:
   uses-material-design: true
+  generate: true
   assets:
     - assets/
     - assets/images/

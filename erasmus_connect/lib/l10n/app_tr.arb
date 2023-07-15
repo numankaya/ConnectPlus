@@ -1,0 +1,15 @@
+{
+    "merhaba": "Merhabalar",
+    "@merhaba": {
+        "description": "selamlasma ifadesi"
+    },
+    "dil": "Turkce",
+    "@dil":{
+        "description":"selamlama"
+    },
+    "okullar": "Okullar",
+    "@okullar":{
+        "description":"okullar"
+    }
+}
+

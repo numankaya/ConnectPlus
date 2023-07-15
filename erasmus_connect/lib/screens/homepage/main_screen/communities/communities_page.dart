@@ -1,4 +1,10 @@
+import 'dart:io';
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:image_picker/image_picker.dart';
 
 class CommunitiesPage extends StatefulWidget {
   final Function(int) goToPage;
@@ -12,8 +18,8 @@ class CommunitiesPage extends StatefulWidget {
 class _CommunitiesPageState extends State<CommunitiesPage> {
   final List<School> schools = [
     School(
-      title: 'Stockholm Üniversitesi',
-      country: 'İsveç',
+      title: 'İstanbul Teknik Üniversitesi',
+      country: 'Türkiye',
       joinedPeople: 50,
       avatarUrls: [
         'assets/images/community_detail_img_1.png',
@@ -22,7 +28,7 @@ class _CommunitiesPageState extends State<CommunitiesPage> {
       ],
     ),
     School(
-      title: 'Boğaziçi Üniversitesi',
+      title: 'Orta Doğu Teknik Üniversitesi',
       country: 'Türkiye',
       joinedPeople: 30,
       avatarUrls: [
@@ -32,8 +38,8 @@ class _CommunitiesPageState extends State<CommunitiesPage> {
       ],
     ),
     School(
-      title: 'Bologna Üniversitesi',
-      country: 'İtalya',
+      title: 'Boğaziçi Üniversitesi',
+      country: 'Türkiye',
       joinedPeople: 20,
       avatarUrls: [
         'assets/images/community_detail_img_3.png',
@@ -41,8 +47,127 @@ class _CommunitiesPageState extends State<CommunitiesPage> {
         'assets/images/community_img_5.png',
       ],
     ),
+    School(
+      title: 'Boras Üniversitesi',
+      country: 'İsveç',
+      joinedPeople: 50,
+      avatarUrls: [
+        'assets/images/community_detail_img_4.png',
+        'assets/images/community_img_4.png',
+        'assets/images/community_img_5.png',
+      ],
+    ),
+    School(
+      title: 'Uppsala Üniversitesi',
+      country: 'İsveç',
+      joinedPeople: 30,
+      avatarUrls: [
+        'assets/images/community_detail_img_5.png',
+        'assets/images/community_img_4.png',
+        'assets/images/community_img_5.png',
+      ],
+    ),
+    School(
+      title: 'Stockholm Üniversitesi',
+      country: 'İsveç',
+      joinedPeople: 20,
+      avatarUrls: [
+        'assets/images/community_detail_img_6.png',
+        'assets/images/community_img_4.png',
+        'assets/images/community_img_5.png',
+      ],
+    ),
+    School(
+      title: 'Bologna Üniversitesi',
+      country: 'İtalya',
+      joinedPeople: 50,
+      avatarUrls: [
+        'assets/images/community_detail_img_7.png',
+        'assets/images/community_img_4.png',
+        'assets/images/community_img_5.png',
+      ],
+    ),
+    School(
+      title: 'Milano Üniversitesi',
+      country: 'İtalya',
+      joinedPeople: 30,
+      avatarUrls: [
+        'assets/images/community_detail_img_8.png',
+        'assets/images/community_img_4.png',
+        'assets/images/community_img_5.png',
+      ],
+    ),
+    School(
+      title: 'Rome La Sapienza Üniversitesi',
+      country: 'İtalya',
+      joinedPeople: 20,
+      avatarUrls: [
+        'assets/images/community_detail_img_9.png',
+        'assets/images/community_img_4.png',
+        'assets/images/community_img_5.png',
+      ],
+    ),
+    School(
+      title: 'Münih Teknik Üniversitesi',
+      country: 'Almanya',
+      joinedPeople: 50,
+      avatarUrls: [
+        'assets/images/community_detail_img_10.png',
+        'assets/images/community_img_4.png',
+        'assets/images/community_img_5.png',
+      ],
+    ),
+    School(
+      title: 'Berlin Teknik Üniversitesi',
+      country: 'Almanya',
+      joinedPeople: 30,
+      avatarUrls: [
+        'assets/images/community_detail_img_11.png',
+        'assets/images/community_img_4.png',
+        'assets/images/community_img_5.png',
+      ],
+    ),
+    School(
+      title: 'Stuttgart Üniversitesi',
+      country: 'Almanya',
+      joinedPeople: 20,
+      avatarUrls: [
+        'assets/images/community_detail_img_12.png',
+        'assets/images/community_img_4.png',
+        'assets/images/community_img_5.png',
+      ],
+    ),
+    School(
+      title: 'Delft Üniversitesi',
+      country: 'Hollanda',
+      joinedPeople: 50,
+      avatarUrls: [
+        'assets/images/community_detail_img_13.png',
+        'assets/images/community_img_4.png',
+        'assets/images/community_img_5.png',
+      ],
+    ),
+    School(
+      title: 'Inholland Üniversitesi',
+      country: 'Hollanda',
+      joinedPeople: 30,
+      avatarUrls: [
+        'assets/images/community_detail_img_14.png',
+        'assets/images/community_img_4.png',
+        'assets/images/community_img_5.png',
+      ],
+    ),
+    School(
+      title: 'Hague Üniversitesi',
+      country: 'Hollanda',
+      joinedPeople: 20,
+      avatarUrls: [
+        'assets/images/community_detail_img_15.png',
+        'assets/images/community_img_4.png',
+        'assets/images/community_img_5.png',
+      ],
+    ),
   ];
-//----------------------------------------------------------------------------------------------------
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +254,6 @@ class School {
     required this.avatarUrls,
   });
 }
-//----------------------------------------------------------------------------------------------------
 
 class ContainerCard extends StatelessWidget {
   final School school;
@@ -142,8 +266,8 @@ class ContainerCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20),
-        padding: EdgeInsets.all(10.0),
+        margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 16),
+        padding: EdgeInsets.all(14.0),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(90.0),
@@ -151,7 +275,7 @@ class ContainerCard extends StatelessWidget {
         child: Row(
           children: [
             CircleAvatar(
-              radius: 80,
+              radius: 70,
               backgroundImage: AssetImage(
                 school.avatarUrls[0],
               ),
@@ -228,109 +352,197 @@ class ContainerCard extends StatelessWidget {
   }
 }
 
-//----------------------------------------------------------------------------------------------------
-class CommunityDetailsPage extends StatelessWidget {
+class CommunityDetailsPage extends StatefulWidget {
   final School school;
 
   CommunityDetailsPage({required this.school});
 
   @override
+  State<CommunityDetailsPage> createState() => _CommunityDetailsPageState();
+}
+
+class _CommunityDetailsPageState extends State<CommunityDetailsPage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          color: Color.fromARGB(255, 255, 248, 242),
+        ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              school.avatarUrls[0],
+              widget.school.avatarUrls[0],
               fit: BoxFit.cover,
-              height: 200,
+              height: MediaQuery.of(context).size.height * 0.2,
               width: double.infinity,
             ),
             Container(
-              margin: EdgeInsets.all(10.0),
               padding: EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Colors.white,
-              ),
+              color: Color.fromARGB(255, 251, 188, 127),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    school.title,
+                    widget.school.title,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
+                      fontSize: 32.0,
                     ),
                   ),
-                  SizedBox(height: 10.0),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CircleAvatar(
-                        radius: 15,
-                        backgroundImage: AssetImage(school.avatarUrls[1]),
+                      Container(
+                        height: 30,
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Color.fromARGB(153, 184, 101, 18),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              widget.school.country,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12.0,
+                              ),
+                            ),
+                            Text(
+                              ' / ${widget.school.joinedPeople} Üye',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12.0,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      SizedBox(width: 5.0),
-                      CircleAvatar(
-                        radius: 15,
-                        backgroundImage: AssetImage(school.avatarUrls[2]),
-                      ),
-                      SizedBox(width: 5.0),
-                      Text(
-                        '${school.joinedPeople} joined',
-                        style: TextStyle(
-                          color: Colors.grey,
+                      SizedBox(width: 10.0),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          height: 30,
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: Color.fromARGB(153, 184, 101, 18),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Topluluktan Ayrılın',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12.0,
+                                ),
+                              ),
+                              SizedBox(width: 5.0),
+                              Icon(
+                                Icons.exit_to_app,
+                                color: Colors.white,
+                                size: 12.0,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 10.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text('Leave Community'),
-                  ),
                 ],
               ),
             ),
-            SizedBox(height: 10.0),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: 5, // Replace with actual post count
-              itemBuilder: (BuildContext context, int index) {
-                return PostCard(
-                  post: Post(
-                    imageUrl:
-                        'assets/images/flags_$index.png', // Replace with actual image path
-                    content:
-                        'Lorem ipsum dolor sit amet', // Replace with actual post content
-                    comments: 10, // Replace with actual comment count
-                    upvotes: 50, // Replace with actual upvote count
-                  ),
-                );
-              },
+            Expanded(
+              child: SingleChildScrollView(
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection(widget.school.title)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      final posts = snapshot.data!.docs.map((doc) {
+                        final data = doc.data() as Map<String, dynamic>;
+                        return Post(
+                          id: doc.id,
+                          created: data['created'],
+                          date: data['date'],
+                          title: data['title'],
+                          content: data['content'],
+                          imageUrl: data['imageUrl'],
+                          comments: data['comments'],
+                          upvotes: data['upvotes'],
+                          time: data['time'],
+                        );
+                      }).toList();
+
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: posts.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return PostCard(post: posts[index]);
+                        },
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  },
+                ),
+              ),
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Navigate to the create post page
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CreatePostPage(school: widget.school)),
+          );
+        },
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        backgroundColor: Color.fromARGB(255, 0, 188, 212),
+        shape: CircleBorder(),
+        elevation: 10,
       ),
     );
   }
 }
 
 class Post {
-  final String imageUrl;
+  final String id;
+  final Timestamp created;
+  final String date;
+  final String title;
   final String content;
+  final String imageUrl;
   final int comments;
   final int upvotes;
+  final String time;
 
   Post({
-    required this.imageUrl,
+    required this.id,
+    required this.created,
+    required this.date,
+    required this.title,
     required this.content,
+    required this.imageUrl,
     required this.comments,
     required this.upvotes,
+    required this.time,
   });
 }
 
@@ -338,41 +550,420 @@ class PostCard extends StatelessWidget {
   final Post post;
 
   PostCard({required this.post});
+  String formatDuration(Duration duration) {
+    if (duration.inDays >= 1) {
+      return '${duration.inDays} gün önce';
+    } else if (duration.inHours >= 1) {
+      return '${duration.inHours} saat önce';
+    } else if (duration.inMinutes >= 1) {
+      return '${duration.inMinutes} dakika önce';
+    } else {
+      return 'Şimdi';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final Duration timeDifference =
+        DateTime.now().difference(post.created.toDate());
+    final String elapsedTime = formatDuration(timeDifference);
     return Container(
       margin: EdgeInsets.all(10.0),
-      padding: EdgeInsets.all(10.0),
+      height: MediaQuery.of(context).size.height * 0.3,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(15.0),
         color: Colors.white,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          Image.asset(
-            post.imageUrl,
-            height: 200,
-            width: double.infinity,
-            fit: BoxFit.cover,
+          // Background Image
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15.0),
+              child: Image.network(
+                post.imageUrl,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-          SizedBox(height: 10.0),
-          Text(post.content),
-          SizedBox(height: 10.0),
-          Row(
-            children: [
-              Icon(Icons.comment),
-              SizedBox(width: 5.0),
-              Text(post.comments.toString()),
-              SizedBox(width: 10.0),
-              Icon(Icons.thumb_up),
-              SizedBox(width: 5.0),
-              Text(post.upvotes.toString()),
-            ],
+          // Container at the bottom
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 252, 198, 54),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              padding: EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Content
+                  Text(
+                    post.content,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 5.0),
+                  // Time
+                  Text(
+                    elapsedTime, // Replace with the actual time
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.0,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(
+                        Icons.thumb_up,
+                        color: Colors.black,
+                        size: 20.0,
+                      ),
+                      Icon(
+                        Icons.comment,
+                        color: Colors.black,
+                        size: 20.0,
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
           ),
         ],
       ),
     );
+  }
+}
+
+class CreatePostPage extends StatefulWidget {
+  final School school;
+
+  const CreatePostPage({super.key, required this.school});
+
+  @override
+  State<CreatePostPage> createState() => _CreatePostPageState();
+}
+
+class _CreatePostPageState extends State<CreatePostPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String _postTitle = '';
+  String _postContent = '';
+  String _postImageUrl = '';
+
+  final picker = ImagePicker();
+  PickedFile? _imageFile;
+  String downloadUrl = '';
+
+  Future chooseImage() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _imageFile = pickedFile != null ? PickedFile(pickedFile.path) : null;
+    });
+  }
+
+  Future uploadImage() async {
+    if (_imageFile != null) {
+      firebase_storage.Reference ref =
+          firebase_storage.FirebaseStorage.instance.ref().child(
+                'images/${DateTime.now().toString()}',
+              );
+      firebase_storage.UploadTask uploadTask = ref.putFile(
+        File(_imageFile!.path),
+      );
+
+      firebase_storage.TaskSnapshot taskSnapshot =
+          await uploadTask.whenComplete(() {});
+
+      downloadUrl = await ref.getDownloadURL();
+      print('Image uploaded. Download URL: $downloadUrl');
+
+      setState(() {});
+    }
+  }
+
+  triggerNotification(String title, String body) {
+    AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: 10,
+        channelKey: 'basic_channel',
+        title: title,
+        body: body,
+        notificationLayout: NotificationLayout.BigPicture,
+        bigPicture: 'asset://assets/images/erasmus_logo.png',
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height * 1,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/event_background_image.png"),
+              fit: BoxFit.cover,
+              opacity: 0.4,
+            ),
+          ),
+          child: Column(
+            children: [
+              Form(
+                key: _formKey,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(24.0, 34, 24.0, 24.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            height: 38,
+                            width: 38,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.white,
+                            ),
+                            child: IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: Icon(
+                                size: 24,
+                                CupertinoIcons.chevron_back,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Gönderi Oluştur',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 5.0,
+                                  color: Color.fromARGB(81, 0, 0, 0),
+                                  offset: Offset(2.0, 2.0),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Icon(
+                            CupertinoIcons.chevron_back,
+                            color: Colors.transparent,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 30.0),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: 'Başlık',
+                          filled: true,
+                          fillColor: Color.fromARGB(180, 224, 137, 50),
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(
+                                color: const Color.fromARGB(255, 159, 105, 85)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(
+                                color:
+                                    const Color.fromARGB(255, 192, 130, 107)),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(255, 179, 107, 81)),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a title';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _postTitle = value ?? '';
+                        },
+                      ),
+                      SizedBox(height: 24.0),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: 'İçerik',
+                          filled: true,
+                          fillColor: Color.fromARGB(180, 224, 137, 50),
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(
+                                color: const Color.fromARGB(255, 159, 105, 85)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(
+                                color:
+                                    const Color.fromARGB(255, 192, 130, 107)),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(255, 179, 107, 81)),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter the content';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _postContent = value ?? '';
+                        },
+                      ),
+                      SizedBox(height: 24.0),
+                      GestureDetector(
+                        onTap: () {
+                          chooseImage();
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Color.fromARGB(180, 183, 111, 40),
+                            ),
+                            borderRadius: BorderRadius.circular(20),
+                            color: Color.fromARGB(180, 224, 137, 50),
+                          ),
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              _imageFile == null
+                                  ? Text('Görsel',
+                                      style: TextStyle(fontSize: 16))
+                                  : Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10.0),
+                                      child: Image.file(
+                                        File(_imageFile!.path),
+                                        height: 120,
+                                      ),
+                                    ),
+                              SizedBox(height: 20),
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Color.fromARGB(180, 224, 137, 50)),
+                                  shadowColor: MaterialStateProperty.all<Color>(
+                                      Color.fromARGB(180, 224, 137, 50)),
+                                ),
+                                onPressed: () {
+                                  chooseImage();
+                                },
+                                child: Icon(
+                                  Icons.add_a_photo,
+                                  color: Color.fromARGB(255, 135, 69, 2),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 24.0),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 4.0, horizontal: 32),
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            await uploadImage();
+                            if (_formKey.currentState!.validate()) {
+                              _formKey.currentState!.save();
+                              // Create a new Post object
+                              final post = Post(
+                                title: _postTitle,
+                                created: Timestamp.now(),
+                                date: '',
+                                content: _postContent,
+                                imageUrl: downloadUrl,
+                                comments: 0,
+                                upvotes: 0,
+                                time: '',
+                                id: '',
+                              );
+
+                              // Save the post to Firebase
+                              savePostToFirebase(post);
+
+                              // Reset the form
+                              _formKey.currentState!.reset();
+                              triggerNotification(
+                                  '${widget.school.title} ${_postTitle}',
+                                  '$_postContent');
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            fixedSize: Size(300, 50),
+                            backgroundColor: Color.fromARGB(255, 135, 69, 2),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                          ),
+                          child: Text(
+                            'Oluştur',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void savePostToFirebase(Post post) {
+    final communityCollection =
+        FirebaseFirestore.instance.collection(widget.school.title);
+
+    communityCollection.add({
+      'title': post.title,
+      'created': post.created,
+      'date': post.date,
+      'content': post.content,
+      'imageUrl': post.imageUrl,
+      'comments': post.comments,
+      'upvotes': post.upvotes,
+      'time': post.time,
+    }).then((value) {
+      print('Post added to Firebase');
+    }).catchError((error) {
+      print('Failed to add post: $error');
+    });
   }
 }

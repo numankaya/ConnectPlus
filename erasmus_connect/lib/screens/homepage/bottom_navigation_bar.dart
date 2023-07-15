@@ -2,18 +2,25 @@ import 'package:erasmus_connect/models/connect_plus_user.dart';
 import 'package:erasmus_connect/screens/homepage/chatbot/chatbot_page.dart';
 import 'package:erasmus_connect/screens/homepage/homepage.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/accommodation_page.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/communities/communities_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/education_community_page/education_community_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/education_community_page/event_creator_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/health_insurance_page.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/notifications/notifications_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/residency_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/schools_page.dart';
+import 'package:erasmus_connect/screens/homepage/main_screen/search_list_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/travel_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/visa_page.dart';
 import 'package:erasmus_connect/screens/homepage/mentor/mentorShowcasePage.dart';
 import 'package:erasmus_connect/screens/homepage/mentor/mentors.dart';
 import 'package:erasmus_connect/screens/homepage/profile_page.dart';
 import 'package:erasmus_connect/screens/homepage/chats_page.dart';
-import 'package:erasmus_connect/screens/homepage/settings_page.dart';
+import 'package:erasmus_connect/screens/homepage/settings/faq_page.dart';
+import 'package:erasmus_connect/screens/homepage/settings/privacy_policy_page.dart';
+import 'package:erasmus_connect/screens/homepage/settings/settings_page.dart';
+import 'package:erasmus_connect/screens/homepage/settings/termofuse_page.dart';
+import 'package:erasmus_connect/screens/homepage/video_conference.dart';
 import 'package:erasmus_connect/screens/registeration_login/edit_about_page/edit_about_page.dart';
 import 'package:erasmus_connect/screens/registeration_login/edit_profile_screen/edit_profile_screen.dart';
 import 'package:erasmus_connect/screens/registeration_login/login_screen/login_screen.dart';
@@ -112,8 +119,29 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
           }),
           EditProfilePage(goToPage: (index) {
             pageController.jumpToPage(index);
-          }),
+          }), // 15.index
           EditAboutPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          CommunitiesPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          NotificationsPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          FAQPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          TermOfUsePage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }), // 20.index
+          PrivacyPolicyPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          Meeting(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          SearchResultsPage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
         ],

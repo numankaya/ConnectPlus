@@ -10,8 +10,8 @@
  - ConnectPlus App
 
 ## Product Backlog URL
-https://miro.com/app/board/uXjVM-Ye30g=/
-https://www.figma.com/file/RBHWArp4mt6ExdKo1fVWYz/Bootcamp-F-47?type=design&node-id=1047-1455&mode=design&t=a6mdT9TGxGXnWmh5-0
+* https://miro.com/app/board/uXjVM-Ye30g=/
+* https://www.figma.com/file/RBHWArp4mt6ExdKo1fVWYz/Bootcamp-F-47?type=design&node-id=1047-1455&mode=design&t=a6mdT9TGxGXnWmh5-0
 ## Ürün Açıklaması
 ConnectPlus App, Erasmus, Work and Treval gibi öğrencilerin ve gençlerin deneyimlerini kolaylaştırmak ve zenginleştirmek için tasarlanmış bir mobil uygulamadır. 
 Öğrencilerin başvuru sürecinden ders tanıma işlemlerine, konaklama tavsiyelerinden gezilecek rotalara kadar birçok bilgiye erişmelerini sağlar.

@@ -11,6 +11,7 @@ class FirebaseFireStoreMethods {
     try {
       // create user's data inside of firestore
       await _firebaseStore.collection("users").doc(uId).set({
+        "profilePicture": "",
         "fullName": fullName,
         "nickName": "",
         "mail": mail,

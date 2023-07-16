@@ -102,7 +102,6 @@ class ChatPage extends ConsumerWidget {
                     Map<String, dynamic>? chatUsers =
                         ref.read(userProvider).chatUsers;
                     List<String>? keysList = chatUsers?.keys.toList();
-                    print(keysList?[0]);
                     List<Widget> chats = [];
 
                     for (int i = 0; i < snapshot.data!.docs.length; i++) {
@@ -112,15 +111,11 @@ class ChatPage extends ConsumerWidget {
                           email: snapshot.data!.docs[i].get("mail"),
                           name: snapshot.data!.docs[i].get("fullName"),
                           lastMessage: chatUsers?[snapshot.data!.docs[i].id]
-                              ["lastMessage"],
+                          ["lastMessage"],
                           ref: ref,
                           goToPage: goToPage,
+                          timeOut: chatUsers?[snapshot.data!.docs[i].id]["timeOut"] as Timestamp,
                         ));
-                        print(chatUsers.toString());
-                        print(snapshot.data!.docs[i].id);
-                        print((chatUsers?[snapshot.data!.docs[i].id]["timeOut"]
-                                as Timestamp)
-                            .toDate());
                       }
                     }
                     return SingleChildScrollView(
@@ -226,10 +221,13 @@ class DMUserMessageContainer extends StatelessWidget {
       required this.id,
       required this.email,
       required this.ref,
-      required this.goToPage})
+      required this.goToPage,
+      required this.timeOut})
       : super(key: key);
 
   final name, lastMessage, id, email;
+
+  final Timestamp timeOut;
 
   final WidgetRef ref;
 
@@ -240,8 +238,15 @@ class DMUserMessageContainer extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
-        ref.read(receieverIdProvider.notifier).state = id;
-        goToPage(24);
+        DateTime currentTime = DateTime.now();
+        DateTime timeOutas = DateTime.parse(timeOut.toDate().toString());
+        print(timeOutas);
+        print("current : " + currentTime.toString());
+        Duration diff = timeOutas.difference(currentTime);
+        print(diff);
+        print(diff.isNegative);
+/*        ref.read(receieverIdProvider.notifier).state = id;
+        goToPage(24);*/
       },
       child: Container(
         width: width * 0.99,

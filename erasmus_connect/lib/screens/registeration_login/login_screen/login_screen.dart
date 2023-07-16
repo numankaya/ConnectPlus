@@ -349,6 +349,7 @@ class LoginScreen extends ConsumerWidget {
         await FirebaseFireStoreMethods(FirebaseFirestore.instance)
             .GetUser(currentUser!.uid);
     ref.read(userProvider.notifier).ChangeUser(ConnectPlusUser(
+        profilePicture: userCollection!['profilePicture'],
         uId: currentUser!.uid,
         fullName: userCollection!["fullName"],
         mail: currentUser.email,

@@ -123,7 +123,6 @@ class MessagingPageState extends ConsumerState<MessagingPage> {
       alignment: aligment,
       child: Column(
         children: [
-          Text(data['senderName']),
           ChatBubble(message: data['message']
           ),
         ],

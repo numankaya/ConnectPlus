@@ -104,6 +104,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
         .then((value) {
       ConnectPlusUser oldUser = ref.read(userProvider);
       ref.read(userProvider.notifier).ChangeUser(ConnectPlusUser(
+          profilePicture: user.profilePicture,
           uId: user.uId,
           fullName: fullName.text,
           nickName: nickName.text,

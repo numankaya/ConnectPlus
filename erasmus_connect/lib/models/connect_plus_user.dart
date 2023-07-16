@@ -145,6 +145,7 @@ final userProvider = StateNotifierProvider<UserNotifier, ConnectPlusUser>((ref) 
 */
 
 class ConnectPlusUser {
+  final String? profilePicture;
   final String uId;
   final String? fullName;
   final String? nickName;
@@ -162,7 +163,8 @@ class ConnectPlusUser {
   final bool isMailVerified;
   final Map<String, dynamic>? chatUsers;
   ConnectPlusUser(
-      {required this.uId,
+      {required this.profilePicture,
+        required this.uId,
       required this.fullName,
       required this.nickName,
       required this.mail,
@@ -180,6 +182,7 @@ class ConnectPlusUser {
       required this.chatUsers});
 
   ConnectPlusUser copyWith({
+    String? profilePicture,
     String? uId,
     String? fullName,
     String? nickName,
@@ -198,6 +201,7 @@ class ConnectPlusUser {
     Map<String, Map<String, dynamic>>? chatUsers,
   }) {
     return ConnectPlusUser(
+      profilePicture: profilePicture ?? this.profilePicture,
       uId: uId ?? this.uId,
       fullName: fullName ?? this.fullName,
       nickName: nickName ?? this.nickName,
@@ -220,6 +224,9 @@ class ConnectPlusUser {
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
+    if (profilePicture != null) {
+      result.addAll({'profilePicture': profilePicture});
+    }
     result.addAll({'uId': uId});
     if (fullName != null) {
       result.addAll({'fullName': fullName});
@@ -271,6 +278,7 @@ class ConnectPlusUser {
 
   factory ConnectPlusUser.fromMap(Map<String, dynamic> map) {
     return ConnectPlusUser(
+      profilePicture: map['profilePicture'],
       uId: map['uId'] ?? '',
       fullName: map['fullName'],
       nickName: map['nickName'],
@@ -305,6 +313,7 @@ class ConnectPlusUser {
     if (identical(this, other)) return true;
 
     return other is ConnectPlusUser &&
+        other.profilePicture == profilePicture &&
         other.uId == uId &&
         other.fullName == fullName &&
         other.nickName == nickName &&
@@ -326,6 +335,7 @@ class ConnectPlusUser {
   @override
   int get hashCode {
     return uId.hashCode ^
+        profilePicture.hashCode ^
         fullName.hashCode ^
         nickName.hashCode ^
         mail.hashCode ^
@@ -349,6 +359,7 @@ class UserNotifier extends StateNotifier<ConnectPlusUser> {
 
   void LogOut() {
     state = ConnectPlusUser(
+      profilePicture: "",
       uId: "",
       fullName: "",
       nickName: "",
@@ -382,6 +393,7 @@ class UserNotifier extends StateNotifier<ConnectPlusUser> {
 
 final userProvider = StateNotifierProvider<UserNotifier, ConnectPlusUser>(
     (ref) => UserNotifier(ConnectPlusUser(
+          profilePicture: "",
           uId: "",
           fullName: "",
           nickName: "",

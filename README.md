@@ -224,37 +224,38 @@ Toplam tammalanması gereken puan 420 olarak hesaplandı.
 - Trello Ekranı:<img width="713" alt="image" src="https://github.com/numankaya/ConnectPlus/assets/123562983/337f4d41-c1da-4660-90da-1d37b75754b0">
 - Miro Ekranı:
 - Figma Ekranı:
-- **Ürün Durumu**: Ekran görüntüleri:
-* Revize ekranlar:
+- **Ürün Durumu**: 
+- Ekran görüntüleri:
+- **Revize ekranlar**:
 
 <img width="433" alt="Ekran Resmi 2023-07-16 18 18 00" src="https://github.com/numankaya/ConnectPlus/assets/123562983/85cad820-0b2f-43fe-961c-7efae3094563">
 <img width="390" alt="Ekran Resmi 2023-07-16 18 39 47" src="https://github.com/numankaya/ConnectPlus/assets/123562983/bfd76b5c-60b3-4dde-a845-ec356f17b254">
 <img width="382" alt="Ekran Resmi 2023-07-16 18 40 42" src="https://github.com/numankaya/ConnectPlus/assets/123562983/f1ac6adb-6cdd-43ca-8903-c41a7e73e5d8">
 
-* Mentor listesi ve bilgileri:
+- **Mentor listesi ve bilgileri**:
 <img width="390" alt="Ekran Resmi 2023-07-16 18 29 11" src="https://github.com/numankaya/ConnectPlus/assets/123562983/cae56074-06ed-44f9-8f1a-cacd530afd49">
 <img width="391" alt="Ekran Resmi 2023-07-16 18 30 23" src="https://github.com/numankaya/ConnectPlus/assets/123562983/731abebc-1d14-4086-9638-d60541e1b40a">
 
-* Dm ve Mentor Görüşme ekranları: 
+  - **Dm ve Mentor Görüşme ekranları**: 
 <img width="379" alt="Ekran Resmi 2023-07-16 18 38 35" src="https://github.com/numankaya/ConnectPlus/assets/123562983/e56e4f2e-9b11-44d6-87ad-0c933d9cd063">
 
 <img width="391" alt="Ekran Resmi 2023-07-16 18 31 28" src="https://github.com/numankaya/ConnectPlus/assets/123562983/4df52526-75c3-4f05-8b9d-31c0e61c2259">
 
 <img width="384" alt="Ekran Resmi 2023-07-16 18 32 24" src="https://github.com/numankaya/ConnectPlus/assets/123562983/f7c26652-7972-456d-a6ef-45447e43fd34">
 
-* Kaliteli Eğitim Topluluğu:
+- **Kaliteli Eğitim Topluluğu**:
 <img width="392" alt="Ekran Resmi 2023-07-16 18 20 18" src="https://github.com/numankaya/ConnectPlus/assets/123562983/7c0b24df-9bce-4564-ae9b-f3d04a03f364">
 
 <img width="392" alt="Ekran Resmi 2023-07-16 18 22 15" src="https://github.com/numankaya/ConnectPlus/assets/123562983/adfefa51-6335-4d42-9b1c-8ac1cd3cf65e">
 <img width="388" alt="Ekran Resmi 2023-07-16 18 23 39" src="https://github.com/numankaya/ConnectPlus/assets/123562983/1eff2855-2869-4e3d-b89f-bff739d51098">
 
-* Sağlık Sigortası:
+- **Sağlık Sigortası**:
 <img width="391" alt="Ekran Resmi 2023-07-16 18 24 50" src="https://github.com/numankaya/ConnectPlus/assets/123562983/5236dfb6-259c-473a-bcc2-90eb42526f2c">
 
-* Bildirimler:
+- **Bildirimler**:
 <img width="392" alt="Ekran Resmi 2023-07-16 18 27 56" src="https://github.com/numankaya/ConnectPlus/assets/123562983/6522598b-ae9b-49c5-ad7e-cb41d979458b">
 
-* Aynı Okuldan İnsanlarla İletişim:
+  - **Aynı Okuldan İnsanlarla İletişim**:
 
 <img width="392" alt="Ekran Resmi 2023-07-16 18 33 27" src="https://github.com/numankaya/ConnectPlus/assets/123562983/bb8194a3-3000-4955-b1f9-836be24e39cc">
 
@@ -262,20 +263,18 @@ Toplam tammalanması gereken puan 420 olarak hesaplandı.
 <img width="384" alt="Ekran Resmi 2023-07-16 18 34 29" src="https://github.com/numankaya/ConnectPlus/assets/123562983/ccb2872c-0af6-4c93-b41b-7c20ac8fe1b8">
 <img width="303" alt="Ekran Resmi 2023-07-16 18 35 27" src="https://github.com/numankaya/ConnectPlus/assets/123562983/0263dac3-1d1a-493b-8687-32be4fe298ac">
 
-* Hakkında kısmı :
-
-
+- **Hakkında kısmı** :
 
 <img width="376" alt="Ekran Resmi 2023-07-16 18 41 22" src="https://github.com/numankaya/ConnectPlus/assets/123562983/821fdb3d-9d94-4710-b1b0-4b7710ab6b21">
 
-* Sıkça Sorulan Sorular:
+- **Sıkça Sorulan Sorular**:
 
 <img width="384" alt="Ekran Resmi 2023-07-16 18 42 34" src="https://github.com/numankaya/ConnectPlus/assets/123562983/e260c93f-2d51-4193-9c8d-821de5b49c67">
 
-* Kullanım Şartlerı:
+- **Kullanım Şartları**:
 <img width="387" alt="Ekran Resmi 2023-07-16 18 43 21" src="https://github.com/numankaya/ConnectPlus/assets/123562983/fec16576-49de-4a76-a911-337e66a95688">
 
-* Gizlilik politikası:
+- **Gizlilik politikası**:
 
 
 <img width="383" alt="Ekran Resmi 2023-07-16 18 44 00" src="https://github.com/numankaya/ConnectPlus/assets/123562983/0fa7452f-41ce-40f2-9844-06e8a9ddb714">
@@ -286,7 +285,8 @@ Toplam tammalanması gereken puan 420 olarak hesaplandı.
 * Tüm ekip üyeleri aktif bir şekilde çalıştı.
 * Bu sprintte hedefimiz uygulamayı genel hatlarıyla görselleştirip önemli sayfaların backendini tamamlamaktı.
 * Uygulamanın gelişimine göre 1. ve 2. Sprint ekranlarına ufak revizeler yapıldı.
-* Bu sprint 13 ana ekran tasarlandı ve 13 ekran tamamlandı, bu sayının içinde benzer ekranlar bulunmamakta.
+* Bu sprint 15 ana ekran tasarlandı ve 15 ekran tamamlandı, bu sayının içinde benzer ekranlar bulunmamakta.
+* 3 ekran revize edildi.
   
 - **Sprint Retrospektif**:
 * Hepimizin ilk kod ve uygulama deneyimi olduğu için çok verimli, heyecanlı ve öğretici oldu.

@@ -69,11 +69,41 @@ class MessagingPageState extends ConsumerState<MessagingPage> {
                   ),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(left: 70),
-                width: 150,
-                height: 40,
-                child: Center(child: Text("Alıcı")),
+              Padding(
+                padding: EdgeInsets.only(left: 70),
+                child: Center(child: StreamBuilder<DocumentSnapshot>(
+                  stream:
+                  FirebaseFirestore.instance.collection("users").doc(receieverId).snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<DocumentSnapshot> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    } else {
+                      return Row(
+                        children: [
+                          SizedBox(
+                            width: 40,
+                            height: 40,
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(100),
+                                child: Image(image: snapshot.data!.get("profilePicture") != "" ? Image.network(snapshot.data!.get("profilePicture"),
+                                    fit: BoxFit.cover).image : AssetImage("assets/images/Default_pp.png"),
+
+                                )
+                            ),
+                          ),
+                          SizedBox(width: 10,),
+                          Text(snapshot.data!.get("fullName")),
+                          SizedBox(width: 40,),
+                          IconButton(onPressed: () {
+                            widget.goToPage(22);
+                          }, icon: Icon(Icons.call))
+                        ],
+                      );
+                      return Text("error");
+                    }
+                  },
+                ),),
               ),
             ],
           ),

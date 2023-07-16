@@ -389,6 +389,15 @@ class UserNotifier extends StateNotifier<ConnectPlusUser> {
       required String lessons}) {
     state = state.copyWith(aboutMe: aboutMe, skills: skills, lessons: lessons);
   }
+
+  void updateProfilePicture(
+      {required String profilePicture,}) {
+    state = state.copyWith(profilePicture: profilePicture);
+  }
+  void updateChatUsers(
+      {required Map<String, Map<String, dynamic>>? chatUsers,}) {
+    state = state.copyWith(chatUsers: chatUsers);
+  }
 }
 
 final userProvider = StateNotifierProvider<UserNotifier, ConnectPlusUser>(

@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:erasmus_connect/models/connect_plus_user.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FirebaseFireStoreMethods {
   final FirebaseFirestore _firebaseStore;
@@ -111,6 +113,30 @@ class FirebaseFireStoreMethods {
       user2!["chatUsers"][Id1]["lastMessage"] = message;
       collection.doc(Id1).update({"chatUsers": user1!["chatUsers"]});
       collection.doc(Id2).update({"chatUsers": user2!["chatUsers"]});
+    } on FirebaseException catch (e) {
+      print(e.message);
+      return null;
+    }
+  }
+
+  Future<void> AddChatUsers(
+      String Id1, String Id2, Timestamp time, WidgetRef ref) async {
+    // get user's data from firestore
+    try {
+      var collection = FirebaseFirestore.instance.collection('users');
+      Map<String, dynamic>? user1 = await GetUser(Id1);
+      Map<String, dynamic>? user2 = await GetUser(Id2);
+      Map<String, dynamic> user1ChatUsers = user1!["chatUsers"];
+      Map<String, dynamic> user2ChatUsers = user2!["chatUsers"];
+      user1ChatUsers[Id2] = {"timeOut": time, "lastMessage": ""};
+      user2ChatUsers[Id1] = {"timeOut": time, "lastMessage": ""};
+      collection.doc(Id1).update({"chatUsers": user1ChatUsers});
+      collection.doc(Id2).update({"chatUsers": user2ChatUsers});
+      Map<String, Map<String, dynamic>>? newMap = {};
+      user2ChatUsers.forEach((key, value) {
+        newMap[key] = value as Map<String, dynamic>;
+      });
+      ref.read(userProvider.notifier).updateChatUsers(chatUsers: newMap);
     } on FirebaseException catch (e) {
       print(e.message);
       return null;

@@ -39,7 +39,7 @@ class ProfilePage extends ConsumerWidget {
     }
   }
 
-  Future<void> uploadImage() async {
+  Future<void> uploadImage(WidgetRef reff) async {
     if (_imageFile != null) {
       firebase_storage.Reference ref =
           firebase_storage.FirebaseStorage.instance.ref().child(
@@ -54,11 +54,11 @@ class ProfilePage extends ConsumerWidget {
 
       downloadUrl = await ref.getDownloadURL();
       print('Image uploaded. Download URL: $downloadUrl');
-
       FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .update({'profilePicture': downloadUrl});
+      reff.read(userProvider.notifier).updateProfilePicture(profilePicture: downloadUrl);
       debugPrint(
           '----------------------111Image uploaded. Download URL: $downloadUrl ----------------------------------');
     } else {
@@ -91,8 +91,10 @@ class ProfilePage extends ConsumerWidget {
                         height: 120,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(100),
-                          child: Image.network(user.profilePicture.toString(),
-                              fit: BoxFit.cover),
+                          child: Image(image: user.profilePicture.toString() != "" ? Image.network(user.profilePicture.toString(),
+                              fit: BoxFit.cover).image : AssetImage("assets/images/Default_pp.png"),
+
+                          )
                         ),
                       ),
                       Positioned(
@@ -101,7 +103,7 @@ class ProfilePage extends ConsumerWidget {
                           child: GestureDetector(
                             onTap: () async {
                               await chooseImage();
-                              await uploadImage();
+                              await uploadImage(ref);
                             },
                             child: Container(
                               width: 45,

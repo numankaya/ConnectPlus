@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:erasmus_connect/models/connect_plus_user.dart';
 import 'package:erasmus_connect/screens/homepage/mentor/mentorShowcasePage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -141,18 +142,21 @@ class MentorsPage extends StatelessWidget {
                     List<Widget> mywidgets = [];
                     var datas = snapshot.data!.docs;
                     for (int i = 0; i < datas.length; i++) {
-                      mywidgets.add(SizedBox(
-                        height: 10,
-                      ));
-                      mywidgets.add(MentorHolder(
-                        goToPage: goToPage,
-                        uId: datas[i].id,
-                        fullName: datas[i]["fullName"],
-                        nickName: datas[i]["nickName"],
-                        school: datas[i]["school"],
-                        erasmusSchool: datas[i]["erasmusSchool"],
-                        country: datas[i]["country"],
-                      ));
+                      if (datas[i].id != FirebaseAuth.instance.currentUser?.uid) {
+                        mywidgets.add(SizedBox(
+                          height: 10,
+                        ));
+                        mywidgets.add(MentorHolder(
+                          goToPage: goToPage,
+                          uId: datas[i].id,
+                          profilePicture: datas[i]["profilePicture"],
+                          fullName: datas[i]["fullName"],
+                          nickName: datas[i]["nickName"],
+                          school: datas[i]["school"],
+                          erasmusSchool: datas[i]["erasmusSchool"],
+                          country: datas[i]["country"],
+                        ));
+                      }
                     }
                     return Column(
                       children: mywidgets,
@@ -172,6 +176,7 @@ class MentorHolder extends ConsumerWidget {
   const MentorHolder(
       {Key? key,
       required this.goToPage,
+        required this.profilePicture,
       required this.uId,
       required this.fullName,
       required this.nickName,
@@ -181,7 +186,7 @@ class MentorHolder extends ConsumerWidget {
       : super(key: key);
 
   final Function(int) goToPage;
-  final String uId, fullName, nickName, school, erasmusSchool, country;
+  final String uId, profilePicture, fullName, nickName, school, erasmusSchool, country;
 
   void OpenMentorShowCase(WidgetRef ref) {
     ref.read(targetuId.notifier).state = uId;
@@ -207,7 +212,8 @@ class MentorHolder extends ConsumerWidget {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
                     child: Image(
-                      image: AssetImage("assets/images/Default_pp.png"),
+                      image: profilePicture != "" ? Image.network(profilePicture,
+                          fit: BoxFit.cover).image : AssetImage("assets/images/Default_pp.png"),
                     )),
               ),
               SizedBox(

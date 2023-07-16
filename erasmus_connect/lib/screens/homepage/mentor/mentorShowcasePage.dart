@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:erasmus_connect/models/connect_plus_user.dart';
 import 'package:erasmus_connect/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,7 @@ class MentorShowcasePage extends ConsumerWidget {
                 child: Column(
                   children: [
                     MentorShowCaseTop(width: width,
+                    profilePicture: snapshot.data!["profilePicture"],
                     fullName: snapshot.data!["fullName"],
                       nickname: snapshot.data!["nickName"],
                       country: snapshot.data!["country"],
@@ -109,7 +111,23 @@ class MentorShowcasePage extends ConsumerWidget {
                           SizedBox(
                             width: 290,
                             height: 45,
-                            child: ElevatedButton(onPressed: () {}, child: Text("Bağış yap ve konuşmayı başlat", style: TextStyle(color: Colors.white),),
+                            child: ElevatedButton(onPressed: () {
+                              showDialog(context: context, builder: (_) => MyAlertDialog(),
+                              barrierDismissible: true,
+                              ).then((value) {
+                                if(value) {
+
+                                  DateTime timestamp = DateTime.now();
+                                  Duration thirtyMinutes = Duration(minutes: 30);
+                                  DateTime newTimestamp = timestamp.add(thirtyMinutes);
+                                  Timestamp lastTime = Timestamp.fromDate(newTimestamp);
+
+                                  FirebaseFireStoreMethods(FirebaseFirestore.instance).AddChatUsers(x, ref.read(userProvider).uId, lastTime, ref);
+                                }
+
+                              });
+
+                            }, child: Text("Bağış yap ve konuşmayı başlat", style: TextStyle(color: Colors.white),),
                             style: ElevatedButton.styleFrom(backgroundColor: Colors.deepOrange, ),
                             ),
                           )
@@ -155,10 +173,10 @@ class MentorShowcasePage extends ConsumerWidget {
 class MentorShowCaseTop extends StatelessWidget {
   const MentorShowCaseTop({
     super.key,
-    required this.width, required this.fullName, required this.nickname, required this.country, required this.school, required this.erasmusSchool, required this.aboutMe, required this.skills, required this.lessons,
+    required this.width, required this.profilePicture, required this.fullName, required this.nickname, required this.country, required this.school, required this.erasmusSchool, required this.aboutMe, required this.skills, required this.lessons,
   });
   final double width;
-  final String fullName, nickname, country, school, erasmusSchool, aboutMe, skills, lessons;
+  final String profilePicture, fullName, nickname, country, school, erasmusSchool, aboutMe, skills, lessons;
 
   @override
   Widget build(BuildContext context) {
@@ -184,8 +202,8 @@ class MentorShowCaseTop extends StatelessWidget {
         child: ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child:  Image(
-              image: AssetImage(
-                  "assets/images/Default_pp.png"),
+              image: profilePicture != "" ? Image.network(profilePicture,
+                  fit: BoxFit.cover).image : AssetImage("assets/images/Default_pp.png"),
             )),
           ),
         SizedBox(width: 15,),
@@ -258,4 +276,88 @@ class TextContainer extends StatelessWidget {
 
 TextStyle H2TextStyle() {
   return TextStyle(fontSize: 18, color: Color.fromRGBO(52, 77, 87, 1), fontWeight: FontWeight.bold);
+}
+
+class MyAlertDialog extends StatelessWidget {
+  const MyAlertDialog({Key? key}) : super(key: key);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+
+      content: Container(
+        height: 245,
+        padding: EdgeInsets.all(10),
+        color: Colors.black,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text("Google Pay", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                Spacer(),
+                GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context, false);
+                    },
+                    child: Text("Cancel", style: TextStyle(color: Colors.lightBlueAccent),))
+            ],),
+            SizedBox(height: 10,),
+            Row(
+              children: [
+                Container(
+                    width: 70,
+                    height: 70,
+                    padding: EdgeInsets.only(left: 10, right: 10),
+
+                    child: Center(
+                      child: Image(
+                        image: AssetImage(
+                            "assets/images/unicef.png"),
+                      ),
+                    )
+                ),
+                SizedBox(width: 10,),
+                SizedBox(
+                  width: 150,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Bağış Yap", style: TextStyle(color: Colors.white),),
+                      Text("United Nations Children's fundation", style: TextStyle(color: Colors.white),),
+                    ],),
+                )
+              ],
+            ),
+            Divider(),
+            Text("Bir Sipariş", style: TextStyle(color: Colors.white),),
+            Text("Toplam tutar : \$1.00", style: TextStyle(color: Colors.white),),
+            Divider(),
+            Row(
+              children: [
+                SizedBox(width: 30,),
+                Text("Ödemeye Geç: ", style: TextStyle(color: Colors.white),),
+                SizedBox(width: 15,),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context, true);
+                  },
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    child: Image(image: AssetImage("assets/images/GPAY.png"),),
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+      backgroundColor: Color.fromRGBO(0, 0, 0, 0.0),
+      shadowColor: Color.fromRGBO(0, 0, 0, 0.0),
+      surfaceTintColor: Color.fromRGBO(0, 0, 0, 0.0),
+
+    );
+  }
 }

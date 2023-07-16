@@ -55,8 +55,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: CircleAvatar(
                         radius: 24,
-                        backgroundImage: NetworkImage(
-                            'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
+                        backgroundImage: user.profilePicture.toString() != "" ? Image.network(user.profilePicture.toString(),
+                          fit: BoxFit.cover).image : AssetImage("assets/images/Default_pp.png"),
                       ),
                     ),
                     Column(

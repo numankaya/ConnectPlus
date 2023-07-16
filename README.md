@@ -10,6 +10,7 @@
  - ConnectPlus App
 ## Product Backlog URL
 https://miro.com/app/board/uXjVM-Ye30g=/
+https://www.figma.com/file/RBHWArp4mt6ExdKo1fVWYz/Bootcamp-F-47?type=design&node-id=1047-1455&mode=design&t=a6mdT9TGxGXnWmh5-0
 ## Ürün Açıklaması
 ConnectPlus App, Erasmus, Work and Treval gibi öğrencilerin ve gençlerin deneyimlerini kolaylaştırmak ve zenginleştirmek için tasarlanmış bir mobil uygulamadır. 
 Öğrencilerin başvuru sürecinden ders tanıma işlemlerine, konaklama tavsiyelerinden gezilecek rotalara kadar birçok bilgiye erişmelerini sağlar.
@@ -229,7 +230,7 @@ Toplam tammalanması gereken puan 420 olarak hesaplandı.
 * Tüm ekip üyeleri aktif bir şekilde çalıştı.
 * Bu sprintte hedefimiz uygulamayı genel hatlarıyla görselleştirip önemli sayfaların backendini tamamlamaktı.
 * Uygulamanın gelişimine göre 1. ve 2. Sprint ekranlarına ufak revizeler yapıldı.
-* Bu sprint 13 ekran tasarlandı ve 13 ekran tamamlandı, bu sayının içinde benzer ekranlar bulunmamakta.
+* Bu sprint 13 ana ekran tasarlandı ve 13 ekran tamamlandı, bu sayının içinde benzer ekranlar bulunmamakta.
   
 - **Sprint Retrospektif**:
 * Hepimizin ilk kod ve uygulama deneyimi olduğu için çok verimli, heyecanlı ve öğretici oldu.

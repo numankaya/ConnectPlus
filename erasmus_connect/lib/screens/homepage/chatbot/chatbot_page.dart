@@ -1,3 +1,4 @@
+import 'package:erasmus_connect/models/connect_plus_user.dart';
 import 'package:erasmus_connect/screens/homepage/chatbot/chat_item.dart';
 import 'package:erasmus_connect/screens/homepage/chatbot/providers/chat_providers.dart';
 import 'package:erasmus_connect/screens/homepage/chatbot/text_field.dart';
@@ -5,9 +6,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ChatbotPage extends StatelessWidget {
+class ChatbotPage extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ConnectPlusUser user = ref.watch(userProvider);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -31,8 +33,9 @@ class ChatbotPage extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    backgroundImage: NetworkImage(
-                        'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
+                    backgroundImage: user.profilePicture != "" ? Image.network(user.profilePicture.toString(),
+                          fit: BoxFit.cover).image : AssetImage("assets/images/Default_pp.png"),
+
                   ),
                   Positioned(
                     bottom: 0,

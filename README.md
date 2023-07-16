@@ -224,6 +224,15 @@ Toplam tammalanması gereken puan 420 olarak hesaplandı.
 - Trello Ekranı:<img width="713" alt="image" src="https://github.com/numankaya/ConnectPlus/assets/123562983/337f4d41-c1da-4660-90da-1d37b75754b0">
 - Miro Ekranı:
 - Figma Ekranı:
+
+![image-1](https://github.com/numankaya/ConnectPlus/assets/123562983/369f608d-825e-4f97-8c57-1568f4cafeb2)
+![image-2](https://github.com/numankaya/ConnectPlus/assets/123562983/5be6c5ed-6cf0-4de7-a55f-340e0995fbd7)
+
+![image-3](https://github.com/numankaya/ConnectPlus/assets/123562983/bca87a38-94fc-4e4f-b44b-a31f90822fb2)
+<img width="433" alt="image-4" src="https://github.com/numankaya/ConnectPlus/assets/123562983/c87db69a-cb22-4966-939e-134e87cec71b">
+<img width="548" alt="image-5" src="https://github.com/numankaya/ConnectPlus/assets/123562983/a1a1c1c4-4114-46d3-af1f-7f93bd648dbe">
+
+
 - **Ürün Durumu**: 
 - Ekran görüntüleri:
 - **Revize ekranlar**:

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CommunitiesPage extends StatefulWidget {
   final Function(int) goToPage;
@@ -184,10 +185,10 @@ class _CommunitiesPageState extends State<CommunitiesPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                height: 38,
-                width: 38,
+                height: 40,
+                width: 40,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(12),
                   color: Colors.white,
                 ),
                 child: IconButton(
@@ -202,7 +203,7 @@ class _CommunitiesPageState extends State<CommunitiesPage> {
                 ),
               ),
               Text(
-                'Topluluklar',
+                AppLocalizations.of(context).topluluklar,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -317,7 +318,7 @@ class ContainerCard extends StatelessWidget {
                     ),
                     onPressed: onTap,
                     child: Text(
-                      'Katıl',
+                      AppLocalizations.of(context).katil,
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
@@ -335,7 +336,7 @@ class ContainerCard extends StatelessWidget {
                       ),
                       SizedBox(width: 5.0),
                       Text(
-                        '${school.joinedPeople} joined',
+                        '${school.joinedPeople} ${AppLocalizations.of(context).katildi}',
                         style: TextStyle(
                           color: Colors.grey,
                         ),
@@ -373,11 +374,40 @@ class _CommunityDetailsPageState extends State<CommunityDetailsPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              widget.school.avatarUrls[0],
-              fit: BoxFit.cover,
-              height: MediaQuery.of(context).size.height * 0.2,
-              width: double.infinity,
+            Stack(
+              children: [
+                Image.asset(
+                  widget.school.avatarUrls[0],
+                  fit: BoxFit.cover,
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  width: double.infinity,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color.fromARGB(255, 210, 210, 210),
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.white,
+                    ),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        size: 24,
+                        CupertinoIcons.chevron_back,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
             Container(
               padding: EdgeInsets.all(10.0),
@@ -412,7 +442,7 @@ class _CommunityDetailsPageState extends State<CommunityDetailsPage> {
                               ),
                             ),
                             Text(
-                              ' / ${widget.school.joinedPeople} Üye',
+                              ' / ${widget.school.joinedPeople} ${AppLocalizations.of(context).uye}',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 12.0,
@@ -437,7 +467,7 @@ class _CommunityDetailsPageState extends State<CommunityDetailsPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Topluluktan Ayrılın',
+                                AppLocalizations.of(context).topluluktanayrilin,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12.0,
@@ -546,26 +576,32 @@ class Post {
   });
 }
 
-class PostCard extends StatelessWidget {
+class PostCard extends StatefulWidget {
   final Post post;
 
   PostCard({required this.post});
+
+  @override
+  State<PostCard> createState() => _PostCardState();
+}
+
+class _PostCardState extends State<PostCard> {
   String formatDuration(Duration duration) {
     if (duration.inDays >= 1) {
-      return '${duration.inDays} gün önce';
+      return '${duration.inDays} ${AppLocalizations.of(context).gunonce}';
     } else if (duration.inHours >= 1) {
-      return '${duration.inHours} saat önce';
+      return '${duration.inHours} ${AppLocalizations.of(context).saatonce}';
     } else if (duration.inMinutes >= 1) {
-      return '${duration.inMinutes} dakika önce';
+      return '${duration.inMinutes} ${AppLocalizations.of(context).dakikaonce}';
     } else {
-      return 'Şimdi';
+      return '${AppLocalizations.of(context).simdi}';
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final Duration timeDifference =
-        DateTime.now().difference(post.created.toDate());
+        DateTime.now().difference(widget.post.created.toDate());
     final String elapsedTime = formatDuration(timeDifference);
     return Container(
       margin: EdgeInsets.all(10.0),
@@ -581,7 +617,7 @@ class PostCard extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15.0),
               child: Image.network(
-                post.imageUrl,
+                widget.post.imageUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -602,7 +638,7 @@ class PostCard extends StatelessWidget {
                 children: [
                   // Content
                   Text(
-                    post.content,
+                    widget.post.content,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16.0,
@@ -705,16 +741,11 @@ class _CreatePostPageState extends State<CreatePostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 255, 248, 242),
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height * 1,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/event_background_image.png"),
-              fit: BoxFit.cover,
-              opacity: 0.4,
-            ),
-          ),
+          decoration: BoxDecoration(),
           child: Column(
             children: [
               Form(
@@ -746,7 +777,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                             ),
                           ),
                           Text(
-                            'Gönderi Oluştur',
+                            AppLocalizations.of(context).gonderiolustur,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 20,
@@ -769,7 +800,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                       SizedBox(height: 30.0),
                       TextFormField(
                         decoration: InputDecoration(
-                          hintText: 'Başlık',
+                          hintText: AppLocalizations.of(context).baslik,
                           filled: true,
                           fillColor: Color.fromARGB(180, 224, 137, 50),
                           border: OutlineInputBorder(
@@ -805,7 +836,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                       SizedBox(height: 24.0),
                       TextFormField(
                         decoration: InputDecoration(
-                          hintText: 'İçerik',
+                          hintText: AppLocalizations.of(context).icerik,
                           filled: true,
                           fillColor: Color.fromARGB(180, 224, 137, 50),
                           border: OutlineInputBorder(
@@ -830,7 +861,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter the content';
+                            return 'Lütfen içerik giriniz';
                           }
                           return null;
                         },
@@ -856,7 +887,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               _imageFile == null
-                                  ? Text('Görsel',
+                                  ? Text(AppLocalizations.of(context).gorsel,
                                       style: TextStyle(fontSize: 16))
                                   : Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -927,7 +958,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                             ),
                           ),
                           child: Text(
-                            'Oluştur',
+                            AppLocalizations.of(context).olustur,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -961,9 +992,9 @@ class _CreatePostPageState extends State<CreatePostPage> {
       'upvotes': post.upvotes,
       'time': post.time,
     }).then((value) {
-      print('Post added to Firebase');
+      print('Firebase eklendi');
     }).catchError((error) {
-      print('Failed to add post: $error');
+      print('Hata: $error');
     });
   }
 }

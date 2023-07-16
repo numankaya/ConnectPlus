@@ -24,40 +24,10 @@ class _HomePageState extends State<HomePage> {
 
   final List<String> images = [];
 
-  // final List<String> countryNames = [
-  //   'Türkiye',
-  //   'İsveç',
-  //   'İtalya',
-  //   'Almanya',
-  //   'Hollanda'
-  // ];
-
   final _fireStore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
 
   String searchText = '';
-
-  void navigateToSearchResultsPage() {
-    widget.goToPage(23);
-  }
-
-  final List<String> options = ['Option 1', 'Option 2', 'Option 3'];
-  List<String> filteredOptions = [];
-
-  @override
-  void initState() {
-    super.initState();
-    filteredOptions = options;
-  }
-
-  void filterOptions(String value) {
-    setState(() {
-      searchText = value;
-      filteredOptions = options
-          .where((option) => option.toLowerCase().contains(value.toLowerCase()))
-          .toList();
-    });
-  }
 
   // late User loggedInUser;
   void _showAlertDialogForAccess(BuildContext context, message) {
@@ -78,14 +48,6 @@ class _HomePageState extends State<HomePage> {
             ),
             textAlign: TextAlign.center,
           ),
-          // actions: [
-          //   TextButton(
-          //     onPressed: () {
-          //       Navigator.of(context).pop();
-          //     },
-          //     child: Text('OK'),
-          //   ),
-          // ],
         );
       },
     );
@@ -282,7 +244,7 @@ class _HomePageState extends State<HomePage> {
                               vertical: 10, horizontal: 15),
                           filled: true,
                           fillColor: Color.fromARGB(255, 250, 229, 210),
-                          hintText: 'Ara...',
+                          hintText: AppLocalizations.of(context).ara,
                           hintStyle: TextStyle(
                             color: Color.fromARGB(255, 237, 164, 126),
                           ),
@@ -301,7 +263,7 @@ class _HomePageState extends State<HomePage> {
                           });
                         },
                         onTap: () {
-                          navigateToSearchResultsPage();
+                          widget.goToPage(23);
                         },
                       ),
                     ),
@@ -338,7 +300,7 @@ class _HomePageState extends State<HomePage> {
                   bottom: 4,
                 ),
                 child: Text(
-                  "Başvuru Rehberi",
+                  AppLocalizations.of(context).basvururehberi,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -370,12 +332,20 @@ class _HomePageState extends State<HomePage> {
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    'Vize Süreçleri',
+                                    AppLocalizations.of(context).vizesurecleri,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color.fromARGB(255, 0, 0, 0),
                                       fontSize: 10,
                                       fontWeight: FontWeight.bold,
+                                      shadows: [
+                                        Shadow(
+                                          blurRadius: 20.0,
+                                          color: const Color.fromARGB(
+                                              255, 255, 255, 255),
+                                          offset: Offset(0, 0),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -402,12 +372,20 @@ class _HomePageState extends State<HomePage> {
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    'Oturum İzni',
+                                    AppLocalizations.of(context).oturumizni,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color.fromARGB(255, 0, 0, 0),
                                       fontSize: 10,
                                       fontWeight: FontWeight.bold,
+                                      shadows: [
+                                        Shadow(
+                                          blurRadius: 10.0,
+                                          color: const Color.fromARGB(
+                                              255, 255, 255, 255),
+                                          offset: Offset(3, 3),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -434,7 +412,8 @@ class _HomePageState extends State<HomePage> {
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    'Sağlık\nSigortaları',
+                                    AppLocalizations.of(context)
+                                        .sagliksigortasi,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color.fromARGB(255, 0, 0, 0),
@@ -466,7 +445,7 @@ class _HomePageState extends State<HomePage> {
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    'Kaliteli Eğitim\nTopluluğu',
+                                    AppLocalizations.of(context).kaliteliegitim,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color.fromARGB(255, 0, 0, 0),
@@ -490,7 +469,7 @@ class _HomePageState extends State<HomePage> {
                   left: 30,
                 ),
                 child: Text(
-                  "Önerilenler",
+                  AppLocalizations.of(context).onerilenler,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -521,7 +500,8 @@ class _HomePageState extends State<HomePage> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                'Konaklama\nTavsiyeleri',
+                                AppLocalizations.of(context)
+                                    .konaklamatavsiyeleri,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -583,7 +563,7 @@ class _HomePageState extends State<HomePage> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                'Gezilecek\nRotalar',
+                                AppLocalizations.of(context).gezilecekrotalar,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -619,7 +599,7 @@ class _HomePageState extends State<HomePage> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                'Mentorluk',
+                                AppLocalizations.of(context).mentorluk,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -648,6 +628,24 @@ class _HomePageState extends State<HomePage> {
                   child: Stack(
                     children: [
                       Image.asset('assets/images/homepage_img_11.png'),
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        left: 0,
+                        bottom: 40,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            AppLocalizations.of(context).ayniokuldaninsanlar,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

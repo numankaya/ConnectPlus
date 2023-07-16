@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TravelPage extends StatefulWidget {
+  final Function(int) goToPage;
+  TravelPage({required this.goToPage});
   @override
   _TravelPageState createState() => _TravelPageState();
 }
@@ -219,8 +221,9 @@ class _TravelPageState extends State<TravelPage> {
                             borderSide: BorderSide.none,
                           ),
                         ),
-                        onChanged: (value) {
-                          // Handle search bar input
+                        onChanged: (value) {},
+                        onTap: () {
+                          widget.goToPage(23);
                         },
                       ),
                     ),

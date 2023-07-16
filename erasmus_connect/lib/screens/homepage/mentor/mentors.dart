@@ -12,7 +12,8 @@ class MentorsPage extends StatelessWidget {
   final Function(int) goToPage;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child:       Scaffold(
+    return SafeArea(
+        child: Scaffold(
       backgroundColor: Color.fromARGB(255, 247, 235, 225),
       appBar: AppBar(
         shadowColor: Color.fromARGB(255, 247, 235, 225),
@@ -77,7 +78,7 @@ class MentorsPage extends StatelessWidget {
                   child: TextField(
                     decoration: InputDecoration(
                       contentPadding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                       filled: true,
                       fillColor: Color.fromARGB(255, 250, 229, 210),
                       hintText: 'Ara...',
@@ -170,12 +171,12 @@ class MentorsPage extends StatelessWidget {
 class MentorHolder extends ConsumerWidget {
   const MentorHolder(
       {Key? key,
-        required this.goToPage,
-        required this.uId,
-        required this.fullName,
-        required this.nickName,
-        required this.school,
-        required this.erasmusSchool,
+      required this.goToPage,
+      required this.uId,
+      required this.fullName,
+      required this.nickName,
+      required this.school,
+      required this.erasmusSchool,
       required this.country})
       : super(key: key);
 
@@ -190,7 +191,8 @@ class MentorHolder extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Stack(
-      children: [Container(
+      children: [
+        Container(
           padding: EdgeInsets.all(10),
           width: 370,
           height: 150,
@@ -231,10 +233,18 @@ class MentorHolder extends ConsumerWidget {
                             children: [
                               Text(
                                 nickName,
-                                style: TextStyle(overflow: TextOverflow.ellipsis, fontSize: 12), maxLines: 1,
+                                style: TextStyle(
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: 12),
+                                maxLines: 1,
                               ),
                               Spacer(),
-                              Text("${country}", style: TextStyle(overflow: TextOverflow.ellipsis), maxLines: 1,)
+                              Text(
+                                "${country}",
+                                style:
+                                    TextStyle(overflow: TextOverflow.ellipsis),
+                                maxLines: 1,
+                              )
                             ],
                           )),
                       SizedBox(
@@ -242,9 +252,14 @@ class MentorHolder extends ConsumerWidget {
                       ),
                       Text(
                         "Okul : ${school}",
-                        style: TextStyle(overflow: TextOverflow.ellipsis), maxLines: 1,
+                        style: TextStyle(overflow: TextOverflow.ellipsis),
+                        maxLines: 1,
                       ),
-                      Text("erasmus okul : ${erasmusSchool}", style: TextStyle(overflow: TextOverflow.ellipsis), maxLines: 1,),
+                      Text(
+                        "erasmus okul : ${erasmusSchool}",
+                        style: TextStyle(overflow: TextOverflow.ellipsis),
+                        maxLines: 1,
+                      ),
                       SizedBox(
                         height: 5,
                       ),
@@ -279,11 +294,11 @@ class MentorHolder extends ConsumerWidget {
               icon: Icon(Icons.arrow_forward_outlined)),
           bottom: 0,
           right: 0,
-        )],
+        )
+      ],
     );
   }
 }
-
 
 final targetuId = StateProvider<String>((ref) => "");
 

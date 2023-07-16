@@ -28,11 +28,13 @@ class _MeetingState extends State<Meeting> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 248, 242),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Color.fromARGB(255, 255, 248, 242),
         foregroundColor: Color.fromARGB(255, 255, 248, 242),
         surfaceTintColor: Color.fromARGB(255, 255, 248, 242),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               height: 40,

@@ -159,7 +159,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                       setState(() {
                         dropdownValue1 = newValue!;
                       });
-                      ref.read(selectedLocaleProvider.notifier).state = Locale(newValue!);
+                      ref.read(selectedLocaleProvider.notifier).state =
+                          Locale(newValue!);
                       print(newValue!);
                     },
                     items: <String>['Türkçe', 'English']
@@ -173,7 +174,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                             fontSize: 14,
                           ),
                         ),
-
                       );
                     }).toList(),
                   ),

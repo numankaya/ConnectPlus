@@ -161,24 +161,23 @@ class ConnectPlusUser {
   final String? lessons;
   final bool isMailVerified;
   final Map<String, dynamic>? chatUsers;
-  ConnectPlusUser( {
-    required this.uId,
-    required this.fullName,
-    required this.nickName,
-    required this.mail,
-    required this.phone,
-    required this.type,
-    required this.gender,
-    required this.country,
-    required this.city,
-    required this.school,
-    required this.erasmusSchool,
-    required this.aboutMe,
-    required this.skills,
-    required this.lessons,
-    required this.isMailVerified,
-    required this.chatUsers
-  });
+  ConnectPlusUser(
+      {required this.uId,
+      required this.fullName,
+      required this.nickName,
+      required this.mail,
+      required this.phone,
+      required this.type,
+      required this.gender,
+      required this.country,
+      required this.city,
+      required this.school,
+      required this.erasmusSchool,
+      required this.aboutMe,
+      required this.skills,
+      required this.lessons,
+      required this.isMailVerified,
+      required this.chatUsers});
 
   ConnectPlusUser copyWith({
     String? uId,
@@ -214,59 +213,59 @@ class ConnectPlusUser {
       skills: skills ?? this.skills,
       lessons: lessons ?? this.lessons,
       isMailVerified: isMailVerified ?? this.isMailVerified,
-      chatUsers:  chatUsers ?? this.chatUsers,
+      chatUsers: chatUsers ?? this.chatUsers,
     );
   }
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
-  
+
     result.addAll({'uId': uId});
-    if(fullName != null){
+    if (fullName != null) {
       result.addAll({'fullName': fullName});
     }
-    if(nickName != null){
+    if (nickName != null) {
       result.addAll({'nickName': nickName});
     }
-    if(mail != null){
+    if (mail != null) {
       result.addAll({'mail': mail});
     }
-    if(phone != null){
+    if (phone != null) {
       result.addAll({'phone': phone});
     }
-    if(type != null){
+    if (type != null) {
       result.addAll({'type': type});
     }
-    if(gender != null){
+    if (gender != null) {
       result.addAll({'gender': gender});
     }
-    if(country != null){
+    if (country != null) {
       result.addAll({'country': country});
     }
-    if(city != null){
+    if (city != null) {
       result.addAll({'city': city});
     }
-    if(school != null){
+    if (school != null) {
       result.addAll({'school': school});
     }
-    if(erasmusSchool != null){
+    if (erasmusSchool != null) {
       result.addAll({'erasmusSchool': erasmusSchool});
     }
-    if(aboutMe != null){
+    if (aboutMe != null) {
       result.addAll({'aboutMe': aboutMe});
     }
-    if(skills != null){
+    if (skills != null) {
       result.addAll({'skills': skills});
     }
-    if(lessons != null){
+    if (lessons != null) {
       result.addAll({'lessons': lessons});
     }
     result.addAll({'isMailVerified': isMailVerified});
 
-    if(chatUsers != null){
+    if (chatUsers != null) {
       result.addAll({"chatUsers": chatUsers});
     }
-  
+
     return result;
   }
 
@@ -304,44 +303,44 @@ class ConnectPlusUser {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is ConnectPlusUser &&
-      other.uId == uId &&
-      other.fullName == fullName &&
-      other.nickName == nickName &&
-      other.mail == mail &&
-      other.phone == phone &&
-      other.type == type &&
-      other.gender == gender &&
-      other.country == country &&
-      other.city == city &&
-      other.school == school &&
-      other.erasmusSchool == erasmusSchool &&
-      other.aboutMe == aboutMe &&
-      other.skills == skills &&
-      other.lessons == lessons &&
-      other.isMailVerified == isMailVerified &&
-      other.chatUsers == chatUsers;
+        other.uId == uId &&
+        other.fullName == fullName &&
+        other.nickName == nickName &&
+        other.mail == mail &&
+        other.phone == phone &&
+        other.type == type &&
+        other.gender == gender &&
+        other.country == country &&
+        other.city == city &&
+        other.school == school &&
+        other.erasmusSchool == erasmusSchool &&
+        other.aboutMe == aboutMe &&
+        other.skills == skills &&
+        other.lessons == lessons &&
+        other.isMailVerified == isMailVerified &&
+        other.chatUsers == chatUsers;
   }
 
   @override
   int get hashCode {
     return uId.hashCode ^
-      fullName.hashCode ^
-      nickName.hashCode ^
-      mail.hashCode ^
-      phone.hashCode ^
-      type.hashCode ^
-      gender.hashCode ^
-      country.hashCode ^
-      city.hashCode ^
-      school.hashCode ^
-      erasmusSchool.hashCode ^
-      aboutMe.hashCode ^
-      skills.hashCode ^
-      lessons.hashCode ^
-      isMailVerified.hashCode ^
-      chatUsers.hashCode;
+        fullName.hashCode ^
+        nickName.hashCode ^
+        mail.hashCode ^
+        phone.hashCode ^
+        type.hashCode ^
+        gender.hashCode ^
+        country.hashCode ^
+        city.hashCode ^
+        school.hashCode ^
+        erasmusSchool.hashCode ^
+        aboutMe.hashCode ^
+        skills.hashCode ^
+        lessons.hashCode ^
+        isMailVerified.hashCode ^
+        chatUsers.hashCode;
   }
 }
 
@@ -373,32 +372,33 @@ class UserNotifier extends StateNotifier<ConnectPlusUser> {
     state = x;
   }
 
-  void updateAboutStatus({required String aboutMe, required String skills, required String lessons}) {
-    state = state.copyWith(aboutMe: aboutMe, skills: skills,lessons: lessons);
+  void updateAboutStatus(
+      {required String aboutMe,
+      required String skills,
+      required String lessons}) {
+    state = state.copyWith(aboutMe: aboutMe, skills: skills, lessons: lessons);
   }
 }
 
 final userProvider = StateNotifierProvider<UserNotifier, ConnectPlusUser>(
     (ref) => UserNotifier(ConnectPlusUser(
-        uId: "",
-        fullName: "",
-        nickName: "",
-        mail: "",
-        phone: "",
-        gender: "",
-        isMailVerified: false,
-        country: "",
-        city: "",
-        type: '',
-        school: '',
-        erasmusSchool: '',
-        aboutMe: '',
-        skills: '',
-        lessons: '',
-      chatUsers: null,
-    )
-    )
-);
+          uId: "",
+          fullName: "",
+          nickName: "",
+          mail: "",
+          phone: "",
+          gender: "",
+          isMailVerified: false,
+          country: "",
+          city: "",
+          type: '',
+          school: '',
+          erasmusSchool: '',
+          aboutMe: '',
+          skills: '',
+          lessons: '',
+          chatUsers: null,
+        )));
 
 /*
 class UserNotifier extends StateNotifier<ConnectPlusUserUser> {

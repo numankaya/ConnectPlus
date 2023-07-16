@@ -3,6 +3,7 @@ import 'package:erasmus_connect/screens/homepage/main_screen/schools_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/travel_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SearchResultsPage extends StatefulWidget {
   final Function(int) goToPage;
@@ -145,7 +146,7 @@ class _SearchResultsPageState extends State<SearchResultsPage> {
               ),
             ),
             Text(
-              'Arama Yap',
+              AppLocalizations.of(context).aramayap,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 20,
@@ -183,7 +184,7 @@ class _SearchResultsPageState extends State<SearchResultsPage> {
                             EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                         filled: true,
                         fillColor: Color.fromARGB(255, 250, 229, 210),
-                        hintText: 'Ara...',
+                        hintText: AppLocalizations.of(context).ara,
                         hintStyle: TextStyle(
                           color: Color.fromARGB(255, 237, 164, 126),
                         ),
@@ -324,43 +325,3 @@ class _SearchResultsPageState extends State<SearchResultsPage> {
     }
   }
 }
-
-
-
-
-
-
-// /////////////////////////
-// AppBar(
-//         backgroundColor: Color.fromARGB(255, 255, 248, 242),
-//         foregroundColor: Color.fromARGB(255, 255, 248, 242),
-//         surfaceTintColor: Color.fromARGB(255, 255, 248, 242),
-//         title: Row(
-//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//           children: [
-//             Container(
-//               height: 40,
-//               width: 40,
-//               decoration: BoxDecoration(
-//                 border: Border.all(
-//                   color: Color.fromARGB(255, 210, 210, 210),
-//                   width: 1,
-//                 ),
-//                 borderRadius: BorderRadius.circular(12),
-//                 color: Colors.white,
-//               ),
-//               child: IconButton(
-//                 onPressed: () {
-//                   widget.goToPage(2);
-//                 },
-//                 icon: Icon(
-//                   size: 24,
-//                   CupertinoIcons.chevron_back,
-//                   color: Colors.black,
-//                 ),
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-// /////////////////////////

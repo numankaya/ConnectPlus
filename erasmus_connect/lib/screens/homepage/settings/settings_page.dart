@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../l10n/l10n.dart';
 
 class SettingsPage extends ConsumerStatefulWidget {
@@ -87,7 +87,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               SizedBox(height: 20),
               ListTile(
                 title: Text(
-                  'Hesap',
+                  AppLocalizations.of(context).hesap,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -104,7 +104,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               ),
               ListTile(
                 title: Text(
-                  'Dil Seçeneği',
+                  AppLocalizations.of(context).dilsecenegi,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -131,7 +131,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                       setState(() {
                         dropdownValue1 = newValue!;
                       });
-                      ref.read(selectedLocaleProvider.notifier).state = Locale((newValue! == "Türkçe" ? "tr":"en"));
+                      ref.read(selectedLocaleProvider.notifier).state =
+                          Locale((newValue! == "Türkçe" ? "tr" : "en"));
                     },
                     items: <String>['Türkçe', 'English']
                         .map<DropdownMenuItem<String>>((String value) {
@@ -151,7 +152,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               ),
               ListTile(
                 title: Text(
-                  'Tema',
+                  AppLocalizations.of(context).tema,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -168,7 +169,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               ),
               ListTile(
                 title: Text(
-                  'Bildirimler',
+                  AppLocalizations.of(context).bildirimler,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -214,7 +215,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               ),
               ListTile(
                 title: Text(
-                  'Sıkça Sorulan Sorular',
+                  AppLocalizations.of(context).sss,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -233,7 +234,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               ),
               ListTile(
                 title: Text(
-                  'Kullanım Şartları',
+                  AppLocalizations.of(context).kullanimsartlari,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -252,7 +253,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               ),
               ListTile(
                 title: Text(
-                  'Gizlilik Politikası',
+                  AppLocalizations.of(context).gizlilikpolitikasi,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -273,11 +274,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-
-
                   if (ref.read(userProvider).uId == "") {
-                    Navigator.push(context, MaterialPageRoute(builder: (builder) => LoginScreen()));
-                  }else {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (builder) => LoginScreen()));
+                  } else {
                     FirebaseAuth.instance.signOut();
                     ref.read(userProvider.notifier).LogOut();
                   }
@@ -302,9 +302,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        (ref.read(userProvider).uId == "" ? "Giriş Yap" : "Çıkış Yap"),
+                        (ref.read(userProvider).uId == ""
+                            ? AppLocalizations.of(context).girisyap
+                            : AppLocalizations.of(context).cikisyap),
                         style: TextStyle(
-                          color:  ref.read(userProvider).uId == "" ? Color.fromRGBO(0, 255, 0, 1) : Color.fromARGB(255, 190, 35, 53),
+                          color: ref.read(userProvider).uId == ""
+                              ? Color.fromRGBO(0, 255, 0, 1)
+                              : Color.fromARGB(255, 190, 35, 53),
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),

@@ -9,6 +9,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'dart:io';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EducationCommunityPage extends StatefulWidget {
   final Function(int) goToPage;
@@ -70,8 +71,8 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
-      print('Latitude: ${position.latitude}');
-      print('Longitude: ${position.longitude}');
+      print('Enlem: ${position.latitude}');
+      print('Boylam: ${position.longitude}');
     } catch (e) {
       print(e);
     }
@@ -87,7 +88,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
   Future<Position> _getCurrentLocation() async {
     servicePermission = await Geolocator.isLocationServiceEnabled();
     if (!servicePermission) {
-      print('Service disabled');
+      print('Olmadı :)');
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
@@ -133,7 +134,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Senin lokasyonun",
+                    AppLocalizations.of(context).seninlokasyonun,
                     style: TextStyle(fontSize: 10.0),
                   ),
                   Text(
@@ -217,7 +218,14 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
   Widget buildMainPage() {
     return Column(
       children: [
-        Text("Trendler"),
+        Text(
+          AppLocalizations.of(context).trendler,
+          style: TextStyle(
+            fontSize: 20.0,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         Expanded(
           child: StreamBuilder<QuerySnapshot>(
             stream: _fireStore
@@ -270,7 +278,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
   Widget buildLikedItemsPage() {
     return Column(
       children: [
-        Text("Favorilerim"),
+        Text(AppLocalizations.of(context).favorilerim),
         Expanded(
           child: ListView.builder(
             itemCount: likedItems.length,
@@ -538,7 +546,7 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
           await uploadTask.whenComplete(() {});
 
       downloadUrl = await ref.getDownloadURL();
-      print('Image uploaded. Download URL: $downloadUrl');
+      print('Resim yüklendi. İndirme bağlantısı: $downloadUrl');
 
       setState(() {});
     }
@@ -596,15 +604,10 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 255, 248, 242),
       body: Container(
         height: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/event_background_image.png"),
-            fit: BoxFit.cover,
-            opacity: 0.4,
-          ),
-        ),
+        decoration: BoxDecoration(),
         child: Stack(
           children: [
             SingleChildScrollView(
@@ -635,7 +638,7 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
                           ),
                         ),
                         Text(
-                          'Gönderi Oluştur',
+                          AppLocalizations.of(context).gonderiolustur,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -658,22 +661,22 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
                     SizedBox(height: 30.0),
                     buildTextField(
                       controller: titleTextController,
-                      hintText: 'Başlık',
+                      hintText: AppLocalizations.of(context).baslik,
                     ),
                     SizedBox(height: 24.0),
                     buildTextField(
                       controller: dateTextController,
-                      hintText: 'Tarih',
+                      hintText: AppLocalizations.of(context).tarih,
                     ),
                     SizedBox(height: 24.0),
                     buildTextField(
                       controller: placeTextController,
-                      hintText: 'Konum',
+                      hintText: AppLocalizations.of(context).konum,
                     ),
                     SizedBox(height: 24.0),
                     buildTextField(
                       controller: timeTextController,
-                      hintText: 'Saat',
+                      hintText: AppLocalizations.of(context).saat,
                     ),
                     SizedBox(height: 24.0),
                     GestureDetector(
@@ -693,7 +696,8 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             _imageFile == null
-                                ? Text('Görsel', style: TextStyle(fontSize: 16))
+                                ? Text(AppLocalizations.of(context).gorsel,
+                                    style: TextStyle(fontSize: 16))
                                 : Padding(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 10.0),
@@ -755,7 +759,7 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
                           ),
                         ),
                         child: Text(
-                          'Oluştur',
+                          AppLocalizations.of(context).olustur,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
@@ -776,7 +780,7 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
                           ),
                         ),
                         child: Text(
-                          'Etkinlikleri Görüntüle',
+                          AppLocalizations.of(context).etkinliklerigoruntule,
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -802,13 +806,13 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
     return TextField(
       controller: controller,
       onChanged: (value) {
-        if (hintText == 'Başlık') {
+        if (hintText == AppLocalizations.of(context).baslik) {
           title = value;
-        } else if (hintText == 'Tarih') {
+        } else if (hintText == AppLocalizations.of(context).tarih) {
           date = value;
-        } else if (hintText == 'Konum') {
+        } else if (hintText == AppLocalizations.of(context).konum) {
           place = value;
-        } else if (hintText == 'Saat') {
+        } else if (hintText == AppLocalizations.of(context).saat) {
           time = value;
         }
       },

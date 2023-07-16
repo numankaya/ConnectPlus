@@ -10,67 +10,54 @@ class ChatbotPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: const Color.fromARGB(128, 255, 144, 34),
+          foregroundColor: const Color.fromARGB(128, 255, 144, 34),
+          surfaceTintColor: const Color.fromARGB(128, 255, 144, 34),
+          shadowColor: const Color.fromARGB(128, 255, 144, 34),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                'Chatbox',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Stack(
+                children: [
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundImage: NetworkImage(
+                        'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Container(
+                      width: 15,
+                      height: 15,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: Color.fromARGB(255, 247, 235, 225),
+                            width: 2),
+                        color: Color.fromARGB(
+                            255, 251, 137, 39), // Replace with desired color
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
         backgroundColor: Color.fromARGB(255, 247, 235, 225),
         body: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 20,
-                horizontal: 30,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: 38,
-                    width: 38,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: IconButton(
-                      icon: Icon(CupertinoIcons.chevron_back),
-                      onPressed: () {
-                        // Handle button press
-                      },
-                      iconSize: 24,
-                      splashRadius: 15,
-                      color: Colors.black,
-                      highlightColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      splashColor: Colors.transparent,
-                    ),
-                  ),
-                  Stack(
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundImage: NetworkImage(
-                            'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          width: 20,
-                          height: 20,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: Color.fromARGB(255, 247, 235, 225),
-                                width: 2),
-                            color: Color.fromARGB(255, 251, 137,
-                                39), // Replace with desired color
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  // Assuming you have a profile image URL stored in a variable called `profileImageUrl`
-                ],
-              ),
-            ),
             Expanded(
               child: Consumer(
                 builder: (context, ref, child) {

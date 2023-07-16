@@ -39,7 +39,7 @@ class FirebaseFireStoreMethods {
       required String gender,
       required String phone,
       required String country,
-        required String city,
+      required String city,
       required String type,
       required String school,
       required String erasmusSchool}) async {
@@ -63,11 +63,11 @@ class FirebaseFireStoreMethods {
     }
   }
 
-  Future<bool> UpdateUserAbout({required String uId,
-    required String aboutMe,
-    required String skills,
-    required String lessons
-  }) async {
+  Future<bool> UpdateUserAbout(
+      {required String uId,
+      required String aboutMe,
+      required String skills,
+      required String lessons}) async {
     try {
       // create user's data inside of firestore
       await _firebaseStore.collection("users").doc(uId).update({
@@ -99,7 +99,8 @@ class FirebaseFireStoreMethods {
     }
   }
 
-  Future<void> UpdateLastMessage(String Id1, String Id2, Timestamp time ,String message) async {
+  Future<void> UpdateLastMessage(
+      String Id1, String Id2, Timestamp time, String message) async {
     // get user's data from firestore
     try {
       var collection = FirebaseFirestore.instance.collection('users');
@@ -107,16 +108,11 @@ class FirebaseFireStoreMethods {
       Map<String, dynamic>? user2 = await GetUser(Id2);
       user1!["chatUsers"][Id2]["lastMessage"] = message;
       user2!["chatUsers"][Id1]["lastMessage"] = message;
-      collection.doc(Id1).update({
-        "chatUsers": user1!["chatUsers"]
-      });
-      collection.doc(Id2).update({
-        "chatUsers": user2!["chatUsers"]
-      });
+      collection.doc(Id1).update({"chatUsers": user1!["chatUsers"]});
+      collection.doc(Id2).update({"chatUsers": user2!["chatUsers"]});
     } on FirebaseException catch (e) {
       print(e.message);
       return null;
     }
   }
-
 }

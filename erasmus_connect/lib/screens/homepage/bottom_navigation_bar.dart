@@ -94,8 +94,12 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
           ProfilePage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),
-          TravelPage(),
-          AccommodationPage(),
+          TravelPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
+          AccommodationPage(goToPage: (index) {
+            pageController.jumpToPage(index);
+          }),
           SchoolsPage(goToPage: (index) {
             pageController.jumpToPage(index);
           }),

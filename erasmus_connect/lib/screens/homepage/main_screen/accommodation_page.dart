@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AccommodationPage extends StatefulWidget {
+  final Function(int) goToPage;
+  AccommodationPage({required this.goToPage});
   @override
   _AccommodationPageState createState() => _AccommodationPageState();
 }
@@ -249,8 +251,9 @@ class _AccommodationPageState extends State<AccommodationPage> {
                             borderSide: BorderSide.none,
                           ),
                         ),
-                        onChanged: (value) {
-                          // Handle search bar input
+                        onChanged: (value) {},
+                        onTap: () {
+                          widget.goToPage(23);
                         },
                       ),
                     ),

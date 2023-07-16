@@ -358,7 +358,7 @@ class RegisterScreen extends ConsumerWidget {
           aboutMe: '',
           skills: '',
           lessons: '',
-          chatUsers: null,
+          chatUsers: {},
         ));
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(

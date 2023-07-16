@@ -1,9 +1,11 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:erasmus_connect/core/app_export.dart';
+import 'package:erasmus_connect/models/connect_plus_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
@@ -11,17 +13,17 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'dart:io';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class EducationCommunityPage extends StatefulWidget {
+class EducationCommunityPage extends ConsumerStatefulWidget {
   final Function(int) goToPage;
 
   const EducationCommunityPage({required this.goToPage, Key? key})
       : super(key: key);
 
   @override
-  _EducationCommunityPageState createState() => _EducationCommunityPageState();
+  EducationCommunityPageState createState() => EducationCommunityPageState();
 }
 
-class _EducationCommunityPageState extends State<EducationCommunityPage> {
+class EducationCommunityPageState extends ConsumerState<EducationCommunityPage> {
   final _fireStore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
   late User loggedInUser;
@@ -115,6 +117,7 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
 
   @override
   Widget build(BuildContext context) {
+    ConnectPlusUser user = ref.watch(userProvider);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -124,8 +127,8 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
             children: [
               CircleAvatar(
                 radius: 30.0,
-                backgroundImage:
-                    AssetImage('assets/images/empty_profile_photo.png'),
+                backgroundImage: user.profilePicture != "" ? Image.network(user.profilePicture.toString(),
+                    fit: BoxFit.cover).image : AssetImage("assets/images/Default_pp.png"),
               ),
               SizedBox(
                 width: 10.0,

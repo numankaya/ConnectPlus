@@ -102,6 +102,7 @@ class ChatPage extends ConsumerWidget {
                     Map<String, dynamic>? chatUsers =
                         ref.read(userProvider).chatUsers;
                     List<String>? keysList = chatUsers?.keys.toList();
+                    print(chatUsers.toString());
                     List<Widget> chats = [];
 
                     for (int i = 0; i < snapshot.data!.docs.length; i++) {

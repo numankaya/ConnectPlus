@@ -164,7 +164,7 @@ class ConnectPlusUser {
   final Map<String, dynamic>? chatUsers;
   ConnectPlusUser(
       {required this.profilePicture,
-        required this.uId,
+      required this.uId,
       required this.fullName,
       required this.nickName,
       required this.mail,

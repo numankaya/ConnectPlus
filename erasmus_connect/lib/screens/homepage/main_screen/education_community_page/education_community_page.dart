@@ -124,7 +124,8 @@ class _EducationCommunityPageState extends State<EducationCommunityPage> {
             children: [
               CircleAvatar(
                 radius: 30.0,
-                backgroundImage: AssetImage('assets/images/flags_0.png'),
+                backgroundImage:
+                    AssetImage('assets/images/empty_profile_photo.png'),
               ),
               SizedBox(
                 width: 10.0,

@@ -1,13 +1,19 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:erasmus_connect/core/app_export.dart';
 import 'package:erasmus_connect/core/utils/utils.dart';
 import 'package:erasmus_connect/models/connect_plus_user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../registeration_login/edit_profile_screen/edit_profile_screen.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:image_picker/image_picker.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProfilePage extends ConsumerWidget {
   ProfilePage({
@@ -15,12 +21,54 @@ class ProfilePage extends ConsumerWidget {
     required this.goToPage,
   });
   final Function(int) goToPage;
-  Uint8List? _image;
 
-  void SelectImage() async {
-    Uint8List img = await PickImage(ImageSource.gallery);
-    _image = img;
+  ////////////////////////////////////77
+  late String _postImageUrl;
+
+  final picker = ImagePicker();
+  PickedFile? _imageFile;
+  String downloadUrl = ''; // Use 'late' keyword here
+
+  Future<void> chooseImage() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      _imageFile = PickedFile(pickedFile.path);
+      debugPrint('Image selected.-----------------');
+    } else {
+      debugPrint('Image unselected--------------.');
+    }
   }
+
+  Future<void> uploadImage() async {
+    if (_imageFile != null) {
+      firebase_storage.Reference ref =
+          firebase_storage.FirebaseStorage.instance.ref().child(
+                'images/${DateTime.now().toString()}',
+              );
+      firebase_storage.UploadTask uploadTask = ref.putFile(
+        File(_imageFile!.path),
+      );
+
+      firebase_storage.TaskSnapshot taskSnapshot =
+          await uploadTask.whenComplete(() {});
+
+      downloadUrl = await ref.getDownloadURL();
+      print('Image uploaded. Download URL: $downloadUrl');
+
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .update({'profilePicture': downloadUrl});
+      debugPrint(
+          '----------------------111Image uploaded. Download URL: $downloadUrl ----------------------------------');
+    } else {
+      debugPrint('link yok--------------.');
+    }
+    debugPrint(
+        '----------------------222Image uploaded. Download URL: $downloadUrl ----------------------------------');
+  }
+
+  ////////////////////////////////////////
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -42,19 +90,19 @@ class ProfilePage extends ConsumerWidget {
                         width: 120,
                         height: 120,
                         child: ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            child: _image != null
-                                ? Image(image: MemoryImage(_image!))
-                                : Image(
-                                    image: AssetImage(
-                                        "assets/images/Default_pp.png"),
-                                  )),
+                          borderRadius: BorderRadius.circular(100),
+                          child: Image.network(user.profilePicture.toString(),
+                              fit: BoxFit.cover),
+                        ),
                       ),
                       Positioned(
                           bottom: 0,
                           right: 0,
                           child: GestureDetector(
-                            onTap: SelectImage,
+                            onTap: () async {
+                              await chooseImage();
+                              await uploadImage();
+                            },
                             child: Container(
                               width: 45,
                               height: 45,

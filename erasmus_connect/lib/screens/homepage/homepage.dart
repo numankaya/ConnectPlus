@@ -48,6 +48,31 @@ class _HomePageState extends State<HomePage> {
             ),
             textAlign: TextAlign.center,
           ),
+          actions: [
+            Align(
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 238, 217, 198),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => RegisterScreen()));
+                },
+                child: Text(
+                  'Kayıt Ol',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ],
         );
       },
     );
@@ -278,9 +303,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(15),
-                        onTap: () {
-                          widget.goToPage(22);
-                        },
+                        onTap: () {},
                         child: Padding(
                           padding: EdgeInsets.all(6),
                           child: Image.asset(
@@ -622,7 +645,7 @@ class _HomePageState extends State<HomePage> {
                       widget.goToPage(17);
                     } else {
                       _showAlertDialogForAccess(context,
-                          "Kaliteli erişim topluluğuna katılmak ve aynı okuldan insanlarla komitede buluşmak için profil oluşturmanız gerekmektedir. Uygulamaya kayıt olun.");
+                          "Kaliteli erişim topluluğuna ve aynı okuldan insanların bulunduğu topluluklara katılmak ve mentorluk hizmetinden yararlanmak için profil oluşturmanız gerekmektedir. Uygulamaya kayıt olun.");
                     }
                   },
                   child: Stack(

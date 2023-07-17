@@ -33,9 +33,11 @@ class ChatbotPage extends ConsumerWidget {
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    backgroundImage: user.profilePicture != "" ? Image.network(user.profilePicture.toString(),
-                          fit: BoxFit.cover).image : AssetImage("assets/images/Default_pp.png"),
-
+                    backgroundImage: user.profilePicture != ""
+                        ? Image.network(user.profilePicture.toString(),
+                                fit: BoxFit.cover)
+                            .image
+                        : AssetImage("assets/images/Default_pp.png"),
                   ),
                   Positioned(
                     bottom: 0,

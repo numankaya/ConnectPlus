@@ -47,7 +47,7 @@ class CenterNextButton extends StatelessWidget {
 
     return Padding(
       padding:
-          EdgeInsets.only(bottom: 16 + MediaQuery.of(context).padding.bottom),
+          EdgeInsets.only(bottom: 1 + MediaQuery.of(context).padding.bottom),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -156,11 +156,12 @@ class CenterNextButton extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
                       await prefs.setBool('isOnboardingShown', false);
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) =>
-                              BottomNavigation(),
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => BottomNavigation(),
                         ),
                       );
                     },
@@ -203,7 +204,7 @@ class CenterNextButton extends StatelessWidget {
         children: [
           for (var i = 0; i < 3; i++)
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 480),
                 decoration: BoxDecoration(
@@ -230,5 +231,4 @@ class CenterNextButton extends StatelessWidget {
       ),
     );
   }
-
 }

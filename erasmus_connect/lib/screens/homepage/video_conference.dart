@@ -49,7 +49,7 @@ class _MeetingState extends State<Meeting> {
               ),
               child: IconButton(
                 onPressed: () {
-                  widget.goToPage(2);
+                  widget.goToPage(10);
                 },
                 icon: Icon(
                   size: 24,

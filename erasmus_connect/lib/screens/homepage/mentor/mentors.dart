@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:erasmus_connect/models/connect_plus_user.dart';
 import 'package:erasmus_connect/screens/homepage/mentor/mentorShowcasePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,6 +21,7 @@ class MentorsPage extends StatelessWidget {
         shadowColor: Color.fromARGB(255, 247, 235, 225),
         backgroundColor: Color.fromRGBO(255, 144, 34, 1),
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 4),
@@ -32,7 +34,7 @@ class MentorsPage extends StatelessWidget {
                 ),
                 child: IconButton(
                   icon: Icon(
-                    Icons.arrow_back_ios_rounded,
+                    CupertinoIcons.chevron_back,
                     size: 20,
                   ),
                   onPressed: () {
@@ -42,26 +44,47 @@ class MentorsPage extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 70),
-              width: 150,
+              alignment: Alignment.center,
+              width: 100,
               height: 40,
-              child: Center(child: Text("Mentorlar")),
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 80),
-              child: Container(
-                height: 38,
-                width: 38,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.chat_outlined,
-                    size: 25,
-                  ),
-                  onPressed: () {
-                    goToPage(2);
-                  },
-                ),
+              child: Center(
+                child: Text("Mentorlar"),
               ),
+            ),
+            Row(
+              children: [
+                Container(
+                  child: Container(
+                    height: 38,
+                    width: 38,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.chat_outlined,
+                        size: 25,
+                      ),
+                      onPressed: () {
+                        goToPage(2);
+                      },
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Container(
+                  child: Container(
+                    height: 38,
+                    width: 38,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.video_camera_front_rounded,
+                        size: 25,
+                      ),
+                      onPressed: () {
+                        goToPage(22);
+                      },
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -142,7 +165,8 @@ class MentorsPage extends StatelessWidget {
                     List<Widget> mywidgets = [];
                     var datas = snapshot.data!.docs;
                     for (int i = 0; i < datas.length; i++) {
-                      if (datas[i].id != FirebaseAuth.instance.currentUser?.uid) {
+                      if (datas[i].id !=
+                          FirebaseAuth.instance.currentUser?.uid) {
                         mywidgets.add(SizedBox(
                           height: 10,
                         ));
@@ -176,7 +200,7 @@ class MentorHolder extends ConsumerWidget {
   const MentorHolder(
       {Key? key,
       required this.goToPage,
-        required this.profilePicture,
+      required this.profilePicture,
       required this.uId,
       required this.fullName,
       required this.nickName,
@@ -186,7 +210,13 @@ class MentorHolder extends ConsumerWidget {
       : super(key: key);
 
   final Function(int) goToPage;
-  final String uId, profilePicture, fullName, nickName, school, erasmusSchool, country;
+  final String uId,
+      profilePicture,
+      fullName,
+      nickName,
+      school,
+      erasmusSchool,
+      country;
 
   void OpenMentorShowCase(WidgetRef ref) {
     ref.read(targetuId.notifier).state = uId;
@@ -202,105 +232,95 @@ class MentorHolder extends ConsumerWidget {
           width: 370,
           height: 150,
           decoration: BoxDecoration(
-              color: Color.fromRGBO(255, 185, 155, 1),
-              borderRadius: BorderRadius.circular(20)),
+            color: Color.fromRGBO(255, 185, 155, 1),
+            borderRadius: BorderRadius.circular(20),
+          ),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 width: 100,
                 height: 100,
                 child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: Image(
-                      image: profilePicture != "" ? Image.network(profilePicture,
-                          fit: BoxFit.cover).image : AssetImage("assets/images/Default_pp.png"),
-                    )),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 9),
-                child: SizedBox(
-                  width: 240,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        fullName,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      SizedBox(
-                          width: 180,
-                          child: Row(
-                            children: [
-                              Text(
-                                nickName,
-                                style: TextStyle(
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: 12),
-                                maxLines: 1,
-                              ),
-                              Spacer(),
-                              Text(
-                                "${country}",
-                                style:
-                                    TextStyle(overflow: TextOverflow.ellipsis),
-                                maxLines: 1,
-                              )
-                            ],
-                          )),
-                      SizedBox(
-                        height: 2,
-                      ),
-                      Text(
-                        "Okul : ${school}",
-                        style: TextStyle(overflow: TextOverflow.ellipsis),
-                        maxLines: 1,
-                      ),
-                      Text(
-                        "erasmus okul : ${erasmusSchool}",
-                        style: TextStyle(overflow: TextOverflow.ellipsis),
-                        maxLines: 1,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            width: 15,
-                            height: 15,
-                            decoration: BoxDecoration(
-                                color: Color.fromRGBO(0, 255, 0, 1),
-                                borderRadius: BorderRadius.circular(10)),
-                          ),
-                          SizedBox(
-                            width: 2,
-                          ),
-                          Text("Çevrimiçi"),
-                        ],
-                      ),
-                    ],
+                  borderRadius: BorderRadius.circular(100),
+                  child: Image.network(
+                    profilePicture != ""
+                        ? profilePicture
+                        : "assets/images/Default_pp.png",
+                    fit: BoxFit.cover,
                   ),
                 ),
-              )
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      fullName,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Text(
+                          nickName,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: TextStyle(fontSize: 12),
+                        ),
+                        SizedBox(width: 5),
+                        Text(
+                          " / ${country}",
+                          style: TextStyle(overflow: TextOverflow.ellipsis),
+                          maxLines: 1,
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 2),
+                    Text(
+                      "Okul : $school",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    Text(
+                      "erasmus okul : $erasmusSchool",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Container(
+                          width: 15,
+                          height: 15,
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(0, 255, 0, 1),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Text("Çevrimiçi"),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
         Positioned(
-          child: IconButton(
-              onPressed: () {
-                ref.read(targetuId.notifier).state = uId;
-                OpenMentorShowCase(ref);
-              },
-              icon: Icon(Icons.arrow_forward_outlined)),
           bottom: 0,
           right: 0,
-        )
+          child: IconButton(
+            onPressed: () {
+              ref.read(targetuId.notifier).state = uId;
+              OpenMentorShowCase(ref);
+            },
+            icon: Icon(Icons.arrow_forward_outlined),
+          ),
+        ),
       ],
     );
   }

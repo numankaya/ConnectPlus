@@ -415,6 +415,7 @@ class _CommunityDetailsPageState extends State<CommunityDetailsPage> {
               child: Column(
                 children: [
                   Text(
+                    textAlign: TextAlign.center,
                     widget.school.title,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -641,7 +642,7 @@ class _PostCardState extends State<PostCard> {
                     widget.post.content,
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 16.0,
+                      fontSize: 10.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -891,10 +892,10 @@ class _CreatePostPageState extends State<CreatePostPage> {
                                       style: TextStyle(fontSize: 16))
                                   : Padding(
                                       padding: const EdgeInsets.symmetric(
-                                          vertical: 10.0),
+                                          vertical: 10),
                                       child: Image.file(
                                         File(_imageFile!.path),
-                                        height: 120,
+                                        height: 90,
                                       ),
                                     ),
                               SizedBox(height: 20),

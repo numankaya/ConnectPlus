@@ -108,15 +108,17 @@ class ChatPage extends ConsumerWidget {
                     for (int i = 0; i < snapshot.data!.docs.length; i++) {
                       if (keysList!.contains(snapshot.data!.docs[i].id)) {
                         chats.add(DMUserMessageContainer(
-                          profilePicture: snapshot.data!.docs[i].get("profilePicture"),
+                          profilePicture:
+                              snapshot.data!.docs[i].get("profilePicture"),
                           id: snapshot.data!.docs[i].id,
                           email: snapshot.data!.docs[i].get("mail"),
                           name: snapshot.data!.docs[i].get("fullName"),
                           lastMessage: chatUsers?[snapshot.data!.docs[i].id]
-                          ["lastMessage"],
+                              ["lastMessage"],
                           ref: ref,
                           goToPage: goToPage,
-                          timeOut: chatUsers?[snapshot.data!.docs[i].id]["timeOut"] as Timestamp,
+                          timeOut: chatUsers?[snapshot.data!.docs[i].id]
+                              ["timeOut"] as Timestamp,
                         ));
                       }
                     }
@@ -218,7 +220,7 @@ class FastDMUserContainer extends StatelessWidget {
 class DMUserMessageContainer extends StatelessWidget {
   const DMUserMessageContainer(
       {Key? key,
-        required this.profilePicture,
+      required this.profilePicture,
       required this.name,
       required this.lastMessage,
       required this.id,
@@ -261,8 +263,10 @@ class DMUserMessageContainer extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
                   image: DecorationImage(
-                      image: profilePicture != "" ? Image.network(profilePicture,
-                          fit: BoxFit.cover).image : AssetImage("assets/images/Default_pp.png"),
+                      image: profilePicture != ""
+                          ? Image.network(profilePicture, fit: BoxFit.cover)
+                              .image
+                          : AssetImage("assets/images/Default_pp.png"),
                       fit: BoxFit.cover),
                   border: Border.all(color: Colors.black, width: 1)),
             ),

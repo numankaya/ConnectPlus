@@ -23,7 +23,8 @@ class EducationCommunityPage extends ConsumerStatefulWidget {
   EducationCommunityPageState createState() => EducationCommunityPageState();
 }
 
-class EducationCommunityPageState extends ConsumerState<EducationCommunityPage> {
+class EducationCommunityPageState
+    extends ConsumerState<EducationCommunityPage> {
   final _fireStore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
   late User loggedInUser;
@@ -127,8 +128,11 @@ class EducationCommunityPageState extends ConsumerState<EducationCommunityPage> 
             children: [
               CircleAvatar(
                 radius: 30.0,
-                backgroundImage: user.profilePicture != "" ? Image.network(user.profilePicture.toString(),
-                    fit: BoxFit.cover).image : AssetImage("assets/images/Default_pp.png"),
+                backgroundImage: user.profilePicture != ""
+                    ? Image.network(user.profilePicture.toString(),
+                            fit: BoxFit.cover)
+                        .image
+                    : AssetImage("assets/images/Default_pp.png"),
               ),
               SizedBox(
                 width: 10.0,
@@ -282,7 +286,14 @@ class EducationCommunityPageState extends ConsumerState<EducationCommunityPage> 
   Widget buildLikedItemsPage() {
     return Column(
       children: [
-        Text(AppLocalizations.of(context).favorilerim),
+        Text(
+          AppLocalizations.of(context).favorilerim,
+          style: TextStyle(
+            fontSize: 20.0,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         Expanded(
           child: ListView.builder(
             itemCount: likedItems.length,
@@ -707,7 +718,7 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
                                         vertical: 10.0),
                                     child: Image.file(
                                       File(_imageFile!.path),
-                                      height: 120,
+                                      height: 90,
                                     ),
                                   ),
                             SizedBox(height: 20),

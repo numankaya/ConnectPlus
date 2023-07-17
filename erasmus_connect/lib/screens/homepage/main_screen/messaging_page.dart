@@ -23,18 +23,26 @@ class MessagingPageState extends ConsumerState<MessagingPage> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   void sendMessage() async {
-    if(_messageController.text.isNotEmpty) {
-      await _chatService.sendMessage(ref.read(receieverIdProvider), ref.read(userProvider).uId, ref.read(userProvider).fullName!, receieverName, _messageController.text);
+    if (_messageController.text.isNotEmpty) {
+      await _chatService.sendMessage(
+          ref.read(receieverIdProvider),
+          ref.read(userProvider).uId,
+          ref.read(userProvider).fullName!,
+          receieverName,
+          _messageController.text);
       _messageController.text = "";
     }
   }
 
-  void setReceieverName() async{
-     await FirebaseFireStoreMethods(FirebaseFirestore.instance).GetUser(ref.read(receieverIdProvider)).then((value)  {
-       receieverName = value?["fullName"];
+  void setReceieverName() async {
+    await FirebaseFireStoreMethods(FirebaseFirestore.instance)
+        .GetUser(ref.read(receieverIdProvider))
+        .then((value) {
+      receieverName = value?["fullName"];
     });
-     print(receieverName);
+    print(receieverName);
   }
+
   var receieverName = "";
 
   @override
@@ -48,32 +56,31 @@ class MessagingPageState extends ConsumerState<MessagingPage> {
           shadowColor: Color.fromARGB(255, 247, 235, 225),
           backgroundColor: Color.fromRGBO(255, 144, 34, 0.52),
           title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 4),
-                child: Container(
-                  height: 38,
-                  width: 38,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
+              Container(
+                height: 38,
+                width: 38,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                ),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back_ios_rounded,
+                    size: 20,
                   ),
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back_ios_rounded,
-                      size: 20,
-                    ),
-                    onPressed: () {
-                      widget.goToPage(1);
-                    },
-                  ),
+                  onPressed: () {
+                    widget.goToPage(1);
+                  },
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 70),
-                child: Center(child: StreamBuilder<DocumentSnapshot>(
-                  stream:
-                  FirebaseFirestore.instance.collection("users").doc(receieverId).snapshots(),
+              Center(
+                child: StreamBuilder<DocumentSnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection("users")
+                      .doc(receieverId)
+                      .snapshots(),
                   builder: (BuildContext context,
                       AsyncSnapshot<DocumentSnapshot> snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
@@ -85,26 +92,37 @@ class MessagingPageState extends ConsumerState<MessagingPage> {
                             width: 40,
                             height: 40,
                             child: ClipRRect(
-                                borderRadius: BorderRadius.circular(100),
-                                child: Image(image: snapshot.data!.get("profilePicture") != "" ? Image.network(snapshot.data!.get("profilePicture"),
-                                    fit: BoxFit.cover).image : AssetImage("assets/images/Default_pp.png"),
-
-                                )
+                              borderRadius: BorderRadius.circular(100),
+                              child: Image(
+                                image:
+                                    snapshot.data!.get("profilePicture") != ""
+                                        ? Image.network(
+                                                snapshot.data!
+                                                    .get("profilePicture"),
+                                                fit: BoxFit.cover)
+                                            .image
+                                        : AssetImage(
+                                            "assets/images/Default_pp.png"),
+                              ),
                             ),
                           ),
-                          SizedBox(width: 10,),
+                          SizedBox(
+                            width: 10,
+                          ),
                           Text(snapshot.data!.get("fullName")),
-                          SizedBox(width: 40,),
-                          IconButton(onPressed: () {
-                            widget.goToPage(22);
-                          }, icon: Icon(Icons.call))
                         ],
                       );
                       return Text("error");
                     }
                   },
-                ),),
+                ),
               ),
+              IconButton(
+                onPressed: () {
+                  widget.goToPage(22);
+                },
+                icon: Icon(Icons.call),
+              )
             ],
           ),
           automaticallyImplyLeading: false,
@@ -113,13 +131,13 @@ class MessagingPageState extends ConsumerState<MessagingPage> {
         ),
         body: Column(
           children: [
-
             //messages
             Expanded(child: _buildMessageList()),
 
             _buildMessageInput(),
-            SizedBox(height: 10,)
-
+            SizedBox(
+              height: 10,
+            )
           ],
         ),
       ),
@@ -127,19 +145,23 @@ class MessagingPageState extends ConsumerState<MessagingPage> {
   }
 
   Widget _buildMessageList() {
-    return StreamBuilder(stream: _chatService.getMessages(ref.read(receieverIdProvider), _firebaseAuth.currentUser!.uid),
+    return StreamBuilder(
+      stream: _chatService.getMessages(
+          ref.read(receieverIdProvider), _firebaseAuth.currentUser!.uid),
       builder: (context, snapshot) {
-      if (snapshot.hasError) {
-        return Text("Error");
-      }
+        if (snapshot.hasError) {
+          return Text("Error");
+        }
 
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        return Text("Loading");
-      }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        }
 
-      return ListView(
-        children: snapshot.data!.docs.map((document) =>  _buildMessageItem(document)).toList(),
-      );
+        return ListView(
+          children: snapshot.data!.docs
+              .map((document) => _buildMessageItem(document))
+              .toList(),
+        );
       },
     );
   }
@@ -147,14 +169,15 @@ class MessagingPageState extends ConsumerState<MessagingPage> {
   Widget _buildMessageItem(DocumentSnapshot document) {
     Map<String, dynamic> data = document.data() as Map<String, dynamic>;
 
-    var aligment = data['senderId'] == _firebaseAuth.currentUser!.uid ? Alignment.centerRight : Alignment.centerLeft;
+    var aligment = data['senderId'] == _firebaseAuth.currentUser!.uid
+        ? Alignment.centerRight
+        : Alignment.centerLeft;
 
     return Container(
       alignment: aligment,
       child: Column(
         children: [
-          ChatBubble(message: data['message']
-          ),
+          ChatBubble(message: data['message']),
         ],
       ),
     );
@@ -163,23 +186,27 @@ class MessagingPageState extends ConsumerState<MessagingPage> {
   Widget _buildMessageInput() {
     return Row(
       children: [
-        IconButton(onPressed: () {}, icon: Icon(Icons.attach_file), ),
-        Expanded(child: Container(
+        IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.attach_file),
+        ),
+        Expanded(
+            child: Container(
           padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(color: Color.fromRGBO(243, 246, 246, 1),borderRadius: BorderRadius.circular(20)),
+          decoration: BoxDecoration(
+              color: Color.fromRGBO(243, 246, 246, 1),
+              borderRadius: BorderRadius.circular(20)),
           child: TextField(
             controller: _messageController,
             decoration: InputDecoration.collapsed(hintText: "Mesaj Yaz."),
           ),
         )),
-      IconButton(onPressed: () {}, icon: Icon(Icons.camera_alt_outlined)),
-      IconButton(onPressed: sendMessage, icon: Icon(Icons.send))
+        IconButton(onPressed: () {}, icon: Icon(Icons.camera_alt_outlined)),
+        IconButton(onPressed: sendMessage, icon: Icon(Icons.send))
       ],
     );
   }
-
 }
-
 
 class ChatBubble extends StatelessWidget {
   final String message;
@@ -191,9 +218,12 @@ class ChatBubble extends StatelessWidget {
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
-          color: Color.fromRGBO(250, 246, 237, 1),
+        color: Color.fromRGBO(250, 246, 237, 1),
       ),
-      child: Text("${message}", style: TextStyle(fontSize: 16),),
+      child: Text(
+        "${message}",
+        style: TextStyle(fontSize: 16),
+      ),
     );
   }
 }

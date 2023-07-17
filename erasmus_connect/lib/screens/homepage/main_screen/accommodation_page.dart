@@ -1,16 +1,18 @@
+import 'package:erasmus_connect/models/connect_plus_user.dart';
 import 'package:erasmus_connect/screens/homepage/bottom_navigation_bar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AccommodationPage extends StatefulWidget {
+class AccommodationPage extends ConsumerStatefulWidget {
   final Function(int) goToPage;
   AccommodationPage({required this.goToPage});
   @override
-  _AccommodationPageState createState() => _AccommodationPageState();
+  AccommodationPageState createState() => AccommodationPageState();
 }
 
-class _AccommodationPageState extends State<AccommodationPage> {
+class AccommodationPageState extends ConsumerState<AccommodationPage> {
   final List<String> imageUrls = [
     'assets/images/turkey_accommodation.png',
     'assets/images/sweden_accommodation.png',
@@ -140,6 +142,7 @@ class _AccommodationPageState extends State<AccommodationPage> {
 
   @override
   Widget build(BuildContext context) {
+    ConnectPlusUser user = ref.watch(userProvider);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color.fromARGB(255, 247, 235, 225),
@@ -159,8 +162,11 @@ class _AccommodationPageState extends State<AccommodationPage> {
                       children: [
                         CircleAvatar(
                           radius: 24,
-                          backgroundImage: NetworkImage(
-                              'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
+                          backgroundImage: user.profilePicture != ""
+                              ? Image.network(user.profilePicture.toString(),
+                              fit: BoxFit.cover)
+                              .image
+                              : AssetImage("assets/images/Default_pp.png"),
                         ),
                         Positioned(
                           bottom: 0,

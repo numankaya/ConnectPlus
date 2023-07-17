@@ -59,6 +59,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 onPressed: () {
+                  print("burada sorun yok");
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => RegisterScreen()));
                 },

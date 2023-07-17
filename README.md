@@ -215,14 +215,19 @@ https://github.com/numankaya/ConnectPlus/assets/25429713/1ef930fd-09d9-40a7-920a
  - **Sprint içinde tamamlanması tahmin edilen puan**:
 
 - **Puan tamamlama mantığı**:Product Backlog oluşturuldu ve User Stories puanlamarı yapıldı. 
-İlk sprintteki hızımız ve bu sprintteki aktiflik durumumuzla beraber bu sprint için 155 puan, 3. sprint için 165 puan tamamlama hesaplaması yapıldı.
-Toplam tammalanması gereken puan 420 olarak hesaplandı.
+İlk sprintteki hızımız ve bu sprintteki aktiflik durumumuzla beraber bu sprint için 155 puan, 3. sprint için ne 186 puan tamamlama hesaplaması yapıldı.
+Toplam tammalanması gereken puan 429 olarak hesaplandı.
 
 - **Daily Scrum**: Daily Scrum toplantı notları Trello üzerindeki ''Daily Scrum Meeting Notes'' bölümünden ulaşa bilirsiniz. Toplantılar Discord kanalı üzerinden gerçekleitirilmiştir.
 - **Sprint board update**: Product Backlog URL https://miro.com/app/board/uXjVM-Ye30g=/
   - Sprint board screenshotları: 
 - Trello Ekranı:<img width="713" alt="image" src="https://github.com/numankaya/ConnectPlus/assets/123562983/337f4d41-c1da-4660-90da-1d37b75754b0">
 - Miro Ekranı:
+<img width="1642" alt="Ekran Resmi 2023-07-17 08 53 39" src="https://github.com/numankaya/ConnectPlus/assets/123562983/6c12ffd9-6107-420a-b63a-63ee49750c62">
+
+
+![Uploading Ekran Resmi 2023-07-17 08.49.08.png…]()
+
 - Figma Ekranı:
 
 ![image-1](https://github.com/numankaya/ConnectPlus/assets/123562983/369f608d-825e-4f97-8c57-1568f4cafeb2)
@@ -309,8 +314,9 @@ https://github.com/numankaya/ConnectPlus/assets/25429713/2c412bae-dee2-4bee-a77c
 * Dosyalama tamamlandı.
   
 - **3.Sprint Notu**: 
-*Bu sprint  puan tamamlaya bildik.
+* Bu sprint 186 puan tamamlaya bildik.
 * Zaman kısıtlamasından dolayı Dil özelliği kısem yapıldı ve Tema özelliği kaldırıldı.
 * Ufak revizeler yapıldı.
 * OTP sayfası yerine maile gelen iletiyle şifre değişimi sağlanmakta.
 * Uygulamaya bağış özelliği getirildi, bu özellik sayesinde kişiler sosyal sorumluluk projelerine katıla bilecek ve bunu cvlerine ekleye bilecek.
+* Genel hatlarıyla istediğimiz çoğu sayfayı tamamlaya bildik.

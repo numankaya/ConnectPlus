@@ -80,10 +80,8 @@ class CenterNextButton extends StatelessWidget {
                     borderRadius: BorderRadius.circular(
                         8 + 32 * (1 - _signUpMoveAnimation.value)),
                     color: _signUpMoveAnimation.value > 0.7
-                        ? Color.fromARGB(
-                            255, 82, 51, 24) // Change color on the fourth page
-                        : Color.fromARGB(
-                            255, 251, 141, 39), // Default color for other pages
+                        ? Color.fromARGB(255, 82, 51, 24)
+                        : Color.fromARGB(255, 251, 141, 39),
                   ),
                   child: PageTransitionSwitcher(
                     duration: Duration(milliseconds: 480),

@@ -129,12 +129,6 @@ class LoginScreen extends ConsumerWidget {
                       )),
                   CustomButton(
                       onTap: () {
-                        // Navigator.of(context).push(
-                        //   MaterialPageRoute(
-                        //     builder: (context) =>
-                        //         BottomNavigation(),
-                        //   ),
-                        // );
                         LoginWithEmailAndPass(
                             email: emailController.text,
                             password: passwordController.text,

@@ -50,8 +50,7 @@ class ChatbotPage extends ConsumerWidget {
                         border: Border.all(
                             color: Color.fromARGB(255, 247, 235, 225),
                             width: 2),
-                        color: Color.fromARGB(
-                            255, 251, 137, 39), // Replace with desired color
+                        color: Color.fromARGB(255, 251, 137, 39),
                       ),
                     ),
                   ),

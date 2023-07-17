@@ -19,7 +19,6 @@ class AccommodationPageState extends ConsumerState<AccommodationPage> {
     'assets/images/italy_accommodation.png',
     'assets/images/germany_accommodation.png',
     'assets/images/netherlands_accommodation.png',
-    // Add more image URLs here
   ];
 
   final List<String> accommodationTitles = [
@@ -28,7 +27,6 @@ class AccommodationPageState extends ConsumerState<AccommodationPage> {
     "İtalya'da Konaklama",
     "Almanya'da Konaklama",
     "Hollanda'da Konaklama",
-    // Add more trip titles here
   ];
 
   final List<String> accommodationTexts = [
@@ -37,7 +35,6 @@ class AccommodationPageState extends ConsumerState<AccommodationPage> {
     "İtalya'da konaklamak istediğiniz yerleri keşfedin!",
     "Almanya'da konaklamak istediğiniz yerleri keşfedin!",
     "Hollanda'da konaklamak istediğiniz yerleri keşfedin!",
-    // Add more trip titles here
   ];
 
   final List<String> accommodationContent1 = [
@@ -164,8 +161,8 @@ class AccommodationPageState extends ConsumerState<AccommodationPage> {
                           radius: 24,
                           backgroundImage: user.profilePicture != ""
                               ? Image.network(user.profilePicture.toString(),
-                              fit: BoxFit.cover)
-                              .image
+                                      fit: BoxFit.cover)
+                                  .image
                               : AssetImage("assets/images/Default_pp.png"),
                         ),
                         Positioned(
@@ -191,11 +188,11 @@ class AccommodationPageState extends ConsumerState<AccommodationPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "WELCOME BACK",
+                          "Merhaba,",
                           style: TextStyle(fontSize: 10),
                         ),
                         Text(
-                          "F - 47",
+                          "${user.fullName}",
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
@@ -550,7 +547,7 @@ class AccommodationPageState extends ConsumerState<AccommodationPage> {
                                           ),
                                           SizedBox(width: 8),
                                           Text(
-                                            "F - 47",
+                                            "${user.fullName}",
                                             style: TextStyle(
                                                 color: Color.fromARGB(
                                                     255, 255, 255, 255),

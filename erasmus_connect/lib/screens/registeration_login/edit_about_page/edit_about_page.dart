@@ -166,7 +166,7 @@ class _EditAboutPageState extends ConsumerState<EditAboutPage> {
                             color: Colors.grey.withOpacity(0.4),
                             spreadRadius: 1,
                             blurRadius: 5,
-                            offset: Offset(0, 4), // changes position of shadow
+                            offset: Offset(0, 4),
                           ),
                         ],
                       ),
@@ -251,7 +251,7 @@ class BerkLongTextField extends StatelessWidget {
             color: Colors.grey.withOpacity(0.4),
             spreadRadius: 1,
             blurRadius: 5,
-            offset: Offset(0, 4), // changes position of shadow
+            offset: Offset(0, 4),
           ),
         ],
       ),

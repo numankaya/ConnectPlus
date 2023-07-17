@@ -204,7 +204,7 @@ class _HealthInsurancePageState extends State<HealthInsurancePage> {
   void selectCountry(String country) {
     setState(() {
       selectedCountry = country;
-      currentCardIndex = 0; // Reset the card index when switching countries
+      currentCardIndex = 0;
     });
   }
 
@@ -457,7 +457,7 @@ class _HealthInsurancePageState extends State<HealthInsurancePage> {
                         EdgeInsets.symmetric(
                           vertical: 10.0,
                           horizontal: 32.0,
-                        ), // Set desired padding here
+                        ),
                       ),
                       backgroundColor: MaterialStateProperty.all<Color>(
                         isSelected

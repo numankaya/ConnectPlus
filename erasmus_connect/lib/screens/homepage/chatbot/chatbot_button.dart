@@ -3,16 +3,12 @@ import 'package:flutter/material.dart';
 
 class ChatbotButton extends StatefulWidget {
   final VoidCallback _sendTextMessage;
-  final InputMode _inputMode;
-  final bool _isReplying;
   const ChatbotButton({
     super.key,
     required InputMode inputMode,
     required VoidCallback sendTextMessage,
     required bool isReplying,
-  })  : _inputMode = inputMode,
-        _sendTextMessage = sendTextMessage,
-        _isReplying = isReplying;
+  }) : _sendTextMessage = sendTextMessage;
 
   @override
   State<ChatbotButton> createState() => _ChatbotButtonState();
@@ -33,7 +29,7 @@ class _ChatbotButtonState extends State<ChatbotButton> {
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-        ), // Background color of the button
+        ),
       ),
       child: InkWell(
           borderRadius: BorderRadius.circular(45),

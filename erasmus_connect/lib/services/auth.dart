@@ -58,10 +58,7 @@ class FirebaseAuthServiceMethods {
       required BuildContext context}) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      /*
-      if (!_auth.currentUser!.emailVerified) {
-        //await sendEmailVerification(context);
-      }*/
+
       print(_auth.currentUser?.email);
       return true;
     } on FirebaseAuthException catch (e) {
@@ -88,7 +85,6 @@ class FirebaseAuthServiceMethods {
             await _auth.signInWithCredential(credential);
         if (userCredential.user != null) {
           if (userCredential.additionalUserInfo!.isNewUser) {
-            // if the user signing in first time with his google account we can add what we want to do
             if (isCreatingAcc) {
               FirebaseFireStoreMethods(FirebaseFirestore.instance).CreateUser(
                   uId: _auth.currentUser!.uid,

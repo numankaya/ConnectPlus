@@ -1,18 +1,13 @@
 import 'dart:io';
-import 'dart:typed_data';
 
-import 'package:erasmus_connect/core/app_export.dart';
-import 'package:erasmus_connect/core/utils/utils.dart';
 import 'package:erasmus_connect/models/connect_plus_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../registeration_login/edit_profile_screen/edit_profile_screen.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:image_picker/image_picker.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProfilePage extends ConsumerWidget {
@@ -22,12 +17,9 @@ class ProfilePage extends ConsumerWidget {
   });
   final Function(int) goToPage;
 
-  ////////////////////////////////////77
-  late String _postImageUrl;
-
   final picker = ImagePicker();
   PickedFile? _imageFile;
-  String downloadUrl = ''; // Use 'late' keyword here
+  String downloadUrl = '';
 
   Future<void> chooseImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -58,7 +50,9 @@ class ProfilePage extends ConsumerWidget {
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .update({'profilePicture': downloadUrl});
-      reff.read(userProvider.notifier).updateProfilePicture(profilePicture: downloadUrl);
+      reff
+          .read(userProvider.notifier)
+          .updateProfilePicture(profilePicture: downloadUrl);
       debugPrint(
           '----------------------111Image uploaded. Download URL: $downloadUrl ----------------------------------');
     } else {
@@ -67,8 +61,6 @@ class ProfilePage extends ConsumerWidget {
     debugPrint(
         '----------------------222Image uploaded. Download URL: $downloadUrl ----------------------------------');
   }
-
-  ////////////////////////////////////////
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -90,12 +82,15 @@ class ProfilePage extends ConsumerWidget {
                         width: 120,
                         height: 120,
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: Image(image: user.profilePicture.toString() != "" ? Image.network(user.profilePicture.toString(),
-                              fit: BoxFit.cover).image : AssetImage("assets/images/Default_pp.png"),
-
-                          )
-                        ),
+                            borderRadius: BorderRadius.circular(100),
+                            child: Image(
+                              image: user.profilePicture.toString() != ""
+                                  ? Image.network(
+                                          user.profilePicture.toString(),
+                                          fit: BoxFit.cover)
+                                      .image
+                                  : AssetImage("assets/images/Default_pp.png"),
+                            )),
                       ),
                       Positioned(
                           bottom: 0,
@@ -190,8 +185,7 @@ class ProfilePage extends ConsumerWidget {
                                         color: Colors.grey.withOpacity(0.4),
                                         spreadRadius: 1,
                                         blurRadius: 5,
-                                        offset: Offset(
-                                            0, 4), // changes position of shadow
+                                        offset: Offset(0, 4),
                                       ),
                                     ],
                                   ),
@@ -236,7 +230,7 @@ class TextContainer extends StatelessWidget {
             color: Colors.grey.withOpacity(0.4),
             spreadRadius: 3,
             blurRadius: 5,
-            offset: Offset(0, 4), // changes position of shadow
+            offset: Offset(0, 4),
           ),
         ],
       ),

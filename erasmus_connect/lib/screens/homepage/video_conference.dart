@@ -191,7 +191,6 @@ class _MeetingState extends State<Meeting> {
 
     Map<String, Object> featureFlags = {};
 
-    // Define meetings options here
     var options = JitsiMeetingOptions(
       roomNameOrUrl: roomText.text,
       serverUrl: serverUrl,

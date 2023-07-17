@@ -253,37 +253,41 @@ class RegisterScreen extends ConsumerWidget {
                     ),
                   ),
                   GestureDetector(
-                      onTap: () async {
-                        Navigator.of(context).pop();
-                      },
-                      child: Padding(
-                          padding: getPadding(top: 29, bottom: 5),
-                          child: RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                      text: AppLocalizations.of(context)
-                                          .zatenhesabinvarmi,
-                                      style: TextStyle(
-                                          color: ColorConstant.gray900,
-                                          fontSize: getFontSize(15),
-                                          fontFamily: 'Urbanist',
-                                          fontWeight: FontWeight.w500,
-                                          letterSpacing:
-                                              getHorizontalSize(0.15))),
-                                  TextSpan(
-                                      text: AppLocalizations.of(context)
-                                          .simdigirisyap,
-                                      style: TextStyle(
-                                          color: ColorConstant.cyan400,
-                                          fontSize: getFontSize(15),
-                                          fontFamily: 'Urbanist',
-                                          fontWeight: FontWeight.w700,
-                                          letterSpacing:
-                                              getHorizontalSize(0.15)))
-                                ],
+                    onTap: () async {
+                      Navigator.of(context).pop();
+                    },
+                    child: Padding(
+                      padding: getPadding(top: 29, bottom: 5),
+                      child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: AppLocalizations.of(context)
+                                    .zatenhesabinvarmi,
+                                style: TextStyle(
+                                  color: ColorConstant.gray900,
+                                  fontSize: getFontSize(15),
+                                  fontFamily: 'Urbanist',
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: getHorizontalSize(0.15),
+                                ),
                               ),
-                              textAlign: TextAlign.left)))
+                              TextSpan(
+                                text:
+                                    AppLocalizations.of(context).simdigirisyap,
+                                style: TextStyle(
+                                  color: ColorConstant.cyan400,
+                                  fontSize: getFontSize(15),
+                                  fontFamily: 'Urbanist',
+                                  fontWeight: FontWeight.w700,
+                                  letterSpacing: getHorizontalSize(0.15),
+                                ),
+                              ),
+                            ],
+                          ),
+                          textAlign: TextAlign.left),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -293,19 +297,10 @@ class RegisterScreen extends ConsumerWidget {
     );
   }
 
-  /// Navigates back to the previous screen.
-  ///
-  /// This function takes a [BuildContext] object as a parameter, which is used
-  /// to navigate back to the previous screen.
   onTapBtnArrowleft(BuildContext context) {
     Navigator.pop(context);
   }
 
-  /// Navigates to the loginScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the `Navigator` widget
-  /// to push the named route for the loginScreen.
   CreateAccountWithGoogleAccount(
       {required String fullName,
       required WidgetRef ref,

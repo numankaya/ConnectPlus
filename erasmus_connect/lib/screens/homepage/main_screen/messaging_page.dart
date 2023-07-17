@@ -132,9 +132,7 @@ class MessagingPageState extends ConsumerState<MessagingPage> {
         ),
         body: Column(
           children: [
-            //messages
             Expanded(child: _buildMessageList()),
-
             _buildMessageInput(),
             SizedBox(
               height: 10,

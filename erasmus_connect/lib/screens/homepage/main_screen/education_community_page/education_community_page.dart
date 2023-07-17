@@ -259,8 +259,7 @@ class EducationCommunityPageState
                   final place = data['content'] ?? '';
                   final title = data['title'] ?? '';
                   final time = data['time'] ?? '';
-                  // final loggedIn = data['sender'] ?? '';
-                  // final currentUser = loggedInUser.email ?? '';
+
                   final isLiked = likedItems.contains(data);
                   final imageUrls = data['imageUrls'] ?? '';
 
@@ -269,7 +268,6 @@ class EducationCommunityPageState
                     place: place,
                     title: title,
                     time: time,
-                    // isLoggedIn: currentUser == loggedIn,
                     isLiked: isLiked,
                     onLikePressed: () => toggleLike(data),
                     imageUrls: imageUrls,
@@ -303,8 +301,7 @@ class EducationCommunityPageState
               final place = data['content'] ?? '';
               final title = data['title'] ?? '';
               final time = data['time'] ?? '';
-              // final loggedIn = data['sender'] ?? '';
-              // final currentUser = loggedInUser.email ?? '';
+
               final imageUrls = data['imageUrls'] ?? '';
 
               return MessageBubble(
@@ -312,7 +309,6 @@ class EducationCommunityPageState
                 place: place,
                 title: title,
                 time: time,
-                // isLoggedIn: currentUser == loggedIn,
                 isLiked: true,
                 onLikePressed: () => toggleLike(data),
                 imageUrls: imageUrls,
@@ -327,7 +323,6 @@ class EducationCommunityPageState
 
 class MessageBubble extends StatelessWidget {
   MessageBubble({
-    // required this.isLoggedIn,
     required this.isLiked,
     required this.date,
     required this.title,
@@ -337,7 +332,6 @@ class MessageBubble extends StatelessWidget {
     required this.imageUrls,
   });
 
-  // final bool isLoggedIn;
   final bool isLiked;
   final String date;
   final String title;
@@ -379,7 +373,6 @@ class MessageBubble extends StatelessWidget {
                       image: Image.network("${imageUrls}").image,
                       fit: BoxFit.cover,
                     ),
-                    //tileMode: TileMode.,
                   ),
                 ),
               ),
@@ -571,7 +564,6 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
   void initState() {
     super.initState();
     getCurrentUser();
-    //retrieveImageUrls();
     dateTextController = TextEditingController();
     placeTextController = TextEditingController();
     titleTextController = TextEditingController();
@@ -754,7 +746,6 @@ class _EventCreatorPageState extends State<EventCreatorPage> {
                             'title': title,
                             'content': place,
                             'time': time,
-                            // 'sender': loggedInUser.email,
                             'created': Timestamp.now(),
                             'imageUrls': downloadUrl,
                           });

@@ -14,7 +14,6 @@ class CommunitiesPage extends StatefulWidget {
   @override
   State<CommunitiesPage> createState() => _CommunitiesPageState();
 }
-//----------------------------------------------------------------------------------------------------
 
 class _CommunitiesPageState extends State<CommunitiesPage> {
   final List<School> schools = [
@@ -534,7 +533,6 @@ class _CommunityDetailsPageState extends State<CommunityDetailsPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Navigate to the create post page
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -613,7 +611,7 @@ class _PostCardState extends State<PostCard> {
       ),
       child: Stack(
         children: [
-          // Background Image
+          // Arkaplan resmi
           Positioned.fill(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15.0),
@@ -623,7 +621,7 @@ class _PostCardState extends State<PostCard> {
               ),
             ),
           ),
-          // Container at the bottom
+          // Postları listeleyen kısım
           Positioned(
             left: 0,
             right: 0,
@@ -637,7 +635,7 @@ class _PostCardState extends State<PostCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Content
+                  // içerik
                   Text(
                     widget.post.content,
                     style: TextStyle(
@@ -647,7 +645,7 @@ class _PostCardState extends State<PostCard> {
                     ),
                   ),
                   SizedBox(height: 5.0),
-                  // Time
+                  // geçen zaman
                   Text(
                     elapsedTime, // Replace with the actual time
                     style: TextStyle(
@@ -928,7 +926,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                             await uploadImage();
                             if (_formKey.currentState!.validate()) {
                               _formKey.currentState!.save();
-                              // Create a new Post object
+                              // yeni post oluştur
                               final post = Post(
                                 title: _postTitle,
                                 created: Timestamp.now(),
@@ -941,10 +939,10 @@ class _CreatePostPageState extends State<CreatePostPage> {
                                 id: '',
                               );
 
-                              // Save the post to Firebase
+                              // Post'u Firestore'a kaydet
                               savePostToFirebase(post);
 
-                              // Reset the form
+                              // formu yenile
                               _formKey.currentState!.reset();
                               triggerNotification(
                                   '${widget.school.title} ${_postTitle}',

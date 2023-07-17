@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../main.dart';
-import '../../widgets/bottom_navigator_bar.dart';
 import 'adventure.dart';
 import 'connect.dart';
 import 'explore.dart';
@@ -22,18 +21,16 @@ class _IntroductionAnimationScreenState
     extends ConsumerState<IntroductionAnimationScreen>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
-  late Color _backgroundColor; // Added variable to store the background color
+  late Color _backgroundColor;
 
   @override
   void initState() {
     super.initState();
     _animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 8))
-          ..addListener(
-              _onAnimationValueChanged); // Add listener to track value changes
+          ..addListener(_onAnimationValueChanged);
     _animationController.animateTo(0.2);
-    _backgroundColor =
-        _getBackgroundColor(0.2); // Initialize the background color
+    _backgroundColor = _getBackgroundColor(0.2);
   }
 
   @override
@@ -73,28 +70,21 @@ class _IntroductionAnimationScreenState
 
   void _onAnimationValueChanged() {
     setState(() {
-      // Update the background color when the animation value changes
       _backgroundColor = _getBackgroundColor(_animationController.value);
     });
   }
 
   Color _getBackgroundColor(double animationValue) {
-    // Return different background colors based on the animation value
     if (animationValue >= 0.0 && animationValue < 0.2) {
-      return Color.fromARGB(
-          255, 247, 235, 225); // Example background color for the first page
+      return Color.fromARGB(255, 247, 235, 225);
     } else if (animationValue >= 0.2 && animationValue < 0.4) {
-      return Color.fromARGB(
-          255, 247, 235, 225); // Example background color for the second page
+      return Color.fromARGB(255, 247, 235, 225);
     } else if (animationValue >= 0.4 && animationValue < 0.6) {
-      return Color.fromARGB(
-          255, 247, 235, 225); // Example background color for the third page
+      return Color.fromARGB(255, 247, 235, 225);
     } else if (animationValue >= 0.6 && animationValue < 0.8) {
-      return Color.fromARGB(
-          255, 247, 235, 225); // Example background color for the fourth page
+      return Color.fromARGB(255, 247, 235, 225);
     } else {
-      return Color.fromARGB(
-          255, 247, 235, 225); // Example background color for the fifth page
+      return Color.fromARGB(255, 247, 235, 225);
     }
   }
 
@@ -119,7 +109,11 @@ class _IntroductionAnimationScreenState
 
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => MyApp(isIntroduction: false,)),
+      MaterialPageRoute(
+        builder: (context) => MyApp(
+          isIntroduction: false,
+        ),
+      ),
     );
   }
 }

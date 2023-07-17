@@ -20,8 +20,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // List<bool> dropdownOpenState = [false, false, false, false, false];
-
   final List<String> images = [];
 
   final _fireStore = FirebaseFirestore.instance;
@@ -29,7 +27,6 @@ class _HomePageState extends State<HomePage> {
 
   String searchText = '';
 
-  // late User loggedInUser;
   void _showAlertDialogForAccess(BuildContext context, message) {
     showDialog(
       context: context,
@@ -38,7 +35,6 @@ class _HomePageState extends State<HomePage> {
       ) {
         return AlertDialog(
           backgroundColor: Color.fromARGB(255, 189, 104, 28),
-          // title: Text('Alert'),
           content: Text(
             message,
             style: TextStyle(
@@ -61,14 +57,6 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () async {
                   widget.goToPage(4);
                   Navigator.of(context).pop();
-                  // await Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) {
-                  //       return RegisterScreen();
-                  //     },
-                  //   ),
-                  // );
                 },
                 child: Text(
                   'Kayıt Ol',
@@ -173,8 +161,7 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.black.withOpacity(0.2),
                           spreadRadius: 2,
                           blurRadius: 5,
-                          offset: Offset(
-                              0, 3), // controls the position of the shadow
+                          offset: Offset(0, 3),
                         ),
                       ],
                     ),
@@ -198,8 +185,7 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.black.withOpacity(0.2),
                           spreadRadius: 2,
                           blurRadius: 5,
-                          offset: Offset(
-                              0, 3), // controls the position of the shadow
+                          offset: Offset(0, 3),
                         ),
                       ],
                     ),
@@ -261,8 +247,7 @@ class _HomePageState extends State<HomePage> {
                       height: 48,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        color: Color.fromARGB(255, 250, 229,
-                            210), // Background color of the button
+                        color: Color.fromARGB(255, 250, 229, 210),
                       ),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(15),
@@ -297,7 +282,7 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: SizedBox(
-                  height: 100, // Set the desired height for the images
+                  height: 100,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
@@ -385,11 +370,11 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.all(4.0),
                         child: GestureDetector(
                           onTap: () {
-                            widget.goToPage(11);
+                            widget.goToPage(12);
                           },
                           child: Stack(
                             children: [
-                              Image.asset('assets/images/homepage_img_1.png'),
+                              Image.asset('assets/images/homepage_img_3.png'),
                               Positioned(
                                 top: 0,
                                 right: 0,
@@ -398,8 +383,7 @@ class _HomePageState extends State<HomePage> {
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    AppLocalizations.of(context)
-                                        .sagliksigortasi,
+                                    AppLocalizations.of(context).kaliteliegitim,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color.fromARGB(255, 0, 0, 0),
@@ -418,11 +402,11 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.all(4.0),
                         child: GestureDetector(
                           onTap: () {
-                            widget.goToPage(12);
+                            widget.goToPage(11);
                           },
                           child: Stack(
                             children: [
-                              Image.asset('assets/images/homepage_img_3.png'),
+                              Image.asset('assets/images/homepage_img_1.png'),
                               Positioned(
                                 top: 0,
                                 right: 0,
@@ -431,7 +415,8 @@ class _HomePageState extends State<HomePage> {
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    AppLocalizations.of(context).kaliteliegitim,
+                                    AppLocalizations.of(context)
+                                        .sagliksigortasi,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color.fromARGB(255, 0, 0, 0),

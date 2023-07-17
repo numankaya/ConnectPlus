@@ -55,8 +55,11 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: CircleAvatar(
                         radius: 24,
-                        backgroundImage: user.profilePicture.toString() != "" ? Image.network(user.profilePicture.toString(),
-                          fit: BoxFit.cover).image : AssetImage("assets/images/Default_pp.png"),
+                        backgroundImage: user.profilePicture.toString() != ""
+                            ? Image.network(user.profilePicture.toString(),
+                                    fit: BoxFit.cover)
+                                .image
+                            : AssetImage("assets/images/Default_pp.png"),
                       ),
                     ),
                     Column(
@@ -90,7 +93,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   AppLocalizations.of(context).hesap,
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 20,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -107,7 +110,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   AppLocalizations.of(context).dilsecenegi,
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 20,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -147,23 +150,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                         ),
                       );
                     }).toList(),
-                  ),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  AppLocalizations.of(context).tema,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                trailing: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.arrow_forward,
-                    color: Colors.black,
                   ),
                 ),
               ),
@@ -271,54 +257,61 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 ),
               ),
               SizedBox(height: 20),
-              GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: () {
-                  if (ref.read(userProvider).uId == "") {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (builder) => LoginScreen()));
-                  } else {
-                    FirebaseAuth.instance.signOut();
-                    ref.read(userProvider.notifier).LogOut();
-                  }
-                },
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.05,
-                  width: MediaQuery.of(context).size.width * 0.35,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.8),
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(15),
-                    color: Color.fromARGB(255, 250, 176, 43),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        (ref.read(userProvider).uId == ""
-                            ? AppLocalizations.of(context).girisyap
-                            : AppLocalizations.of(context).cikisyap),
-                        style: TextStyle(
-                          color: ref.read(userProvider).uId == ""
-                              ? Color.fromRGBO(0, 255, 0, 1)
-                              : Color.fromARGB(255, 190, 35, 53),
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+              Align(
+                alignment: Alignment.centerLeft,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
+                    if (ref.read(userProvider).uId == "") {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (builder) => LoginScreen()));
+                    } else {
+                      FirebaseAuth.instance.signOut();
+                      ref.read(userProvider.notifier).LogOut();
+                    }
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(left: 15),
+                    alignment: Alignment.centerLeft,
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    width: MediaQuery.of(context).size.width * 0.35,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.8),
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Icon(
-                        Icons.arrow_circle_right_outlined,
-                        color: Colors.black,
-                      ),
-                    ],
+                      ],
+                      borderRadius: BorderRadius.circular(15),
+                      color: Color.fromARGB(255, 250, 176, 43),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          (ref.read(userProvider).uId == ""
+                              ? AppLocalizations.of(context).girisyap
+                              : AppLocalizations.of(context).cikisyap),
+                          style: TextStyle(
+                            color: ref.read(userProvider).uId == ""
+                                ? Color.fromRGBO(0, 255, 0, 1)
+                                : Color.fromARGB(255, 190, 35, 53),
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Icon(
+                          Icons.arrow_circle_right_outlined,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

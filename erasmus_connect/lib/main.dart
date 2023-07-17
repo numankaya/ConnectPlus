@@ -29,13 +29,6 @@ void main() async {
     ],
     debug: true,
   );
-
-  // final firebaseApi = FirebaseApi();
-  // firebaseApi.initNotifications();
-  //runApp(MyApp());
-
-  //--------------------------ÖNEMLİ--------------------------//
-  // Bu kısım arayüz tarafını tamamladıktan sonra aktif edilecektir.
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: MyApp(isIntroduction: isOnboardingShown),
@@ -94,28 +87,9 @@ class MainMaterialApp extends ConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate
       ],
-      //home: BottomNavigation(),
-      //--------------------------ÖNEMLİ--------------------------//
-      // Bu kısım arayüz tarafını tamamladıktan sonra aktif edilecektir.
       home: widget.isIntroduction == true
           ? IntroductionAnimationScreen()
           : LoginScreen(),
-      // home: Scaffold(
-      //   appBar: AppBar(
-      //     title: Text(
-      //       "Connect Plus",
-      //       style: TextStyle(color: Colors.white),
-      //     ),
-      //     backgroundColor: Colors.deepPurpleAccent,
-      //   ),
-      //   body: Consumer(
-      //     builder: (context, ref, child) {
-      //       final pageIndex = ref.watch(pageIndexProvider);
-      //       return allPages[pageIndex];
-      //     },
-      //   ),
-      //   bottomNavigationBar: my_navigator_bar(),
-      // ),
     );
   }
 }

@@ -22,18 +22,21 @@ class _NotificationsPageState extends State<NotificationsPage> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: const Color.fromARGB(128, 255, 144, 34),
+          shadowColor: const Color.fromARGB(128, 255, 144, 34),
+          foregroundColor: const Color.fromARGB(128, 255, 144, 34),
+          surfaceTintColor: const Color.fromARGB(128, 255, 144, 34),
           title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
                 onTap: () {
                   widget.goToPage(2);
                 },
                 child: Container(
-                  height: 38,
-                  width: 38,
+                  height: 40,
+                  width: 40,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(12),
                     color: Colors.white,
                   ),
                   child: Icon(
@@ -43,19 +46,12 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   ),
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Colors.white,
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-                child: Text(
-                  'Bildirimler',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 64, 58, 122),
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Text(
+                'Bildirimler',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               Icon(

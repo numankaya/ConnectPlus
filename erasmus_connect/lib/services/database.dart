@@ -11,7 +11,6 @@ class FirebaseFireStoreMethods {
       required String fullName,
       required String? mail}) async {
     try {
-      // create user's data inside of firestore
       await _firebaseStore.collection("users").doc(uId).set({
         "profilePicture": "",
         "fullName": fullName,
@@ -47,7 +46,6 @@ class FirebaseFireStoreMethods {
       required String school,
       required String erasmusSchool}) async {
     try {
-      // create user's data inside of firestore
       await _firebaseStore.collection("users").doc(uId).update({
         "fullName": fullName,
         "nickName": nickName,
@@ -72,7 +70,6 @@ class FirebaseFireStoreMethods {
       required String skills,
       required String lessons}) async {
     try {
-      // create user's data inside of firestore
       await _firebaseStore.collection("users").doc(uId).update({
         "aboutMe": aboutMe,
         "skills": skills,
@@ -86,7 +83,6 @@ class FirebaseFireStoreMethods {
   }
 
   Future<Map<String, dynamic>?> GetUser(String uId) async {
-    // get user's data from firestore
     try {
       var collection = FirebaseFirestore.instance.collection('users');
       var docSnapshot = await collection.doc(uId).get();
@@ -104,7 +100,6 @@ class FirebaseFireStoreMethods {
 
   Future<void> UpdateLastMessage(
       String Id1, String Id2, Timestamp time, String message) async {
-    // get user's data from firestore
     try {
       var collection = FirebaseFirestore.instance.collection('users');
       Map<String, dynamic>? user1 = await GetUser(Id1);
@@ -121,7 +116,6 @@ class FirebaseFireStoreMethods {
 
   Future<void> AddChatUsers(
       String Id1, String Id2, Timestamp time, WidgetRef ref) async {
-    // get user's data from firestore
     try {
       var collection = FirebaseFirestore.instance.collection('users');
       Map<String, dynamic>? user1 = await GetUser(Id1);

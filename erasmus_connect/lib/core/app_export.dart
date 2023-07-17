@@ -1,4 +1,3 @@
-export 'package:erasmus_connect/core/constants/constants.dart';
 export 'package:erasmus_connect/core/utils/image_constant.dart';
 export 'package:erasmus_connect/core/utils/color_constant.dart';
 export 'package:erasmus_connect/core/utils/size_utils.dart';

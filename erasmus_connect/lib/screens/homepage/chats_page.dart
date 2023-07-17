@@ -58,9 +58,7 @@ class ChatPage extends ConsumerWidget {
                           borderSide: BorderSide.none,
                         ),
                       ),
-                      onChanged: (value) {
-                        // Handle search bar input
-                      },
+                      onChanged: (value) {},
                       autofocus: false,
                     ),
                   ),
@@ -70,14 +68,11 @@ class ChatPage extends ConsumerWidget {
                     height: 48,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Color.fromARGB(
-                          255, 250, 229, 210), // Background color of the button
+                      color: Color.fromARGB(255, 250, 229, 210),
                     ),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(15),
-                      onTap: () {
-                        // Add your onTap logic here
-                      },
+                      onTap: () {},
                       child: Padding(
                         padding: EdgeInsets.all(6),
                         child: Image.asset(

@@ -4,7 +4,6 @@ import 'package:erasmus_connect/screens/homepage/homepage.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/accommodation_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/communities/communities_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/education_community_page/education_community_page.dart';
-import 'package:erasmus_connect/screens/homepage/main_screen/education_community_page/event_creator_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/health_insurance_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/notifications/notifications_page.dart';
 import 'package:erasmus_connect/screens/homepage/main_screen/messaging_page.dart';

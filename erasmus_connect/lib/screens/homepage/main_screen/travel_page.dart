@@ -23,7 +23,6 @@ class TravelPageState extends ConsumerState<TravelPage> {
     'assets/images/italy_travel.png',
     'assets/images/germany_travel.png',
     'assets/images/netherlands_travel.png',
-    // Add more image URLs here
   ];
 
   final List<String> travelTitles = [
@@ -32,7 +31,6 @@ class TravelPageState extends ConsumerState<TravelPage> {
     "İtalya'da Gezilecek Rotalar",
     "Kanada'da Gezilecek Rotalar",
     "Hollanda'da Gezilecek Rotalar",
-    // Add more trip titles here
   ];
 
   final List<String> travelTexts = [
@@ -41,7 +39,6 @@ class TravelPageState extends ConsumerState<TravelPage> {
     "İtalya'da gezmek istediğiniz yerleri keşfedin!",
     "Kanada'da gezmek istediğiniz yerleri keşfedin!",
     "Hollanda'da gezmek istediğiniz yerleri keşfedin!",
-    // Add more trip titles here
   ];
 
   final List<String> travelContent1 = [
@@ -134,8 +131,8 @@ class TravelPageState extends ConsumerState<TravelPage> {
                           radius: 24,
                           backgroundImage: user.profilePicture != ""
                               ? Image.network(user.profilePicture.toString(),
-                              fit: BoxFit.cover)
-                              .image
+                                      fit: BoxFit.cover)
+                                  .image
                               : AssetImage("assets/images/Default_pp.png"),
                         ),
                         Positioned(
@@ -149,8 +146,7 @@ class TravelPageState extends ConsumerState<TravelPage> {
                               border: Border.all(
                                   color: Color.fromARGB(255, 247, 235, 225),
                                   width: 2),
-                              color: Color.fromARGB(255, 251, 137,
-                                  39), // Replace with desired color
+                              color: Color.fromARGB(255, 251, 137, 39),
                             ),
                           ),
                         ),
@@ -161,11 +157,11 @@ class TravelPageState extends ConsumerState<TravelPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "WELCOME BACK",
+                          "Merhaba",
                           style: TextStyle(fontSize: 10),
                         ),
                         Text(
-                          "F - 47",
+                          "${user.fullName}",
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
@@ -177,7 +173,7 @@ class TravelPageState extends ConsumerState<TravelPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: SizedBox(
-                  height: 100, // Set the desired height for the images
+                  height: 100,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: imageUrls.length,
@@ -239,14 +235,11 @@ class TravelPageState extends ConsumerState<TravelPage> {
                       height: 48,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        color: Color.fromARGB(255, 250, 229,
-                            210), // Background color of the button
+                        color: Color.fromARGB(255, 250, 229, 210),
                       ),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(15),
-                        onTap: () {
-                          // Add your onTap logic here
-                        },
+                        onTap: () {},
                         child: Padding(
                           padding: EdgeInsets.all(6),
                           child: Image.asset(
@@ -264,12 +257,10 @@ class TravelPageState extends ConsumerState<TravelPage> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(35),
-                    color: Color.fromARGB(
-                        255, 247, 235, 225), // Background color of the button
+                    color: Color.fromARGB(255, 247, 235, 225),
                   ),
                   width: MediaQuery.of(context).size.width * 0.94,
-                  height: MediaQuery.of(context).size.height *
-                      0.46, // Set the desired height for the images
+                  height: MediaQuery.of(context).size.height * 0.46,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     controller: _scrollController,
@@ -463,7 +454,7 @@ class TravelPageState extends ConsumerState<TravelPage> {
                                           ),
                                           SizedBox(width: 8),
                                           Text(
-                                            "F - 47",
+                                            "${user.fullName}",
                                             style: TextStyle(
                                                 color: Color.fromARGB(
                                                     255, 255, 255, 255),

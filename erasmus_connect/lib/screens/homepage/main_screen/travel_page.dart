@@ -1,20 +1,22 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:erasmus_connect/models/connect_plus_user.dart';
 import 'package:erasmus_connect/screens/homepage/bottom_navigation_bar.dart';
 import 'package:erasmus_connect/screens/homepage/chatbot/chatbot_page.dart';
 import 'package:erasmus_connect/screens/homepage/profile_page.dart';
 import 'package:erasmus_connect/screens/homepage/chats_page.dart';
 import 'package:erasmus_connect/screens/homepage/settings/settings_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class TravelPage extends StatefulWidget {
+class TravelPage extends ConsumerStatefulWidget {
   final Function(int) goToPage;
   TravelPage({required this.goToPage});
   @override
-  _TravelPageState createState() => _TravelPageState();
+  TravelPageState createState() => TravelPageState();
 }
 
-class _TravelPageState extends State<TravelPage> {
+class TravelPageState extends ConsumerState<TravelPage> {
   final List<String> imageUrls = [
     'assets/images/turkey_travel.png',
     'assets/images/sweden_travel.png',
@@ -110,6 +112,7 @@ class _TravelPageState extends State<TravelPage> {
 
   @override
   Widget build(BuildContext context) {
+    ConnectPlusUser user = ref.watch(userProvider);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color.fromARGB(255, 247, 235, 225),
@@ -129,8 +132,11 @@ class _TravelPageState extends State<TravelPage> {
                       children: [
                         CircleAvatar(
                           radius: 24,
-                          backgroundImage: NetworkImage(
-                              'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
+                          backgroundImage: user.profilePicture != ""
+                              ? Image.network(user.profilePicture.toString(),
+                              fit: BoxFit.cover)
+                              .image
+                              : AssetImage("assets/images/Default_pp.png"),
                         ),
                         Positioned(
                           bottom: 0,

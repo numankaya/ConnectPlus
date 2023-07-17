@@ -290,6 +290,10 @@ Toplam tammalanması gereken puan 420 olarak hesaplandı.
 
 
 
+https://github.com/numankaya/ConnectPlus/assets/25429713/2c412bae-dee2-4bee-a77c-98a557a1aa63
+
+
+
 - **Sprint Review**:
 * Tüm ekip üyeleri aktif bir şekilde çalıştı.
 * Bu sprintte hedefimiz uygulamayı genel hatlarıyla görselleştirip önemli sayfaların backendini tamamlamaktı.

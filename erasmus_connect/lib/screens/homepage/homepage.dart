@@ -58,9 +58,17 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => RegisterScreen()));
+                onPressed: () async {
+                  widget.goToPage(4);
+                  Navigator.of(context).pop();
+                  // await Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) {
+                  //       return RegisterScreen();
+                  //     },
+                  //   ),
+                  // );
                 },
                 child: Text(
                   'Kayıt Ol',
@@ -153,57 +161,10 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 10),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 16),
-                          backgroundColor: Color.fromARGB(255, 238, 217, 198),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
-                        onPressed: () {
-                          // Handle button 1 press
-                        },
-                        child: Text(
-                          'Erasmus',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Color.fromARGB(255, 64, 58, 122),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 12),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 16),
-                          backgroundColor: Color.fromARGB(255, 238, 217, 198),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
-                        onPressed: () {
-                          // Handle button 2 press
-                        },
-                        child: Text(
-                          'Work & Travel',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Color.fromARGB(255, 64, 58, 122),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(width: 20),
                   Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -228,6 +189,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
+                  SizedBox(width: 10),
                   Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -255,9 +217,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
+                  SizedBox(width: 20),
                 ],
               ),
-              SizedBox(height: 4),
+              SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -604,7 +567,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.all(10.0),
                     child: GestureDetector(
                       onTap: () {
-                        if (_auth.currentUser?.email != null) {
+                        if (_auth.currentUser != null) {
                           widget.goToPage(10);
                         } else {
                           _showAlertDialogForAccess(context,
@@ -641,7 +604,7 @@ class _HomePageState extends State<HomePage> {
               Center(
                 child: GestureDetector(
                   onTap: () {
-                    if (_auth.currentUser?.email != null) {
+                    if (_auth.currentUser != null) {
                       widget.goToPage(17);
                     } else {
                       _showAlertDialogForAccess(context,

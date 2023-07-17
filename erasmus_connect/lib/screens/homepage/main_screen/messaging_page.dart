@@ -4,6 +4,7 @@ import 'package:erasmus_connect/screens/homepage/chats_page.dart';
 import 'package:erasmus_connect/services/chat.dart';
 import 'package:erasmus_connect/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -59,15 +60,15 @@ class MessagingPageState extends ConsumerState<MessagingPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                height: 38,
-                width: 38,
+                height: 40,
+                width: 40,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(12),
                   color: Colors.white,
                 ),
                 child: IconButton(
                   icon: Icon(
-                    Icons.arrow_back_ios_rounded,
+                    CupertinoIcons.chevron_back,
                     size: 20,
                   ),
                   onPressed: () {
@@ -121,7 +122,7 @@ class MessagingPageState extends ConsumerState<MessagingPage> {
                 onPressed: () {
                   widget.goToPage(22);
                 },
-                icon: Icon(Icons.call),
+                icon: Icon(size: 40, CupertinoIcons.video_camera),
               )
             ],
           ),

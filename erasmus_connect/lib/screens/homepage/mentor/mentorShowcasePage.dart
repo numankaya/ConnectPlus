@@ -465,8 +465,8 @@ class MyAlertDialog extends StatelessWidget {
                     Navigator.pop(context, true);
                   },
                   child: Container(
-                    width: 50,
-                    height: 50,
+                    width: 80,
+                    height: 80,
                     child: Image(
                       image: AssetImage("assets/images/google_pay.png"),
                     ),

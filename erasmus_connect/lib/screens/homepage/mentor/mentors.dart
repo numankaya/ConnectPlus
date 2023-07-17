@@ -68,22 +68,6 @@ class MentorsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 10),
-                Container(
-                  child: Container(
-                    height: 38,
-                    width: 38,
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.video_camera_front_rounded,
-                        size: 25,
-                      ),
-                      onPressed: () {
-                        goToPage(22);
-                      },
-                    ),
-                  ),
-                ),
               ],
             ),
           ],

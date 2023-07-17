@@ -343,8 +343,8 @@ class RegisterScreen extends ConsumerWidget {
             .GetUser(currentUser!.uid);
     ref.read(userProvider.notifier).ChangeUser(ConnectPlusUser(
           profilePicture: '',
-          uId: currentUser!.uid,
-          fullName: userCollection!["fullName"],
+          uId: currentUser.uid,
+          fullName: userCollection?["fullName"],
           mail: currentUser.email,
           phone: "",
           isMailVerified: currentUser.emailVerified,

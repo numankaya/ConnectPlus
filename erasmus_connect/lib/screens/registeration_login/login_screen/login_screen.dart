@@ -280,8 +280,10 @@ class LoginScreen extends ConsumerWidget {
                     child: GestureDetector(
                       onTap: () async {
                         bool isAccountOpened = await Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => RegisterScreen()));
+                          MaterialPageRoute(
+                            builder: (context) => RegisterScreen(),
+                          ),
+                        );
                         if (isAccountOpened) {
                           Navigator.of(context).pop();
                         }

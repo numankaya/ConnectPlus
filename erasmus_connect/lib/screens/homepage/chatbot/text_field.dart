@@ -5,7 +5,6 @@ import 'package:erasmus_connect/screens/homepage/chatbot/services/ai_handler.dar
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 enum InputMode {
   text,
@@ -50,7 +49,7 @@ class _TextFieldWidgetState extends ConsumerState<TextFieldWidget> {
                     EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 filled: true,
                 fillColor: Color.fromARGB(255, 255, 255, 255),
-                hintText: AppLocalizations.of(context).banabirseysor,
+                hintText: 'Bana bir şey sor...',
                 hintStyle: TextStyle(
                   fontFamily: 'Montserrat',
                   color: Color.fromARGB(255, 166, 163, 157),

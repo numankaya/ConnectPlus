@@ -389,10 +389,7 @@ class _HealthInsurancePageState extends State<HealthInsurancePage> {
   Widget _buildCardContent(String imageUrl) {
     return Container(
       margin: EdgeInsets.all(10),
-      width: MediaQuery.of(context).size.width * 0.6,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
-      ),
+      width: MediaQuery.of(context).size.width * 0.5,
       child: Image.asset(
         imageUrl,
         fit: BoxFit.contain,

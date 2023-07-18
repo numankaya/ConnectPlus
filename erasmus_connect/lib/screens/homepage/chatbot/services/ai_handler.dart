@@ -2,12 +2,13 @@ import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 
 class AIHandler {
   final openAI = OpenAI.instance.build(
-    token: "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",
+    token: "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",
     baseOption: HttpSetup(
       receiveTimeout: const Duration(seconds: 60),
       connectTimeout: const Duration(seconds: 60),
     ),
   );
+//Open aid free trail usage veriyor. Onu kullanarak bu api key aldık. Ancak, bazen oluşturduğumuz api key silinebiliyor. Sonradan yine ücretsiz bir şekilde tekrar oluşturup ekleyebiliyoruz.
 
   Future<String> getResponse(String message) async {
     try {

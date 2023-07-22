@@ -15,7 +15,7 @@
 ## Ürün Açıklaması
 ConnectPlus App, Erasmus, Work and Treval gibi öğrencilerin ve gençlerin deneyimlerini kolaylaştırmak ve zenginleştirmek için tasarlanmış bir mobil uygulamadır. 
 Öğrencilerin başvuru sürecinden ders tanıma işlemlerine, konaklama tavsiyelerinden gezilecek rotalara kadar birçok bilgiye erişmelerini sağlar.
-Aynı zamanda, geçlerin arasında etkileşim ve iletişimi teşvik eder.
+Aynı zamanda, gençlerin arasında etkileşim ve iletişimi teşvik eder.
  ## Uygulamanın Fonksiyonları:
 #### İletişim ve Etkileşim:
 Erasmus öğrencileri arasında mesajlaşma ve grup oluşturma imkanı sağlar.
